@@ -1,29 +1,29 @@
 
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import {  StyleSheet,Text } from 'react-native';
 
-const TextRegular = ({ children, style, ...rest }) => {
+export const TextRegular = ({ children, style, ...rest }) => {
     return (
         <Text style={[styles.TextRegular, style]} {...rest}>
             {children}
         </Text>
     );
 };
-const TextLight = ({ children, style, ...rest }) => {
+export const TextLight = ({ children, style, ...rest }) => {
     return (
         <Text style={[styles.TextLight, style]} {...rest}>
             {children}
         </Text>
     );
 };
-const TextMedium = ({ children, style, ...rest }) => {
+export const TextMedium = ({ children, style, ...rest }) => {
     return (
         <Text style={[styles.TextMedium, style]} {...rest}>
             {children}
         </Text>
     );
 };
-const TextBold = ({ children, style, ...rest }) => {
+export const TextBold = ({ children, style, ...rest }) => {
     return (
         <Text style={[styles.TextBold, style]} {...rest}>
             {children}
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default (TextRegular, TextLight, TextMedium, TextBold);
+
