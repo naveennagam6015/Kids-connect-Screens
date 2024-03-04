@@ -30,8 +30,11 @@ export const tokens = {
         700:'#FF5C00'
     },
     neutral:{
-        100:'#B4B4B4',
-
+        100:'#E8E8E8',
+        200:'#D9D9D9',
+        300:'#BFBFBF',
+        500:'#969696',
+        700:'#656565'
     },
     fontcolor:'#283F45',
     white:'#FFFFFF'
