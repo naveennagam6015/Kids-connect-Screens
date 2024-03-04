@@ -2,18 +2,30 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-const CustomText = ({ children, style, ...rest }) => {
+const TextRegular = ({ children, style, ...rest }) => {
     return (
-        <Text style={[styles.text, style]} {...rest}>
+        <Text style={[styles.textRegular, style]} {...rest}>
+            {children}
+        </Text>
+    );
+};
+
+const TextLight = ({ children, style, ...rest }) => {
+    return (
+        <Text style={[styles.textRegular, style]} {...rest}>
             {children}
         </Text>
     );
 };
 
 const styles = StyleSheet.create({
-    text: {
-        fontFamily: "LexendRegular",
+    textRegular: {
+        fontFamily: "RobotoRegular",
+    },
+    textLight: {
+        fontFamily: "RobotoLight",
     },
 });
 
-export default CustomText;
+export default (TextRegular, TextLight);
+
