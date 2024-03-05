@@ -3,7 +3,7 @@ import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons';
-export default function RegistrationStepOne() {
+export default function RegistrationSteptwo() {
     function emailSubmit() {
 
     }
@@ -12,18 +12,26 @@ export default function RegistrationStepOne() {
         <View style={[styles.containertop]}>
             <View style={[styles.flexrow, styles.mb20, styles.bottomline]}>
                 <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
-                <TextBold style={[styles.back]}>Step 1 of 2</TextBold>
+                <TextBold style={[styles.back]}>Step 2 of 2</TextBold>
 
             </View>
             <View style={[styles.container]}>
 
-                <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
-                <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
-                <View style={[styles.image]}>
-
-                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                <View style={[styles.flexrow]}>
+                    <TextBold style={[styles.Headingtext]}>Almost there</TextBold>
+                    <View style={styles.line} />
                 </View>
-                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                <TextRegular style={[styles.subtext]}>Complete this verification, to make connections</TextRegular>
+                <View style={[styles.image, styles.mh50, styles.flexrow]}>
+                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                    <View>
+                        <TextRegular>We have sent a confirmation code to</TextRegular>
+                        <TextRegular style={[styles.mailid]}>sasi*******@gmail.com</TextRegular>
+                        <TextRegular>Please check your spam folder.</TextRegular>
+                    </View>
+
+                </View>
+                <TextBold style={[styles.Headingtextinput]}>Enter Your Verification Code</TextBold>
                 <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" />
                 <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                     <Pressable
@@ -33,16 +41,29 @@ export default function RegistrationStepOne() {
                         <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color="black" />
                     </Pressable>
                 </View>
-                <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
-                    terms & Pocilices and recieve notifications.</TextRegular>
+                <TextRegular style={[styles.subtext2]}>Didn’t recieve verification code?</TextRegular>
             </View>
         </View>
 
     )
 }
 const styles = StyleSheet.create({
+    mailid: {
+        color: color.neutral[500],
+        textDecorationLine: 'underline'
+    },
+    line: {
+        borderBottomWidth: 2,
+        width: '10%',
+        borderBottomColor: color.neutral[500],
+        marginLeft: 8,
+        marginBottom: 16
+    },
     mb20: {
         marginBottom: 20
+    },
+    mh50: {
+        marginHorizontal: 80
     },
     mr10: {
         marginRight: 10,
@@ -64,8 +85,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     emailimage: {
-        width: 250,
-        height: 250,
+        width: 150,
+        height: 150,
     },
     arrow: {
         marginLeft: 10,
@@ -95,7 +116,7 @@ const styles = StyleSheet.create({
         borderBottomColor: color.accent[500],
         borderBottomWidth: 3,
         paddingBottom: 10,
-        width: '50%'
+        width: '95%'
     },
     inputBox: {
         padding: 10,

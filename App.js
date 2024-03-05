@@ -1,7 +1,9 @@
 
-import {  Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Login from './screens/Login';
 import { useFonts } from "expo-font";
+import RegistrationStepOne from './screens/RegistrationStepOne';
+import RegistrationSteptwo from './screens/RegistrationSteptwo';
 
 export default function App() {
 
@@ -18,7 +20,8 @@ export default function App() {
 
 
   return (
-    <Login />
+    <RegistrationSteptwo />
+    // <Login />
   );
 }
 
