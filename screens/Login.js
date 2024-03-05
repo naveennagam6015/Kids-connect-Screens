@@ -1,6 +1,6 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { tokens } from "../assets/colors/theme";
-import { TextBold } from "../assets/fonts/CustomText";
+import { TextBold, TextMedium } from "../assets/fonts/CustomText";
 
 
 
@@ -12,6 +12,9 @@ export default function Login(){
             <View>
                 <TextInput style={styles.inputBox} placeholder="Enter your mail" />
                 <TextInput style={styles.inputBox} placeholder="Enter your password" />
+                <Pressable style={styles.btnPrimary}>
+                    <TextMedium>Login</TextMedium>
+                </Pressable>
             </View>
         </View>
     )
@@ -39,5 +42,9 @@ const styles = StyleSheet.create({
         borderWidth:1,
         margin:12,
         borderRadius:8
+    },
+    btnPrimary:{
+        padding:10,
+        margin:12
     }
 })
