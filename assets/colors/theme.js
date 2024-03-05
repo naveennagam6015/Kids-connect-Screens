@@ -9,6 +9,7 @@ export const color = {
         700: '#FFCC00'
     },
     accent: {
+        50: '#FFF8EA',
         100: '#FFDBA6',
         200: '#FFCA7A',
         300: '#FFAF36',

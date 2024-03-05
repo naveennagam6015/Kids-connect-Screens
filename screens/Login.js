@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { color } from "../assets/colors/theme";
+import { color, tokens } from "../assets/colors/theme";
 import { TextBold } from "../assets/fonts/CustomText";
 
 
@@ -12,6 +12,9 @@ export default function Login() {
             <View>
                 <TextInput style={styles.inputBox} placeholder="Enter your mail" />
                 <TextInput style={styles.inputBox} placeholder="Enter your password" />
+                <Pressable style={styles.btnPrimary}>
+                    <TextMedium>Login</TextMedium>
+                </Pressable>
             </View>
         </View>
     )
