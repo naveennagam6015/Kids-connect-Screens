@@ -4,7 +4,7 @@ import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme';
 import { MaterialIcons, AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
 
-export default function RegistrationStepOne() {
+export default function Registration() {
     const [seconds, setSeconds] = useState(180);
     const inputRefs = Array(5)
         .fill()
