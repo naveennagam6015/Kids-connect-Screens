@@ -1,10 +1,59 @@
-import { Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { color, tokens } from "../assets/colors/theme";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
+
+
+WebBrowser.maybeCompleteAuthSession();
 
 
 export default function Login() {
+
+    const [userInfo, setUserInfo] = useState(null);
+    const [request, response, promptAsync] = Google.useAuthRequest({
+        webClientId:'1060882560652-ijq5rfubct76s3eoau3jubvc9b8p1m2d.apps.googleusercontent.com'
+    });
+
+
+    useEffect(() => {
+        handleSigninWithGoogle();
+    },[response])
+
+    async function handleSigninWithGoogle(){
+        const user =  await AsyncStorage.getItem('@user');
+        if(!user){
+            if(response?.type ==='success'){
+                await getUserInfo(response.authentication.accessToken);
+            }
+           
+        }else{
+            setUserInfo(JSON.parse(user));
+        }
+    }
+
+    const getUserInfo = async(token) => {
+        if(!token) return;
+        try{
+            const response = await fetch('https://www.googleapis.com/userinfo/v2/me',
+                {
+                    headers:{Authorization: `Bearer ${token}`}
+                }
+            );
+
+            const user = await response.json();
+            await AsyncStorage.setItem('@user', JSON.stringify(user));
+            setUserInfo(user);
+            console.log(user);
+        }catch(error){
+
+        }
+    }
+
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover">
@@ -24,10 +73,11 @@ export default function Login() {
                         <TextRegular style={styles.textR}>or Login with</TextRegular>
                         <View style={styles.horizontalLine}></View>
                     </View>
-                    <Pressable style={styles.googleImage}>
+                    <Pressable style={styles.googleImage} onPress={promptAsync}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with google</TextMedium>
                     </Pressable>
+                    <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} />
                 </View>
             </ImageBackground>
         </View>

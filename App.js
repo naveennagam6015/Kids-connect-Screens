@@ -19,9 +19,9 @@ export default function App() {
 
 
   return (
-    <Registration />
+    // <Registration />
     // <ProfileVerification />
-    // <Login />
+    <Login />
   );
 }
 
