@@ -1,54 +1,130 @@
 import React from 'react'
-import { View, StyleSheet, Platform, Pressable, Image } from 'react-native'
+import { View, StyleSheet, Platform, Pressable, Image, ScrollView } from 'react-native'
 import { color } from '../assets/colors/theme';
-import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText';
+import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 export default function Home() {
     return (
-        <View style={[styles.container]}>
-            <TextBold style={[styles.Headingtext]}>Glance Area</TextBold>
-            <View style={[styles.flexrow]}>
-                <View style={[styles.innerbtn1]}>
-                    <Pressable>
-                        <TextRegular>Individuals</TextRegular>
-                    </Pressable>
+        <ScrollView>
+            <View style={[styles.container]}>
+                <TextBold style={[styles.Headingtext]}>Glance Area</TextBold>
+                <View style={[styles.flexrow]}>
+                    <View style={[styles.innerbtn1]}>
+                        <Pressable>
+                            <TextRegular>Individuals</TextRegular>
+                        </Pressable>
+                    </View>
+                    <View style={[styles.innerbtn]}>
+                        <Pressable>
+                            <TextRegular>Circles</TextRegular>
+                        </Pressable>
+                    </View>
                 </View>
-                <View style={[styles.innerbtn]}>
-                    <Pressable>
-                        <TextRegular>Circles</TextRegular>
-                    </Pressable>
-                </View>
-            </View>
-            <View>
+                <View>
 
-                <TextBold style={[styles.Headingtext]}>Ongoing Appointments</TextBold>
-                <View style={[styles.Card]}>
-                    <View style={[styles.innercard1, styles.flexrow,]}>
-                        <View style={{ alignItems: 'center' }}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                    <TextBold style={[styles.Headingtext]}>Ongoing Appointments</TextBold>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.innercard1, styles.flexrow,]}>
+                            <View style={{ alignItems: 'center' }}>
+                                <View>
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <View>
+                                    <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                                </View>
                             </View>
-                            <View>
-                                <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                            <View style={{ alignItems: 'center' }}>
+                                <View>
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <View>
+                                    <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                                </View>
                             </View>
                         </View>
-                        <View style={{ alignItems: 'center' }}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                        <View style={[styles.innercard2, styles.flexrow,]}>
+                            <View style={{ alignItems: 'flex-start' }}>
+                                <View>
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <View>
+                                    <TextBold style={[styles.childrenname]}>Aron Finch <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                                </View>
                             </View>
-                            <View>
-                                <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <TextRegular>3-5hrs</TextRegular>
+                                <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                                <TextRegular>Feb 17th | Monday</TextRegular>
+
+                            </View>
+                            <View style={{ alignItems: 'flex-end' }}>
+                                <View>
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <View>
+                                    <TextBold style={[styles.childrenname]}>Iman Gadzi <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                                </View>
                             </View>
                         </View>
                     </View>
+                    <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                        <View style={{ padding: 5, marginHorizontal: 10 }}>
+                            <View>
+                                <MaterialIcons name="message" size={20} color="black" />
+                            </View>
+                            <View>
+                                <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                            </View>
+                        </View>
+                        <View style={{ padding: 5, marginHorizontal: 10 }}>
+                            <View>
+                                <Ionicons name="call" size={20} color="black" />
+                            </View>
+                            <View>
+                                <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                            </View>
+                        </View>
+                        <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                            <Pressable
+                                style={[styles.flexrow]}>
+                                <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                                <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <View style={{ alignItems: 'center' }}>
+                        <Pressable
+                            style={[styles.flexrow]}>
+                            <TextRegular style={[styles.childrenname]}>View all</TextRegular>
+                            <MaterialIcons name="keyboard-arrow-down" size={24} color={color.primary} />
+                        </Pressable>
+                    </View>
+                    <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold>
+                </View>
+                <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                    <TextBold style={[styles.Headingtext]}>Previous Connection
+                    </TextBold>
+                    <Pressable
+                        style={[styles.flexrow]}>
+                        <TextRegular style={[styles.childrenname]}>View all</TextRegular>
+                        <MaterialIcons name="keyboard-arrow-down" size={24} color={color.primary} />
+                    </Pressable>
+                </View>
+
+
+
+                <View style={[styles.Card]}>
+
                     <View style={[styles.innercard2, styles.flexrow,]}>
                         <View style={{ alignItems: 'flex-start' }}>
                             <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                <Image style={[styles.profilepic, styles.activeprofilr]} source={require('../assets/images/women.png')} />
                             </View>
                             <View>
-                                <TextBold style={[styles.childrenname]}>Aron Finch <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                                <TextBold style={[styles.childrenname]}>Aron Finch</TextBold>
                             </View>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -62,114 +138,40 @@ export default function Home() {
                                 <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                             </View>
                             <View>
-                                <TextBold style={[styles.childrenname]}>Iman Gadzi <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                                <TextBold style={[styles.childrenname, { color: color.neutral[300] }]}>Iman Gadzi</TextBold>
                             </View>
                         </View>
                     </View>
-                </View>
-                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <View style={{ padding: 5, marginHorizontal: 10 }}>
-                        <View>
-                            <MaterialIcons name="message" size={20} color="black" />
+
+
+                    <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                        <View style={{ width: '35%' }}>
+                            <View style={[styles.flexrow, styles.dot]}>
+                                <TextRegular>You have connected previously 3 times.</TextRegular>
+                            </View>
                         </View>
-                        <View>
-                            <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                        <View style={{ padding: 5, marginHorizontal: 10 }}>
+                            <View>
+                                <MaterialIcons name="message" size={20} color="black" />
+                            </View>
+                            <View>
+                                <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                            </View>
+                        </View>
+                        <View style={[styles.Buttoncard2, styles.Buttoncardwidth2,]}>
+                            <Pressable>
+                                <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
+                            </Pressable>
                         </View>
                     </View>
-                    <View style={{ padding: 5, marginHorizontal: 10 }}>
-                        <View>
-                            <Ionicons name="call" size={20} color="black" />
-                        </View>
-                        <View>
-                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
-                        </View>
-                    </View>
-                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                        <Pressable
-                            style={[styles.flexrow]}>
-                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
-                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
-                        </Pressable>
-                    </View>
+
+
                 </View>
-            </View>
-            <View>
-                <View style={{ alignItems: 'center' }}>
-                    <Pressable
-                        style={[styles.flexrow]}>
-                        <TextRegular style={[styles.childrenname]}>View all</TextRegular>
-                        <MaterialIcons name="keyboard-arrow-down" size={24} color={color.primary} />
-                    </Pressable>
-                </View>
-                <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold>
-            </View>
-            <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                <TextBold style={[styles.Headingtext]}>Previous Connection
-                </TextBold>
-                <Pressable
-                    style={[styles.flexrow]}>
-                    <TextRegular style={[styles.childrenname]}>View all</TextRegular>
-                    <MaterialIcons name="keyboard-arrow-down" size={24} color={color.primary} />
-                </Pressable>
             </View>
 
 
 
-            <View style={[styles.Card]}>
-
-                <View style={[styles.innercard2, styles.flexrow,]}>
-                    <View style={{ alignItems: 'flex-start' }}>
-                        <View>
-                            <Image style={[styles.profilepic, styles.activeprofilr]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View>
-                            <TextBold style={[styles.childrenname]}>Aron Finch</TextBold>
-                        </View>
-                    </View>
-                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <TextRegular>3-5hrs</TextRegular>
-                        <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
-                        <TextRegular>Feb 17th | Monday</TextRegular>
-
-                    </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                        <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View>
-                            <TextBold style={[styles.childrenname, { color: color.neutral[300] }]}>Iman Gadzi</TextBold>
-                        </View>
-                    </View>
-                </View>
-
-
-                <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <View style={{ width: '35%' }}>
-                        <View style={[styles.flexrow, styles.dot]}>
-                            <TextRegular>You have connected previously 3 times.</TextRegular>
-                        </View>
-                    </View>
-                    <View style={{ padding: 5, marginHorizontal: 10 }}>
-                        <View>
-                            <MaterialIcons name="message" size={20} color="black" />
-                        </View>
-                        <View>
-                            <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
-                        </View>
-                    </View>
-                    <View style={[styles.Buttoncard2, styles.Buttoncardwidth2,]}>
-                        <Pressable>
-                            <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
-                        </Pressable>
-                    </View>
-                </View>
-
-
-            </View>
-
-
-
-        </View >
+        </ScrollView >
     )
 }
 const styles = StyleSheet.create({

@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import 'react-native-gesture-handler'
 import Home from './screens/Home';
 import Registration from './screens/Registration';
+import ProfileSetup from './screens/ProfileSetup';
 
 export default function App() {
 
@@ -21,9 +22,7 @@ export default function App() {
 
 
   return (
-    <Registration />
-    // <ProfileVerification />
-    // <Login />
+    <ProfileSetup />
   );
 }
 
