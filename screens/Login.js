@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     btnPrimary: {
         padding: 15,
         margin: 12,
-        backgroundColor: color.primary[500],
+        backgroundColor: color.primary,
         borderRadius: 8
     },
     btnText: {

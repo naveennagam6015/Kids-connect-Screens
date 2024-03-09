@@ -1,6 +1,7 @@
 
 import React from 'react';
-import {  StyleSheet,Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { color } from '../colors/theme';
 
 export const TextRegular = ({ children, style, ...rest }) => {
     return (
@@ -34,15 +35,19 @@ export const TextBold = ({ children, style, ...rest }) => {
 const styles = StyleSheet.create({
     TextRegular: {
         fontFamily: "RobotoRegular",
+        color: color.fontcolor
     },
     TextLight: {
         fontFamily: "RobotoLight",
+        color: color.fontcolor
     },
     TextMedium: {
         fontFamily: "RobotoMedium",
+        color: color.fontcolor
     },
     TextBold: {
-        fontFamily: "RobotoMedium",
+        fontFamily: "RobotoBold",
+        color: color.fontcolor
     },
 });
 
