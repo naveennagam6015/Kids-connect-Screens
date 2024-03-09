@@ -64,25 +64,19 @@ export default function Registration() {
     return (
 
         <View style={[styles.containertop]}>
+            {/* 1st screen start */}
+
             <View style={[styles.flexrow, styles.mb20, styles.bottomline]}>
                 <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
                 <TextBold style={[styles.back]}>Step 1 of 2</TextBold>
             </View>
-            {/* <View style={[styles.flexrow, styles.mb20, styles.bottomline2]}>
-                <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
-                <TextBold style={[styles.back]}>Step 2 of 2</TextBold>
-            </View> */}
             <View style={[styles.container]}>
-
                 <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
                 <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
                 <View style={[styles.image]}>
-
                     <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
                 </View>
-
-
-                {/* <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
                 <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" />
                 <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                     <Pressable
@@ -93,9 +87,23 @@ export default function Registration() {
                     </Pressable>
                 </View>
                 <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
-                    terms & Pocilices and recieve notifications.</TextRegular> */}
+                    terms & Pocilices and recieve notifications.</TextRegular>
+            </View>
+            {/* 1st screen end */}
 
 
+            {/* 2nd screen start */}
+
+            {/* <View style={[styles.flexrow, styles.mb20, styles.bottomline2]}>
+                <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
+                <TextBold style={[styles.back]}>Step 2 of 2</TextBold>
+            </View>
+            <View style={[styles.container]}>
+                <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
+                <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
+                <View style={[styles.image]}>
+                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                </View>
                 <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
                 <View style={[styles.flexrow, styles.alinecenter, styles.mb8]}>
                     <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="username@email.com" />
@@ -116,10 +124,7 @@ export default function Registration() {
                             onKeyPress={(event) => handleKeyPress(index, event)}
                         />
                     ))}
-
-
                 </View>
-
                 <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                     <Pressable
                         onPress={emailSubmit}
@@ -128,8 +133,11 @@ export default function Registration() {
                         <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
                     </Pressable>
                 </View>
+            </View> */}
 
-            </View>
+            {/* 2nd screen end */}
+
+
         </View>
 
     )

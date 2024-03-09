@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { useFonts } from "expo-font";
 import 'react-native-gesture-handler'
 import Home from './screens/Home';
+import Registration from './screens/Registration';
 
 export default function App() {
 

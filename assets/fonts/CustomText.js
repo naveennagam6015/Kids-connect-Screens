@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontFamily: "RobotoMedium",
     },
     TextBold: {
-        fontFamily: "RobotoMedium",
+        fontFamily: "RobotoBold",
     },
 });
 
