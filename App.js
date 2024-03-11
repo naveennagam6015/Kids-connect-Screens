@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import Login from './screens/Login';
 import { useFonts } from "expo-font";
 import Registration from './screens/Registration';
+import ProfileVerification from './screens/ProfileVerification';
 
 export default function App() {
 
@@ -19,9 +20,9 @@ export default function App() {
 
 
   return (
-    // <Registration />
+    <ProfileVerification />
     // <ProfileVerification />
-    <Login />
+    // <Login />
   );
 }
 

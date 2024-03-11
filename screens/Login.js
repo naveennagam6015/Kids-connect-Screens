@@ -9,22 +9,41 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
-WebBrowser.maybeCompleteAuthSession();
-
 
 export default function Login() {
-
+    WebBrowser.maybeCompleteAuthSession();
     const [userInfo, setUserInfo] = useState(null);
     const [request, response, promptAsync] = Google.useAuthRequest({
-        webClientId:'1060882560652-ijq5rfubct76s3eoau3jubvc9b8p1m2d.apps.googleusercontent.com'
+        androidClientId:'1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
+        webClientId:'1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
+        
+        // iosClientId:'1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
     });
 
 
     useEffect(() => {
         handleSigninWithGoogle();
-    },[response])
+        // if(response?.type === 'success'){
+        //     const {id_token} = response.params;
+        //     const credential = GoogleAuthProvider.credential(id_token);
+        //     signInWithCredential(auth, credential);
+        // }
+    },[response]);
 
-    async function handleSigninWithGoogle(){
+    // useEffect(() => {
+    //     const unsub = onAuthStateChanged(auth, async(user) => {
+    //         if(user){
+    //             console.log(user);
+    //         }else{
+
+    //         }
+    //     });
+
+    //     return () => unsub();
+
+    // },[])
+
+        async function handleSigninWithGoogle(){
         const user =  await AsyncStorage.getItem('@user');
         if(!user){
             if(response?.type ==='success'){
@@ -56,7 +75,7 @@ export default function Login() {
 
     return (
         <View style={styles.container}>
-            <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover">
+            {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
                 <TextBold style={styles.heading}>Kids Connect</TextBold>
                 <TextBold style={styles.subheading}>Welcome back</TextBold>
                 <View>
@@ -73,13 +92,17 @@ export default function Login() {
                         <TextRegular style={styles.textR}>or Login with</TextRegular>
                         <View style={styles.horizontalLine}></View>
                     </View>
-                    <Pressable style={styles.googleImage} onPress={promptAsync}>
+                    <Pressable style={styles.googleImage} onPress={() => promptAsync()}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
-                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with google</TextMedium>
+                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
                     </Pressable>
-                    <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} />
+                    <View style={styles.signupView}>
+                        <TextRegular>Don't have an Account! </TextRegular>
+                        <TextMedium style={styles.signUpMediumText}>Signup</TextMedium>
+                    </View>
+                    {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
                 </View>
-            </ImageBackground>
+            {/* </ImageBackground> */}
         </View>
     )
 }
@@ -147,5 +170,14 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
         // flex:1
-    }
+    },
+    signupView:{
+        flexDirection:'row', 
+        alignSelf:'center',
+    },
+    signUpMediumText:{
+        // fontSize:18,
+        borderBottomColor:'#000',
+        borderBottomWidth:1
+    },
 })
