@@ -5,6 +5,9 @@ import 'react-native-gesture-handler'
 import Home from './screens/Home';
 import Registration from './screens/Registration';
 import ProfileVerification from './screens/ProfileVerification';
+import Retry from './screens/Retry';
+import 'react-native-gesture-handler';
+import Navigtion from './Navigation';
 
 export default function App() {
 
@@ -22,9 +25,7 @@ export default function App() {
 
 
   return (
-    <ProfileVerification />
-    // <ProfileVerification />
-    // <Login />
+    <Navigtion />
   );
 }
 

@@ -1,22 +1,26 @@
-import { Button, Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Image, ImageBackground, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { color, tokens } from "../assets/colors/theme";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/core";
 
 
 
 
 
 export default function Login() {
+
+    const navigation = useNavigation();
+
     WebBrowser.maybeCompleteAuthSession();
     const [userInfo, setUserInfo] = useState(null);
     const [request, response, promptAsync] = Google.useAuthRequest({
-        androidClientId:'1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
-        webClientId:'1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
-        
+        androidClientId: '1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
+        webClientId: '1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
+
         // iosClientId:'1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
     });
 
@@ -28,7 +32,7 @@ export default function Login() {
         //     const credential = GoogleAuthProvider.credential(id_token);
         //     signInWithCredential(auth, credential);
         // }
-    },[response]);
+    }, [response]);
 
     // useEffect(() => {
     //     const unsub = onAuthStateChanged(auth, async(user) => {
@@ -43,24 +47,24 @@ export default function Login() {
 
     // },[])
 
-        async function handleSigninWithGoogle(){
-        const user =  await AsyncStorage.getItem('@user');
-        if(!user){
-            if(response?.type ==='success'){
+    async function handleSigninWithGoogle() {
+        const user = await AsyncStorage.getItem('@user');
+        if (!user) {
+            if (response?.type === 'success') {
                 await getUserInfo(response.authentication.accessToken);
             }
-           
-        }else{
+
+        } else {
             setUserInfo(JSON.parse(user));
         }
     }
 
-    const getUserInfo = async(token) => {
-        if(!token) return;
-        try{
+    const getUserInfo = async (token) => {
+        if (!token) return;
+        try {
             const response = await fetch('https://www.googleapis.com/userinfo/v2/me',
                 {
-                    headers:{Authorization: `Bearer ${token}`}
+                    headers: { Authorization: `Bearer ${token}` }
                 }
             );
 
@@ -68,7 +72,7 @@ export default function Login() {
             await AsyncStorage.setItem('@user', JSON.stringify(user));
             setUserInfo(user);
             console.log(user);
-        }catch(error){
+        } catch (error) {
 
         }
     }
@@ -76,32 +80,34 @@ export default function Login() {
     return (
         <View style={styles.container}>
             {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
-                <TextBold style={styles.heading}>Kids Connect</TextBold>
-                <TextBold style={styles.subheading}>Welcome back</TextBold>
-                <View>
-                    <TextInput style={styles.inputBox} placeholder="Enter your mail" />
-                    <TextInput style={styles.inputBox} placeholder="Enter your password" />
-                    <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
+            <TextBold style={styles.heading}>Kids Connect</TextBold>
+            <TextBold style={styles.subheading}>Welcome back</TextBold>
+            <View>
+                <TextInput style={styles.inputBox} placeholder="Enter your mail" />
+                <TextInput style={styles.inputBox} placeholder="Enter your password" />
+                <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
+            </View>
+            <View>
+                <Pressable style={styles.btnPrimary} onPress={() => navigation.navigate('BottomNavigation')}>
+                    <TextMedium style={styles.btnText}>Login</TextMedium>
+                </Pressable>
+                <View style={styles.mainView}>
+                    <View style={styles.horizontalLine}></View>
+                    <TextRegular style={styles.textR}>or Login with</TextRegular>
+                    <View style={styles.horizontalLine}></View>
                 </View>
-                <View>
-                    <Pressable style={styles.btnPrimary}>
-                        <TextMedium style={styles.btnText}>Login</TextMedium>
-                    </Pressable>
-                    <View style={styles.mainView}>
-                        <View style={styles.horizontalLine}></View>
-                        <TextRegular style={styles.textR}>or Login with</TextRegular>
-                        <View style={styles.horizontalLine}></View>
-                    </View>
-                    <Pressable style={styles.googleImage} onPress={() => promptAsync()}>
-                        <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
-                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
-                    </Pressable>
-                    <View style={styles.signupView}>
-                        <TextRegular>Don't have an Account! </TextRegular>
+                <Pressable style={styles.googleImage} onPress={() => promptAsync()}>
+                    <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
+                    <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
+                </Pressable>
+                <View style={styles.signupView}>
+                    <TextRegular>Don't have an Account! </TextRegular>
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                         <TextMedium style={styles.signUpMediumText}>Signup</TextMedium>
-                    </View>
-                    {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
+                    </TouchableOpacity>
                 </View>
+                {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
+            </View>
             {/* </ImageBackground> */}
         </View>
     )
@@ -171,13 +177,13 @@ const styles = StyleSheet.create({
     backgroundImage: {
         // flex:1
     },
-    signupView:{
-        flexDirection:'row', 
-        alignSelf:'center',
+    signupView: {
+        flexDirection: 'row',
+        alignSelf: 'center',
     },
-    signUpMediumText:{
+    signUpMediumText: {
         // fontSize:18,
-        borderBottomColor:'#000',
-        borderBottomWidth:1
+        borderBottomColor: '#000',
+        borderBottomWidth: 1
     },
 })

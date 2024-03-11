@@ -66,9 +66,7 @@ export default function Registration() {
         <View style={[styles.containertop]}>
             {/* 1st screen start */}
 
-            <View style={[styles.flexrow, styles.mb20, styles.bottomline]}>
-                <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
-                <TextBold style={[styles.back]}>Step 1 of 2</TextBold>
+            <View style={[styles.mb20, styles.bottomline]}>
             </View>
             <View style={[styles.container]}>
                 <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
@@ -94,9 +92,8 @@ export default function Registration() {
 
             {/* 2nd screen start */}
 
-            {/* <View style={[styles.flexrow, styles.mb20, styles.bottomline2]}>
-                <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
-                <TextBold style={[styles.back]}>Step 2 of 2</TextBold>
+            <View style={[styles.mb20, styles.bottomline2]}>
+
             </View>
             <View style={[styles.container]}>
                 <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
@@ -133,7 +130,7 @@ export default function Registration() {
                         <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
                     </Pressable>
                 </View>
-            </View> */}
+            </View>
 
             {/* 2nd screen end */}
 
@@ -230,14 +227,13 @@ const styles = StyleSheet.create({
     bottomline: {
         borderBottomColor: color.accent,
         borderBottomWidth: 3,
-        paddingBottom: 10,
+        // paddingBottom: 10,
         width: '50%'
     },
     bottomline2: {
         borderBottomColor: color.accent,
         borderBottomWidth: 3,
-        paddingBottom: 10,
-        width: '95%'
+        // width: '95%'
     },
     inputBox: {
         padding: 10,
@@ -274,7 +270,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     containertop: {
-        marginTop: 60,
         justifyContent: 'center'
     },
     Headingtext: {
