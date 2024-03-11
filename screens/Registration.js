@@ -64,25 +64,19 @@ export default function Registration() {
     return (
 
         <View style={[styles.containertop]}>
+            {/* 1st screen start */}
+
             <View style={[styles.flexrow, styles.mb20, styles.bottomline]}>
                 <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
                 <TextBold style={[styles.back]}>Step 1 of 2</TextBold>
             </View>
-            {/* <View style={[styles.flexrow, styles.mb20, styles.bottomline2]}>
-                <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
-                <TextBold style={[styles.back]}>Step 2 of 2</TextBold>
-            </View> */}
             <View style={[styles.container]}>
-
                 <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
                 <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
                 <View style={[styles.image]}>
-
                     <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
                 </View>
-
-
-                {/* <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
                 <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" />
                 <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                     <Pressable
@@ -93,9 +87,23 @@ export default function Registration() {
                     </Pressable>
                 </View>
                 <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
-                    terms & Pocilices and recieve notifications.</TextRegular> */}
+                    terms & Pocilices and recieve notifications.</TextRegular>
+            </View>
+            {/* 1st screen end */}
 
 
+            {/* 2nd screen start */}
+
+            {/* <View style={[styles.flexrow, styles.mb20, styles.bottomline2]}>
+                <AntDesign style={[styles.mr10, styles.arrowback]} name="arrowleft" size={24} />
+                <TextBold style={[styles.back]}>Step 2 of 2</TextBold>
+            </View>
+            <View style={[styles.container]}>
+                <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
+                <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
+                <View style={[styles.image]}>
+                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                </View>
                 <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
                 <View style={[styles.flexrow, styles.alinecenter, styles.mb8]}>
                     <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="username@email.com" />
@@ -116,20 +124,20 @@ export default function Registration() {
                             onKeyPress={(event) => handleKeyPress(index, event)}
                         />
                     ))}
-
-
                 </View>
-
                 <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                     <Pressable
                         onPress={emailSubmit}
                         style={[styles.flexrow]}>
                         <TextBold style={[styles.btnPrimaryTextsize]}>Verify</TextBold>
-                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color="black" />
+                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
                     </Pressable>
                 </View>
+            </View> */}
 
-            </View>
+            {/* 2nd screen end */}
+
+
         </View>
 
     )
@@ -140,13 +148,13 @@ const styles = StyleSheet.create({
     },
 
     time: {
-        color: color.accent[500]
+        color: color.accent
     },
     inputBoxes: {
         paddingHorizontal: 16,
         paddingVertical: 14,
-        backgroundColor: color.accent[50],
-        borderColor: color.accent[200],
+        backgroundColor: color.accent,
+        borderColor: color.accent,
         borderWidth: 1,
         textAlign: 'center',
         alignItems: 'center',
@@ -171,20 +179,20 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     arrowback: {
-        color: color.primary[500],
+        color: color.primary,
         marginLeft: 15
     },
     back: {
         fontSize: 18,
-        color: color.fontcolor
+        // color: color.fontcolor
     },
     editemail: {
-        color: color.accent[500],
+        color: color.accent,
         marginLeft: -40,
         marginBottom: 10
     },
     textinputcolor: {
-        color: color.fontcolor
+        // color: color.fontcolor
     },
     image: {
         justifyContent: 'center',
@@ -204,7 +212,7 @@ const styles = StyleSheet.create({
     },
     btnPrimaryTextsize: {
         fontSize: 18,
-        color: color.fontcolor
+        // color: color.fontcolor
     },
     Buttoncard: {
         borderRadius: 8,
@@ -212,7 +220,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         textAlign: 'center',
         justifyContent: 'center',
-        backgroundColor: color.primary[500],
+        backgroundColor: color.primary,
         paddingVertical: 16,
         marginVertical: 16,
     },
@@ -220,20 +228,20 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     bottomline: {
-        borderBottomColor: color.accent[500],
+        borderBottomColor: color.accent,
         borderBottomWidth: 3,
         paddingBottom: 10,
         width: '50%'
     },
     bottomline2: {
-        borderBottomColor: color.accent[500],
+        borderBottomColor: color.accent,
         borderBottomWidth: 3,
         paddingBottom: 10,
         width: '95%'
     },
     inputBox: {
         padding: 10,
-        borderColor: color.neutral[500],
+        borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
         marginTop: 8,
@@ -250,16 +258,16 @@ const styles = StyleSheet.create({
     // },
     Headingtextinput: {
         fontSize: 16,
-        color: color.fontcolor
+        // color: color.fontcolor
 
     },
     subtext: {
         fontSize: 16,
-        color: color.fontcolor
+        // color: color.fontcolor
     },
     subtext2: {
         fontSize: 12,
-        color: color.fontcolor
+        // color: color.fontcolor
     },
     container: {
         padding: 15,
@@ -272,6 +280,6 @@ const styles = StyleSheet.create({
     Headingtext: {
         fontSize: 24,
         marginVertical: 5,
-        color: color.primary[500]
+        color: color.primary
     }
 })
