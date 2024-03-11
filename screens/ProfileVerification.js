@@ -7,6 +7,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
+import { BASEURL } from '@env'
 
 export default function ProfileVerification() {
 
@@ -30,18 +31,20 @@ export default function ProfileVerification() {
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('')
 
-
+    console.log(BASEURL);
 
     useEffect(() => {
         axios({
             method:'get',
-            url:'https://kidsconnect.glansadigital.com/api/roles'
+            url: `http://localhost:8000/api/roles`
         }).then(res => {
             const roleData = res.data.data.map((role) => ({
                 label:(role.role).charAt(0).toUpperCase() + (role.role).slice(1),
                 value:role.id
             }));
             setRoles(roleData);
+        }).catch(err => {
+            console.error(err);
         })
     },[]);
 
@@ -69,7 +72,7 @@ export default function ProfileVerification() {
     function SubmitData(){
         axios({
             method:'post',
-            url:'https://kidsconnect.glansadigital.com/api/subscriberlogins', 
+            url:`${BASEURL}subscriberlogins`, 
             data:{
                     "RoleId": roleId,
                     "FirstName": firstName,
@@ -187,7 +190,7 @@ const styles = StyleSheet.create({
     },
     inputBox: {
         padding: 10,
-        borderColor: color.neutral[500],
+        borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
         marginTop: 8,
@@ -196,7 +199,7 @@ const styles = StyleSheet.create({
     },
     back: {
         fontSize: 18,
-        color: color.primary[500]
+        color: color.primary
     },
     ml50: {
         marginLeft: 50,
@@ -205,7 +208,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     arrowback: {
-        color: color.primary[500],
+        color: color.primary,
         marginLeft: 15
     },
 
@@ -232,7 +235,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     uploadButton: {
-        backgroundColor: color.primary[300],
+        backgroundColor: color.primary,
         justifyContent: 'center',
         padding: 10,
         height: 50,
@@ -256,7 +259,7 @@ const styles = StyleSheet.create({
         height: 100,
         textAlignVertical: 'top',
         padding: 10,
-        borderColor: color.neutral[500],
+        borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
         marginTop: 8,
@@ -265,7 +268,7 @@ const styles = StyleSheet.create({
     },
     dropdownStyle:{
         padding: 10,
-        borderColor: color.neutral[500],
+        borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
         marginTop: 8,
@@ -273,7 +276,7 @@ const styles = StyleSheet.create({
         marginBottom: 16
     },
     submitButton:{
-        backgroundColor: color.primary[300],
+        backgroundColor: color.primary,
         padding: 15,
         alignSelf: 'center',
         borderRadius: 8,
