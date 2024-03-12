@@ -114,8 +114,6 @@ export default function Home() {
                     </Pressable>
                 </View>
 
-
-
                 <View style={[styles.Card]}>
 
                     <View style={[styles.innercard2, styles.flexrow,]}>

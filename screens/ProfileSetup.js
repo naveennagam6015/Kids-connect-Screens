@@ -1,9 +1,9 @@
 import React from 'react'
-import { ScrollView, View, StyleSheet, Text, Image, Pressable } from 'react-native'
+import { ScrollView, View, StyleSheet, Text, Image, Pressable, Platform } from 'react-native'
 import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText'
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import { color } from '../assets/colors/theme';
-import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons, Foundation, Ionicons } from '@expo/vector-icons';
 
 
 export default function ProfileSetup() {
@@ -151,8 +151,43 @@ export default function ProfileSetup() {
                             </View>
                         </ProgressStep>
                         <ProgressStep label="Tags Setup">
-                            <View style={{ alignItems: 'center' }}>
-                                <Text>This is the content within step 2!</Text>
+                            <View>
+                                {/* <View style={{ alignItems: 'center', justifyContent: 'center' }}> */}
+                                <View style={{ alignItems: 'center' }}>
+                                    <View>
+                                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/women.png')} />
+                                    </View>
+                                    <View>
+                                        <TextRegular style={[styles.childrenname]}>Samanthaa</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={styles.Card1}>
+                                    <View style={{ justifyContent: "flex-end" }}>
+                                        <Foundation name="info" size={24} color="black" />
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Introvert</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={styles.Card1}>
+                                    <View style={{ justifyContent: "space-between" }}>
+                                        <TextRegular>Based on these tags you will get Kids suggestions.</TextRegular>
+                                        <Foundation name="info" size={24} color="black" />
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Introvert</TextRegular>
+                                    </View>
+                                </View>
+                                <TextBold style={[styles.Headingtext]}>Choose from...</TextBold>
+                                <View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Extrovert</TextRegular>
+                                    </View>
+                                    <View style={[styles.flexrow]}>
+                                        <TextRegular>View All</TextRegular>
+                                        <MaterialIcons name="arrow-forward-ios" size={24} color="black" />
+                                    </View>
+                                </View>
                             </View>
                         </ProgressStep>
                         <ProgressStep label="Third Step">
@@ -169,6 +204,15 @@ export default function ProfileSetup() {
     )
 }
 const styles = StyleSheet.create({
+    Tags: {
+        backgroundColor: color.neutral[100],
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 18,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        marginRight: 4
+    },
     endtime: {
         color: color.secondaryOrange,
         fontSize: 12
@@ -178,6 +222,30 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 50,
+    }, Card1: {
+        borderRadius: 10,
+        marginVertical: 10,
+        padding: 14,
+        backgroundColor: color.white,
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
+    },
+    profilepicactive2: {
+        marginRight: 8,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderColor: color.accent,
+        borderWidth: 3
     },
     profilepicactive: {
         marginRight: 8,

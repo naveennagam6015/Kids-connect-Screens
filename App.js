@@ -8,6 +8,7 @@ import ProfileVerification from './screens/ProfileVerification';
 import Retry from './screens/Retry';
 import 'react-native-gesture-handler';
 import Navigtion from './Navigation';
+import Requests from './screens/Requests';
 
 export default function App() {
 
@@ -25,7 +26,8 @@ export default function App() {
 
 
   return (
-    <Navigtion />
+    // <Navigtion />
+    <Requests />
   );
 }
 
