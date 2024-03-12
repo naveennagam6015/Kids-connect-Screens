@@ -3,6 +3,7 @@ import { Alert, Image, Pressable, StyleSheet, TextInput, View } from "react-nati
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme';
 import { MaterialIcons, AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
+import SkeletonLoading from 'react-native-skeleton-loading'
 
 export default function Registration() {
     const [seconds, setSeconds] = useState(180);
@@ -62,80 +63,82 @@ export default function Registration() {
 
     }
     return (
+        <SkeletonLoading background={"#adadad"} highlight={"#ffffff"}>
+            <View style={[styles.containertop]}>
+                {/* 1st screen start */}
 
-        <View style={[styles.containertop]}>
-            {/* 1st screen start */}
+                <View style={[styles.mb20, styles.bottomline]}>
+                </View>
+                <View style={[styles.container]}>
+                    <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
+                    <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
+                    <View style={[styles.image]}>
+                        <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                    </View>
+                    <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                    <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" />
+                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <Pressable
+                            onPress={emailSubmit}
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.btnPrimaryTextsize]}>Send verification code</TextBold>
+                            <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color="black" />
+                        </Pressable>
+                    </View>
+                    <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
+                        terms & Pocilices and recieve notifications.</TextRegular>
+                </View>
+                {/* 1st screen end */}
 
-            <View style={[styles.mb20, styles.bottomline]}>
+
+                {/* 2nd screen start */}
+
+                <View style={[styles.mb20, styles.bottomline2]}>
+
+                </View>
+                <View style={[styles.container]}>
+                    <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
+                    <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
+                    <View style={[styles.image]}>
+                        <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                    </View>
+                    <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                    <View style={[styles.flexrow, styles.alinecenter, styles.mb8]}>
+                        <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="username@email.com" />
+                        <FontAwesome5 style={[styles.editemail]} name="edit" size={18} />
+                    </View>
+                    <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                        <TextBold style={[styles.Headingtextinput]}>Enter Your Verification Code</TextBold>
+                        <TextRegular style={styles.time}>{`${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds} sec`}</TextRegular>
+                    </View>
+                    <View style={[styles.flexrow, styles.justiffsb]}>
+                        {inputRefs.map((inputRef, index) => (
+                            <TextInput
+                                ref={inputRef}
+                                key={index}
+                                style={styles.inputBoxes}
+                                keyboardType="numeric"
+                                maxLength={1}
+                                onKeyPress={(event) => handleKeyPress(index, event)}
+                            />
+                        ))}
+                    </View>
+                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <Pressable
+                            onPress={emailSubmit}
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.btnPrimaryTextsize]}>Verify</TextBold>
+                            <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </Pressable>
+                    </View>
+                </View>
+
+                {/* 2nd screen end */}
+
+
             </View>
-            <View style={[styles.container]}>
-                <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
-                <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
-                <View style={[styles.image]}>
-                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
-                </View>
-                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" />
-                <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                    <Pressable
-                        onPress={emailSubmit}
-                        style={[styles.flexrow]}>
-                        <TextBold style={[styles.btnPrimaryTextsize]}>Send verification code</TextBold>
-                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color="black" />
-                    </Pressable>
-                </View>
-                <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
-                    terms & Pocilices and recieve notifications.</TextRegular>
-            </View>
-            {/* 1st screen end */}
+        </SkeletonLoading>
 
-
-            {/* 2nd screen start */}
-
-            <View style={[styles.mb20, styles.bottomline2]}>
-
-            </View>
-            <View style={[styles.container]}>
-                <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
-                <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
-                <View style={[styles.image]}>
-                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
-                </View>
-                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
-                <View style={[styles.flexrow, styles.alinecenter, styles.mb8]}>
-                    <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="username@email.com" />
-                    <FontAwesome5 style={[styles.editemail]} name="edit" size={18} />
-                </View>
-                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                    <TextBold style={[styles.Headingtextinput]}>Enter Your Verification Code</TextBold>
-                    <TextRegular style={styles.time}>{`${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds} sec`}</TextRegular>
-                </View>
-                <View style={[styles.flexrow, styles.justiffsb]}>
-                    {inputRefs.map((inputRef, index) => (
-                        <TextInput
-                            ref={inputRef}
-                            key={index}
-                            style={styles.inputBoxes}
-                            keyboardType="numeric"
-                            maxLength={1}
-                            onKeyPress={(event) => handleKeyPress(index, event)}
-                        />
-                    ))}
-                </View>
-                <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                    <Pressable
-                        onPress={emailSubmit}
-                        style={[styles.flexrow]}>
-                        <TextBold style={[styles.btnPrimaryTextsize]}>Verify</TextBold>
-                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
-                    </Pressable>
-                </View>
-            </View>
-
-            {/* 2nd screen end */}
-
-
-        </View>
 
     )
 }
