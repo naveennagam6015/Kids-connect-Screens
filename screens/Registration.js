@@ -124,104 +124,99 @@ export default function Registration() {
     }
 
     return (
-        <SkeletonLoading background={"#adadad"} highlight={"#ffffff"}>
+        <View style={[styles.containertop]}>
+            {/* 1st screen start */}
+
             <View style={[styles.containertop]}>
                 {/* 1st screen start */}
-
-                <View style={[styles.containertop]}>
-                    {/* 1st screen start */}
-                    <View style={[styles.container]}>
-                        <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
-                        <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
-                        <View style={[styles.image]}>
-                            <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
-                        </View>
+                <View style={[styles.container]}>
+                    <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
+                    <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
+                    <View style={[styles.image]}>
+                        <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
                     </View>
-                    {
-                        step1 && (
-                            <View>
-                                {/* <View style={[styles.mb20, styles.bottomline]}>
+                </View>
+                {
+                    step1 && (
+                        <View>
+                            {/* <View style={[styles.mb20, styles.bottomline]}>
                         </View> */}
-                                <View style={[styles.container]}>
+                            <View style={[styles.container]}>
 
-                                    <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
-                                    <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" onChangeText={validateEmail} />
-                                    {!isValidEmail && <TextMedium style={styles.errorText}>Invalid email address</TextMedium>}
-                                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                                        <Pressable
-                                            onPress={emailSubmit}
-                                            style={[styles.flexrow]}>
-                                            <TextBold style={[styles.btnPrimaryTextsize]}>Send verification code</TextBold>
-                                            <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color="black" />
-                                        </Pressable>
-                                    </View>
-                                    <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
-                                        terms & Pocilices and recieve notifications.</TextRegular>
+                                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" onChangeText={validateEmail} />
+                                {!isValidEmail && <TextMedium style={styles.errorText}>Invalid email address</TextMedium>}
+                                <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                                    <Pressable
+                                        onPress={emailSubmit}
+                                        style={[styles.flexrow]}>
+                                        <TextBold style={[styles.btnPrimaryTextsize]}>Send verification code</TextBold>
+                                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color="black" />
+                                    </Pressable>
                                 </View>
+                                <TextRegular style={[styles.subtext2]}>By clicking on this verification code you obey all
+                                    terms & Pocilices and recieve notifications.</TextRegular>
                             </View>
-                        )
-                    }
+                        </View>
+                    )
+                }
 
 
-                    {/* 1st screen end */}
+                {/* 1st screen end */}
 
 
-                    {/* 2nd screen start */}
-                    {
-                        step2 && (
-                            <View>
-                                {/* <View style={[styles.mb20, styles.bottomline2]}>
+                {/* 2nd screen start */}
+                {
+                    step2 && (
+                        <View>
+                            {/* <View style={[styles.mb20, styles.bottomline2]}>
 
                         </View> */}
-                                <View style={[styles.container]}>
-                                    {/* <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
+                            <View style={[styles.container]}>
+                                {/* <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
                             <TextRegular style={[styles.subtext]}>To get started, create an account with Kids Connect below,</TextRegular>
                             <View style={[styles.image]}>
                                 <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
                             </View> */}
-                                    <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
-                                    <View style={[styles.flexrow, styles.alinecenter, styles.mb8]}>
-                                        <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="username@email.com" value={mail} />
-                                        <FontAwesome5 style={[styles.editemail]} name="edit" size={18} />
-                                    </View>
-                                    <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                        <TextBold style={[styles.Headingtextinput]}>Enter Your Verification Code</TextBold>
-                                        <TextRegular style={styles.time}>{`${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds} sec`}</TextRegular>
-                                    </View>
-                                    <View style={[styles.flexrow, styles.justiffsb]}>
-                                        {inputRefs.map((inputRef, index) => (
-                                            <TextInput
-                                                ref={inputRef}
-                                                key={index}
-                                                style={styles.inputBoxes}
-                                                keyboardType="numeric"
-                                                maxLength={1}
-                                                onKeyPress={(event) => handleKeyPress(index, event)}
-                                                onChangeText={(e) => {
-                                                    setEnteredOtp((prevString) => prevString + e);
-                                                }}
-                                            />
-                                        ))}
+                                <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+                                <View style={[styles.flexrow, styles.alinecenter, styles.mb8]}>
+                                    <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="username@email.com" value={mail} />
+                                    <FontAwesome5 style={[styles.editemail]} name="edit" size={18} />
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.Headingtextinput]}>Enter Your Verification Code</TextBold>
+                                    <TextRegular style={styles.time}>{`${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds} sec`}</TextRegular>
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    {inputRefs.map((inputRef, index) => (
+                                        <TextInput
+                                            ref={inputRef}
+                                            key={index}
+                                            style={styles.inputBoxes}
+                                            keyboardType="numeric"
+                                            maxLength={1}
+                                            onKeyPress={(event) => handleKeyPress(index, event)}
+                                            onChangeText={(e) => {
+                                                setEnteredOtp((prevString) => prevString + e);
+                                            }}
+                                        />
+                                    ))}
 
-                                    </View>
-                                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                                        <Pressable
-                                            onPress={VerifyClick}
-                                            style={[styles.flexrow]}>
-                                            <TextBold style={[styles.btnPrimaryTextsize]}>Verify</TextBold>
-                                            <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
-                                        </Pressable>
-                                    </View>
+                                </View>
+                                <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                                    <Pressable
+                                        onPress={VerifyClick}
+                                        style={[styles.flexrow]}>
+                                        <TextBold style={[styles.btnPrimaryTextsize]}>Verify</TextBold>
+                                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                                    </Pressable>
                                 </View>
                             </View>
-                        )
-                    }
-                </View>
+                        </View>
+                    )
+                }
             </View>
-
-        </SkeletonLoading>
-
-
+        </View>
     )
 }
 const styles = StyleSheet.create({
