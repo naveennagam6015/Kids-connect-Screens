@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     btnPrimaryTextsize: {
-        fontSize: 20,
+        fontSize: 16,
         // color: color.fontcolor
     },
     Buttoncard: {
@@ -362,7 +362,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderWidth: 1.5,
         borderColor: color.accent,
-        paddingVertical: 20,
+        paddingVertical: 16,
         marginVertical: 16,
     },
     Buttoncard2: {
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
         borderColor: color.primary,
         justifyContent: 'center',
         backgroundColor: color.primary,
-        paddingVertical: 20,
+        paddingVertical: 16,
         marginVertical: 16,
     },
     Buttoncardwidth: {

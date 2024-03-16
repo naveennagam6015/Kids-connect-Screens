@@ -1,15 +1,65 @@
-import React from 'react'
-import { View, StyleSheet, Platform, Pressable, Image, ScrollView } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, Text } from 'react-native'
 import { color } from '../assets/colors/theme';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
+import Carousel from 'react-native-snap-carousel';
+const { width: screenWidth } = Dimensions.get('window');
 
 export default function Home() {
+    const data = [
+        { title: 'Slide 1' },
+        { title: 'Slide 2' },
+        { title: 'Slide 3' },
+        { title: 'Slide 4' },
+        // Add more slides as needed
+    ];
+    const carouselRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const renderItem = ({ item }) => {
+        return (
+            <View style={styles.slide}>
+                <Text style={styles.title}>{item.title}</Text>
+            </View>
+        );
+    };
     return (
         <ScrollView>
+            <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginBottom: 10, marginTop: 50 }]}>Glance Area</TextBold>
+
+            <Carousel
+                ref={carouselRef}
+                layout="default"
+                data={data}
+                renderItem={renderItem}
+                sliderWidth={screenWidth}
+                itemWidth={screenWidth}
+                loop
+                loopClonesPerSide={data.length}
+                autoplay
+                autoplayInterval={3000}
+                onSnapToItem={(index) => setActiveIndex(index)}
+            />
             <View style={[styles.container]}>
-                <TextBold style={[styles.Headingtext]}>Glance Area</TextBold>
-                <View style={[styles.flexrow]}>
+
+                <View style={[styles.flexrow, styles.justiffsb]}>
+                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <Pressable
+                            style={[styles.flexrow]}>
+
+                            <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
+                        </Pressable>
+                    </View>
+                    <View style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
+                        <Pressable
+                            style={[styles.flexrow]}>
+
+                            <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
+                        </Pressable>
+                    </View>
+                </View>
+
+                {/* <View style={[styles.flexrow]}>
                     <View style={[styles.innerbtn1]}>
                         <Pressable>
                             <TextRegular>Individuals</TextRegular>
@@ -20,7 +70,7 @@ export default function Home() {
                             <TextRegular>Circles</TextRegular>
                         </Pressable>
                     </View>
-                </View>
+                </View> */}
                 <View>
 
                     <TextBold style={[styles.Headingtext]}>Ongoing Appointments</TextBold>
@@ -173,6 +223,21 @@ export default function Home() {
     )
 }
 const styles = StyleSheet.create({
+    btnPrimaryTextsize: {
+        fontSize: 16,
+    },
+    slide: {
+        width: screenWidth,
+        height: 180,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'skyblue',
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+    },
     activeprofilr: {
         borderWidth: 3,
         borderColor: color.primary,
@@ -196,15 +261,8 @@ const styles = StyleSheet.create({
         marginLeft: 2,
         marginTop: 3
     },
-    Buttoncard2: {
-        borderRadius: 8,
-        alignSelf: 'center',
-        flexDirection: 'row',
-        textAlign: 'center',
-        justifyContent: 'center',
-        backgroundColor: color.primary,
-        paddingVertical: 10,
-        marginRight: 8
+    justiffsb: {
+        justifyContent: 'space-between'
     },
     Buttoncard: {
         borderRadius: 8,
@@ -212,14 +270,29 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         textAlign: 'center',
         justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncard2: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
         backgroundColor: color.primary,
         paddingVertical: 16,
-    },
-    Buttoncardwidth2: {
-        width: '30%'
+        marginVertical: 16,
     },
     Buttoncardwidth: {
-        width: '60%'
+        width: '48%'
+    },
+    Buttoncardwidth2: {
+        width: '38%',
+        marginRight: 10
     },
     childrenname: {
         fontSize: 18,
@@ -291,7 +364,6 @@ const styles = StyleSheet.create({
         // }),
     },
     container: {
-        marginTop: 50,
         padding: 15,
         justifyContent: 'center'
     },

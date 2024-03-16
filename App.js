@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import 'react-native-gesture-handler'
 import 'react-native-gesture-handler';
+import ProfileSetup from './screens/ProfileSetup.js';
 import Navigtion from './Navigation';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <Navigtion />
+    // <ProfileSetup />
   );
 }
 

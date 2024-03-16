@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, StyleSheet, View, Platform, Image } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
-import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 export default function Profile() {
     return (
@@ -11,7 +11,7 @@ export default function Profile() {
                 <TextBold style={[styles.Headingtext]}>Bio</TextBold>
                 <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more</TextRegular>
                 <View style={[styles.fullcard, styles.flexrow]}>
-                    <View>
+                    <View style={[styles.flexrow]}>
                         <View style={{ alignItems: 'center' }}>
                             <View>
                                 <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
@@ -20,18 +20,18 @@ export default function Profile() {
                                 <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
                             </View>
                         </View>
-                    </View>
-                    <View>
-                        <View style={{ alignItems: 'center' }}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                        <View>
+                            <View style={[styles.flexrow, styles.line]}>
+                                <Image style={[styles.profilepicsmall]} source={require('../assets/images/women.png')} />
+                                <Image style={[styles.profilepicsmall]} source={require('../assets/images/women.png')} />
                             </View>
-                            <View style={{ alignItems: 'flex-start' }}>
-                                <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                            {/* <View style={[styles.line]}></View> */}
+                            <View style={[styles.flexrow]}>
+                                <Image style={[styles.profilepicsmall]} source={require('../assets/images/women.png')} />
                             </View>
-                        </View>
-                    </View>
 
+                        </View>
+                    </View>
                 </View>
                 <View style={[styles.Card]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Bookings</TextBold>
@@ -119,6 +119,15 @@ export default function Profile() {
 
                     </View>
                 </View>
+
+                <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center", marginTop: 10 }]}>
+                    <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Referal Code</TextBold>
+                    <View style={[styles.Carddotted, styles.flexrow, { alignItems: "center" }]}>
+                        <TextBold style={{ marginBottom: 5, fontSize: 24 }}>12345</TextBold>
+                        <Ionicons style={{ marginLeft: 10 }} name="eye-off" size={16} color={color.neutral[500]} />
+                    </View>
+                </View>
+
             </View>
         </ScrollView>
     )
@@ -135,12 +144,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row'
     },
+    profilepicsmall: {
+        marginRight: 8,
+        width: 70,
+        height: 70,
+        borderRadius: 50,
+    },
     profilepic: {
         marginRight: 8,
         width: 100,
         height: 100,
         borderRadius: 50,
-    }, Card1: {
+    },
+    Card1: {
         borderRadius: 10,
         marginVertical: 10,
         padding: 14,
@@ -156,6 +172,20 @@ const styles = StyleSheet.create({
                 elevation: 5,
             },
         }),
+    },
+    Carddotted: {
+        borderRadius: 10,
+        marginTop: 4,
+        width: "40%",
+        justifyContent: "space-between",
+        borderStyle: "dotted",
+        marginBottom: 4,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderWidth: 1,
+        borderColor: color.neutral[300],
+        backgroundColor: color.white,
+
     },
     Card: {
         borderRadius: 10,
