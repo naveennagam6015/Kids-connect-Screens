@@ -88,7 +88,10 @@ export default function Login() {
                 <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
             </View>
             <View>
-                <Pressable style={styles.btnPrimary} onPress={() => navigation.navigate('BottomNavigation')}>
+                <Pressable style={styles.btnPrimary}
+                    onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+                // onPress={() => navigation.navigate('BottomNavigation')}
+                >
                     <TextMedium style={styles.btnText}>Login</TextMedium>
                 </Pressable>
                 <View style={styles.mainView}>

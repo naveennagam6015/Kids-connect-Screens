@@ -3,8 +3,7 @@ import { View, StyleSheet, Image } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons';
-
-export default function ProfileSetupAfterAdminApproval() {
+export default function AddingKidsAndPets() {
     return (
         <View style={[styles.container, { marginTop: 50 }]}>
             <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
