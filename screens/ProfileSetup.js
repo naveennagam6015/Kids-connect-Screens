@@ -190,10 +190,8 @@ export default function ProfileSetup() {
                                 </View>
                             </View>
                         </ProgressStep>
-                        <ProgressStep label="Third Step">
-                            <View style={{ alignItems: 'center' }}>
-                                <Text>This is the content within step 3!</Text>
-                            </View>
+                        <ProgressStep>
+
                         </ProgressStep>
                     </ProgressSteps>
                 </View>
