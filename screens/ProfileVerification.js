@@ -8,17 +8,19 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
 import { BASEURL } from '@env'
+import { useNavigation } from '@react-navigation/native';
 
 export default function ProfileVerification() {
+    const navigation = useNavigation();
 
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState('');
     const [gender, setGender] = useState([
-        {label:'Male', value:'1'},
-        {label:'Female', value:'2'},
-        {label:'Others', value:'0'}
+        { label: 'Male', value: '1' },
+        { label: 'Female', value: '2' },
+        { label: 'Others', value: '0' }
     ]);
-    const [roles, setRoles] = useState([{label:'', value:''}]);
+    const [roles, setRoles] = useState([{ label: '', value: '' }]);
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -35,18 +37,18 @@ export default function ProfileVerification() {
 
     useEffect(() => {
         axios({
-            method:'get',
+            method: 'get',
             url: `http://localhost:8000/api/roles`
         }).then(res => {
             const roleData = res.data.data.map((role) => ({
-                label:(role.role).charAt(0).toUpperCase() + (role.role).slice(1),
-                value:role.id
+                label: (role.role).charAt(0).toUpperCase() + (role.role).slice(1),
+                value: role.id
             }));
             setRoles(roleData);
         }).catch(err => {
             console.error(err);
         })
-    },[]);
+    }, []);
 
 
     const pickImage = async () => {
@@ -69,26 +71,27 @@ export default function ProfileVerification() {
         }
     };
 
-    function SubmitData(){
+    function SubmitData() {
         axios({
-            method:'post',
-            url:`${BASEURL}subscriberlogins`, 
-            data:{
-                    "RoleId": roleId,
-                    "FirstName": firstName,
-                    "LastName": lastName,
-                    "Email": email,
-                    "Dob": dob,
-                    "Gender": selectedGender,
-                    "PhoneNumber": phone,
-                    "SSN": ssn,
-                    "Password": pwd,
-                    "About": about,
-                    "Address": address,
-                    "ProfileImage": image        
+            method: 'post',
+            url: `${BASEURL}subscriberlogins`,
+            data: {
+                "RoleId": roleId,
+                "FirstName": firstName,
+                "LastName": lastName,
+                "Email": email,
+                "Dob": dob,
+                "Gender": selectedGender,
+                "PhoneNumber": phone,
+                "SSN": ssn,
+                "Password": pwd,
+                "About": about,
+                "Address": address,
+                "ProfileImage": image
             }
         }).then(res => {
             alert("Form submitted successfully");
+
         })
     }
 
@@ -108,15 +111,15 @@ export default function ProfileVerification() {
                 <TextBold style={[styles.Headingtextinput]}>First Name</TextBold>
                 <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
                 <TextBold style={[styles.Headingtextinput]}>Last Name</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your last name" onChangeText={e => setLastName(e)}/>
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
                 <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your phone number" onChangeText={e => setPhone(e)}/>
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your phone number" onChangeText={e => setPhone(e)} />
                 <TextBold style={[styles.Headingtextinput]}>Password</TextBold>
                 <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter password" onChangeText={e => setPwd(e)} />
                 <TextBold style={[styles.Headingtextinput]}>About</TextBold>
                 <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Write about yourself" onChangeText={e => setAbout(e)} />
                 <TextBold style={[styles.Headingtextinput]}>SSN Number</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter 6 digit SSN number" onChangeText={e => setSsn(e)} />                
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter 6 digit SSN number" onChangeText={e => setSsn(e)} />
                 <TextBold style={[styles.Headingtextinput]}>Upload SSN Image</TextBold>
                 <View style={styles.imageContainer}>
                     {
@@ -128,11 +131,11 @@ export default function ProfileVerification() {
                     }
                     {
                         image && (
-                            <View style={{flexDirection:'row', justifyContent:'center', alignSelf:'center'}}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignSelf: 'center' }}>
                                 <TextMedium style={styles.imageText}>{imageName}</TextMedium>
-                                <FontAwesome name="trash" size={24} color={color.error[300]} onPress={() =>setImage(null)} />
+                                <FontAwesome name="trash" size={24} color={color.error[300]} onPress={() => setImage(null)} />
                             </View>
-                        ) 
+                        )
                     }
 
                     {image && <Image source={{ uri: image }} style={{ width: 170, height: 100, borderRadius: 8 }} />}
@@ -176,7 +179,10 @@ export default function ProfileVerification() {
                 />
                 <TextBold style={[styles.Headingtextinput]}>Address</TextBold>
                 <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your current address" onChangeText={e => setAddress(e)} />
-                <Pressable style={styles.submitButton} onPress={SubmitData}>
+                <Pressable style={styles.submitButton}
+                    onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+                // onPress={SubmitData}
+                >
                     <TextMedium style={styles.submitButtonText}>Register</TextMedium>
                 </Pressable>
             </View>
@@ -228,7 +234,7 @@ const styles = StyleSheet.create({
     containertop: {
         marginTop: 60,
         // justifyContent: 'center'
-        flex:1
+        flex: 1
     },
     imageContainer: {
         flexDirection: 'row',
@@ -254,7 +260,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 150,
     },
-    textArea:{
+    textArea: {
         marginVertical: 5,
         height: 100,
         textAlignVertical: 'top',
@@ -266,7 +272,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 16
     },
-    dropdownStyle:{
+    dropdownStyle: {
         padding: 10,
         borderColor: color.neutral[300],
         borderWidth: 1,
@@ -275,16 +281,16 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 16
     },
-    submitButton:{
+    submitButton: {
         backgroundColor: color.primary,
         padding: 15,
         alignSelf: 'center',
         borderRadius: 8,
         width: "100%",
-        justifyContent:'center'
+        justifyContent: 'center'
     },
-    submitButtonText:{
-        justifyContent:'center',
-        alignSelf:'center'
+    submitButtonText: {
+        justifyContent: 'center',
+        alignSelf: 'center'
     }
 })

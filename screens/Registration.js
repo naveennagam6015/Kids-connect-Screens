@@ -5,6 +5,7 @@ import { color } from '../assets/colors/theme';
 import { MaterialIcons, AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
 import axios from "axios";
 import { BASEURL } from '@env';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Registration() {
@@ -14,6 +15,7 @@ export default function Registration() {
     const [otp, setOtp] = useState('');
     const [enteredOtp, setEnteredOtp] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(true);
+    const navigation = useNavigation();
 
     useEffect(() => {
         function generateOTP() {
@@ -117,7 +119,7 @@ export default function Registration() {
 
     const VerifyClick = () => {
         if (enteredOtp == otp) {
-            alert("Correct");
+            navigation.navigate('ProfileVerification')
         } else {
             alert("Incorrect OTP")
         }

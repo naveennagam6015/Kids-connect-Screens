@@ -7,6 +7,8 @@ import Requests from './screens/Requests';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './screens/Login';
 import Registration from './screens/Registration';
+import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
+import ProfileVerification from './screens/ProfileVerification';
 
 
 
@@ -19,7 +21,6 @@ function BottomNavigation() {
             <BottomTab.Screen name="Appointment" component={Appointment} />
             <BottomTab.Screen name="Requests" component={Requests} />
             <BottomTab.Screen name="Profile" component={Profile} />
-
         </BottomTab.Navigator>
     )
 }
@@ -37,6 +38,12 @@ function StackNavigation() {
             }} />
             <Stack.Screen name='Register' component={Registration} options={{
                 headerTitle: "Step 1 of 2"
+            }} />
+            <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{
+                headerTitle: "Step 1 of 2"
+            }} />
+            <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{
+                headerShown: false
             }} />
         </Stack.Navigator>
     )
