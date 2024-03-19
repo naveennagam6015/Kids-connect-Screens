@@ -31,6 +31,7 @@ const Stack = createStackNavigator();
 function StackNavigation() {
     return (
         <Stack.Navigator>
+
             <Stack.Screen name='Login' component={Login} options={{
                 headerShown: false
             }} />
