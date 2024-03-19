@@ -336,23 +336,18 @@ const styles = StyleSheet.create({
     // },
     Headingtextinput: {
         fontSize: 16,
-        // color: color.fontcolor
-
     },
     subtext: {
         fontSize: 16,
-        // color: color.fontcolor
     },
     subtext2: {
         fontSize: 12,
-        // color: color.fontcolor
     },
     container: {
         padding: 15,
         justifyContent: 'center'
     },
     containertop: {
-        // justifyContent: 'center',
         flex: 1
     },
     Headingtext: {
