@@ -9,6 +9,7 @@ import Login from './screens/Login';
 import Registration from './screens/Registration';
 import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
 import ProfileVerification from './screens/ProfileVerification';
+import AddingKidsAndPets from './screens/AddingKidsAndPets';
 
 
 
@@ -30,6 +31,7 @@ const Stack = createStackNavigator();
 function StackNavigation() {
     return (
         <Stack.Navigator>
+
             <Stack.Screen name='Login' component={Login} options={{
                 headerShown: false
             }} />
@@ -44,6 +46,9 @@ function StackNavigation() {
             }} />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{
                 headerShown: false
+            }} />
+            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{
+                headerTitle: "AddingKidsAndPets"
             }} />
         </Stack.Navigator>
     )
