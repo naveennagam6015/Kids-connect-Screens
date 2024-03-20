@@ -1,36 +1,94 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View, Platform, Image } from 'react-native'
+import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
-import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons';
+<EvilIcons name="plus" size={24} color="black" />
+
 
 export default function Profile() {
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <TextBold style={[styles.Headingtext]}>Bio</TextBold>
-                <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more</TextRegular>
+        <ScrollView style={{ flex: 1 }}>
+            <SafeAreaView style={styles.container}>
+                <View style={{ flexDirection: "row" }} >
+                    <View style={[{ width: "35%" }, styles.profileName]}>
+                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                    </View>
+                    <View style={[{ width: "45%", }, styles.profileName]}>
+                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Madisson Arora(M)</TextBold>
+                        <TextBold style={{ fontSize: 12 }}>Madisson7@gmail.com</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>4387 Farland Avenue, San Antonio, TX 78212</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since Feb 2023)</TextBold>
+
+                    </View>
+                    <View style={[{ width: "15%", marginTop: 10, marginRight: 7 }]}>
+                        <TouchableOpacity style={{ flexDirection: 'row' }}>
+                            <TextRegular style={{ fontSize: 11 }}>Edit Profile</TextRegular>
+                            <Feather name="edit" size={15} color="black" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                    <TextBold style={[{ justifyContent: 'center' }, styles.Headingtext]}>Bio</TextBold>
+                    <Feather name="edit" size={15} color="black" style={[{ justifyContent: 'center', marginVertical: 5, alignSelf: 'center' },]} />
+                </View>
+                <TextRegular style={[styles.textnetural, { fontSize: 14 }]}>
+                    Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more
+                </TextRegular>
+
                 <View style={[styles.fullcard, styles.flexrow]}>
+                    {/* First column: Image and Content */}
                     <View style={[styles.flexrow]}>
                         <View style={{ alignItems: 'center' }}>
                             <View>
                                 <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                             </View>
+
                             <View style={{ alignItems: 'flex-start' }}>
                                 <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
                             </View>
                         </View>
                         <View>
-                            <View style={[styles.flexrow, styles.line]}>
-                                <Image style={[styles.profilepicsmall]} source={require('../assets/images/women.png')} />
-                                <Image style={[styles.profilepicsmall]} source={require('../assets/images/women.png')} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={{ marginRight: 10 }}>
+                                    <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <View>
+                                    <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <TouchableOpacity style={{ flexDirection: 'row' }}>
+                                    <TextRegular style={{ fontSize: 11, paddingRight:5 }}>Add</TextRegular>
+                               
+                                <View style={{ alignItems: 'center' }}>
+                                    <View style={[styles.imageplusadd]}>
+                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    </View>
+                                </View>
+                                </TouchableOpacity>
                             </View>
-                            {/* <View style={[styles.line]}></View> */}
-                            <View style={[styles.flexrow]}>
-                                <Image style={[styles.profilepicsmall]} source={require('../assets/images/women.png')} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <View>
+                                    <Image style={[styles.profilepic, { width: 50, height: 50 },]} source={require('../assets/images/women.png')} />
+                                </View>
+                                <TouchableOpacity style={{ flexDirection: 'row' }}>
+                                    <TextRegular style={{ fontSize: 11, paddingRight:5}}>Add</TextRegular>
+                               
+                                <View style={{ alignItems: 'center' }}>
+                                    <View style={[styles.imageplusadd]}>
+                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    </View>
+                                </View>
+                                </TouchableOpacity>
                             </View>
-
                         </View>
+                        {/* <View style={{ marginLeft: 10, flex: 1 }}>
+                            <TextRegular style={[styles.textnetural]}>Additional content goes here...</TextRegular>
+                        </View> */}
+                        {/* </View> */}
                     </View>
                 </View>
                 <View style={[styles.Card]}>
@@ -128,7 +186,7 @@ export default function Profile() {
                     </View>
                 </View>
 
-            </View>
+            </SafeAreaView>
         </ScrollView>
     )
 }
@@ -220,7 +278,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     fullcard: {
-        backgroundColor: color.primary,
+        // backgroundColor: color.primary,
         marginVertical: 10,
         padding: 10
     },
@@ -232,7 +290,17 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 15,
+        justifyContent: 'center',
+    },
+    profileName: {
         justifyContent: 'center'
+    }, imageplusadd: {
+        padding: 5,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
     },
 
 })

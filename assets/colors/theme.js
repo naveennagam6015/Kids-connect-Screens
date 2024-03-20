@@ -2,7 +2,7 @@
 
 export const color = {
     // yellow
-    primary: '#FFC107',
+    primary: '#FFC107', 
     secondaryOrange: '#FF5C00',
     success: '#418161',
     accent: '#FFCA7A',
