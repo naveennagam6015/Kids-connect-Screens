@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Modal, TextInput, Pressable } from 'react-native'
+import { View, StyleSheet, Image, Modal, TextInput, Pressable, TouchableOpacity } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
+    const [kidopen, setKidopen] = useState(false);
+    const [petopen, setPetopen] = useState(false);
     const [relationship, setRelationship] = useState([
         { label: 'Child', value: '1' },
         { label: 'Sibling', value: '2' },
@@ -15,7 +17,8 @@ export default function AddingKidsAndPets() {
     ]);
     const onClose = () => {
         setOpen(false);
-        setModalopen(false);
+        setKidopen(false);
+        setPetopen(false);
     };
     return (
         <View style={[styles.container, { marginTop: 20 }]}>
@@ -45,6 +48,15 @@ export default function AddingKidsAndPets() {
                 </View>
             </View>
             <View style={[styles.Cardadd]}>
+                {/* we need to show this Kid after profile added */}
+                <View style={{ alignItems: 'center' }}>
+                    <View>
+                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/women.png')} />
+                    </View>
+                    <View>
+                        <TextRegular style={[styles.childrenname]}>Samantha</TextRegular>
+                    </View>
+                </View>
                 <View style={{ alignItems: 'center', flexDirection: "row" }}>
                     <Pressable onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
                         <AntDesign name="plus" size={30} color={color.neutral[500]} />
@@ -54,6 +66,15 @@ export default function AddingKidsAndPets() {
                 </View>
             </View>
             <View style={[styles.Cardadd]}>
+                {/* we need to show this pet after profile added */}
+                <View style={{ alignItems: 'center' }}>
+                    <View>
+                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/women.png')} />
+                    </View>
+                    <View>
+                        <TextRegular style={[styles.childrenname]}>Puppy</TextRegular>
+                    </View>
+                </View>
                 <View style={{ alignItems: 'center', flexDirection: "row" }}>
                     <Pressable style={[styles.imageplusadd]}>
                         <AntDesign name="plus" size={30} color={color.neutral[500]} />
@@ -99,21 +120,21 @@ export default function AddingKidsAndPets() {
                         }}
 
                     />
-                    <TextBold style={[styles.Headingtextinput]}>Description</TextBold>
+                    <TextBold>Description</TextBold>
                     <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
                 </View>
                 <View style={[styles.modalcontainer]}>
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <Pressable
-                                onPress={() => setModalopen(modalopen)}
+                                onPress={() => setKidopen(kidopen)}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                             </Pressable>
                         </View>
                         <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                             <Pressable
-                                onPress={() => setModalopen(!modalopen)}
+                                onPress={() => setKidopen(!kidopen)}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
@@ -122,11 +143,120 @@ export default function AddingKidsAndPets() {
                     </View>
                 </View>
             </Modal>
+
+            <Modal
+                animationType='slide'
+                // transparent={true}
+                visible={kidopen}
+            >
+                <View style={[styles.container]}>
+                    <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                    </View>
+                    <TextBold>Name</TextBold>
+                    <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                    <TextBold>Interests</TextBold>
+
+                    <View style={[styles.Card]}>
+                        <TextRegular style={{ color: color.neutral[300] }}>Explain your kids interests and Hobbies which makes easier to connect with other Kids eg: </TextRegular>
+                        <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>Introvert</TextRegular>
+                                <TouchableOpacity style={{ marginLeft: 5 }}>
+                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>Playstation</TextRegular>
+                                <TouchableOpacity style={{ marginLeft: 5 }}>
+                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>Programming</TextRegular>
+                                <TouchableOpacity style={{ marginLeft: 5 }}>
+                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>Enthusiastic</TextRegular>
+                                <TouchableOpacity style={{ marginLeft: 5 }}>
+                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                </TouchableOpacity>
+                            </View>
+
+                            <TouchableOpacity style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center", marginTop: 8, }}>
+                                <TextRegular style={{ fontSize: 14, marginHorizontal: 5 }}>Add</TextRegular>
+                                <View style={{ alignItems: 'center' }}>
+                                    <View style={[styles.addinterests]}>
+                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+
+                </View>
+                <View style={[styles.modalcontainer]}>
+                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                        <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                            <Pressable
+                                // onPress={() => setModalopen(modalopen)}
+                                style={[styles.flexrow]}>
+                                <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
+                            </Pressable>
+                        </View>
+                        <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                            <Pressable
+                                onPress={() => navigation.navigate('AddingKidsAndPets')}
+                                style={[styles.flexrow]}>
+                                <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
+                                <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
         </View>
 
     )
 }
 const styles = StyleSheet.create({
+    profilepicactive2: {
+        marginRight: 8,
+        width: 70,
+        height: 70,
+        borderRadius: 50,
+    },
+    childrenname: {
+        fontSize: 18,
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
+    },
+    Tags: {
+        marginTop: 8,
+        borderColor: color.accent,
+        borderWidth: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 18,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        marginRight: 4,
+    },
+    Card: {
+        borderRadius: 10,
+        marginTop: 4,
+        marginBottom: 10,
+        paddingHorizontal: 14,
+        borderWidth: 1,
+        borderColor: color.neutral[300],
+        backgroundColor: color.white,
+    },
     textArea: {
         marginVertical: 5,
         height: 100,
@@ -236,6 +366,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row'
     },
+    addinterests: {
+        padding: 5,
+        justifyContent: "flex-start",
+        alignSelf: "flex-start",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
+    addinterests: {
+        padding: 5,
+        justifyContent: "center",
+        alignSelf: "center",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
     imageplusadd: {
         padding: 20,
         justifyContent: "flex-start",
@@ -261,6 +407,7 @@ const styles = StyleSheet.create({
     Cardadd: {
         borderRadius: 10,
         marginVertical: 10,
+        flexDirection: "row",
         borderWidth: 1,
         paddingHorizontal: 10,
         paddingVertical: 10,

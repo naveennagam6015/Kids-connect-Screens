@@ -48,7 +48,7 @@ function StackNavigation() {
                 headerShown: false
             }} />
             <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{
-                headerTitle: "AddingKidsAndPets"
+                headerTitle: "Adding Kids And Pets"
             }} />
         </Stack.Navigator>
     )
