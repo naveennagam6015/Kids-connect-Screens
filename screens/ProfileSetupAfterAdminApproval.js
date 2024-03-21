@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Pressable, Modal, TextInput } from 'react-native'
+import { View, StyleSheet, Image, Pressable, Modal, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons';
@@ -60,42 +60,48 @@ export default function ProfileSetupAfterAdminApproval() {
         }
     };
     return (
-        <View style={[styles.container, { marginTop: 50 }]}>
-            <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
-            <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
-            <View style={[styles.image]}>
-                <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
-                <TextRegular style={[styles.subtext, { marginTop: 10 }]}>Admin has verified your profile</TextRegular>
-            </View>
-            <TextBold>WELCOME! to Kids Connect</TextBold>
-            <View style={[styles.Card]}>
-                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                    <View style={{ alignItems: 'center' }}>
-                        <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <TextRegular style={[styles.childrenname]}>Lucy <TextRegular style={{ fontSize: 14, color: color.success }}>(Primary)</TextRegular></TextRegular>
-                            <Foundation style={{ marginLeft: 8, marginTop: 2 }} name="info" size={16} color={color.neutral[500]} />
-                        </View>
-                    </View>
-                    <View style={{ alignItems: 'center' }}>
-                        <Pressable onPress={() => setOpen(!open)}
-                            style={[styles.imageplus]}>
-                            <AntDesign name="plus" size={40} color={color.neutral[500]} />
-                        </Pressable>
-                        <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <TextRegular style={{ fontSize: 14, }}>Add Secondary Persons</TextRegular>
-                            <Foundation style={{ marginLeft: 8, marginTop: 2 }} name="info" size={16} color={color.neutral[500]} />
-                        </View>
-                    </View>
+        <View style={[styles.container,]}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
+                <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
+                <View style={[styles.image]}>
+                    <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
+                    <TextRegular style={[styles.subtext, { marginTop: 10 }]}>Admin has verified your profile</TextRegular>
                 </View>
+                <TextBold>WELCOME! to Kids Connect</TextBold>
+                <View style={[styles.Card]}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <View style={{ alignItems: 'center' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            </View>
+                            <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                <TextRegular style={[styles.childrenname]}>Lucy <TextRegular style={{ fontSize: 14, color: color.success }}>(Primary)</TextRegular></TextRegular>
+                                <Foundation style={{ marginLeft: 8, marginTop: 2 }} name="info" size={16} color={color.neutral[500]} />
+                            </View>
+                        </View>
+                        <View style={{ alignItems: 'center' }}>
+                            <Pressable onPress={() => {
+                                setOpen(!open);
 
-            </View>
-            <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 50 }}>
-                <TextRegular style={[styles.Skip,]}>Skip for now</TextRegular>
-                <MaterialIcons name="keyboard-double-arrow-right" size={24} color={color.fontcolor} />
-            </View>
+                            }}
+                                style={[styles.imageplus]}>
+                                <AntDesign name="plus" size={40} color={color.neutral[500]} />
+                            </Pressable>
+                            <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                <TextRegular style={{ fontSize: 14, }}>Add Secondary Persons</TextRegular>
+                                <Foundation style={{ marginLeft: 8, marginTop: 2 }} name="info" size={16} color={color.neutral[500]} />
+                            </View>
+                        </View>
+                    </View>
+
+                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('AddingKidsAndPets')} style={{ flexDirection: "row", justifyContent: "center", marginTop: 50 }}>
+                    <TextRegular style={[styles.Skip,]}>Skip for now</TextRegular>
+                    <MaterialIcons name="keyboard-double-arrow-right" size={24} color={color.fontcolor} />
+                </TouchableOpacity>
+            </ScrollView>
+
             <Modal
                 animationType='slide'
                 // transparent={true}
@@ -130,21 +136,22 @@ export default function ProfileSetupAfterAdminApproval() {
                 </View>
                 <View style={[styles.modalcontainer]}>
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => setModalopen(modalopen)}
-                                style={[styles.flexrow]}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setOpen(!open);
+                                }}
+                                style={[styles.flexrow,styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                            </Pressable>
-                        </View>
-                        <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => setModalopen(!modalopen)}
-                                style={[styles.flexrow]}>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setModalopen(!modalopen);
+                                    setOpen(!open)
+                                }}
+                                style={[styles.flexrow,styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                            </Pressable>
-                        </View>
+                            </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -176,9 +183,9 @@ export default function ProfileSetupAfterAdminApproval() {
                         {image && <Image source={{ uri: image }} style={{ width: 170, height: 100, borderRadius: 8 }} />}
                         {!image && <Image source={require('../assets/images/ssnplaceholder.webp')} style={{ width: 170, height: 100, borderRadius: 8 }} />}
                     </View>
-                    <TextBold style={[styles.Headingtextinput]}>Enter D.O.B</TextBold>
-                    <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="DD/MM/YYYY" onChangeText={e => setDob(e)} />
-                    <TextBold style={[styles.Headingtextinput]}>Gender</TextBold>
+                    <TextBold >Enter D.O.B</TextBold>
+                    <TextInput placeholderTextColor={styles.textinputcolor} placeholder="DD/MM/YYYY" onChangeText={e => setDob(e)} />
+                    <TextBold >Gender</TextBold>
                     <Dropdown
                         style={styles.dropdownStyle}
                         data={gender}
@@ -193,24 +200,30 @@ export default function ProfileSetupAfterAdminApproval() {
                         }}
 
                     />
-                    <TextBold style={[styles.Headingtextinput]}>Address</TextBold>
+                    <TextBold>Address</TextBold>
                     <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your current address" onChangeText={e => setAddress(e)} />
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <Pressable
-                                onPress={() => setOpen(!open)}
+                                onPress={() => {
+                                    setModalopen(!modalopen);
+                                    setOpen(!open);
+                                }}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                             </Pressable>
                         </View>
-                        <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => navigation.navigate('AddingKidsAndPets')}
-                                style={[styles.flexrow]}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    // setOpen(!open)
+                                    setModalopen(!modalopen)
+                                    navigation.navigate('AddingKidsAndPets');
+
+                                }}
+                                style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Add Profile</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                            </Pressable>
-                        </View>
+                            </TouchableOpacity>
                     </View>
                 </View>
             </Modal>

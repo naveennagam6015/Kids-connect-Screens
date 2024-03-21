@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Alert, Image, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, ScrollView, StyleSheet, TextInput, View } from "react-native";
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme';
 import { MaterialIcons, AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
@@ -126,7 +126,7 @@ export default function Registration() {
     }
 
     return (
-        <View style={[styles.containertop]}>
+        <ScrollView style={[styles.containertop]}>
             {/* 1st screen start */}
 
             <View style={[styles.containertop]}>
@@ -218,7 +218,7 @@ export default function Registration() {
                     )
                 }
             </View>
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({

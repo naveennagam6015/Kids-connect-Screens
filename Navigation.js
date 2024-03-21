@@ -12,6 +12,7 @@ import Registration from './screens/Registration';
 import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
 import ProfileVerification from './screens/ProfileVerification';
 import AddingKidsAndPets from './screens/AddingKidsAndPets';
+import { StatusBar } from 'react-native';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -64,6 +65,13 @@ function StackNavigation() {
     return (
         <Stack.Navigator>
             <Stack.Screen
+                name='ProfileVerification'
+                component={ProfileVerification}
+                options={{
+                    headerTitle: "Step 1 of 2"
+                }}
+            />
+            <Stack.Screen
                 name='Login'
                 component={Login}
                 options={{
@@ -84,13 +92,7 @@ function StackNavigation() {
                     headerTitle: "Step 1 of 2"
                 }}
             />
-            <Stack.Screen
-                name='ProfileVerification'
-                component={ProfileVerification}
-                options={{
-                    headerTitle: "Step 1 of 2"
-                }}
-            />
+
             <Stack.Screen
                 name='ProfileSetupAfterAdminApproval'
                 component={ProfileSetupAfterAdminApproval}
