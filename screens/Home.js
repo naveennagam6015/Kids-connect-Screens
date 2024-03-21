@@ -12,7 +12,6 @@ export default function Home() {
         { title: 'Slide 2' },
         { title: 'Slide 3' },
         { title: 'Slide 4' },
-        // Add more slides as needed
     ];
     const carouselRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
