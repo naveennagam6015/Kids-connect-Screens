@@ -5,7 +5,9 @@ import ProfileSetup from './screens/ProfileSetup.js';
 import Navigtion from './Navigation';
 import Referal from "./screens/Referal.js";
 import Profile from "./screens/Profile.js";
-import Chat from "./screens/Chat.js";
+import Home from "./screens/Home.js";
+import GroupSettings from "./screens/GroupSettings.js";
+import About from "./screens/About.js";
 
 export default function App() {
 
@@ -24,7 +26,7 @@ export default function App() {
 
   return (
     <Navigtion />
-    // <Chat />
+    // <About />
   );
 }
 
