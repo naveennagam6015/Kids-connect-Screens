@@ -72,8 +72,57 @@ export default function Home() {
                     </View>
                 </View> */}
                 <View>
-
                     <TextBold style={[styles.Headingtext]}>Ongoing Appointments</TextBold>
+
+
+                    <View style={[styles.Cardnodata]}>
+                        <View style={[styles.innercardnodata, styles.flexrow,]}>
+                            <View style={{ alignItems: 'center', justifyContent: "center" }}>
+                                <View style={{ width: 80, height: 80, borderRadius: 100, backgroundColor: color.neutral[500], marginBottom: 10 }}>
+                                </View>
+                                <View style={{ padding: 8, backgroundColor: color.neutral[300], width: "90%" }}>
+                                </View>
+                            </View>
+                            <View style={{ justifyContent: "flex-end", alignItems: "center" }}>
+                                <TextBold style={{ fontSize: 20 }}>Oops..!</TextBold>
+                                <TextRegular style={{ fontSize: 16 }}>No appointments yet </TextRegular>
+                            </View>
+                            <View style={{ alignItems: 'center', justifyContent: "center" }}>
+                                <View style={{ width: 80, height: 80, borderRadius: 100, backgroundColor: color.neutral[500], marginBottom: 10 }}>
+                                </View>
+                                <View style={{ padding: 8, backgroundColor: color.neutral[300], width: "90%" }}>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={[styles.innercard2, styles.flexrow,]}>
+                            <View style={{ alignItems: 'center', justifyContent: "center" }}>
+                                <View style={{ width: 80, height: 80, borderRadius: 100, backgroundColor: color.neutral[500], marginBottom: 10 }}>
+                                </View>
+                                <View style={{ padding: 8, backgroundColor: color.neutral[300], width: "90%" }}>
+                                </View>
+                            </View>
+                            <View style={{ alignItems: 'center', justifyContent: "flex-start" }}>
+                                <View style={[styles.Buttoncardnodata]}>
+                                    <Pressable
+                                        onPress={() => navigation.navigate('BottomNavigation')}
+                                        style={[styles.flexrow, { alignItems: "center" }]}>
+                                        <TextBold style={[styles.btnPrimaryTextsize]}>Connect Now</TextBold>
+                                        <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
+                                    </Pressable>
+                                </View>
+                                <View style={{ padding: 8, backgroundColor: color.neutral[300], width: "70%" }}>
+                                </View>
+                            </View>
+                            <View style={{ alignItems: 'center', justifyContent: "center" }}>
+                                <View style={{ width: 80, height: 80, borderRadius: 100, backgroundColor: color.neutral[500], marginBottom: 10 }}>
+                                </View>
+                                <View style={{ padding: 8, backgroundColor: color.neutral[300], width: "90%" }}>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+
+
                     <View style={[styles.Card]}>
                         <View style={[styles.innercard1, styles.flexrow,]}>
                             <View style={{ alignItems: 'center' }}>
@@ -275,6 +324,19 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginVertical: 16,
     },
+    Buttoncardnodata: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        marginBottom: 10,
+    },
     Buttoncard2: {
         borderRadius: 8,
         alignSelf: 'center',
@@ -306,6 +368,13 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 50,
+    },
+    innercardnodata: {
+        backgroundColor: color.neutral[100],
+        justifyContent: 'space-between',
+        padding: 14,
+        borderTopRightRadius: 8,
+        borderTopLeftRadius: 8,
     },
     innercard1: {
         backgroundColor: color.accent,
@@ -345,23 +414,17 @@ const styles = StyleSheet.create({
     Headingtext: {
         fontSize: 20
     },
+    Cardnodata: {
+        borderRadius: 10,
+        marginVertical: 10,
+        backgroundColor: color.neutral[200],
+    },
     Card: {
         borderRadius: 10,
         marginVertical: 10,
         borderWidth: 1,
         borderColor: color.accent,
         backgroundColor: color.white,
-        // ...Platform.select({
-        //     ios: {
-        //         shadowColor: '#000',
-        //         shadowOffset: { width: 0, height: 2 },
-        //         shadowOpacity: 0.25,
-        //         shadowRadius: 3.84,
-        //     },
-        //     android: {
-        //         elevation: 5,
-        //     },
-        // }),
     },
     container: {
         padding: 15,

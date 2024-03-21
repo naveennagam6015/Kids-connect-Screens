@@ -5,8 +5,12 @@ import { color } from '../assets/colors/theme';
 import { MaterialIcons, AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
 import axios from "axios";
 import { BASEURL } from '@env';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Referal() {
+    const navigation = useNavigation();
+
     const [step1, setStep1] = useState(true);
     const [step2, setStep2] = useState(false);
     const [mail, setMail] = useState('');
@@ -57,7 +61,7 @@ export default function Referal() {
                     </View>
                     <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                         <Pressable
-                            // onPress={VerifyClick}
+                            onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
                             style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>Register Now</TextBold>
                             <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={16} color={color.fontcolor} />

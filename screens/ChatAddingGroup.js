@@ -3,55 +3,19 @@ import { View, StyleSheet, Dimensions, ScrollView, Pressable } from 'react-nativ
 import Search from '../components/Search'
 import { Image } from 'react-native';
 import { color } from '../assets/colors/theme';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText';
-
-export default function Chat() {
+export default function ChatAddingGroup() {
     const windowWidth = Dimensions.get('window').width;
     return (
         <ScrollView>
 
-            <View style={[styles.container]}>
-                <View style={[styles.flexrow, { alignItems: "center", justifyContent: "center" }]}>
-                    <View style={{ width: "88%" }}>
-                        <Search />
-                    </View>
-                    <View style={[styles.flexrow, { alignItems: "center" }]}>
-                        <FontAwesome name="filter" size={20} color={color.accent} />
-                        <TextBold>Filter</TextBold>
-                    </View>
+            <View style={[styles.container, { marginTop: 20 }]}>
+                <View style={{ paddingVertical: 30 }}>
+                    <TextRegular>Selected members will appear here</TextRegular>
                 </View>
-                <View style={[styles.flexrow, { alignItems: "center", marginTop: 10, justifyContent: "space-between" }]}>
-                    <View style={[styles.flexrow]}>
-                        <View style={[styles.Buttoncard2]}>
-                            <Pressable
-                                style={[styles.flexrow]}>
-                                <TextBold style={[styles.btnPrimaryTextsize]}>12 Groups</TextBold>
-                            </Pressable>
-                        </View>
-                        <View style={[styles.Buttoncard]}>
-                            <Pressable
-                                style={[styles.flexrow]}>
-                                <TextBold style={[styles.btnPrimaryTextsize]}>10 Primary</TextBold>
-                            </Pressable>
-                        </View>
-                        <View style={[styles.Buttoncard]}>
-                            <Pressable
-                                style={[styles.flexrow]}>
-                                <TextBold style={[styles.btnPrimaryTextsize]}>101 Individuals</TextBold>
-                            </Pressable>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, { alignItems: "center", justifyContent: "space-between" }]}>
-                        <Ionicons name="call" size={16} color="black" />
-                        <TextBold style={{ marginHorizontal: 5 }}>Calls</TextBold>
-                        <View style={{ justifyContent: "center", alignItems: "center", borderRadius: 50, height: 17, width: 17, backgroundColor: color.primary }}>
-                            <TextBold style={{ fontSize: 14, color: color.white }}>2</TextBold>
-                        </View>
-                    </View>
-                </View>
+                <View style={[styles.line]}></View>
 
-
+                {/* main chat card */}
                 <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
                     <View style={[styles.flexrow, styles.justalinecenter]}>
                         <View>
@@ -78,7 +42,6 @@ export default function Chat() {
                 </View>
 
                 {/* dummy Start */}
-
                 <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
                     <View style={[styles.flexrow, styles.justalinecenter]}>
                         <View>
@@ -544,6 +507,10 @@ export default function Chat() {
     )
 }
 const styles = StyleSheet.create({
+    line: {
+        borderBottomWidth: 0.8,
+        borderBottomColor: color.neutral[300]
+    },
     mv10: {
         marginVertical: 10,
     },

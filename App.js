@@ -3,6 +3,9 @@ import 'react-native-gesture-handler'
 import 'react-native-gesture-handler';
 import ProfileSetup from './screens/ProfileSetup.js';
 import Navigtion from './Navigation';
+import Referal from "./screens/Referal.js";
+import Profile from "./screens/Profile.js";
+import Chat from "./screens/Chat.js";
 
 export default function App() {
 
@@ -21,7 +24,7 @@ export default function App() {
 
   return (
     <Navigtion />
-    // <ProfileSetup />
+    // <Chat />
   );
 }
 

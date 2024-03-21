@@ -220,7 +220,8 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 50,
-    }, Card1: {
+    },
+    Card1: {
         borderRadius: 10,
         marginVertical: 10,
         padding: 14,
