@@ -4,206 +4,429 @@ import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText'
 import Search from '../components/Search'
 import { color } from '../assets/colors/theme'
 import { MaterialIcons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
+import { ScrollView } from 'react-native'
 
 export default function Appointment() {
     function CircleRequests() {
 
     }
     return (
-        <View style={[styles.container]}>
-            <Search />
-            <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular>
-            <View style={[styles.flexrow, styles.justiffsb]}>
-                <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                    <Pressable
-                        onPress={CircleRequests}
-                        style={[styles.flexrow]}>
+        <ScrollView>
+            <View style={[styles.container]}>
+                <Search />
+                <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular>
+                <View style={[styles.flexrow, styles.justiffsb]}>
+                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <Pressable
+                            onPress={CircleRequests}
+                            style={[styles.flexrow]}>
 
-                        <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
-                    </Pressable>
-                </View>
-                <View style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
-                    <Pressable
-                        onPress={CircleRequests}
-                        style={[styles.flexrow]}>
-
-                        <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
-                    </Pressable>
-                </View>
-            </View>
-            <View style={[styles.flexrow]}>
-                <TextBold style={[styles.Headingtext]}>MOST SEARCHED TAGS
-                </TextBold>
-                <View style={styles.line} />
-            </View>
-            <View style={[styles.home]}>
-                <View style={[styles.innerbtn1]}>
-                    <Pressable>
-                        <TextRegular>In-House</TextRegular>
-                    </Pressable>
-                </View>
-                <View style={[styles.innerbtn]}>
-                    <Pressable>
-                        <TextRegular>In-House</TextRegular>
-                    </Pressable>
-                </View>
-                <View style={[styles.innerbtn]}>
-                    <Pressable>
-                        <TextRegular>No Pet</TextRegular>
-                    </Pressable>
-                </View>
-                <View style={[styles.justifyflexend]}>
-                    <Pressable style={[styles.flexrow]}>
-                        <TextRegular>All filters</TextRegular>
-                        <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={12} />
-                    </Pressable>
-                </View>
-            </View>
-            <View>
-                <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                    <View style={[styles.flexrow, styles.alineitemscenter]}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                        <TextLight>(Mother)</TextLight>
+                            <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
+                        </Pressable>
                     </View>
-                    <View style={[styles.flexrow, styles.alineitemscenter]}>
-                        <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                    <View style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
+                        <Pressable
+                            onPress={CircleRequests}
+                            style={[styles.flexrow]}>
+
+                            <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
+                        </Pressable>
                     </View>
                 </View>
-                <View style={[styles.Card]}>
-                    <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                        <View>
-                            <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
+                <View style={[styles.flexrow]}>
+                    <TextBold style={[styles.Headingtext]}>MOST SEARCHED TAGS
+                    </TextBold>
+                    <View style={styles.line} />
+                </View>
+                <View style={[styles.home]}>
+                    <View style={[styles.innerbtn1]}>
+                        <Pressable>
+                            <TextRegular>In-House</TextRegular>
+                        </Pressable>
+                    </View>
+                    <View style={[styles.innerbtn]}>
+                        <Pressable>
+                            <TextRegular>In-House</TextRegular>
+                        </Pressable>
+                    </View>
+                    <View style={[styles.innerbtn]}>
+                        <Pressable>
+                            <TextRegular>No Pet</TextRegular>
+                        </Pressable>
+                    </View>
+                    <View style={[styles.justifyflexend]}>
+                        <Pressable style={[styles.flexrow]}>
+                            <TextRegular>All filters</TextRegular>
+                            <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={12} />
+                        </Pressable>
+                    </View>
+                </View>
+                <View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
+                            <TextLight>(Mother)</TextLight>
                         </View>
-                        <View style={[styles.cardborderbottam]}>
-                            <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-                                {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                            </View>
-                            <View style={[styles.flexrow, styles.justiffsb]}>
-                                <View style={[styles.ratingstarborder]}>
-                                    <View style={[styles.flexrow]}>
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <TextRegular>(65)</TextRegular>
-                                    </View>
-                                    <View style={[styles.flexrow]}>
-                                        <TextRegular>25 Reviews</TextRegular>
-                                        <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                    </View>
-                                </View>
-                                <View style={[styles.pl10]}>
-                                    <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
-                                    <TextRegular>(since Feb’24)</TextRegular>
-                                </View>
-                            </View>
-                            <View style={[styles.flexrow, styles.mt8]}>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>3-5hrs</TextRegular>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Science Project</TextRegular>
-                                </View>
-                            </View>
-                            <View style={[styles.flexrow, styles.mt8]}>
-
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Feb 17th | Monday</TextRegular>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>In-House</TextRegular>
-                                </View>
-                            </View>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
                         </View>
                     </View>
-                    <TextRegular style={[styles.carddec]}>
-                        Maecenas dignissim justo eget nulla rutrum
-                        molestie. Maecenas lobortis sem dui, vel rutrum
-                        risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                    </TextRegular>
-                    <View style={[styles.flexrow, styles.dot]}>
-
-                        <TextLight>21 hours ago</TextLight>
-                    </View>
-                </View>
-            </View>
-            <View>
-                <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                    <View style={[styles.flexrow, styles.alineitemscenter]}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                        <TextLight>(Mother)</TextLight>
-                    </View>
-                    <View style={[styles.flexrow, styles.alineitemscenter]}>
-                        <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                    </View>
-                </View>
-                <View style={[styles.Card]}>
-                    <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                        <View>
-                            <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View style={[styles.cardborderbottam]}>
-                            <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-                                {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <View>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
                             </View>
-                            <View style={[styles.flexrow, styles.justiffsb]}>
-                                <View style={[styles.ratingstarborder]}>
-                                    <View style={[styles.flexrow]}>
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <TextRegular>(65)</TextRegular>
+                            <View style={[styles.cardborderbottam]}>
+                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
+                                    <FontAwesome name="bookmark" size={18} color={color.accent} />
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <View style={[styles.flexrow]}>
+                                            <TextRegular>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </View>
                                     </View>
-                                    <View style={[styles.flexrow]}>
-                                        <TextRegular>25 Reviews</TextRegular>
-                                        <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                    <View style={[styles.pl10]}>
+                                        <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
+                                        <TextRegular>(since Feb’24)</TextRegular>
                                     </View>
                                 </View>
-                                <View style={[styles.pl10]}>
-                                    <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
-                                    <TextRegular>(since Feb’24)</TextRegular>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science Project</TextRegular>
+                                    </View>
                                 </View>
-                            </View>
-                            <View style={[styles.flexrow, styles.mt8]}>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>3-5hrs</TextRegular>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Science Project</TextRegular>
-                                </View>
-                            </View>
-                            <View style={[styles.flexrow, styles.mt8]}>
+                                <View style={[styles.flexrow, styles.mt8]}>
 
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Feb 17th | Monday</TextRegular>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>In-House</TextRegular>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th | Monday</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
-                    <TextRegular style={[styles.carddec]}>
-                        Maecenas dignissim justo eget nulla rutrum
-                        molestie. Maecenas lobortis sem dui, vel rutrum
-                        risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                    </TextRegular>
-                    <View style={[styles.flexrow, styles.dot]}>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
 
-                        <TextLight>21 hours ago</TextLight>
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
                     </View>
                 </View>
+
+                {/* dummy card start */}
+                <View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </View>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <View>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
+                            </View>
+                            <View style={[styles.cardborderbottam]}>
+                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
+                                    <FontAwesome name="bookmark" size={18} color={color.accent} />
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <View style={[styles.flexrow]}>
+                                            <TextRegular>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.pl10]}>
+                                        <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
+                                        <TextRegular>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science Project</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th | Monday</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </View>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <View>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
+                            </View>
+                            <View style={[styles.cardborderbottam]}>
+                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
+                                    <FontAwesome name="bookmark" size={18} color={color.accent} />
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <View style={[styles.flexrow]}>
+                                            <TextRegular>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.pl10]}>
+                                        <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
+                                        <TextRegular>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science Project</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th | Monday</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </View>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <View>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
+                            </View>
+                            <View style={[styles.cardborderbottam]}>
+                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
+                                    <FontAwesome name="bookmark" size={18} color={color.accent} />
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <View style={[styles.flexrow]}>
+                                            <TextRegular>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.pl10]}>
+                                        <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
+                                        <TextRegular>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science Project</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th | Monday</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </View>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <View>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
+                            </View>
+                            <View style={[styles.cardborderbottam]}>
+                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Naveen Nagam naveen</TextBold>
+                                    <FontAwesome name="bookmark" size={18} color={color.accent} />
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </View>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <View style={[styles.flexrow]}>
+                                            <TextRegular>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.pl10]}>
+                                        <TextRegular><TextBold>100+</TextBold> Connections</TextRegular>
+                                        <TextRegular>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science Project</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th | Monday</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                </View>
+                {/* dummy card end */}
+
             </View>
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
