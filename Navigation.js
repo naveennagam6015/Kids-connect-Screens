@@ -65,13 +65,6 @@ function StackNavigation() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name='ProfileVerification'
-                component={ProfileVerification}
-                options={{
-                    headerTitle: "Step 1 of 2"
-                }}
-            />
-            <Stack.Screen
                 name='Login'
                 component={Login}
                 options={{
@@ -92,7 +85,13 @@ function StackNavigation() {
                     headerTitle: "Step 1 of 2"
                 }}
             />
-
+            <Stack.Screen
+                name='ProfileVerification'
+                component={ProfileVerification}
+                options={{
+                    headerTitle: "Step 1 of 2"
+                }}
+            />
             <Stack.Screen
                 name='ProfileSetupAfterAdminApproval'
                 component={ProfileSetupAfterAdminApproval}
@@ -115,6 +114,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             <StackNavigation />
+            
         </NavigationContainer>
     )
 }

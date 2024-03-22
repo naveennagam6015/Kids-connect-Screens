@@ -207,6 +207,8 @@ export default function ProfileVerification() {
 
 
 // Fetching user roles
+// Done by Soumya
+/* =====================================Fetching user roles start=========================================*/
 
     useEffect(() => {
         axios({
@@ -223,6 +225,7 @@ export default function ProfileVerification() {
         })
     }, []);
 
+    /* =====================================Fetching user roles end=========================================*/
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
