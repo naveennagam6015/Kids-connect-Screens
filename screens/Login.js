@@ -7,10 +7,6 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/core";
 
-
-
-
-
 export default function Login() {
 
     const navigation = useNavigation();
