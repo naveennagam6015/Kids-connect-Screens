@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, StyleSheet, TextInput, Button, Image, Pressable, ScrollView } from 'react-native'
+import { View, StyleSheet, TextInput, Button, Image, Pressable, ScrollView, TouchableOpacity } from 'react-native'
 import { TextBold, TextLight, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { AntDesign, } from '@expo/vector-icons';
 import { color } from '../assets/colors/theme';
@@ -31,9 +31,184 @@ export default function ProfileVerification() {
     const [dob, setDob] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
     const [address, setAddress] = useState('');
-    const [phone, setPhone] = useState('')
+    const [phone, setPhone] = useState('');
+    const [mailError, setMailError] = useState('');
+    const [firstNameError, setFirstNameError] = useState('');
+    const [lastNameErr, setLastNameErr] = useState('');
+    const [mobileError, setMobileError] = useState('');
+    const [passwordErr, setPasswordErr] = useState('');
+    const [aboutErr, setAboutErr] = useState('');
+    const [ssnErr, setSsnErr] = useState('');
+    const [roleErr, setRoleErr] = useState('');
+    const [dobErr, setDobErr] = useState('');
+    const [genderErr, setGenderErr] = useState('');
+    const [addressErr, setAddressErr] = useState('');
 
-    console.log(BASEURL);
+
+
+    // Validation of form
+    // Done by soumya
+    /*=================================== Validation Start=================================*/
+
+    const validateEmail = (email, setMailError) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email.trim() === '') {
+            setMailError('Email is required');
+            return false;
+        } else if (!regex.test(email)) {
+            setMailError('Enter a valid email id');
+            return false;
+        } else {
+            setMailError('');
+            return true;
+        }
+    };
+
+
+    const validateFirstName = (firstName, setFirstNameError) => {
+        const regex = /^[a-zA-Z ]+$/;
+        if (!regex.test(firstName)) {
+            setFirstNameError('Numbers are not allowed in the name field');
+            return false;
+        } else if (firstName.trim() === '') {
+            setFirstNameError('Name is required');
+            return false;
+        } else {
+            setFirstNameError('');
+            return true;
+        }
+    };
+
+
+    const validateLastName = (lastname, setLastNameErr) => {
+        const regex = /^[a-zA-Z ]+$/;
+        if (!regex.test(lastname)) {
+            setLastNameErr('Numbers are not allowed in the name field');
+            return false;
+        } else if (lastname.trim() === '') {
+            setLastNameErr('Name is required');
+            return false;
+        } else {
+            setLastNameErr('');
+            return true;
+        }
+    };
+
+
+    const validateMobileNumber = (mobile, setMobileError) => {
+        const regex = /^[0-9]{10}$/;
+        if (!regex.test(mobile)) {
+            setMobileError('Mobile number should be a 10-digit number');
+            return false;
+        } else if (mobile.trim() === '') {
+            setMobileError('Mobile number is required');
+            return false;
+        } else {
+            setMobileError('');
+            return true;
+        }
+    };
+
+    const validatePassword = (password, setPasswordErr) => {
+        const minLength = 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+
+        if (password.length < minLength) {
+            setPasswordErr('Password should be at least 8 characters long');
+            return false;
+        } else if (!hasUppercase) {
+            setPasswordErr('Password should contain at least one uppercase letter');
+            return false;
+        } else if (!hasLowercase) {
+            setPasswordErr('Password should contain at least one lowercase letter');
+            return false;
+        } else if (!hasNumber) {
+            setPasswordErr('Password should contain at least one number');
+            return false;
+        } else if (!hasSpecialChar) {
+            setPasswordErr('Password should contain at least one special character');
+            return false;
+        } else {
+            setPasswordErr('');
+            return true;
+        }
+    };
+
+    const validateAbout = (about, setAboutErr) => {
+        if (about.trim() === '') {
+            setAboutErr('About section is required');
+            return false;
+        } else {
+            setAboutErr('');
+            return true;
+        }
+    };
+
+    const validateSsn = (ssn, setSsnErr) => {
+        const regex = /^\d{3}-\d{2}-\d{4}$/;
+        if (!regex.test(ssn)) {
+            setSsnErr('Please enter a valid SSN (###-##-####)');
+            return false;
+        } else {
+            setSsnErr('');
+            return true;
+        }
+    };
+
+    const validateRole = (selectedRole, setRoleErr) => {
+        if (!selectedRole) {
+            setRoleErr('Role is required');
+            return false;
+        }
+        else {
+            setRoleErr('');
+            return true;
+        }
+    };
+
+    const validateDob = (dob, setDobErr) => {
+        const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    
+        if (!regex.test(dob)) {
+            setDobErr('Please enter a valid date in the format DD/MM/YYYY');
+            return false;
+        } else {
+            setDobErr('');
+            return true;
+        }
+    };
+    
+    const validateGender = (selectedGender, setGenderErr) => {
+        if (!selectedGender) {
+            setGenderErr('Gender is required');
+            return false;
+        } else {
+            setGenderErr('');
+            return true;
+        }
+    };
+
+    const validateAddress = (address, setAddressErr) => {
+        if (!address.trim()) {
+            setAddressErr('Address is required');
+            return false;
+        } else {
+            setAddressErr('');
+            return true;
+        }
+    };
+
+    /*======================================Validation End======================================*/
+    
+    
+
+
+// Fetching user roles
+// Done by Soumya
+/* =====================================Fetching user roles start=========================================*/
 
     useEffect(() => {
         axios({
@@ -50,6 +225,7 @@ export default function ProfileVerification() {
         })
     }, []);
 
+    /* =====================================Fetching user roles end=========================================*/
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -107,19 +283,47 @@ export default function ProfileVerification() {
             </View>
             <View style={[styles.container]}>
                 <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" onChangeText={(e) => setEmail(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your mail" onChangeText={(e) => {
+                    setEmail(e);
+                    validateEmail(e, setMailError);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{mailError}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>First Name</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your first name" onChangeText={(e) => {
+                    setFirstName(e);
+                    validateFirstName(e, setFirstNameError);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{firstNameError}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Last Name</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your last name" onChangeText={e => {
+                    setLastName(e);
+                    validateLastName(e, setLastNameErr);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{lastNameErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your phone number" onChangeText={e => setPhone(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter your phone number" onChangeText={e => {
+                    setPhone(e);
+                    validateMobileNumber(e, setMobileError);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{mobileError}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Password</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter password" onChangeText={e => setPwd(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter password" onChangeText={e => {
+                    setPwd(e);
+                    validatePassword(e, setPasswordErr);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{passwordErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>About</TextBold>
-                <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Write about yourself" onChangeText={e => setAbout(e)} />
+                <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Write about yourself" onChangeText={e => {
+                    setAbout(e);
+                    validateAbout(e, setAboutErr);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{aboutErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>SSN Number</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter 6 digit SSN number" onChangeText={e => setSsn(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter 6 digit SSN number" onChangeText={e => {
+                    setSsn(e)
+                    validateSsn(e, setSsnErr);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{ssnErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Upload SSN Image</TextBold>
                 <View style={styles.imageContainer}>
                     {
@@ -141,6 +345,7 @@ export default function ProfileVerification() {
                     {image && <Image source={{ uri: image }} style={{ width: 170, height: 100, borderRadius: 8 }} />}
                     {!image && <Image source={require('../assets/images/ssnplaceholder.webp')} style={{ width: 170, height: 100, borderRadius: 8 }} />}
                 </View>
+                {/* <TextBold style={{ marginBottom: 16, color: 'red' }}>{lastNameErr}</TextBold> */}
                 <TextBold style={[styles.Headingtextinput]}>Select Role</TextBold>
                 <Dropdown
                     style={styles.dropdownStyle}
@@ -153,13 +358,19 @@ export default function ProfileVerification() {
                     searchPlaceholder="Search..."
                     onChange={(item) => {
                         setRoleId(item.value);
+                        validateRole(item.value, setRoleErr);
                     }}
                     renderLeftIcon={() => (
                         <AntDesign style={styles.icon} color="#3D833F" name="Safety" size={20} />
                     )}
                 />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{roleErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Enter D.O.B</TextBold>
-                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="DD/MM/YYYY" onChangeText={e => setDob(e)} />
+                <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="DD/MM/YYYY" onChangeText={e => {
+                    setDob(e);
+                    validateDob(e, setDobErr);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{dobErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Gender</TextBold>
                 <Dropdown
                     style={styles.dropdownStyle}
@@ -171,20 +382,26 @@ export default function ProfileVerification() {
                     placeholder="Select Gender"
                     searchPlaceholder="Search..."
                     onChange={(item) => {
-                        setSelectedGender(item.value)
+                        setSelectedGender(item.value);
+                        validateGender(item.value, setGenderErr);
                     }}
                     renderLeftIcon={() => (
                         <AntDesign style={styles.icon} color="#3D833F" name="Safety" size={20} />
                     )}
                 />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{genderErr}</TextBold>
                 <TextBold style={[styles.Headingtextinput]}>Address</TextBold>
-                <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your current address" onChangeText={e => setAddress(e)} />
-                <Pressable style={styles.submitButton}
+                <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your current address" onChangeText={e => {
+                    setAddress(e);
+                    validateAddress(e, setAddressErr);
+                }} />
+                <TextBold style={{ marginBottom: 16, color: 'red' }}>{addressErr}</TextBold>
+                <TouchableOpacity style={styles.submitButton}
                     onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
                 // onPress={SubmitData}
                 >
                     <TextMedium style={styles.submitButtonText}>Register</TextMedium>
-                </Pressable>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
@@ -201,7 +418,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginTop: 8,
         width: '100%',
-        marginBottom: 16
+
     },
     back: {
         fontSize: 18,

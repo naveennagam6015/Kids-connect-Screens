@@ -25,7 +25,8 @@ export default function App() {
 
 
   return (
-    <Navigtion />
+    // <Navigtion />
+    <About />
   );
 }
 

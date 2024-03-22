@@ -12,9 +12,6 @@ import Registration from './screens/Registration';
 import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
 import ProfileVerification from './screens/ProfileVerification';
 import AddingKidsAndPets from './screens/AddingKidsAndPets';
-import Chat from './screens/Chat';
-import ChatAddingGroup from './screens/ChatAddingGroup';
-import GroupSettings from './screens/GroupSettings';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -101,6 +98,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             <StackNavigation />
+
         </NavigationContainer>
     )
 }

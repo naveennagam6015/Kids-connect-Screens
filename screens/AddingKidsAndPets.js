@@ -127,14 +127,19 @@ export default function AddingKidsAndPets() {
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <Pressable
-                                onPress={() => setKidopen(kidopen)}
+                                onPress={() => {
+                                    setOpen(!open);
+                                }}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                             </Pressable>
                         </View>
                         <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                             <Pressable
-                                onPress={() => setKidopen(!kidopen)}
+                                onPress={() => {
+                                    setKidopen(!kidopen);
+                                    setOpen(!open);
+                                }}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
@@ -202,14 +207,19 @@ export default function AddingKidsAndPets() {
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <Pressable
-                                // onPress={() => setModalopen(modalopen)}
+                                onPress={() => {
+                                    setOpen(!open);
+                                    setKidopen(!kidopen);
+                                }}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                             </Pressable>
                         </View>
                         <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                             <Pressable
-                                onPress={() => navigation.navigate('AddingKidsAndPets')}
+                                onPress={() => {
+                                    setKidopen(!kidopen);
+                                }}
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />

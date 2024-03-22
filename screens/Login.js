@@ -21,7 +21,7 @@ export default function Login() {
         androidClientId: '1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
         webClientId: '1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
 
-        iosClientId: '1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
+        // iosClientId:'1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
     });
 
 
