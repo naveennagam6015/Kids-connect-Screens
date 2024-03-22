@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Pressable, Modal, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Image, Pressable, Modal, TextInput, ScrollView, TouchableOpacity, StatusBar } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons';
@@ -61,6 +61,7 @@ export default function ProfileSetupAfterAdminApproval() {
     };
     return (
         <View style={[styles.container,]}>
+            <StatusBar/>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
                 <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
