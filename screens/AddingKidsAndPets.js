@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Modal, TextInput, Pressable, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Image, Modal, TextInput, Pressable, TouchableOpacity, ScrollView } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -21,7 +21,7 @@ export default function AddingKidsAndPets() {
         setPetopen(false);
     };
     return (
-        <View style={[styles.container, { marginTop: 20 }]}>
+        <ScrollView style={[styles.container, { marginTop: 20 }]}>
             <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
             <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
             <TextRegular style={{ fontSize: 18 }}>To get started, create an account with Kids Connect below, </TextRegular>
@@ -229,7 +229,7 @@ export default function AddingKidsAndPets() {
                 </View>
             </Modal>
 
-        </View>
+        </ScrollView>
 
     )
 }
@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 15,
-        justifyContent: 'center',
+        // justifyContent: 'center',
     },
     Headingtext: {
         fontSize: 24,
