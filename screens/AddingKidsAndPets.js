@@ -20,8 +20,12 @@ export default function AddingKidsAndPets() {
         setKidopen(false);
         setPetopen(false);
     };
+
+
+    
+
     return (
-        <ScrollView style={[styles.container, { marginTop: 20 }]}>
+        <ScrollView style={[styles.container]}>
             <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
             <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
             <TextRegular style={{ fontSize: 18 }}>To get started, create an account with Kids Connect below, </TextRegular>
@@ -83,16 +87,16 @@ export default function AddingKidsAndPets() {
                     <FontAwesome style={{ marginLeft: 10 }} name="paw" size={24} color={color.accent} />
                 </View>
             </View>
-            <Pressable style={[styles.btnPrimary, styles.flexrow]}
+            <TouchableOpacity style={[styles.btnPrimary, styles.flexrow]}
                 onPress={() => navigation.navigate('BottomNavigation')}
             >
                 <TextMedium style={styles.btnText}>Proceed to Home Screen</TextMedium>
                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-            </Pressable>
-            <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 50 }}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation')}  style={{ flexDirection: "row", justifyContent: "center", marginTop: 50 }}>
                 <TextRegular style={[styles.Skip,]}>Skip for now</TextRegular>
                 <MaterialIcons name="keyboard-double-arrow-right" size={24} color={color.fontcolor} />
-            </View>
+            </TouchableOpacity>
             <Modal
                 animationType='slide'
                 // transparent={true}
