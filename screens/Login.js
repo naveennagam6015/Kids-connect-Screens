@@ -21,7 +21,7 @@ export default function Login() {
         androidClientId: '1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
         webClientId: '1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
 
-        iosClientId:'1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
+        iosClientId: '1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
     });
 
 
@@ -88,12 +88,11 @@ export default function Login() {
                 <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
             </View>
             <View>
-                <Pressable style={styles.btnPrimary}
+                <TouchableOpacity style={styles.btnPrimary}
                     onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                // onPress={() => navigation.navigate('BottomNavigation')}
                 >
                     <TextMedium style={styles.btnText}>Login</TextMedium>
-                </Pressable>
+                </TouchableOpacity>
                 <View style={styles.mainView}>
                     <View style={styles.horizontalLine}></View>
                     <TextRegular style={styles.textR}>or Login with</TextRegular>
@@ -111,7 +110,14 @@ export default function Login() {
                 </View>
                 {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
             </View>
-            {/* </ImageBackground> */}
+
+            {/* dummy */}
+            <TouchableOpacity style={styles.btnPrimary}
+                onPress={() => navigation.navigate('Chat')}
+            >
+                <TextMedium style={styles.btnText}>Chat</TextMedium>
+            </TouchableOpacity>
+
         </View>
     )
 }

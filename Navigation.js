@@ -12,6 +12,9 @@ import Registration from './screens/Registration';
 import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
 import ProfileVerification from './screens/ProfileVerification';
 import AddingKidsAndPets from './screens/AddingKidsAndPets';
+import Chat from './screens/Chat';
+import ChatAddingGroup from './screens/ChatAddingGroup';
+import GroupSettings from './screens/GroupSettings';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -63,47 +66,32 @@ const Stack = createStackNavigator();
 function StackNavigation() {
     return (
         <Stack.Navigator>
-            <Stack.Screen
-                name='Login'
-                component={Login}
-                options={{
-                    headerShown: false
-                }}
+            <Stack.Screen name='Login' component={Login}
+                options={{ headerShown: false }}
             />
-            <Stack.Screen
-                name='BottomNavigation'
-                component={BottomNavigation}
-                options={{
-                    headerShown: false
-                }}
+            <Stack.Screen name='BottomNavigation' component={BottomNavigation}
+                options={{ headerShown: false }}
             />
-            <Stack.Screen
-                name='Register'
-                component={Registration}
-                options={{
-                    headerTitle: "Step 1 of 2"
-                }}
+            <Stack.Screen name='Register' component={Registration}
+                options={{ headerTitle: "Step 1 of 2" }}
             />
-            <Stack.Screen
-                name='ProfileVerification'
-                component={ProfileVerification}
-                options={{
-                    headerTitle: "Step 1 of 2"
-                }}
+            <Stack.Screen name='ProfileVerification' component={ProfileVerification}
+                options={{ headerTitle: "Step 1 of 2" }}
             />
-            <Stack.Screen
-                name='ProfileSetupAfterAdminApproval'
-                component={ProfileSetupAfterAdminApproval}
-                options={{
-                    headerShown: false
-                }}
+            <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval}
+                options={{ headerShown: false }}
             />
-            <Stack.Screen
-                name='AddingKidsAndPets'
-                component={AddingKidsAndPets}
-                options={{
-                    headerTitle: "Adding Kids And Pets"
-                }}
+            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets}
+                options={{ headerTitle: "Adding Kids And Pets" }}
+            />
+            <Stack.Screen name='Chat' component={Chat}
+                options={{ headerTitle: "Chat" }}
+            />
+            <Stack.Screen name='ChatAddingGroup' component={ChatAddingGroup}
+                options={{ headerTitle: "Chat Adding Group" }}
+            />
+            <Stack.Screen name='GroupSettings' component={GroupSettings}
+                options={{ headerTitle: "Group Settings" }}
             />
         </Stack.Navigator>
     )
