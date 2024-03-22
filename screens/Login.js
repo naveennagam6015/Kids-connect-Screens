@@ -88,12 +88,11 @@ export default function Login() {
                 <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
             </View>
             <View>
-                <Pressable style={styles.btnPrimary}
+                <TouchableOpacity style={styles.btnPrimary}
                     onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                // onPress={() => navigation.navigate('BottomNavigation')}
                 >
                     <TextMedium style={styles.btnText}>Login</TextMedium>
-                </Pressable>
+                </TouchableOpacity>
                 <View style={styles.mainView}>
                     <View style={styles.horizontalLine}></View>
                     <TextRegular style={styles.textR}>or Login with</TextRegular>
@@ -111,7 +110,14 @@ export default function Login() {
                 </View>
                 {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
             </View>
-            {/* </ImageBackground> */}
+
+            {/* dummy */}
+            <TouchableOpacity style={styles.btnPrimary}
+                onPress={() => navigation.navigate('Chat')}
+            >
+                <TextMedium style={styles.btnText}>Chat</TextMedium>
+            </TouchableOpacity>
+
         </View>
     )
 }
