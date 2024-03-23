@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { Image, TextInput, View, StyleSheet, ScrollView, TouchableOpacity, Modal, Dimensions } from 'react-native'
 import { color } from '../assets/colors/theme'
-import { Entypo, AntDesign } from '@expo/vector-icons';
+import { Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 export default function GroupSettings() {
     const windowHeight = Dimensions.get('window').height;
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
+    const [openmessiage, setOpenmessiage] = useState(false);
+    const [opendelete, setOpendelete] = useState(false);
 
     const onClose = () => {
         setOpen(false);
+        setOpenmessiage(false);
+        setOpendelete(false);
     };
     return (
         <View>
@@ -40,8 +44,12 @@ export default function GroupSettings() {
                             </View>
                         </View>
                         <View>
-                            <Entypo name="dots-three-vertical" size={20} color={color.neutral[300]} />
+
+                            <TouchableOpacity>
+                                <Entypo name="dots-three-vertical" size={20} color={color.neutral[300]} />
+                            </TouchableOpacity>
                         </View>
+
                     </View>
 
 
@@ -281,21 +289,71 @@ export default function GroupSettings() {
                 <AntDesign style={{ marginTop: 2, marginLeft: 5 }} name="arrowright" size={20} color={color.white} />
             </TouchableOpacity>
 
-
-
+            {/* modal for skip */}
             <Modal
                 animationType='slide'
                 visible={open}
-
             >
                 <View style={styles.containermodal}>
-                    <TextRegular style={{ fontSize: 16, color: color.white }}>Would you like to add a message to the group members? before deleting the group!</TextRegular>
-                    <TouchableOpacity style={[styles.btnPrimarymodal, styles.flexrow, { borderRadius: 10, }]}
-                        onPress={() => setOpen(!open)}
-                    >
-                        <TextMedium style={styles.btnText}>Yes, I would like to Inform members</TextMedium>
-                        <AntDesign style={{ marginTop: 2, marginLeft: 5 }} name="arrowright" size={20} color={color.white} />
-                    </TouchableOpacity>
+                    <TextRegular style={{ fontSize: 18, marginBottom: 5, color: color.white }}>Would you like to add a message to the group members? before deleting the group!</TextRegular>
+                    <View style={[styles.btnPrimarymodal, styles.Buttoncardwidth]}>
+                        <TouchableOpacity
+                            onPress={() => setOpen(!openmessiage)}>
+                            <TextMedium style={styles.btnText}>Yes, I would like to Inform members</TextMedium>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <TouchableOpacity
+                            onPress={() => setOpen(!opendelete)}
+                            style={[styles.flexrow, { justifyContent: "center", alignItems: "center" }]}>
+                            <TextBold style={[styles.btnPrimaryTextsize]}>Skip</TextBold>
+                            <MaterialIcons style={[styles.arrow, { marginLeft: 5 }]} name="arrow-forward-ios" size={12} color={color.white} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
+            {/* modal for messiage */}
+            <Modal
+                animationType='slide'
+                visible={openmessiage}
+            >
+                <View style={styles.containermodal}>
+                    <TextRegular style={{ fontSize: 18, marginBottom: 5, color: color.white }}>Would you like to add a message to the group members? before deleting the group!</TextRegular>
+                    <TextInput style={[styles.textArea, { backgroundColor: color.neutral[100] }]} multiline={true} numberOfLines={5} placeholder="Write a message to group members" onChangeText={e => setAddress(e)} />
+                    <View style={[styles.btnPrimarymodal, styles.Buttoncardwidth]}>
+                        <TouchableOpacity
+                            style={[styles.flexrow, { justifyContent: "center", alignItems: "center" }]}
+                            onPress={() => setOpen(!opendelete)}>
+                            <TextMedium style={styles.btnText}>Next</TextMedium>
+                            <MaterialIcons style={[styles.arrow, { marginLeft: 5 }]} name="arrow-forward-ios" size={12} color={color.fontcolor} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
+            {/* modal for delete */}
+            <Modal
+                animationType='slide'
+                visible={open}
+            >
+                <View style={styles.containermodal}>
+                    <TextRegular style={{ fontSize: 18, marginBottom: 5, color: color.white }}>Confirm if you want to delete the group!</TextRegular>
+                    <View style={[styles.btnPrimarymodal, styles.Buttoncardwidth]}>
+                        <TouchableOpacity
+                        // onPress={() => setOpen(!open)}
+                        >
+                            <TextMedium style={styles.btnText}>Delete the group</TextMedium>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <TouchableOpacity
+
+                            style={[styles.flexrow, { justifyContent: "center", alignItems: "center" }]}>
+                            <AntDesign style={[styles.arrow, { marginRight: 5 }]} name="left" size={14} color={color.white} />
+                            <TextBold style={[styles.btnPrimaryTextsize]}>Back</TextBold>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </Modal>
 
@@ -303,14 +361,33 @@ export default function GroupSettings() {
     )
 }
 const styles = StyleSheet.create({
+    Buttoncard: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 14,
+        marginVertical: 10,
+    },
+    Buttoncardwidth: {
+        width: '100%'
+    },
+    btnPrimaryTextsize: {
+        fontSize: 18,
+        color: color.white
+    },
     btnPrimarymodal: {
-        padding: 15,
-        margin: 12,
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        paddingVertical: 16,
+        marginVertical: 10,
         backgroundColor: color.primary,
-        borderRadius: 8
     },
     btnPrimary: {
         padding: 15,

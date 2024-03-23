@@ -4,12 +4,18 @@ import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import { useEffect, useState } from "react";
+import { Ionicons } from '@expo/vector-icons'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/core";
 
 export default function Login() {
 
     const navigation = useNavigation();
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     WebBrowser.maybeCompleteAuthSession();
     const [userInfo, setUserInfo] = useState(null);
@@ -77,10 +83,21 @@ export default function Login() {
         <View style={styles.container}>
             {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
             <TextBold style={styles.heading}>Kids Connect</TextBold>
-            <TextBold style={styles.subheading}>Welcome back</TextBold>
+            <TextBold style={styles.subheading}>Welcome</TextBold>
             <View>
                 <TextInput style={styles.inputBox} placeholder="Enter your mail" />
-                <TextInput style={styles.inputBox} placeholder="Enter your password" />
+                {/* <View style={[styles.flexrow, styles.eye]}>
+                    <TextInput style={styles.inputBox} placeholder="Enter your password" secureTextEntry={true} />
+                    <Ionicons style={{ marginLeft: -50 }} name="eye" size={24} color={color.neutral[500]} />
+                </View> */}
+
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.inputBox} placeholder="Enter your password" secureTextEntry={!showPassword} />
+                    <TouchableOpacity onPress={togglePasswordVisibility}>
+                        <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
+                    </TouchableOpacity>
+                </View>
+
                 <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
             </View>
             <View>
@@ -119,6 +136,22 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+    eyeIcon: {
+        marginLeft: -50,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    eye: {
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    flexrow: {
+        flexDirection: "row",
+    },
     container: {
         flex: 1,
         // padding: 25,
