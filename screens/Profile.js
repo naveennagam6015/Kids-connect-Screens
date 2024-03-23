@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
@@ -6,22 +6,45 @@ import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionico
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
-<EvilIcons name="plus" size={24} color="black" />
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 export default function Profile() {
+
+    const [userData, setUserData] = useState({});
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('');
+
+    useEffect(() => {
+        async function GetUserData() {
+            const userDetails = JSON.parse(await AsyncStorage.getItem('userDetails'));
+            const date_string = userDetails.created_at;
+            const date_object = new Date(date_string);
+
+            const month = date_object.toLocaleString('default', { month: 'long' });
+            const year = date_object.getUTCFullYear();
+            setMonth(month);
+            setYear(year);
+            setUserData(userDetails)
+        }
+
+        GetUserData();
+    }, [])
+
+
     return (
         <ScrollView style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
                 <View style={{ flexDirection: "row" }} >
                     <View style={[{ width: "35%" }, styles.profileName]}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                        <Image style={[styles.profilepic]} source={{ uri: userData.ProfileImage }} />
                     </View>
                     <View style={[{ width: "45%", }, styles.profileName]}>
-                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Madisson Arora(M)</TextBold>
-                        <TextBold style={{ fontSize: 12 }}>Madisson7@gmail.com</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>4387 Farland Avenue, San Antonio, TX 78212</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since Feb 2023)</TextBold>
+                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>{userData.FirstName} {userData.LastName}({userData.Gender == 1 ? 'M' : userData.Gender == 2 ? 'F' : 'O'})</TextBold>
+                        <TextBold style={{ fontSize: 12 }}>{userData.Email}</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>{userData.Address}</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since {month} {year})</TextBold>
 
                     </View>
                     <View style={[{ width: "15%", marginTop: 10, marginRight: 7 }]}>
@@ -37,7 +60,7 @@ export default function Profile() {
                     <Feather name="edit" size={15} color="black" style={[{ justifyContent: 'center', marginVertical: 5, alignSelf: 'center' },]} />
                 </View>
                 <TextRegular style={[styles.textnetural, { fontSize: 14 }]}>
-                    Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more
+                    {userData.About}
                 </TextRegular>
 
                 <View style={[styles.fullcard, styles.flexrow]}>
@@ -61,13 +84,13 @@ export default function Profile() {
                                     <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
                                 </View>
                                 <TouchableOpacity style={{ flexDirection: 'row' }}>
-                                    <TextRegular style={{ fontSize: 11, paddingRight:5 }}>Add</TextRegular>
-                               
-                                <View style={{ alignItems: 'center' }}>
-                                    <View style={[styles.imageplusadd]}>
-                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusadd]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
                                     </View>
-                                </View>
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -75,13 +98,13 @@ export default function Profile() {
                                     <Image style={[styles.profilepic, { width: 50, height: 50 },]} source={require('../assets/images/women.png')} />
                                 </View>
                                 <TouchableOpacity style={{ flexDirection: 'row' }}>
-                                    <TextRegular style={{ fontSize: 11, paddingRight:5}}>Add</TextRegular>
-                               
-                                <View style={{ alignItems: 'center' }}>
-                                    <View style={[styles.imageplusadd]}>
-                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusadd]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
                                     </View>
-                                </View>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -213,6 +236,8 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50,
+        borderColor: '#000',
+        borderWidth: 0.5
     },
     Card1: {
         borderRadius: 10,

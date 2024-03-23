@@ -24,7 +24,7 @@ export default function Login() {
         androidClientId: '1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
         webClientId: '1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
 
-        iosClientId: '1060882560652-o4p870s2go3gl9rhkdlsb2ilvju7g6oi.apps.googleusercontent.com'
+        iosClientId: '1060882560652-iuuuvi794r18rtp076sobh1qhmgmftkt.apps.googleusercontent.com'
     });
 
 
@@ -76,7 +76,7 @@ export default function Login() {
             setUserInfo(user);
             console.log(user);
         } catch (error) {
-
+            console.log(error.response);
         }
     }
 
@@ -87,7 +87,7 @@ export default function Login() {
 
     // Email Validation
     // Done by Soumya
-    const validateEmail = (email, setMailError) => {
+    const validateEmail = (email, setEmailError) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email.trim() === '') {
             setEmailError('Email is required');
@@ -113,7 +113,7 @@ export default function Login() {
         }
     }
 
-    /*=================================Validation Start====================================== */
+    /*=================================Validation End====================================== */
 
 
 
@@ -140,7 +140,8 @@ export default function Login() {
                 const authData = JSON.stringify(res.data);
                 AsyncStorage.setItem('authData', authData);
                 await GetSubscriber(res.data.token);
-            }).catch(err => {
+                navigation.navigate('ProfileSetupAfterAdminApproval');
+            }).catch((err) => {
                 console.log(err);
             }).finally(() => {
 
@@ -163,7 +164,7 @@ export default function Login() {
             console.log(res.data);
             const userData = JSON.stringify(res.data.data);
             AsyncStorage.setItem('userDetails', userData);
-        }).catch(err => {
+        }).catch((err) => {
             console.log(err);
         }).finally(() => {
 
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
         color: color.neutral[500]
     },
     inputBox: {
-        padding: 10,
+        padding: 15,
         borderColor: color.neutral[500],
         borderWidth: 1,
         margin: 12,

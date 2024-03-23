@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, Text } from 'react-native'
 import { color } from '../assets/colors/theme';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Carousel from 'react-native-snap-carousel';
+import axios from "axios";
+import { BASEURL } from '@env';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function Home() {
@@ -22,6 +24,16 @@ export default function Home() {
             </View>
         );
     };
+
+    useEffect(() => {
+        axios({
+            method:'get',
+            url:`${BASEURL}allBanners`
+        }).then(res => {
+            console.log(res.data);
+        })
+    },[]);
+
     return (
         <ScrollView>
             <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginBottom: 10, marginTop: 50 }]}>Glance Area</TextBold>
