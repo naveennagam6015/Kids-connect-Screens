@@ -4,6 +4,7 @@ import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import { useEffect, useState } from "react";
+import { Ionicons } from '@expo/vector-icons'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/core";
 import axios from "axios";
@@ -17,7 +18,11 @@ export default function Login() {
     const [loading, setLoading] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     WebBrowser.maybeCompleteAuthSession();
     const [userInfo, setUserInfo] = useState(null);
     const [request, response, promptAsync] = Google.useAuthRequest({
@@ -180,7 +185,7 @@ export default function Login() {
             <StatusBar />
             {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
             <TextBold style={styles.heading}>Kids Connect</TextBold>
-            <TextBold style={styles.subheading}>Welcome back</TextBold>
+            <TextBold style={styles.subheading}>Welcome</TextBold>
             <View>
                 <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(email) => {
                     setEmail(email);
@@ -192,10 +197,19 @@ export default function Login() {
                     )
                 }
 
-                <TextInput style={styles.inputBox} placeholder="Enter your password" onChangeText={(pwd) => {
+
+                <View style={styles.inputContainer}>
+                    <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
+                    <TouchableOpacity onPress={togglePasswordVisibility}>
+                        <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
+                    </TouchableOpacity>
+                </View>
+
+
+                {/* <TextInput style={styles.inputBox} placeholder="Enter your password" onChangeText={(pwd) => {
                     setPassword(pwd);
                     validatePassword(pwd, setPasswordErr);
-                }} />
+                }} /> */}
                 {
                     passwordErr !== '' && (
                         <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{passwordErr}</TextBold>
@@ -240,6 +254,25 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+    fullwidth: {
+        width: "94%"
+    },
+    eyeIcon: {
+        marginLeft: -50,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    eye: {
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    flexrow: {
+        flexDirection: "row",
+    },
     container: {
         flex: 1,
         padding: 25,
