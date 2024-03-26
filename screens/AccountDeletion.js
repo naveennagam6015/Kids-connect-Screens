@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
         marginBottom: 16
     },
     delete: {
-        // padding: 5,
+        padding: 10,
+        fontSize: 20,
         height: 60,
         borderColor: color.neutral[300],
         borderWidth: 1,
