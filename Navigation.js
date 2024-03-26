@@ -1,5 +1,5 @@
 import React from 'react';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
 import Home from './screens/Home';
 import Appointment from './screens/Appointment';
@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import Requests from './screens/Requests';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Entypo, Ionicons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 import Login from './screens/Login';
 import Registration from './screens/Registration';
 import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
@@ -19,47 +20,70 @@ import ProfileEdit from './screens/ProfileEdit';
 import MyAccount from './screens/MyAccount';
 import DevicePermissions from './screens/DevicePermissions';
 import AccountDeletion from './screens/AccountDeletion';
+import { color } from './assets/colors/theme';
+import { StyleSheet } from 'react-native';
 
-const BottomTab = createMaterialBottomTabNavigator();
+const BottomTab = createBottomTabNavigator();
 
 function BottomNavigation() {
     return (
-        <BottomTab.Navigator>
+        <BottomTab.Navigator
+            screenOptions={({ navigation, route }) => ({
+                tabBarIcon: ({ color, focused, size }) => {
+                    let iconName;
+                    if (route.name === 'Home') {
+                        iconName = focused ? 'home' : 'home-outline';
+                    } else if (route.name === 'Appointment') {
+                        iconName = focused ? 'add-circle' : 'add-circle-outline';
+                    } else if (route.name === 'Requests') {
+                        iconName = focused ? 'list' : 'list-outline';
+                    } else if (route.name === 'ReserveList') {
+                        iconName = focused ? 'list-circle' : 'list-circle-outline';
+                    } else if (route.name === 'Profile') {
+                        iconName = focused ? 'person-circle' : 'person-circle-outline';
+                    }
+                    return <Ionicons name={iconName} size={30} color={color} />;
+                },
+                tabBarActiveTintColor: color.primary,
+                tabBarInactiveTintColor: color.neutral[100],
+                tabBarLabelStyle:{
+                    color:'#000'
+                },
+                tabBarStyle: {
+                    position: 'absolute',
+                    borderTopLeftRadius: 20,
+                    borderTopRightRadius: 20,
+                    backgroundColor: 'transparent',
+                    elevation: 0,
+                    shadowOpacity: 0,
+                },
+                tabBarBackground: () => (
+                    <BlurView
+                        intensity={150}
+                        style={{
+                            ...StyleSheet.absoluteFillObject,
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20,
+                        }}
+                    />
+                ),
+            })}
+        >
             <BottomTab.Screen
                 name="Home"
                 component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Entypo name="home" size={24} color={focused ? '#283F45' : '#969696'} />
-                    ),
-                }}
             />
             <BottomTab.Screen
                 name="Appointment"
                 component={Appointment}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Ionicons name="add-circle" size={24} color={focused ? '#283F45' : '#969696'} />
-                    ),
-                }}
             />
             <BottomTab.Screen
                 name="Requests"
                 component={Requests}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Entypo name="list" size={24} color={focused ? '#283F45' : '#969696'} />
-                    ),
-                }}
             />
             <BottomTab.Screen
                 name="Profile"
                 component={Profile}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Entypo name="user" size={24} color={focused ? '#283F45' : '#969696'} />
-                    ),
-                }}
             />
         </BottomTab.Navigator>
     )
@@ -70,9 +94,9 @@ const Stack = createStackNavigator();
 function StackNavigation() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name='Login' component={Login}
+            {/* <Stack.Screen name='Login' component={Login}
                 options={{ headerShown: false }}
-            />
+            /> */}
             <Stack.Screen name='BottomNavigation' component={BottomNavigation}
                 options={{ headerShown: false }}
             />

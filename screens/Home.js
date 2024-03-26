@@ -3,9 +3,10 @@ import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, T
 import { color } from '../assets/colors/theme';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
-import Carousel from 'react-native-snap-carousel';
+// import Carousel from 'react-native-snap-carousel';
 import axios from "axios";
 import { BASEURL } from '@env';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         { title: 'Slide 4' },
     ];
     const carouselRef = useRef(null);
+    const bottomTabBarHeight = useBottomTabBarHeight();
     const [activeIndex, setActiveIndex] = useState(0);
     const renderItem = ({ item }) => {
         return (
@@ -35,10 +37,10 @@ export default function Home() {
     },[]);
 
     return (
-        <ScrollView>
+        <ScrollView style={{paddingBottom:bottomTabBarHeight}}>
             <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginBottom: 10, marginTop: 50 }]}>Glance Area</TextBold>
 
-            <Carousel
+            {/* <Carousel
                 ref={carouselRef}
                 layout="default"
                 data={data}
@@ -50,7 +52,7 @@ export default function Home() {
                 autoplay
                 autoplayInterval={3000}
                 onSnapToItem={(index) => setActiveIndex(index)}
-            />
+            /> */}
             <View style={[styles.container]}>
 
                 <View style={[styles.flexrow, styles.justiffsb]}>
