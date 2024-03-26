@@ -5,9 +5,11 @@ import { color } from '../assets/colors/theme';
 import { Dropdown } from 'react-native-element-dropdown';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function AccountDeletion() {
+    const navigation = useNavigation();
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
     const [passwordErr, setPasswordErr] = useState('');
@@ -65,7 +67,7 @@ export default function AccountDeletion() {
                 <TextInput style={[styles.textArea, { backgroundColor: color.neutral[200] }]} multiline={true} numberOfLines={5} placeholder="Specify Your Reason" />
                 <TextRegular style={{ color: color.accent }}>Warning:</TextRegular>
                 <TextRegular style={{ textAlign: 'left', marginBottom: 10 }}>By deleting your account, all your kids contacts and connections will be permanently removed, and cannot be undone.</TextRegular>
-                
+
                 <TextRegular style={{ textAlign: 'left', marginBottom: 10 }}>To delete your account, please enter your password, below</TextRegular>
 
 
@@ -75,7 +77,7 @@ export default function AccountDeletion() {
                         <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
                     </TouchableOpacity>
                 </View>
-                
+
                 <TextRegular style={{ color: color.neutral[200] }}>To confirm this, please type ‘DELETE’</TextRegular>
 
                 <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
@@ -87,7 +89,7 @@ export default function AccountDeletion() {
 
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                     <View style={[{ width: "20%" }, styles.profileName]}>
-                    <TextRegular style={{ color: color.accent }}>Note:</TextRegular>
+                        <TextRegular style={{ color: color.accent }}>Note:</TextRegular>
 
                     </View>
                     <View style={[{ width: "80%", alignItems: 'center', justifyContent: 'center' }, styles.profileName]}>

@@ -26,8 +26,8 @@ export default function App() {
 
 
   return (
-    // <Navigtion />
-    <AccountDeletion />
+    <Navigtion />
+    // <AccountDeletion />
   );
 }
 
