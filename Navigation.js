@@ -19,6 +19,7 @@ import ProfileEdit from './screens/ProfileEdit';
 import MyAccount from './screens/MyAccount';
 import DevicePermissions from './screens/DevicePermissions';
 import AccountDeletion from './screens/AccountDeletion';
+import Thankyou from './screens/Thankyou';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -108,6 +109,9 @@ function StackNavigation() {
             />
             <Stack.Screen name='AccountDeletion' component={AccountDeletion}
                 options={{ headerTitle: "Account Deletion" }}
+            />
+            <Stack.Screen name='Thankyou' component={Thankyou}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
