@@ -1,15 +1,21 @@
-import React from 'react'
-import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity, Switch } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 <EvilIcons name="plus" size={24} color="black" />
 
 
 export default function Profile() {
+    const navigation = useNavigation();
+    const [darkmode, setDarkmode] = useState(false);
+    const [notifications, setNotifications] = useState(false);
+
+
     return (
         <ScrollView style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
@@ -18,25 +24,26 @@ export default function Profile() {
                         <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                     </View>
                     <View style={[{ width: "45%", }, styles.profileName]}>
-                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Madisson Arora(M)</TextBold>
-                        <TextBold style={{ fontSize: 12 }}>Madisson7@gmail.com</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>4387 Farland Avenue, San Antonio, TX 78212</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since Feb 2023)</TextBold>
+                        <TextBold style={{ color: color.secondaryOrange, fontSize: 18 }}>Madisson Arora (M)</TextBold>
+                        <TextBold style={{ fontSize: 14 }}>Madisson7@gmail.com</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 14 }}>4387 Farland Avenue, San Antonio, TX 78212</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 14 }}>(Since Feb 2023)</TextBold>
 
                     </View>
                     <View style={[{ width: "15%", marginTop: 10, marginRight: 7 }]}>
-                        <TouchableOpacity style={{ flexDirection: 'row' }}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('ProfileEdit')}
+                            style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <TextRegular style={{ fontSize: 11 }}>Edit Profile</TextRegular>
-                            <Feather name="edit" size={15} color="black" />
+                            <Feather name="edit" style={{ marginLeft: 5 }} size={15} color={color.secondaryOrange} />
                         </TouchableOpacity>
                     </View>
                 </View>
 
-                <View style={{ flexDirection: "row" }}>
-                    <TextBold style={[{ justifyContent: 'center' }, styles.Headingtext]}>Bio</TextBold>
-                    <Feather name="edit" size={15} color="black" style={[{ justifyContent: 'center', marginVertical: 5, alignSelf: 'center' },]} />
+                <View>
+                    {/* <TextBold style={[{ justifyContent: 'center' }, styles.Headingtext]}>About</TextBold> */}
                 </View>
-                <TextRegular style={[styles.textnetural, { fontSize: 14 }]}>
+                <TextRegular style={[styles.textnetural, { fontSize: 14, marginTop: 8 }]}>
                     Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more
                 </TextRegular>
 
@@ -61,13 +68,13 @@ export default function Profile() {
                                     <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
                                 </View>
                                 <TouchableOpacity style={{ flexDirection: 'row' }}>
-                                    <TextRegular style={{ fontSize: 11, paddingRight:5 }}>Add</TextRegular>
-                               
-                                <View style={{ alignItems: 'center' }}>
-                                    <View style={[styles.imageplusadd]}>
-                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusadd]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
                                     </View>
-                                </View>
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -75,13 +82,13 @@ export default function Profile() {
                                     <Image style={[styles.profilepic, { width: 50, height: 50 },]} source={require('../assets/images/women.png')} />
                                 </View>
                                 <TouchableOpacity style={{ flexDirection: 'row' }}>
-                                    <TextRegular style={{ fontSize: 11, paddingRight:5}}>Add</TextRegular>
-                               
-                                <View style={{ alignItems: 'center' }}>
-                                    <View style={[styles.imageplusadd]}>
-                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusadd]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
                                     </View>
-                                </View>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -91,23 +98,25 @@ export default function Profile() {
                         {/* </View> */}
                     </View>
                 </View>
-                <View style={[styles.Card]}>
+                <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.Card, styles.flexrow, styles.justsb]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Bookings</TextBold>
-                </View>
-                <View style={[styles.Card]}>
+                    <MaterialIcons style={{ marginTop: 8, marginRight: 8 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('MyAccount')} style={[styles.Card, styles.flexrow, styles.justsb]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Account</TextBold>
-                </View>
-                <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>Requested by</TextBold>
-                <View style={[styles.yellowcard, { marginTop: 10 }]}>
+                    <MaterialIcons style={{ marginTop: 8, marginRight: 8 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                </TouchableOpacity>
+                <TextBold style={[styles.Headingtext,]}>Requested by</TextBold>
+                <View style={[styles.yellowcard, { marginTop: 4 }]}>
                     <View style={{ paddingHorizontal: 10 }}>
                         <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Account</TextBold>
-                        <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                        <TouchableOpacity onPress={() => navigation.navigate('DevicePermissions')} style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
                                 <MaterialCommunityIcons name="lock-check" size={24} color={color.white} />
                                 <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Device Permissions</TextBold>
                             </View>
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
-                        </View>
+                        </TouchableOpacity>
                         <View style={[styles.line]}></View>
                         <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
@@ -142,7 +151,13 @@ export default function Profile() {
                                 <MaterialIcons name="dark-mode" size={24} color={color.white} />
                                 <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Dark Mode</TextBold>
                             </View>
-                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                            <Switch
+                                trackColor={{ false: color.secondaryOrange, true: color.success }}
+                                thumbColor={darkmode ? color.white : "#f4f3f4"}
+                                ios_backgroundColor="#3e3e3e"
+                                onValueChange={() => setDarkmode(previousState => !previousState)}
+                                value={darkmode}
+                            />
                         </View>
                         <View style={[styles.line]}></View>
                         <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
@@ -151,7 +166,13 @@ export default function Profile() {
                                 {/* <MaterialIcons name="notifications-off" size={24} color={color.white} /> */}
                                 <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Notifications</TextBold>
                             </View>
-                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                            <Switch
+                                trackColor={{ false: color.secondaryOrange, true: color.success }}
+                                thumbColor={notifications ? color.white : "#f4f3f4"}
+                                ios_backgroundColor="#3e3e3e"
+                                onValueChange={() => setNotifications(previousState => !previousState)}
+                                value={notifications}
+                            />
                         </View>
 
                     </View>
@@ -191,6 +212,9 @@ export default function Profile() {
     )
 }
 const styles = StyleSheet.create({
+    justsb: {
+        justifyContent: "space-between"
+    },
     textnetural: {
         color: color.neutral[500],
         marginVertical: 2
@@ -247,24 +271,13 @@ const styles = StyleSheet.create({
     },
     Card: {
         borderRadius: 10,
-        marginTop: 4,
+        marginTop: 8,
         marginBottom: 4,
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderWidth: 1,
         borderColor: color.neutral[300],
-        backgroundColor: color.white,
-        ...Platform.select({
-            ios: {
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 1 },
-                shadowOpacity: 0.10,
-                shadowRadius: 3.84,
-            },
-            android: {
-                elevation: 5,
-            },
-        }),
+        // backgroundColor: color.white,
     },
     flexrow: {
         flexDirection: 'row',
@@ -278,8 +291,9 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     fullcard: {
-        // backgroundColor: color.primary,
+        backgroundColor: color.primary,
         marginVertical: 10,
+        borderRadius: 8,
         padding: 10
     },
     yellowcard: {

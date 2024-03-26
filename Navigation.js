@@ -15,6 +15,10 @@ import AddingKidsAndPets from './screens/AddingKidsAndPets';
 import Chat from './screens/Chat';
 import ChatAddingGroup from './screens/ChatAddingGroup';
 import GroupSettings from './screens/GroupSettings';
+import ProfileEdit from './screens/ProfileEdit';
+import MyAccount from './screens/MyAccount';
+import DevicePermissions from './screens/DevicePermissions';
+import AccountDeletion from './screens/AccountDeletion';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -92,6 +96,18 @@ function StackNavigation() {
             />
             <Stack.Screen name='GroupSettings' component={GroupSettings}
                 options={{ headerTitle: "Group Settings" }}
+            />
+            <Stack.Screen name='ProfileEdit' component={ProfileEdit}
+                options={{ headerTitle: "Profile Edit" }}
+            />
+            <Stack.Screen name='MyAccount' component={MyAccount}
+                options={{ headerTitle: "My Account" }}
+            />
+            <Stack.Screen name='DevicePermissions' component={DevicePermissions}
+                options={{ headerTitle: "Device Permissions" }}
+            />
+            <Stack.Screen name='AccountDeletion' component={AccountDeletion}
+                options={{ headerTitle: "Account Deletion" }}
             />
         </Stack.Navigator>
     )
