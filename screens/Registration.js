@@ -107,11 +107,12 @@ export default function Registration() {
                     'otp': otp
                 }
             }).then(res => {
+                console.log(res);
                 if (res.data.status === 200) {
                     alert(res.data.message);
                 }
             }).catch(err => {
-                console.log(err);
+                alert(err.response.data.message);
             })
         }
 
@@ -121,7 +122,7 @@ export default function Registration() {
         if (enteredOtp == otp) {
             navigation.navigate('ProfileVerification')
         } else {
-            alert("Incorrect OTP")
+            alert("Incorrect OTP");
         }
     }
 
