@@ -22,6 +22,7 @@ import DevicePermissions from './screens/DevicePermissions';
 import AccountDeletion from './screens/AccountDeletion';
 import { color } from './assets/colors/theme';
 import { StyleSheet } from 'react-native';
+import Thankyou from './screens/Thankyou';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -132,6 +133,9 @@ function StackNavigation() {
             />
             <Stack.Screen name='AccountDeletion' component={AccountDeletion}
                 options={{ headerTitle: "Account Deletion" }}
+            />
+            <Stack.Screen name='Thankyou' component={Thankyou}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )

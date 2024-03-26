@@ -1,49 +1,104 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Image, SafeAreaView, StyleSheet, ScrollView, View, TextInput } from 'react-native';
-import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText';
+import { TextRegular, TextMedium } from '../assets/fonts/CustomText';
 import { color } from '../assets/colors/theme';
 import { Dropdown } from 'react-native-element-dropdown';
 import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function AccountDeletion() {
     const navigation = useNavigation();
+    const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState('');
+    const [passwordErr, setPasswordErr] = useState('');
+
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     const [relationship, setRelationship] = useState([
         { label: 'Mother', value: '1' },
         { label: 'Father', value: '2' },
     ]);
+
+
+    const validatePassword = (pwd, setPasswordErr) => {
+        if (pwd.trim() === '') {
+            setPasswordErr('Password is required');
+            return false;
+        } else {
+            setPasswordErr('');
+            return true;
+        }
+    }
+
+
     return (
+
         <ScrollView style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-                <View style={{ alignItems: 'center' }}>
-                    <View>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+            <SafeAreaView style={[styles.container, { marginTop: 30 }]}>
+                <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                    <View style={[{ width: "40%" }, styles.profileName]}>
+                        <Image style={styles.profilepic} source={require('../assets/images/women.png')} />
+                    </View>
+                    <View style={[{ width: "60%", alignItems: 'center', justifyContent: 'center' }, styles.profileName]}>
+                        <TextRegular>We’re sad that your leaving the platform, can you give us a last chance..please! </TextRegular>
                     </View>
                 </View>
-                <Dropdown
+
+                <TextRegular>we can rectify the issue, please choose or enter your issue, below</TextRegular>
+                {/* <Dropdown
                     style={styles.dropdownStyle}
                     data={relationship}
                     search
                     maxHeight={300}
                     labelField="label"
                     valueField="value"
-                    placeholder="Please choose from  "
+                    placeholder="Please choose from"
                     searchPlaceholder="Search..."
                     onChange={(item) => {
                         setRelationship(item.value)
                     }}
-                />
-                <TextInput style={[styles.textArea, { backgroundColor: color.neutral[200] }]} multiline={true} numberOfLines={5} placeholder="Others, please specify" />
-                <TextRegular>To confirm this, please type ‘DELETE’</TextRegular>
-                <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                    <TextInput style={[styles.delete, styles.Buttoncardwidth]} />
-                    <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                        <TextMedium style={[styles.btnPrimaryTextsize]}>Delete Account</TextMedium>
+                /> */}
+
+                <TextRegular style={{ color: color.accent }}>Please Specify:</TextRegular>
+                <TextInput style={[styles.textArea, { backgroundColor: color.neutral[200] }]} multiline={true} numberOfLines={5} placeholder="Specify Your Reason" />
+                <TextRegular style={{ color: color.accent }}>Warning:</TextRegular>
+                <TextRegular style={{ textAlign: 'left', marginBottom: 10 }}>By deleting your account, all your kids contacts and connections will be permanently removed, and cannot be undone.</TextRegular>
+
+                <TextRegular style={{ textAlign: 'left', marginBottom: 10 }}>To delete your account, please enter your password, below</TextRegular>
+
+
+                <View style={styles.inputContainer}>
+                    <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
+                    <TouchableOpacity onPress={togglePasswordVisibility}>
+                        <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
                     </TouchableOpacity>
                 </View>
+
+                <TextRegular style={{ color: color.neutral[200] }}>To confirm this, please type ‘DELETE’</TextRegular>
+
+                <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                    <TextInput style={[styles.delete, styles.Buttoncardwidth]} />
+                    <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth]}>
+                        <TextMedium style={styles.btnPrimaryTextsize}>Delete Account</TextMedium>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                    <View style={[{ width: "20%" }, styles.profileName]}>
+                        <TextRegular style={{ color: color.accent }}>Note:</TextRegular>
+
+                    </View>
+                    <View style={[{ width: "80%", alignItems: 'center', justifyContent: 'center' }, styles.profileName]}>
+                        <TextRegular style={{ color: color.neutral[300] }}>You can login into your account within 30 days after deleting! we will be waiting for you. </TextRegular>
+                    </View>
+                </View>
             </SafeAreaView>
-        </ScrollView>
-    )
+        </ScrollView >
+    );
 }
 const styles = StyleSheet.create({
     Buttoncardinner: {
@@ -128,5 +183,19 @@ const styles = StyleSheet.create({
     },
     flexrow: {
         flexDirection: 'row',
+
+    },
+    eyeIcon: {
+        marginLeft: -50,
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    eye: {
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center"
     },
 })
