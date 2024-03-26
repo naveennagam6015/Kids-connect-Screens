@@ -8,6 +8,7 @@ import Profile from "./screens/Profile.js";
 import Home from "./screens/Home.js";
 import GroupSettings from "./screens/GroupSettings.js";
 import About from "./screens/About.js";
+import AccountDeletion from "./screens/AccountDeletion.js";
 
 export default function App() {
 
@@ -25,8 +26,8 @@ export default function App() {
 
 
   return (
-    <Navigtion />
-    // <About />
+    // <Navigtion />
+    <AccountDeletion />
   );
 }
 
