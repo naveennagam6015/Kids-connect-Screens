@@ -60,7 +60,7 @@ function BottomNavigation() {
                 },
                 tabBarBackground: () => (
                     <BlurView
-                        intensity={150}
+                        intensity={210}
                         style={{
                             ...StyleSheet.absoluteFillObject,
                             borderTopLeftRadius: 20,

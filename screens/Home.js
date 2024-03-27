@@ -3,44 +3,51 @@ import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, T
 import { color } from '../assets/colors/theme';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
-// import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 import axios from "axios";
 import { BASEURL } from '@env';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function Home() {
-    const data = [
-        { title: 'Slide 1' },
-        { title: 'Slide 2' },
-        { title: 'Slide 3' },
-        { title: 'Slide 4' },
-    ];
+    const [data, setData] = useState([]);
     const carouselRef = useRef(null);
     const bottomTabBarHeight = useBottomTabBarHeight();
     const [activeIndex, setActiveIndex] = useState(0);
     const renderItem = ({ item }) => {
         return (
             <View style={styles.slide}>
-                <Text style={styles.title}>{item.title}</Text>
+                {/* <Text style={styles.title}>{item.title}</Text> */}
+                <Image
+                  style={{ width: '100%', height: '100%' }}
+                  source={{ uri: `${BASEURL}${item.image}` }}
+                  resizeMode="cover"
+                />
             </View>
         );
     };
 
     useEffect(() => {
         axios({
-            method: 'get',
-            url: `${BASEURL}allBanners`
+            method:'get',
+            url:`${BASEURL}api/allBanners`,
+            headers:{
+                Accept:'*/*'
+            }
         }).then(res => {
-            console.log(res.data);
-        })
-    }, []);
+            setData(res.data.data);
+            console.log(res.data.data);
+        }).catch(err => {
+            console.log(err);
+        });
+    },[]);
 
     return (
         <ScrollView style={{ paddingBottom: bottomTabBarHeight }}>
             <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginTop: 15 }]}>Glance Area</TextBold>
 
-            {/* <Carousel
+
+            <Carousel
                 ref={carouselRef}
                 layout="default"
                 data={data}
@@ -52,7 +59,7 @@ export default function Home() {
                 autoplay
                 autoplayInterval={3000}
                 onSnapToItem={(index) => setActiveIndex(index)}
-            /> */}
+            />
             <View style={[styles.container]}>
 
                 <View style={[styles.flexrow, styles.justiffsb]}>

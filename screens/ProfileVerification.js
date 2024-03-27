@@ -250,7 +250,7 @@ export default function ProfileVerification() {
     function SubmitData() {
         axios({
             method: 'post',
-            url: `${BASEURL}subscriberlogins`,
+            url: `${BASEURL}api/subscriberlogins`,
             data: {
                 "RoleId": roleId,
                 "FirstName": firstName,

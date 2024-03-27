@@ -101,7 +101,7 @@ export default function Registration() {
             setStep1(false);
             axios({
                 method: 'post',
-                url: `${BASEURL}otpVerification`,
+                url: `${BASEURL}api/otpVerification`,
                 data: {
                     'email': mail,
                     'otp': otp

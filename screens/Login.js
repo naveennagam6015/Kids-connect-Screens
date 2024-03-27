@@ -136,7 +136,7 @@ export default function Login() {
         } else {
             axios({
                 method: 'post',
-                url: `${BASEURL}login`,
+                url: `${BASEURL}api/login`,
                 data: {
                     "Email": email,
                     "password": password
@@ -161,7 +161,7 @@ export default function Login() {
     async function GetSubscriber(token) {
         axios({
             method: 'get',
-            url: `${BASEURL}subscriberlogins`,
+            url: `${BASEURL}api/subscriberlogins`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -243,11 +243,11 @@ export default function Login() {
             </View>
 
             {/* dummy */}
-            <TouchableOpacity style={styles.btnPrimary}
+            {/* <TouchableOpacity style={styles.btnPrimary}
                 onPress={() => navigation.navigate('Chat')}
             >
                 <TextMedium style={styles.btnText}>Chat</TextMedium>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
         </View>
     )
