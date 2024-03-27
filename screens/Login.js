@@ -220,7 +220,7 @@ export default function Login() {
             <View>
                 <TouchableOpacity style={styles.btnPrimary}
                     // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                onPress={LoginFunctionality}
+                    onPress={LoginFunctionality}
                 >
                     <TextMedium style={styles.btnText}>Login</TextMedium>
                 </TouchableOpacity>
@@ -243,11 +243,11 @@ export default function Login() {
             </View>
 
             {/* dummy */}
-            {/* <TouchableOpacity style={styles.btnPrimary}
-                onPress={() => navigation.navigate('Chat')}
+            <TouchableOpacity style={styles.btnPrimary}
+                onPress={() => navigation.navigate('Test')}
             >
                 <TextMedium style={styles.btnText}>Chat</TextMedium>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
 
         </View>
     )
