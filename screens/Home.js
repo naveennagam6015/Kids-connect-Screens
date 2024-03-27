@@ -10,7 +10,9 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function Home() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([
+        {image:''}
+    ]);
     const carouselRef = useRef(null);
     const bottomTabBarHeight = useBottomTabBarHeight();
     const [activeIndex, setActiveIndex] = useState(0);
@@ -35,7 +37,10 @@ export default function Home() {
                 Accept:'*/*'
             }
         }).then(res => {
-            setData(res.data.data);
+            const newBannerData = res.data.data.map((banner) => ({
+                image:banner.image
+            }));
+            setData(newBannerData);
             console.log(res.data.data);
         }).catch(err => {
             console.log(err);
