@@ -16,22 +16,16 @@ export default function Appointment() {
                 <Search />
                 <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular>
                 <View style={[styles.flexrow, styles.justiffsb]}>
-                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                        <TouchableOpacity
-                            onPress={CircleRequests}
-                            style={[styles.flexrow]}>
-
+                    <TouchableOpacity onPress={CircleRequests} style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <View style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
-                        <Pressable
-                            onPress={CircleRequests}
-                            style={[styles.flexrow]}>
-
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={CircleRequests} style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
+                        <View style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
-                        </Pressable>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={[styles.flexrow]}>
                     <TextBold style={[styles.Headingtext]}>MOST SEARCHED TAGS
@@ -39,26 +33,20 @@ export default function Appointment() {
                     <View style={styles.line} />
                 </View>
                 <View style={[styles.home]}>
-                    <View style={[styles.innerbtn1]}>
-                        <Pressable>
-                            <TextRegular>In-House</TextRegular>
-                        </Pressable>
-                    </View>
-                    <View style={[styles.innerbtn]}>
-                        <Pressable>
-                            <TextRegular>In-House</TextRegular>
-                        </Pressable>
-                    </View>
-                    <View style={[styles.innerbtn]}>
-                        <Pressable>
-                            <TextRegular>No Pet</TextRegular>
-                        </Pressable>
-                    </View>
+                    <TouchableOpacity style={[styles.innerbtn1]}>
+                        <TextRegular>In-House</TextRegular>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.innerbtn]}>
+                        <TextRegular>In-House</TextRegular>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.innerbtn]}>
+                        <TextRegular>No Pet</TextRegular>
+                    </TouchableOpacity>
                     <View style={[styles.justifyflexend]}>
-                        <Pressable style={[styles.flexrow]}>
+                        <TouchableOpacity style={[styles.flexrow]}>
                             <TextRegular>All filters</TextRegular>
                             <MaterialIcons style={[styles.arrow]} name="arrow-forward-ios" size={12} />
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View>
@@ -122,7 +110,6 @@ export default function Appointment() {
                             </View>
                             <View>
                                 <FontAwesome name="bookmark" size={18} color={color.accent} />
-
                             </View>
                         </View>
                         <TextRegular style={[styles.carddec]}>

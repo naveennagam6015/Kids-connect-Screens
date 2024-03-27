@@ -329,7 +329,8 @@ const styles = StyleSheet.create({
     },
     profileName: {
         justifyContent: 'center'
-    }, imageplusadd: {
+    },
+    imageplusadd: {
         padding: 5,
         justifyContent: "flex-end",
         alignSelf: "flex-end",

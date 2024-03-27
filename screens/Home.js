@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, Text } from 'react-native'
+import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, Text, TouchableOpacity } from 'react-native'
 import { color } from '../assets/colors/theme';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -43,8 +43,8 @@ export default function Home() {
     },[]);
 
     return (
-        <ScrollView style={{paddingBottom:bottomTabBarHeight}}>
-            <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginBottom: 10, marginTop: 50 }]}>Glance Area</TextBold>
+        <ScrollView style={{ paddingBottom: bottomTabBarHeight }}>
+            <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginTop: 15 }]}>Glance Area</TextBold>
 
 
             <Carousel
@@ -63,20 +63,19 @@ export default function Home() {
             <View style={[styles.container]}>
 
                 <View style={[styles.flexrow, styles.justiffsb]}>
-                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                        <Pressable
+                    <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <View
                             style={[styles.flexrow]}>
-
                             <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
-                        </Pressable>
-                    </View>
-                    <View style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
-                        <Pressable
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
+                        <View
                             style={[styles.flexrow]}>
 
                             <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
-                        </Pressable>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
 
                 {/* <View style={[styles.flexrow]}>
@@ -122,14 +121,14 @@ export default function Home() {
                                 </View>
                             </View>
                             <View style={{ alignItems: 'center', justifyContent: "flex-start" }}>
-                                <View style={[styles.Buttoncardnodata]}>
-                                    <Pressable
+                                <TouchableOpacity style={[styles.Buttoncardnodata]}>
+                                    <View
                                         onPress={() => navigation.navigate('BottomNavigation')}
                                         style={[styles.flexrow, { alignItems: "center" }]}>
                                         <TextBold style={[styles.btnPrimaryTextsize]}>Connect Now</TextBold>
                                         <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
-                                    </Pressable>
-                                </View>
+                                    </View>
+                                </TouchableOpacity>
                                 <View style={{ padding: 8, backgroundColor: color.neutral[300], width: "70%" }}>
                                 </View>
                             </View>
@@ -188,49 +187,49 @@ export default function Home() {
                         </View>
                     </View>
                     <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                        <View style={{ padding: 5, marginHorizontal: 10 }}>
+                        <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                             <View>
                                 <MaterialIcons name="message" size={20} color="black" />
                             </View>
                             <View>
                                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                             </View>
-                        </View>
-                        <View style={{ padding: 5, marginHorizontal: 10 }}>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                             <View>
                                 <Ionicons name="call" size={20} color="black" />
                             </View>
                             <View>
                                 <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                             </View>
-                        </View>
-                        <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                            <Pressable
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth2,]}>
+                            <View
                                 style={[styles.flexrow]}>
                                 <TextBold style={[styles.childrenname]}>More Details</TextBold>
                                 <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
-                            </Pressable>
-                        </View>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View>
                     <View style={{ alignItems: 'center' }}>
-                        <Pressable
+                        <TouchableOpacity
                             style={[styles.flexrow]}>
                             <TextRegular style={[styles.childrenname]}>View all</TextRegular>
                             <MaterialIcons name="keyboard-arrow-down" size={24} color={color.primary} />
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
                     <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold>
                 </View>
                 <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                     <TextBold style={[styles.Headingtext]}>Previous Connection
                     </TextBold>
-                    <Pressable
+                    <TouchableOpacity
                         style={[styles.flexrow]}>
                         <TextRegular style={[styles.childrenname]}>View all</TextRegular>
                         <MaterialIcons name="keyboard-arrow-down" size={24} color={color.primary} />
-                    </Pressable>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={[styles.Card]}>
@@ -275,11 +274,9 @@ export default function Home() {
                                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                             </View>
                         </View>
-                        <View style={[styles.Buttoncard2, styles.Buttoncardwidth2,]}>
-                            <Pressable>
-                                <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
-                            </Pressable>
-                        </View>
+                        <TouchableOpacity style={[styles.Buttoncard2, styles.Buttoncardwidth2,]}>
+                            <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
+                        </TouchableOpacity>
                     </View>
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Pressable, ScrollView, Image, Modal } from 'react-native'
+import { View, StyleSheet, Pressable, ScrollView, Image, Modal, TouchableOpacity } from 'react-native'
 import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText';
 import { color } from '../assets/colors/theme';
 import { AntDesign, FontAwesome, Feather, MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -15,21 +15,18 @@ export default function Requests() {
         <ScrollView>
             <View style={[styles.container]}>
                 <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-                    <View style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                        <Pressable
-
+                    <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                        <View
                             style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
-                        </Pressable>
-                    </View>
-                    <View style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
-                        <Pressable
-
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
+                        <View
                             style={[styles.flexrow]}>
-
                             <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
-                        </Pressable>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
                     <View>
@@ -68,30 +65,29 @@ export default function Requests() {
                 </View>
 
                 <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <View style={{ padding: 5, marginHorizontal: 10 }}>
+                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <MaterialIcons name="message" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                         </View>
-                    </View>
-                    <View style={{ padding: 5, marginHorizontal: 10 }}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </View>
-                    <View style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
-                        <Pressable
-                            onPress={() => setOpen(!open)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
                             style={[styles.flexrow]}>
                             <TextBold style={[styles.childrenname]}>More Details</TextBold>
                             <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
-                        </Pressable>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -100,12 +96,9 @@ export default function Requests() {
                 // transparent={true}
                 visible={open}>
                 <View style={[styles.modalcontainer]}>
-                    <View style={[styles.header, { alignItems: "flex-end", }]}>
-                        <Pressable
-                            onPress={onClose}>
-                            <Icon name="cancel" size={30} color={color.neutral[300]} />
-                        </Pressable>
-                    </View>
+                    <TouchableOpacity onPress={onClose} style={[styles.header, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
+                    </TouchableOpacity>
 
                     <View style={[styles.flexrow, { alignItems: 'center' }]}>
                         <View>
@@ -236,18 +229,18 @@ export default function Requests() {
                 </View>
                 <View style={[styles.modalcontainer]}>
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                            <Pressable
+                        <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                            <View
                                 style={[styles.flexrow]}>
                                 <TextBold style={[styles.btnPrimaryTextsize]}>Modify</TextBold>
-                            </Pressable>
-                        </View>
-                        <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                            <Pressable
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                            <View
                                 style={[styles.flexrow]}>
                                 <TextBold style={[styles.btnPrimaryTextsize]}>Accept</TextBold>
-                            </Pressable>
-                        </View>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <TextLight style={{
