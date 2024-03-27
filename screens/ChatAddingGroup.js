@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Dimensions, ScrollView, Pressable, TouchableOpacity, Modal } from 'react-native'
+import { View, StyleSheet, Dimensions, ScrollView, TouchableWithoutFeedback, TouchableOpacity, Modal, Text } from 'react-native'
 import Search from '../components/Search'
 import { Image } from 'react-native';
 import { color } from '../assets/colors/theme';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText';
 import { useNavigation } from '@react-navigation/native';
 export default function ChatAddingGroup() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
+
+    // TouchableWithoutFeedback 
+    const [selected, setSelected] = useState(false);
+    const handleLongPress = () => {
+        setSelected(!selected);
+    };
 
     const onClose = () => {
         setOpen(false);
@@ -23,6 +29,35 @@ export default function ChatAddingGroup() {
                     </View>
                     <View style={[styles.line]}></View>
 
+
+
+                    <TouchableWithoutFeedback onLongPress={handleLongPress}>
+                        <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
+                            <View style={[styles.flexrow, styles.justalinecenter]}>
+                                <View>
+                                    <Image style={[styles.profilepic, selected && styles.selected]} source={require('../assets/images/women.png')} />
+                                    {selected && <MaterialIcons name="check-circle" size={24} color="green" style={styles.tickIcon} />}
+                                </View>
+                                <View style={styles.jcfs}>
+                                    <View style={[styles.flexrow, styles.groupname]}>
+                                        <Text style={[styles.childrenname]}>College Naveen</Text>
+                                    </View>
+                                    <Text style={[styles.textnetural]}>Hi, I hope you're good and well.</Text>
+                                </View>
+                            </View>
+                            <View>
+                                <Text style={[styles.date]}>14/03/24</Text>
+                                <View style={[styles.flexrow, styles.datebtm]}>
+                                    <View style={[styles.messiagetop1]}>
+                                        <View style={styles.messiagetop2}>
+                                            <Text style={styles.messiagecount}>10</Text>
+                                        </View>
+                                    </View>
+                                    <Text style={[styles.time]}>16:15</Text>
+                                </View>
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
                     {/* main chat card */}
                     <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
                         <View style={[styles.flexrow, styles.justalinecenter]}>
@@ -536,6 +571,27 @@ export default function ChatAddingGroup() {
     )
 }
 const styles = StyleSheet.create({
+
+    profilepic: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 10,
+    },
+    selected: {
+        borderWidth: 2,
+        borderColor: 'green',
+    },
+    tickIcon: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        backgroundColor: 'white',
+        borderRadius: 12,
+    },
+
+
+
     btnPrimary: {
         padding: 15,
         margin: 12,
