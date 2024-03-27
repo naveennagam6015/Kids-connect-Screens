@@ -404,7 +404,6 @@ const styles = StyleSheet.create({
         // backgroundColor: color.neutral[100]
     },
     container: {
-        marginTop: 50,
         padding: 15,
         justifyContent: 'center'
     },
