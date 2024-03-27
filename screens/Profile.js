@@ -6,7 +6,6 @@ import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionico
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
-<EvilIcons name="plus" size={24} color="black" />
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +22,7 @@ export default function Profile() {
     useEffect(() => {
         async function GetUserData() {
             const userDetails = JSON.parse(await AsyncStorage.getItem('userDetails'));
+            console.log(userDetails);
             const date_string = userDetails.created_at;
             const date_object = new Date(date_string);
 
@@ -43,10 +43,10 @@ export default function Profile() {
                         <Image style={[styles.profilepic]} source={{ uri: userData.ProfileImage }} />
                     </View>
                     <View style={[{ width: "45%", }, styles.profileName]}>
-                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Madisson Arora(M)</TextBold>
-                        <TextBold style={{ fontSize: 12 }}>Madisson7@gmail.com</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>4387 Farland Avenue, San Antonio, TX 78212</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since Feb 2023)</TextBold>
+                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>{userData.FirstName} {userData.LastName}({userData.Gender == 1 ? 'M' : userData.Gender == 2 ? 'F' : 'O'})</TextBold>
+                        <TextBold style={{ fontSize: 12 }}>{userData.Email}</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>{userData.Address}</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since {month} {year})</TextBold>
 
                     </View>
                     <View style={[{ width: "15%", marginTop: 10, marginRight: 7 }]}>
@@ -63,7 +63,7 @@ export default function Profile() {
                     {/* <TextBold style={[{ justifyContent: 'center' }, styles.Headingtext]}>About</TextBold> */}
                 </View>
                 <TextRegular style={[styles.textnetural, { fontSize: 14 }]}>
-                    Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more
+                    {userData.About}
                 </TextRegular>
 
                 <View style={[styles.fullcard, styles.flexrow]}>
