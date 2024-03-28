@@ -5,6 +5,8 @@ import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import {BASEURL} from "@env";
 
 export default function ProfileSetupAfterAdminApproval() {
     const navigation = useNavigation();
@@ -59,6 +61,18 @@ export default function ProfileSetupAfterAdminApproval() {
 
         }
     };
+
+
+    function SubmitData(){
+        axios({
+            method:'post',
+            url:`${BASEURL}`,
+            data:{
+                
+            }
+        })
+    }
+
     return (
         <View style={[styles.container,]}>
             <StatusBar/>

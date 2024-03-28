@@ -30,6 +30,7 @@ export default function Home() {
     };
 
     useEffect(() => {
+        
         axios({
             method:'get',
             url:`${BASEURL}api/allBanners`,
