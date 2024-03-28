@@ -23,6 +23,7 @@ import AccountDeletion from './screens/AccountDeletion';
 import { color } from './assets/colors/theme';
 import { StyleSheet } from 'react-native';
 import Thankyou from './screens/Thankyou';
+import Test from './Test';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -47,8 +48,8 @@ function BottomNavigation() {
                 },
                 tabBarActiveTintColor: color.primary,
                 tabBarInactiveTintColor: color.neutral[100],
-                tabBarLabelStyle:{
-                    color:'#000'
+                tabBarLabelStyle: {
+                    color: '#000'
                 },
                 tabBarStyle: {
                     position: 'absolute',
@@ -60,11 +61,11 @@ function BottomNavigation() {
                 },
                 tabBarBackground: () => (
                     <BlurView
-                        intensity={210} 
+                        intensity={210}
                         style={{
                             ...StyleSheet.absoluteFillObject,
                             borderTopLeftRadius: 20,
-                            borderTopRightRadius: 20,
+                            borderTopRightRadius: 10,
                         }}
                     />
                 ),
@@ -94,9 +95,15 @@ const Stack = createStackNavigator();
 
 function StackNavigation() {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            initialRouteName='Login'
+        >
+
             <Stack.Screen name='Login' component={Login}
                 options={{ headerShown: false }}
+            />
+            <Stack.Screen name='Test' component={Test}
+                options={{ headerShown: false, presentation: 'modal' }}
             />
             <Stack.Screen name='BottomNavigation' component={BottomNavigation}
                 options={{ headerShown: false }}

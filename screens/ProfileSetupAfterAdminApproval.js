@@ -75,7 +75,7 @@ export default function ProfileSetupAfterAdminApproval() {
 
     return (
         <View style={[styles.container,]}>
-            <StatusBar/>
+            <StatusBar />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
                 <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
@@ -119,9 +119,10 @@ export default function ProfileSetupAfterAdminApproval() {
 
             <Modal
                 animationType='slide'
-                // transparent={true}
+                transparent={true}
                 visible={open}>
-                <View style={[styles.container]}>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
                     <View style={{ alignItems: 'center', marginVertical: 10 }}>
                         <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                     </View>
@@ -148,14 +149,13 @@ export default function ProfileSetupAfterAdminApproval() {
                         }}
 
                     />
-                </View>
-                <View style={[styles.modalcontainer]}>
-                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                    <View style={[styles.modalcontainer]}>
+                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                             <TouchableOpacity
                                 onPress={() => {
                                     setOpen(!open);
                                 }}
-                                style={[styles.flexrow,styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                style={[styles.flexrow, styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                             </TouchableOpacity>
                             <TouchableOpacity
@@ -163,12 +163,14 @@ export default function ProfileSetupAfterAdminApproval() {
                                     setModalopen(!modalopen);
                                     setOpen(!open)
                                 }}
-                                style={[styles.flexrow,styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                                style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                             </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
+
             </Modal>
             <Modal
                 animationType='slide'
@@ -228,17 +230,17 @@ export default function ProfileSetupAfterAdminApproval() {
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                             </Pressable>
                         </View>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    // setOpen(!open)
-                                    setModalopen(!modalopen)
-                                    navigation.navigate('AddingKidsAndPets');
+                        <TouchableOpacity
+                            onPress={() => {
+                                // setOpen(!open)
+                                setModalopen(!modalopen)
+                                navigation.navigate('AddingKidsAndPets');
 
-                                }}
-                                style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                                <TextMedium style={[styles.btnPrimaryTextsize]}>Add Profile</TextMedium>
-                                <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                            </TouchableOpacity>
+                            }}
+                            style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                            <TextMedium style={[styles.btnPrimaryTextsize]}>Add Profile</TextMedium>
+                            <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -246,6 +248,10 @@ export default function ProfileSetupAfterAdminApproval() {
     )
 }
 const styles = StyleSheet.create({
+    topDummy: {
+        flex: 1,
+        opacity: 0
+    },
     textArea: {
         marginVertical: 5,
         height: 100,
@@ -346,6 +352,8 @@ const styles = StyleSheet.create({
     },
     modalcontainer: {
         paddingHorizontal: 20,
+        // marginTop: "auto",
+        // height: "50%",
         justifyContent: 'center',
     },
     inputBox: {
@@ -404,6 +412,13 @@ const styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 15,
+        justifyContent: 'center',
+    },
+    containerbg: {
+        paddingHorizontal: 15,
+        backgroundColor: color.lightBlue,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
         justifyContent: 'center',
     },
     Headingtext: {

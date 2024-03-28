@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
 
     },
     eyeIcon: {
-        marginLeft: -50,
+        marginLeft: -40,
         marginTop: -10
     },
     inputContainer: {
