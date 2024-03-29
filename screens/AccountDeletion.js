@@ -67,7 +67,7 @@ export default function AccountDeletion() {
                     <TextInput style={[styles.delete, styles.Buttoncardwidth]} />
                     <TouchableOpacity
                         onPress={() => {
-                            Vibration.vibrate(50);
+                            Vibration.vibrate(10);
                         }}
                         style={[styles.Buttoncardinner2, styles.Buttoncardwidth]}>
                         <TextMedium style={styles.btnPrimaryTextsize}>Delete Account</TextMedium>

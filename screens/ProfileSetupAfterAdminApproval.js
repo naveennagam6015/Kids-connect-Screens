@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Pressable, Modal, TextInput, ScrollView, TouchableOpacity, StatusBar } from 'react-native'
+import { View, StyleSheet, Platform, Image, Pressable, Modal, TextInput, ScrollView, TouchableOpacity, StatusBar } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import {BASEURL} from "@env";
+import { BASEURL } from "@env";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 export default function ProfileSetupAfterAdminApproval() {
     const navigation = useNavigation();
@@ -63,12 +65,12 @@ export default function ProfileSetupAfterAdminApproval() {
     };
 
 
-    function SubmitData(){
+    function SubmitData() {
         axios({
-            method:'post',
-            url:`${BASEURL}`,
-            data:{
-                
+            method: 'post',
+            url: `${BASEURL}`,
+            data: {
+
             }
         })
     }
@@ -77,7 +79,7 @@ export default function ProfileSetupAfterAdminApproval() {
         <View style={[styles.container,]}>
             <StatusBar />
             <ScrollView showsVerticalScrollIndicator={false}>
-                <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
+                {/* <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular> */}
                 <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
                 <View style={[styles.image]}>
                     <Image style={[styles.emailimage]} source={require('../assets/images/Email-icon.jpeg')} />
@@ -122,7 +124,13 @@ export default function ProfileSetupAfterAdminApproval() {
                 transparent={true}
                 visible={open}>
                 <View style={styles.topDummy} />
+
                 <View style={[styles.containerbg]}>
+                    <TouchableOpacity
+                        onPress={() => { setOpen(!open); }}
+                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
+                    </TouchableOpacity>
                     <View style={{ alignItems: 'center', marginVertical: 10 }}>
                         <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                     </View>
@@ -134,36 +142,22 @@ export default function ProfileSetupAfterAdminApproval() {
                     <TextInput style={styles.inputBox} placeholder="Enter your phone number" onChangeText={e => setPhone(e)} />
                     <TextBold>Email Address</TextBold>
                     <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(e) => setEmail(e)} />
-                    <TextBold>Relationship</TextBold>
-                    <Dropdown
-                        style={styles.dropdownStyle}
-                        data={relationship}
-                        search
-                        maxHeight={300}
-                        labelField="label"
-                        valueField="value"
-                        placeholder="Relationship"
-                        searchPlaceholder="Search..."
-                        onChange={(item) => {
-                            setRelationship(item.value)
-                        }}
 
-                    />
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                            <TouchableOpacity
+                            {/* <TouchableOpacity
                                 onPress={() => {
                                     setOpen(!open);
                                 }}
                                 style={[styles.flexrow, styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             <TouchableOpacity
                                 onPress={() => {
                                     setModalopen(!modalopen);
                                     setOpen(!open)
                                 }}
-                                style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                                style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                             </TouchableOpacity>
@@ -174,12 +168,20 @@ export default function ProfileSetupAfterAdminApproval() {
             </Modal>
             <Modal
                 animationType='slide'
-                // transparent={true}
+                transparent={true}
                 visible={modalopen}>
-                <View style={[styles.modalcontainer]}>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
+                    {/* <TouchableOpacity
+                        onPress={() => { setModalopen(!modalopen); setOpen(!open); }}
+                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
+                    </TouchableOpacity> */}
+                    <View style={[{ marginVertical: 10 }]}>
+                    </View>
                     <TextBold>SSN Number</TextBold>
                     <TextInput style={styles.inputBox} placeholderTextColor={styles.textinputcolor} placeholder="Enter 6 digit SSN number" onChangeText={e => setSsn(e)} />
-                    <TextBold >Upload SSN Image</TextBold>
+                    {/* <TextBold >Upload SSN Image</TextBold>
                     <View style={styles.imageContainer}>
                         {
                             !image && (
@@ -199,37 +201,32 @@ export default function ProfileSetupAfterAdminApproval() {
 
                         {image && <Image source={{ uri: image }} style={{ width: 170, height: 100, borderRadius: 8 }} />}
                         {!image && <Image source={require('../assets/images/ssnplaceholder.webp')} style={{ width: 170, height: 100, borderRadius: 8 }} />}
-                    </View>
-                    <TextBold >Enter D.O.B</TextBold>
-                    <TextInput placeholderTextColor={styles.textinputcolor} placeholder="DD/MM/YYYY" onChangeText={e => setDob(e)} />
-                    <TextBold >Gender</TextBold>
+                    </View> */}
+                    <TextBold>Relationship</TextBold>
                     <Dropdown
                         style={styles.dropdownStyle}
-                        data={gender}
+                        data={relationship}
                         search
                         maxHeight={300}
                         labelField="label"
                         valueField="value"
-                        placeholder="Select Gender"
+                        placeholder="Relationship"
                         searchPlaceholder="Search..."
                         onChange={(item) => {
-                            setSelectedGender(item.value)
+                            setRelationship(item.value)
                         }}
 
                     />
                     <TextBold>Address</TextBold>
                     <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your current address" onChangeText={e => setAddress(e)} />
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => {
-                                    setModalopen(!modalopen);
-                                    setOpen(!open);
-                                }}
+                        <TouchableOpacity onPress={() => { setModalopen(!modalopen); setOpen(!open); }}
+                            style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                            <View
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                            </Pressable>
-                        </View>
+                            </View>
+                        </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => {
                                 // setOpen(!open)
@@ -248,6 +245,11 @@ export default function ProfileSetupAfterAdminApproval() {
     )
 }
 const styles = StyleSheet.create({
+    cancelButtonContainer: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+    },
     topDummy: {
         flex: 1,
         opacity: 0
@@ -265,13 +267,13 @@ const styles = StyleSheet.create({
         marginBottom: 16
     },
     dropdownStyle: {
-        padding: 10,
+        padding: 8,
         borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
-        marginTop: 8,
+        marginTop: 6,
         width: '100%',
-        marginBottom: 16
+        marginBottom: 12
     },
     imageContainer: {
         flexDirection: 'row',
@@ -347,6 +349,9 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginVertical: 16,
     },
+    Buttoncardfullwidth: {
+        width: '100%'
+    },
     Buttoncardwidth: {
         width: '48%'
     },
@@ -361,9 +366,9 @@ const styles = StyleSheet.create({
         borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
-        marginTop: 8,
+        marginTop: 6,
         width: '100%',
-        marginBottom: 16
+        marginBottom: 12
     },
     Skip: {
         fontSize: 20,
@@ -416,10 +421,21 @@ const styles = StyleSheet.create({
     },
     containerbg: {
         paddingHorizontal: 15,
-        backgroundColor: color.lightBlue,
+        backgroundColor: color.white,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
     },
     Headingtext: {
         fontSize: 24,

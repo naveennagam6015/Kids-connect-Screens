@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image, Modal, TextInput, Pressable, TouchableOpacity, ScrollView } from 'react-native'
+import { View, StyleSheet, Platform, Image, Modal, TextInput, Pressable, TouchableOpacity, ScrollView } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -22,11 +23,11 @@ export default function AddingKidsAndPets() {
     };
 
 
-    
+
 
     return (
         <ScrollView style={[styles.container]}>
-            <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular>
+            {/* <TextRegular >Good Evening! <TextBold>Madisson</TextBold></TextRegular> */}
             <TextBold style={[styles.Headingtext]}>Let’s Complete your Profile </TextBold>
             <TextRegular style={{ fontSize: 18 }}>To get started, create an account with Kids Connect below, </TextRegular>
             <View style={{ marginTop: 20 }}>
@@ -93,61 +94,68 @@ export default function AddingKidsAndPets() {
                 <TextMedium style={styles.btnText}>Proceed to Home Screen</TextMedium>
                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation')}  style={{ flexDirection: "row", justifyContent: "center", marginTop: 50 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation')} style={{ flexDirection: "row", justifyContent: "center", marginTop: 50 }}>
                 <TextRegular style={[styles.Skip,]}>Skip for now</TextRegular>
                 <MaterialIcons name="keyboard-double-arrow-right" size={24} color={color.fontcolor} />
             </TouchableOpacity>
             <Modal
                 animationType='slide'
-                // transparent={true}
+                transparent={true}
                 visible={open}>
-                <View style={[styles.container]}>
-                    <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                    </View>
-                    <TextBold>First Name</TextBold>
-                    <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
-                    <TextBold>Last Name</TextBold>
-                    <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
-                    <TextBold>Relationship</TextBold>
-                    <Dropdown
-                        style={styles.dropdownStyle}
-                        data={relationship}
-                        search
-                        maxHeight={300}
-                        labelField="label"
-                        valueField="value"
-                        placeholder="Relationship"
-                        searchPlaceholder="Search..."
-                        onChange={(item) => {
-                            setRelationship(item.value)
-                        }}
-
-                    />
-                    <TextBold>Description</TextBold>
-                    <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
-                </View>
-                <View style={[styles.modalcontainer]}>
-                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => {
-                                    setOpen(!open);
-                                }}
-                                style={[styles.flexrow]}>
-                                <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                            </Pressable>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
+                    <TouchableOpacity
+                        onPress={() => { setOpen(!open); }}
+                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
+                    </TouchableOpacity>
+                    <View>
+                        <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                         </View>
-                        <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => {
-                                    setKidopen(!kidopen);
-                                    setOpen(!open);
-                                }}
-                                style={[styles.flexrow]}>
-                                <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
-                                <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                            </Pressable>
+                        <TextBold>First Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextBold>Last Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
+                        <TextBold>Relationship</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={relationship}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Relationship"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setRelationship(item.value)
+                            }}
+                        />
+                        <TextBold>Description</TextBold>
+                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                    </View>
+                    <View style={[styles.modalcontainer]}>
+                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                            {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
+                                </Pressable>
+                            </View> */}
+                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setKidopen(!kidopen);
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
+                                    <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                                </Pressable>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -155,79 +163,80 @@ export default function AddingKidsAndPets() {
 
             <Modal
                 animationType='slide'
-                // transparent={true}
+                transparent={true}
                 visible={kidopen}
             >
-                <View style={[styles.container]}>
-                    <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                    </View>
-                    <TextBold>Name</TextBold>
-                    <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
-                    <TextBold>Interests</TextBold>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
+                    <View style={[styles.container]}>
+                        <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                        </View>
+                        <TextBold>Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextBold>Interests</TextBold>
 
-                    <View style={[styles.Card]}>
-                        <TextRegular style={{ color: color.neutral[300] }}>Explain your kids interests and Hobbies which makes easier to connect with other Kids eg: </TextRegular>
-                        <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-                            <View style={[styles.Tags]}>
-                                <TextRegular>Introvert</TextRegular>
-                                <TouchableOpacity style={{ marginLeft: 5 }}>
-                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={[styles.Tags]}>
-                                <TextRegular>Playstation</TextRegular>
-                                <TouchableOpacity style={{ marginLeft: 5 }}>
-                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={[styles.Tags]}>
-                                <TextRegular>Programming</TextRegular>
-                                <TouchableOpacity style={{ marginLeft: 5 }}>
-                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={[styles.Tags]}>
-                                <TextRegular>Enthusiastic</TextRegular>
-                                <TouchableOpacity style={{ marginLeft: 5 }}>
-                                    <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                </TouchableOpacity>
-                            </View>
+                        <View style={[styles.Card]}>
+                            <TextRegular style={{ color: color.neutral[300] }}>Explain your kids interests and Hobbies which makes easier to connect with other Kids eg: </TextRegular>
+                            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Introvert</TextRegular>
+                                    <TouchableOpacity style={{ marginLeft: 5 }}>
+                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Playstation</TextRegular>
+                                    <TouchableOpacity style={{ marginLeft: 5 }}>
+                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Programming</TextRegular>
+                                    <TouchableOpacity style={{ marginLeft: 5 }}>
+                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Enthusiastic</TextRegular>
+                                    <TouchableOpacity style={{ marginLeft: 5 }}>
+                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
+                                    </TouchableOpacity>
+                                </View>
 
-                            <TouchableOpacity style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center", marginTop: 8, }}>
-                                <TextRegular style={{ fontSize: 14, marginHorizontal: 5 }}>Add</TextRegular>
-                                <View style={{ alignItems: 'center' }}>
-                                    <View style={[styles.addinterests]}>
-                                        <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center", marginTop: 8, }}>
+                                    <TextRegular style={{ fontSize: 14, marginHorizontal: 5 }}>Add</TextRegular>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.addinterests]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
                                     </View>
+                                </TouchableOpacity>
+
+                            </View>
+                        </View>
+
+                    </View>
+                    <View style={[styles.modalcontainer]}>
+                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                            <TouchableOpacity onPress={() => {
+                                setOpen(!open);
+                                setKidopen(!kidopen);
+                            }} style={[styles.Buttoncardinner, styles.Buttoncardwidth, { marginTop: 5 }]}>
+                                <View
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                                 </View>
                             </TouchableOpacity>
-
-                        </View>
-                    </View>
-
-                </View>
-                <View style={[styles.modalcontainer]}>
-                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                        <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => {
-                                    setOpen(!open);
-                                    setKidopen(!kidopen);
-                                }}
-                                style={[styles.flexrow]}>
-                                <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                            </Pressable>
-                        </View>
-                        <View style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                            <Pressable
-                                onPress={() => {
-                                    setKidopen(!kidopen);
-                                }}
-                                style={[styles.flexrow]}>
-                                <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
-                                <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                            </Pressable>
+                            <TouchableOpacity onPress={() => {
+                                setKidopen(!kidopen);
+                            }} style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                                <View
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add Kid</TextMedium>
+                                    <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                                </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -238,6 +247,36 @@ export default function AddingKidsAndPets() {
     )
 }
 const styles = StyleSheet.create({
+    Buttoncardfullwidth: {
+        width: '100%'
+    },
+    cancelButtonContainer: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+    },
+    containerbg: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    topDummy: {
+        flex: 1,
+        opacity: 0
+    },
     profilepicactive2: {
         marginRight: 8,
         width: 70,
@@ -273,7 +312,7 @@ const styles = StyleSheet.create({
     },
     textArea: {
         marginVertical: 5,
-        height: 100,
+        height: 70,
         textAlignVertical: 'top',
         padding: 10,
         borderColor: color.neutral[300],
@@ -328,7 +367,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: color.primary,
         paddingVertical: 16,
-        marginVertical: 16,
+        marginTop: 5,
+        marginBottom: 16,
     },
     Buttoncardwidth: {
         width: '48%'
@@ -338,22 +378,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     dropdownStyle: {
-        padding: 10,
+        padding: 6,
         borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
-        marginTop: 8,
+        marginTop: 6,
         width: '100%',
-        marginBottom: 16
+        marginBottom: 12
     },
     inputBox: {
-        padding: 10,
+        padding: 8,
         borderColor: color.neutral[300],
         borderWidth: 1,
         borderRadius: 8,
-        marginTop: 8,
+        marginTop: 6,
         width: '100%',
-        marginBottom: 16
+        marginBottom: 12
     },
     flexrow: {
         flexDirection: "row",
