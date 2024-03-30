@@ -9,6 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
+  Platform
 } from "react-native";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
