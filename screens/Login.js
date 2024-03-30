@@ -245,7 +245,7 @@ export default function Login() {
 
             {/* dummy */}
             <TouchableOpacity style={styles.btnPrimary}
-                onPress={() => navigation.navigate('Test')}
+                onPress={() => navigation.navigate('ProfileSetup')}
             >
                 <TextMedium style={styles.btnText}>Chat</TextMedium>
             </TouchableOpacity>
