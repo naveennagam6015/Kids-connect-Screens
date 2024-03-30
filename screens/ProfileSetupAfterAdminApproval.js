@@ -552,182 +552,202 @@ export default function ProfileSetupAfterAdminApproval() {
   );
 }
 const styles = StyleSheet.create({
-  topDummy: {
-    flex: 1,
-    opacity: 0,
-  },
-  textArea: {
-    marginVertical: 5,
-    height: 100,
-    textAlignVertical: "top",
-    padding: 10,
-    borderColor: color.neutral[300],
-    borderWidth: 1,
-    borderRadius: 8,
-    marginTop: 8,
-    width: "100%",
-    marginBottom: 16,
-  },
-  dropdownStyle: {
-    padding: 10,
-    borderColor: color.neutral[300],
-    borderWidth: 1,
-    borderRadius: 8,
-    marginTop: 8,
-    width: "100%",
-    marginBottom: 16,
-  },
-  imageContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  uploadButton: {
-    backgroundColor: color.primary,
-    justifyContent: "center",
-    padding: 10,
-    height: 50,
-    alignSelf: "center",
-    width: 140,
-    borderRadius: 8,
-  },
-  uploadButtonText: {
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-  imageText: {
-    // justifyContent: 'center',
-    padding: 10,
-    height: 70,
-    alignSelf: "center",
-    width: 150,
-  },
-  flexrow: {
-    flexDirection: "row",
-  },
-  btnPrimaryTextsize: {
-    fontSize: 20,
-  },
-  Buttoncard: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    backgroundColor: color.neutral[100],
-    paddingVertical: 18,
-  },
-  Buttoncard2: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    borderWidth: 1.5,
-    borderColor: color.primary,
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 18,
-    marginVertical: 16,
-  },
-  Buttoncardinner: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    borderWidth: 1.5,
-    borderColor: color.accent,
-    paddingVertical: 16,
-    marginVertical: 16,
-  },
-  Buttoncardinner2: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    borderWidth: 1.5,
-    borderColor: color.primary,
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 16,
-    marginVertical: 16,
-  },
-  Buttoncardwidth: {
-    width: "48%",
-  },
-  modalcontainer: {
-    paddingHorizontal: 20,
-    // marginTop: "auto",
-    // height: "50%",
-    justifyContent: "center",
-  },
-  inputBox: {
-    padding: 10,
-    borderColor: color.neutral[300],
-    borderWidth: 1,
-    borderRadius: 8,
-    marginTop: 8,
-    width: "100%",
-    marginBottom: 16,
-  },
-  Skip: {
-    fontSize: 20,
-    textDecorationLine: "underline",
-  },
-  childrenname: {
-    fontSize: 18,
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-  },
-  imageplus: {
-    padding: 30,
-    justifyContent: "flex-end",
-    alignSelf: "flex-end",
-    borderRadius: 100,
-    marginRight: 10,
-    backgroundColor: color.accent,
-  },
-  profilepic: {
-    marginRight: 8,
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
-  Card: {
-    borderRadius: 10,
-    marginVertical: 10,
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 30,
-    borderColor: color.accent,
-  },
-  subtext: {
-    fontSize: 20,
-  },
-  image: {
-    justifyContent: "center",
-    marginVertical: 20,
-    alignItems: "center",
-  },
-  emailimage: {
-    width: 300,
-    height: 300,
-  },
-  container: {
-    paddingHorizontal: 15,
-    justifyContent: "center",
-  },
-  containerbg: {
-    paddingHorizontal: 15,
-    backgroundColor: color.lightBlue,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    justifyContent: "center",
-  },
-  Headingtext: {
-    fontSize: 24,
-    marginVertical: 5,
-    color: color.primary,
-  },
-});
+    cancelButtonContainer: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+    },
+    topDummy: {
+        flex: 1,
+        opacity: 0
+    },
+    textArea: {
+        marginVertical: 5,
+        height: 100,
+        textAlignVertical: 'top',
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 8,
+        width: '100%',
+        marginBottom: 16
+    },
+    dropdownStyle: {
+        padding: 8,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 6,
+        width: '100%',
+        marginBottom: 12
+    },
+    imageContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    uploadButton: {
+        backgroundColor: color.primary,
+        justifyContent: 'center',
+        padding: 10,
+        height: 50,
+        alignSelf: 'center',
+        width: 140,
+        borderRadius: 8
+    },
+    uploadButtonText: {
+        justifyContent: 'center',
+        alignSelf: 'center'
+    },
+    imageText: {
+        // justifyContent: 'center',
+        padding: 10,
+        height: 70,
+        alignSelf: 'center',
+        width: 150,
+    },
+    flexrow: {
+        flexDirection: 'row',
+    },
+    btnPrimaryTextsize: {
+        fontSize: 20,
+    },
+    Buttoncard: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        backgroundColor: color.neutral[100],
+        paddingVertical: 18,
+    },
+    Buttoncard2: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 18,
+        marginVertical: 16,
+    },
+    Buttoncardinner: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardinner2: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardfullwidth: {
+        width: '100%'
+    },
+    Buttoncardwidth: {
+        width: '48%'
+    },
+    modalcontainer: {
+        paddingHorizontal: 20,
+        // marginTop: "auto",
+        // height: "50%",
+        justifyContent: 'center',
+    },
+    inputBox: {
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 6,
+        width: '100%',
+        marginBottom: 12
+    },
+    Skip: {
+        fontSize: 20,
+        textDecorationLine: "underline"
+    },
+    childrenname: {
+        fontSize: 18,
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
+    },
+    imageplus: {
+        padding: 30,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
+    profilepic: {
+        marginRight: 8,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+    },
+    Card: {
+        borderRadius: 10,
+        marginVertical: 10,
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        paddingVertical: 30,
+        borderColor: color.accent,
+    },
+    subtext: {
+        fontSize: 20,
+    },
+    image: {
+        justifyContent: 'center',
+        marginVertical: 20,
+        alignItems: 'center',
+    },
+    emailimage: {
+        width: 300,
+        height: 300,
+    },
+    container: {
+        paddingHorizontal: 15,
+        justifyContent: 'center',
+    },
+    containerbg: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    Headingtext: {
+        fontSize: 24,
+        marginVertical: 5,
+        color: color.primary
+    },
+
+})

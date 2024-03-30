@@ -1,12 +1,23 @@
-import React from 'react'
-import { ScrollView, View, StyleSheet, Text, Image, Pressable, Platform } from 'react-native'
-import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText'
+import React, { useState } from 'react'
+import { ScrollView, View, StyleSheet, Text, Image, Pressable, Platform, TouchableOpacity, Modal } from 'react-native'
+import { TextBold, TextLight, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import { color } from '../assets/colors/theme';
 import { AntDesign, MaterialIcons, Foundation, Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function ProfileSetup() {
+    const navigation = useNavigation();
+    const [open, setOpen] = useState(false);
+    const [kidopen, setKidopen] = useState(false);
+    const [petopen, setPetopen] = useState(false);
+    const onClose = () => {
+        setOpen(false);
+        setKidopen(false);
+        setPetopen(false);
+    };
+
     return (
         <ScrollView>
             <View style={[styles.container]}>
@@ -18,7 +29,6 @@ export default function ProfileSetup() {
                         activeStepIconBorderColor={color.secondaryOrange}
                         activeStepIconColor="yourDesiredColor"
                         activeStepIconBorderWidth={1}
-                        // completedStepIconBorderColor="red"
                         completedStepIconColor={color.secondaryOrange}
                         completedProgressBarColor={color.secondaryOrange}
                         activeStepNumColor="yourActiveStepNumColor"
@@ -188,20 +198,83 @@ export default function ProfileSetup() {
                                         <MaterialIcons name="arrow-forward-ios" size={24} color="black" />
                                     </View>
                                 </View>
+                                <TouchableOpacity onPress={() => {
+                                    setOpen(!open);
+                                    setKidopen(!kidopen);
+                                }}
+                                    style={[styles.Buttoncardinner, styles.Buttoncardfullwidth,]}>
+                                    <View
+                                        style={[styles.flexrow]}>
+                                        <TextMedium style={[styles.btnPrimaryTextsize]}>Open Modal</TextMedium>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
-                        </ProgressStep>
-                        <ProgressStep>
-
                         </ProgressStep>
                     </ProgressSteps>
                 </View>
-
             </View>
+
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={kidopen}>
+                <View style={styles.topDummy} />
+
+                <View style={[styles.containerbg]}>
+                    <TextRegular style={{ textAlign: "center", color: color.secondaryOrange }}>You have selected 8:00 PM, on March 2024</TextRegular>
+                    <TextMedium style={{ fontSize: 20 }}>Request Title</TextMedium>
+                    <View style={styles.line} />
+
+                </View>
+            </Modal>
 
         </ScrollView >
     )
 }
 const styles = StyleSheet.create({
+    line: {
+        borderBottomWidth: 2,
+        borderBottomColor: color.neutral[300],
+        marginBottom: 12
+    },
+    containerbg: {
+        padding: 15,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    topDummy: {
+        flex: 1,
+        opacity: 0
+    },
+    Buttoncardfullwidth: {
+        width: '100%'
+    },
+    Buttoncardinner: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+
+
     Tags: {
         backgroundColor: color.neutral[100],
         flexDirection: 'row',
@@ -311,7 +384,6 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     container: {
-        marginTop: 50,
         padding: 15,
         justifyContent: 'center'
     },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Pressable, ScrollView, Image, Modal, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Platform, ScrollView, Image, Modal, TouchableOpacity } from 'react-native'
 import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText';
 import { color } from '../assets/colors/theme';
 import { AntDesign, FontAwesome, Feather, MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -93,127 +93,129 @@ export default function Requests() {
 
             <Modal
                 animationType='slide'
-                // transparent={true}
+                transparent={true}
                 visible={open}>
-                <View style={[styles.modalcontainer]}>
-                    <TouchableOpacity onPress={onClose} style={[styles.header, { alignItems: "flex-end", }]}>
-                        <Icon name="cancel" size={30} color={color.neutral[300]} />
-                    </TouchableOpacity>
-
-                    <View style={[styles.flexrow, { alignItems: 'center' }]}>
-                        <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View>
-                            <View style={[styles.flexrow, { alignItems: 'center', marginBottom: 5 }]}>
-                                <TextBold style={[styles.childrenname]}>Samantha </TextBold>
-                                <TextBold style={{ color: color.neutral[300] }}>(Son)</TextBold>
-                                <Feather name="arrow-up-right" size={16} color={color.secondaryOrange} />
-                                <FontAwesome name="bookmark" style={{ marginLeft: 15 }} size={18} color={color.accent} />
-
-                            </View>
-                            <View style={[styles.flexrow, styles.justiffsb]}>
-                                <View style={[styles.ratingstarborder]}>
-                                    <View style={[styles.flexrow]}>
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                        <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                    </View>
-
-                                </View>
-                                <View style={[styles.pl10,]}>
-                                    <TextRegular style={{ fontSize: 18 }}><TextBold>30+</TextBold> Connections</TextRegular>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={[styles.flexrow, styles.mt8, { flexWrap: 'wrap' }]}>
-
-                        <View style={[styles.Tags]}>
-                            <TextRegular>In-House </TextRegular>
-                        </View>
-                        <View style={[styles.Tags]}>
-                            <TextRegular>3-5hrs</TextRegular>
-                        </View>
-                        <View style={[styles.Tags]}>
-                            <TextRegular>Science Project</TextRegular>
-                        </View>
-                        <View style={[styles.Tags]}>
-                            <TextRegular>Feb 17th | Monday</TextRegular>
-                        </View>
-                    </View>
-                    <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>Donec vitae mi vulputate, suscipit urna in, malesuada nisl. Pellentesque laoreet pretium nislstr... more</TextRegular>
-                    <TextBold style={[styles.Headingtext]}>Address</TextBold>
-                    <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>199 Oakway Lane, Woodland Hills, CA 91303</TextRegular>
-                    {/* <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>CA 91303</TextRegular> */}
-                    <View style={{
-                        borderBottomWidth: 1,
-                        borderBottomColor: color.neutral[300],
-                        marginTop: 5
-                    }}>
-                    </View>
-                    <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>Requested by</TextBold>
-                    <View style={[styles.flexrow, { alignItems: "flex-start" }]}>
-                        <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View >
-                            <View style={[styles.flexrow, { alignItems: "center" }]}>
-
-                                <View style={[styles.flexrow, { alignItems: "center", justifyContent: "space-around" }]}>
-                                    <View>
-                                        <View style={[styles.flexrow, { alignItems: 'center' }]}>
-                                            <TextBold style={[styles.childrenname]}>Neha </TextBold>
-                                            <TextBold style={{ color: color.neutral[300] }}>(Mother)</TextBold>
-                                            <Feather name="arrow-up-right" size={16} color={color.secondaryOrange} />
-                                        </View>
-                                        <View>
-                                            <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>Architect, TCS</TextRegular>
-                                        </View>
-                                    </View>
-                                    <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                                        <View style={{ padding: 5, marginHorizontal: 10 }}>
-                                            <View>
-                                                <MaterialIcons name="message" size={20} color={color.neutral[500]} />
-                                            </View>
-                                            <View>
-                                                <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Chat</TextRegular>
-                                            </View>
-                                        </View>
-                                        <View style={{ padding: 5, marginHorizontal: 10 }}>
-                                            <View>
-                                                <Ionicons name="call" size={20} color={color.neutral[500]} />
-                                            </View>
-                                            <View>
-                                                <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Call</TextRegular>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </View>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
+                    <View >
+                        <TouchableOpacity
+                            onPress={onClose}
+                            style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                            <Icon name="cancel" size={30} color={color.neutral[300]} />
+                        </TouchableOpacity>
+                        <View style={[styles.flexrow, { alignItems: 'center' }]}>
+                            <View>
+                                <Image style={[styles.profilepic, { marginTop: 15 }]} source={require('../assets/images/women.png')} />
                             </View>
                             <View>
-                                <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
-                                    <FontAwesome style={{ marginRight: 10, marginLeft: 3 }} name="map-pin" size={16} color={color.neutral[500]} />
-                                    <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>591 Joanne Lane, Wilmington, MA 01887</TextRegular>
+                                <View style={[styles.flexrow, { alignItems: 'center', marginBottom: 5 }]}>
+                                    <TextBold style={[styles.childrenname]}>Samantha </TextBold>
+                                    <TextBold style={{ color: color.neutral[300] }}>(Daughter)</TextBold>
+                                    <Feather name="arrow-up-right" size={16} color={color.secondaryOrange} />
+                                    <FontAwesome name="bookmark" style={{ marginLeft: 15 }} size={18} color={color.accent} />
                                 </View>
-                                <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
-                                    <FontAwesome style={{ marginRight: 8 }} name="envelope" size={16} color={color.neutral[500]} />
-                                    <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>autumnphilips@gmail.com</TextRegular>
-                                </View>
-                                <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
-                                    <FontAwesome style={{ marginRight: 8, marginLeft: 2 }} name="building" size={16} color={color.neutral[500]} />
-                                    <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>Britches of Georgetown</TextRegular>
+                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                        </View>
+
+                                    </View>
+                                    <View style={[styles.pl10,]}>
+                                        <TextRegular style={{ fontSize: 18 }}><TextBold>30+</TextBold> Connections</TextRegular>
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
-                    <TextRegular style={[styles.textnetural, { fontSize: 18, marginTop: 15 }]}>4 Tags matches your Interests </TextRegular>
-                </View>
 
-                <View style={[styles.flexrow, styles.bgyellow, styles.mt8, { flexWrap: 'wrap' }]}>
+                        <View style={[styles.flexrow, styles.mt8, { flexWrap: 'wrap' }]}>
+
+                            <View style={[styles.Tags]}>
+                                <TextRegular>In-House </TextRegular>
+                            </View>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>3-5hrs</TextRegular>
+                            </View>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>Science Project</TextRegular>
+                            </View>
+                            <View style={[styles.Tags]}>
+                                <TextRegular>Feb 17th | Monday</TextRegular>
+                            </View>
+                        </View>
+                        <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>Donec vitae mi vulputate, suscipit urna in, malesuada nisl. Pellentesque laoreet pretium nislstr... more</TextRegular>
+                        <TextBold style={[styles.Headingtext]}>Address</TextBold>
+                        <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>199 Oakway Lane, Woodland Hills, CA 91303</TextRegular>
+                        {/* <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>CA 91303</TextRegular> */}
+                        <View style={{
+                            borderBottomWidth: 1,
+                            borderBottomColor: color.neutral[300],
+                            marginTop: 5
+                        }}>
+                        </View>
+                        <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>Requested by</TextBold>
+                        <View style={[styles.flexrow, { alignItems: "flex-start" }]}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            </View>
+                            <View >
+                                <View style={[styles.flexrow, { alignItems: "center" }]}>
+
+                                    <View style={[styles.flexrow, { alignItems: "center", justifyContent: "space-around" }]}>
+                                        <View>
+                                            <View style={[styles.flexrow, { alignItems: 'center' }]}>
+                                                <TextBold style={[styles.childrenname]}>Neha </TextBold>
+                                                <TextBold style={{ color: color.neutral[300] }}>(Mother)</TextBold>
+                                                <Feather name="arrow-up-right" size={16} color={color.secondaryOrange} />
+                                            </View>
+                                            <View>
+                                                <TextRegular style={[styles.textnetural, { fontSize: 18, }]}>Architect, TCS</TextRegular>
+                                            </View>
+                                        </View>
+                                        <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                                            <View style={{ padding: 5, marginHorizontal: 10 }}>
+                                                <View>
+                                                    <MaterialIcons name="message" size={20} color={color.neutral[500]} />
+                                                </View>
+                                                <View>
+                                                    <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Chat</TextRegular>
+                                                </View>
+                                            </View>
+                                            <View style={{ padding: 5, marginHorizontal: 10 }}>
+                                                <View>
+                                                    <Ionicons name="call" size={20} color={color.neutral[500]} />
+                                                </View>
+                                                <View>
+                                                    <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Call</TextRegular>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+                                <View>
+                                    <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
+                                        <FontAwesome style={{ marginRight: 10, marginLeft: 3 }} name="map-pin" size={16} color={color.neutral[500]} />
+                                        <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>591 Joanne Lane, Wilmington, MA 01887</TextRegular>
+                                    </View>
+                                    <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
+                                        <FontAwesome style={{ marginRight: 8 }} name="envelope" size={16} color={color.neutral[500]} />
+                                        <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>autumnphilips@gmail.com</TextRegular>
+                                    </View>
+                                    <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
+                                        <FontAwesome style={{ marginRight: 8, marginLeft: 2 }} name="building" size={16} color={color.neutral[500]} />
+                                        <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>Britches of Georgetown</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        <TextRegular style={[styles.textnetural, { fontSize: 18, marginTop: 15, marginBottom: 10 }]}>4 Tags matches your Interests </TextRegular>
+                    </View>
+                </View>
+                <View style={[styles.flexrow, styles.bgyellow, { flexWrap: 'wrap' }]}>
                     <View style={[styles.Tags2]}>
                         <TextRegular>In-House </TextRegular>
                     </View>
@@ -227,33 +229,72 @@ export default function Requests() {
                         <TextRegular>Project Based</TextRegular>
                     </View>
                 </View>
-                <View style={[styles.modalcontainer]}>
-                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                        <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                            <View
-                                style={[styles.flexrow]}>
-                                <TextBold style={[styles.btnPrimaryTextsize]}>Modify</TextBold>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                            <View
-                                style={[styles.flexrow]}>
-                                <TextBold style={[styles.btnPrimaryTextsize]}>Accept</TextBold>
-                            </View>
-                        </TouchableOpacity>
+                <View style={[styles.containerbg2]}>
+
+                    <View style={[styles.modalcontainer]}>
+                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                            <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                <View
+                                    style={[styles.flexrow]}>
+                                    <TextBold style={[styles.btnPrimaryTextsize]}>Modify</TextBold>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                                <View
+                                    style={[styles.flexrow]}>
+                                    <TextBold style={[styles.btnPrimaryTextsize]}>Accept</TextBold>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
+                    <TextLight style={{
+                        textDecorationLine: 'underline',
+                        textAlign: 'center',
+                        color: color.neutral[500]
+                    }}>You have connected previously 3 times.</TextLight>
                 </View>
-                <TextLight style={{
-                    textDecorationLine: 'underline',
-                    textAlign: 'center',
-                    color: color.neutral[500]
-                }}>You have connected previously 3 times.</TextLight>
             </Modal>
 
         </ScrollView >
     )
 }
 const styles = StyleSheet.create({
+    Buttoncardfullwidth: {
+        width: '100%'
+    },
+    cancelButtonContainer: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+    },
+    containerbg2: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        justifyContent: 'center',
+        paddingBottom: 10
+    },
+    containerbg: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    topDummy: {
+        flex: 1,
+        opacity: 0
+    },
     justiffsb: {
         justifyContent: 'space-between',
         alignItems: "center"

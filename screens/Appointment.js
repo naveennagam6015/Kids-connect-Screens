@@ -5,8 +5,10 @@ import Search from '../components/Search'
 import { color } from '../assets/colors/theme'
 import { MaterialIcons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
 import { ScrollView } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Appointment() {
+    const navigation = useNavigation();
     function CircleRequests() {
 
     }
@@ -16,7 +18,7 @@ export default function Appointment() {
                 <Search />
                 <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular>
                 <View style={[styles.flexrow, styles.justiffsb]}>
-                    <TouchableOpacity onPress={CircleRequests} style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProfileSetup')} style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                         <View style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
                         </View>

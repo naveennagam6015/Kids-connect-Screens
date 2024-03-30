@@ -24,6 +24,7 @@ import { color } from './assets/colors/theme';
 import { StyleSheet } from 'react-native';
 import Thankyou from './screens/Thankyou';
 import Test from './Test';
+import ProfileSetup from './screens/ProfileSetup';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -116,6 +117,9 @@ function StackNavigation() {
             />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval}
                 options={{ headerShown: false }}
+            />
+            <Stack.Screen name='ProfileSetup' component={ProfileSetup}
+                options={{ headerTitle: "Profile Setup" }}
             />
             <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets}
                 options={{ headerTitle: "Adding Kids And Pets" }}
