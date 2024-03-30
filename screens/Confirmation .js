@@ -1,9 +1,11 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image, Platform, Pressable } from 'react-native'
+import { View, StyleSheet, Text, Image, Platform, Pressable, TouchableOpacity } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Confirmation() {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.Card}>
@@ -17,16 +19,12 @@ export default function Confirmation() {
                 </View>
             </View>
             <View style={[styles.flexrow, { marginTop: 10, justifyContent: "space-between" }]}>
-                <View style={[styles.innerbtn]}>
-                    <Pressable>
-                        <TextBold>Back to Home</TextBold>
-                    </Pressable>
-                </View>
-                <View style={[styles.innerbtn1]}>
-                    <Pressable>
-                        <TextBold>Take me there</TextBold>
-                    </Pressable>
-                </View>
+                <TouchableOpacity onPress={() => navigation.navigate("BottomNavigation")} style={[styles.innerbtn]}>
+                    <TextBold>Back to Home</TextBold>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation', { screen: 'Requests' })} style={[styles.innerbtn1]}>
+                    <TextBold>Take me there</TextBold>
+                </TouchableOpacity>
             </View>
         </View>
     );

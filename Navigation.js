@@ -25,6 +25,7 @@ import { StyleSheet } from 'react-native';
 import Thankyou from './screens/Thankyou';
 import Test from './Test';
 import ProfileSetup from './screens/ProfileSetup';
+import Confirmation from './screens/Confirmation ';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -147,6 +148,9 @@ function StackNavigation() {
             />
             <Stack.Screen name='Thankyou' component={Thankyou}
                 options={{ headerShown: false }}
+            />
+            <Stack.Screen name='Confirmation' component={Confirmation}
+                options={{ headerTitle: "Confirmation" }}
             />
         </Stack.Navigator>
     )
