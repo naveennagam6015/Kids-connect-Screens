@@ -28,44 +28,28 @@ export default function Login() {
     const [request, response, promptAsync] = Google.useAuthRequest({
         androidClientId: '1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
         webClientId: '1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
-
-        iosClientId: '1060882560652-iuuuvi794r18rtp076sobh1qhmgmftkt.apps.googleusercontent.com'
+        expoClientId:'1060882560652-5946ukqdti6lji8o6njv21at3bsbr9bi.apps.googleusercontent.com',
+        iosClientId: '1060882560652-iuuuvi794r18rtp076sobh1qhmgmftkt.apps.googleusercontent.com',
+        scopes:["profile", "email"],
     });
 
 
-    useEffect(() => {
-        handleSigninWithGoogle();
-        // if(response?.type === 'success'){
-        //     const {id_token} = response.params;
-        //     const credential = GoogleAuthProvider.credential(id_token);
-        //     signInWithCredential(auth, credential);
-        // }
-    }, [response]);
-
     // useEffect(() => {
-    //     const unsub = onAuthStateChanged(auth, async(user) => {
-    //         if(user){
-    //             console.log(user);
-    //         }else{
+    //     handleSigninWithGoogle();
+    // }, [response]);
 
+
+    // async function handleSigninWithGoogle() {
+    //     const user = await AsyncStorage.getItem('@user');
+    //     if (!user) {
+    //         if (response?.type === 'success') {
+    //             await getUserInfo(response.authentication.accessToken);
     //         }
-    //     });
 
-    //     return () => unsub();
-
-    // },[])
-
-    async function handleSigninWithGoogle() {
-        const user = await AsyncStorage.getItem('@user');
-        if (!user) {
-            if (response?.type === 'success') {
-                await getUserInfo(response.authentication.accessToken);
-            }
-
-        } else {
-            setUserInfo(JSON.parse(user));
-        }
-    }
+    //     } else {
+    //         setUserInfo(JSON.parse(user));
+    //     }
+    // }
 
     const getUserInfo = async (token) => {
         if (!token) return;
@@ -230,10 +214,10 @@ export default function Login() {
                     <TextRegular style={styles.textR}>or Login with</TextRegular>
                     <View style={styles.horizontalLine}></View>
                 </View>
-                <Pressable style={styles.googleImage} onPress={() => promptAsync()}>
+                <TouchableOpacity style={styles.googleImage} onPress={() => promptAsync()}>
                     <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                     <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
-                </Pressable>
+                </TouchableOpacity>
                 <View style={styles.signupView}>
                     <TextRegular>Don't have an Account! </TextRegular>
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>

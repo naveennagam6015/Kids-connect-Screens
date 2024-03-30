@@ -22,7 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.naveen1042.KidsConnect"
+      "package": "com.naveen1042.KidsConnect",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -47,6 +50,7 @@
       "eas": {
         "projectId": "53d617fa-07dd-4438-a6ed-a6c2cf55c098"
       }
-    }
+    },
+    "owner": "naveen1042"
   }
 }

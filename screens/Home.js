@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform, Pressable, Image, ScrollView, Dimensions, T
 import { color } from '../assets/colors/theme';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
-import Carousel from 'react-native-snap-carousel';
+// import Carousel from 'react-native-snap-carousel';
 import axios from "axios";
 import { BASEURL } from '@env';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
@@ -53,7 +53,7 @@ export default function Home() {
             <TextBold style={[styles.Headingtext, { marginHorizontal: 15, marginTop: 15 }]}>Glance Area</TextBold>
 
 
-            <Carousel
+            {/* <Carousel
                 ref={carouselRef}
                 layout="default"
                 data={data}
@@ -65,7 +65,7 @@ export default function Home() {
                 autoplay
                 autoplayInterval={3000}
                 onSnapToItem={(index) => setActiveIndex(index)}
-            />
+            /> */}
             <View style={[styles.container]}>
 
                 <View style={[styles.flexrow, styles.justiffsb]}>
