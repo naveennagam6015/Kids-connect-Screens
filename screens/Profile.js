@@ -43,7 +43,7 @@ export default function Profile() {
                         <Image style={[styles.profilepic]} source={{ uri: userData.ProfileImage }} />
                     </View>
                     <View style={[{ width: "45%", }, styles.profileName]}>
-                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>{userData.FirstName} {userData.LastName}({userData.Gender == 1 ? 'M' : userData.Gender == 2 ? 'F' : 'O'})</TextBold>
+                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>{userData.FirstName} {userData.LastName} ({userData.Gender == 1 ? 'M' : userData.Gender == 2 ? 'F' : 'O'})</TextBold>
                         <TextBold style={{ fontSize: 12 }}>{userData.Email}</TextBold>
                         <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>{userData.Address}</TextBold>
                         <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since {month} {year})</TextBold>
