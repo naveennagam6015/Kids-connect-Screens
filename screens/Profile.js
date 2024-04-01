@@ -137,13 +137,13 @@ export default function Profile() {
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
                         </TouchableOpacity>
                         <View style={[styles.line]}></View>
-                        <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                        <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')} style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
                                 <FontAwesome5 name="key" size={24} color={color.white} />
                                 <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Change Password </TextBold>
                             </View>
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
-                        </View>
+                        </TouchableOpacity>
                         <View style={[styles.line]}></View>
                         <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>

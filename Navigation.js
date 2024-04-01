@@ -26,6 +26,7 @@ import Thankyou from './screens/Thankyou';
 import Test from './Test';
 import ProfileSetup from './screens/ProfileSetup';
 import Confirmation from './screens/Confirmation ';
+import ChangePassword from './screens/ChangePassword';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -151,6 +152,9 @@ function StackNavigation() {
             />
             <Stack.Screen name='Confirmation' component={Confirmation}
                 options={{ headerTitle: "Confirmation" }}
+            />
+            <Stack.Screen name='ChangePassword' component={ChangePassword}
+                options={{ headerTitle: "Change Password" }}
             />
         </Stack.Navigator>
     )

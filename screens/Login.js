@@ -28,9 +28,9 @@ export default function Login() {
     const [request, response, promptAsync] = Google.useAuthRequest({
         androidClientId: '1060882560652-o8avicvf9bhj0344aulnr9og7ksu1rbt.apps.googleusercontent.com',
         webClientId: '1060882560652-c7f475gqnqr2ob2vapop00i90h6umlb1.apps.googleusercontent.com',
-        expoClientId:'1060882560652-5946ukqdti6lji8o6njv21at3bsbr9bi.apps.googleusercontent.com',
+        expoClientId: '1060882560652-5946ukqdti6lji8o6njv21at3bsbr9bi.apps.googleusercontent.com',
         iosClientId: '1060882560652-iuuuvi794r18rtp076sobh1qhmgmftkt.apps.googleusercontent.com',
-        scopes:["profile", "email"],
+        scopes: ["profile", "email"],
     });
 
 
