@@ -190,10 +190,10 @@ export default function Home() {
                             </View>
                             <View style={{ alignItems: 'flex-end' }}>
                                 <View>
-                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/profile1.jpg')} />
                                 </View>
                                 <View>
-                                    <TextBold style={[styles.childrenname]}>Iman Gadzi <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                                    <TextBold style={[styles.childrenname]}>Sai Pallavi <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
                                 </View>
                             </View>
                         </View>
@@ -215,7 +215,7 @@ export default function Home() {
                                 <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.Buttoncard, styles.Buttoncardwidth2,]}>
+                        <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.Buttoncardmoredetails, styles.Buttoncardwidth3,]}>
                             <View
                                 style={[styles.flexrow]}>
                                 <TextBold style={[styles.childrenname]}>More Details</TextBold>
@@ -621,6 +621,15 @@ const styles = StyleSheet.create({
     justiffsb: {
         justifyContent: 'space-between'
     },
+    Buttoncardmoredetails: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 16,
+    },
     Buttoncard: {
         borderRadius: 8,
         alignSelf: 'center',
@@ -659,6 +668,10 @@ const styles = StyleSheet.create({
     },
     Buttoncardwidth: {
         width: '48%'
+    },
+    Buttoncardwidth3: {
+        width: '50%',
+        marginRight: 10
     },
     Buttoncardwidth2: {
         width: '38%',

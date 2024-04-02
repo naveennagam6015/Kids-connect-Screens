@@ -1,26 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Pressable,
-  Modal,
-  TextInput,
-  ScrollView,
-  TouchableOpacity,
-  StatusBar,
-  Platform,
-} from "react-native";
+import { View, StyleSheet, Image, Modal, TextInput, ScrollView, TouchableOpacity, StatusBar, Platform, } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as ImagePicker from "expo-image-picker";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
-import {
-  Foundation,
-  AntDesign,
-  MaterialIcons,
-  Fontisto,
-  Entypo,
-} from "@expo/vector-icons";
+import { Foundation, AntDesign, MaterialIcons, Fontisto, } from "@expo/vector-icons";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
@@ -396,14 +380,14 @@ export default function ProfileSetupAfterAdminApproval() {
               </View>
             </View>
             <View style={{ alignItems: "center" }}>
-              <Pressable
+              <TouchableOpacity
                 onPress={() => {
                   setOpen(!open);
                 }}
                 style={[styles.imageplus]}
               >
                 <AntDesign name="plus" size={40} color={color.neutral[500]} />
-              </Pressable>
+              </TouchableOpacity>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextRegular style={{ fontSize: 14 }}>
                   Add Secondary Persons
@@ -438,13 +422,12 @@ export default function ProfileSetupAfterAdminApproval() {
       <Modal animationType="slide" transparent={true} visible={open}>
         <View style={styles.topDummy} />
         <View style={[styles.containerbg]}>
-          {/* <View style={{ alignItems: "center", marginVertical: 10 }}>
-            <Image
-              style={[styles.profilepic]}
-              source={require("../assets/images/women.png")}
-            />
-          </View> */}
           <TouchableOpacity
+            onPress={() => { setOpen(!open); }}
+            style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+            <Icon name="cancel" size={30} color={color.neutral[300]} />
+          </TouchableOpacity>
+          <View
             style={{ alignItems: "center", marginVertical: 10 }}
           >
             <Image
@@ -457,18 +440,31 @@ export default function ProfileSetupAfterAdminApproval() {
                 bottom: "2%",
                 right: "38%",
                 backgroundColor: "lightgray",
-                borderRadius: "50%",
+                borderRadius: 50,
                 padding: 10,
               }}
               onPress={() => setCameraModal(!cameramodal)}
             >
               <Fontisto name="camera" size={20} color="black" />
             </TouchableOpacity>
-          </TouchableOpacity>
+          </View>
           <Modal animationType="slide" transparent={true} visible={cameramodal}>
             <View style={styles.topCamera}>
               <View style={styles.cameracontainerbg}>
-                <TextBold style={{ marginBottom: 30, fontSize:18 }}>Upload Image</TextBold>
+                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                  <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
+                  {/* <TouchableOpacity
+                    style={{ alignSelf: "flex-end" }}
+                    onPress={() => setCameraModal(!cameramodal)}
+                  >
+                    <TextBold style={{ marginBottom: 30, fontSize: 18 }}>Close</TextBold>
+                  </TouchableOpacity> */}
+                  <TouchableOpacity
+                    onPress={() => setCameraModal(!cameramodal)}
+                    style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
+                    <Icon name="cancel" size={30} color={color.neutral[300]} />
+                  </TouchableOpacity>
+                </View>
                 <View style={styles.cameraModal}>
                   <View>
                     <TouchableOpacity
@@ -501,14 +497,8 @@ export default function ProfileSetupAfterAdminApproval() {
                     </TextRegular>
                   </View>
 
-                  {/* <View></View> */}
                 </View>
-                <TouchableOpacity
-                  style={{ alignSelf: "flex-end" }}
-                  onPress={() => setCameraModal(!cameramodal)}
-                >
-                  <TextBold style={{ marginBottom: 10, marginTop:30, fontSize:18 }}>Close</TextBold>
-                </TouchableOpacity>
+
               </View>
             </View>
           </Modal>
@@ -592,20 +582,7 @@ export default function ProfileSetupAfterAdminApproval() {
               <View
                 style={[styles.flexrow, { justifyContent: "space-between" }]}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    setOpen(!open);
-                  }}
-                  style={[
-                    styles.flexrow,
-                    styles.Buttoncardinner,
-                    styles.Buttoncardwidth,
-                  ]}
-                >
-                  <TextMedium style={[styles.btnPrimaryTextsize]}>
-                    Back
-                  </TextMedium>
-                </TouchableOpacity>
+
                 <TouchableOpacity
                   onPress={() => {
                     setModalopen(!modalopen);
@@ -614,7 +591,7 @@ export default function ProfileSetupAfterAdminApproval() {
                   style={[
                     styles.flexrow,
                     styles.Buttoncardinner2,
-                    styles.Buttoncardwidth,
+                    styles.Buttoncardfullwidth,
                   ]}
                 >
                   <TextMedium style={[styles.btnPrimaryTextsize]}>
@@ -634,10 +611,11 @@ export default function ProfileSetupAfterAdminApproval() {
       </Modal>
       <Modal
         animationType="slide"
-        // transparent={true}
+        transparent={true}
         visible={modalopen}
       >
-        <View style={[styles.modalcontainer]}>
+        <View style={styles.topDummy} />
+        <View style={[styles.containerbg]}>
           {/* <TextBold>SSN Number</TextBold>
           <TextInput
             style={styles.inputBox}
@@ -683,7 +661,7 @@ export default function ProfileSetupAfterAdminApproval() {
               />
             )}
           </View> */}
-          <TextBold>Relationship</TextBold>
+          <TextBold style={{ marginTop: 15 }}>Relationship</TextBold>
           <Dropdown
             style={styles.dropdownStyle}
             data={relationship}
@@ -758,19 +736,19 @@ export default function ProfileSetupAfterAdminApproval() {
             </TextBold>
           )}
           <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-            <View style={[styles.Buttoncardinner, styles.Buttoncardwidth]}>
-              <Pressable
-                onPress={() => {
-                  setModalopen(!modalopen);
-                  setOpen(!open);
-                }}
+            <TouchableOpacity onPress={() => {
+              setModalopen(!modalopen);
+              setOpen(!open);
+            }} style={[styles.Buttoncardinner, styles.Buttoncardwidth]}>
+              <View
+
                 style={[styles.flexrow]}
               >
                 <TextMedium style={[styles.btnPrimaryTextsize]}>
                   Back
                 </TextMedium>
-              </Pressable>
-            </View>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 // setOpen(!open)
@@ -800,6 +778,11 @@ export default function ProfileSetupAfterAdminApproval() {
   );
 }
 const styles = StyleSheet.create({
+  cancelButtonContainerpic: {
+    position: "absolute",
+    top: 1,
+    right: 1,
+  },
   cancelButtonContainer: {
     position: "absolute",
     top: 15,
@@ -1005,7 +988,7 @@ const styles = StyleSheet.create({
   },
   cameraBackground: {
     // backgroundColor: "lightgray",
-    borderRadius: "50%",
+    borderRadius: 50,
     padding: 15,
     marginBottom: 5,
   },
