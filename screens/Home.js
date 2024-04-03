@@ -166,7 +166,7 @@ export default function Home() {
                             </View>
                             <View style={{ alignItems: 'center' }}>
                                 <View>
-                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/man3.jpg')} />
                                 </View>
                                 <View>
                                     <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
@@ -176,7 +176,7 @@ export default function Home() {
                         <View style={[styles.innercard2, styles.flexrow,]}>
                             <View style={{ alignItems: 'flex-start' }}>
                                 <View>
-                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                                    <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
                                 </View>
                                 <View>
                                     <TextBold style={[styles.childrenname]}>Aron Finch <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
@@ -249,7 +249,7 @@ export default function Home() {
                     <View style={[styles.innercard2, styles.flexrow,]}>
                         <View style={{ alignItems: 'flex-start' }}>
                             <View>
-                                <Image style={[styles.profilepic, styles.activeprofilr]} source={require('../assets/images/women.png')} />
+                                <Image style={[styles.profilepic, styles.activeprofilr]} source={require('../assets/images/man3.jpg')} />
                             </View>
                             <View>
                                 <TextBold style={[styles.childrenname]}>Aron Finch</TextBold>

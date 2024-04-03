@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
+    const [openpets, setOpenpets] = useState(false);
     const [kidopen, setKidopen] = useState(false);
     const [petopen, setPetopen] = useState(false);
     const [relationship, setRelationship] = useState([
@@ -18,12 +19,10 @@ export default function AddingKidsAndPets() {
     ]);
     const onClose = () => {
         setOpen(false);
+        setOpenpets(false);
         setKidopen(false);
         setPetopen(false);
     };
-
-
-
 
     return (
         <ScrollView style={[styles.container]}>
@@ -43,7 +42,7 @@ export default function AddingKidsAndPets() {
                     </View>
                     <View style={{ alignItems: 'center' }}>
                         <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <Image style={[styles.profilepic]} source={require('../assets/images/man3.jpg')} />
                         </View>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <TextRegular style={[styles.childrenname]}>Lucy <TextRegular style={{ fontSize: 14, color: color.success }}>(2nd)</TextRegular></TextRegular>
@@ -52,40 +51,51 @@ export default function AddingKidsAndPets() {
                     </View>
                 </View>
             </View>
+            <View style={[styles.flexrow, { justifyContent: "flex-start", alignItems: "center" }]}>
+                <TextBold style={{ marginTop: 10, marginBottom: 5, fontSize: 18 }}>Add your Kids Profile</TextBold>
+                <Ionicons style={{ marginLeft: 5 }} name="hand-right" size={24} color={color.accent} />
+            </View>
             <View style={[styles.Cardadd]}>
                 {/* we need to show this Kid after profile added */}
                 <View style={{ alignItems: 'center' }}>
                     <View>
-                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/women.png')} />
+                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/KID.jpg')} />
                     </View>
                     <View>
                         <TextRegular style={[styles.childrenname]}>Samantha</TextRegular>
                     </View>
                 </View>
-                <View style={{ alignItems: 'center', flexDirection: "row" }}>
-                    <Pressable onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
-                        <AntDesign name="plus" size={30} color={color.neutral[500]} />
-                    </Pressable>
-                    <TextBold>Add your Kids Profile</TextBold>
-                    <Ionicons style={{ marginLeft: 5 }} name="hand-right" size={24} color={color.accent} />
+                <View style={{ alignItems: 'center', flexDirection: "row", marginHorizontal: 10 }}>
+                    <View style={{ alignItems: "center", justifyContent: "center" }}>
+                        <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
+                            <AntDesign name="plus" size={30} color={color.neutral[500]} />
+                        </TouchableOpacity>
+                        <TextBold>Add</TextBold>
+                    </View>
                 </View>
+
+            </View>
+            <View style={[styles.flexrow, { justifyContent: "flex-start", alignItems: "center" }]}>
+                <TextBold style={{ marginTop: 10, marginBottom: 5, fontSize: 18 }}>Add your Pets Profile</TextBold>
+                <FontAwesome style={{ marginLeft: 10 }} name="paw" size={24} color={color.accent} />
             </View>
             <View style={[styles.Cardadd]}>
                 {/* we need to show this pet after profile added */}
                 <View style={{ alignItems: 'center' }}>
                     <View>
-                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/women.png')} />
+                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/dog.jpg')} />
                     </View>
                     <View>
                         <TextRegular style={[styles.childrenname]}>Puppy</TextRegular>
                     </View>
                 </View>
-                <View style={{ alignItems: 'center', flexDirection: "row" }}>
-                    <Pressable style={[styles.imageplusadd]}>
-                        <AntDesign name="plus" size={30} color={color.neutral[500]} />
-                    </Pressable>
-                    <TextBold>Add your Pets Profile</TextBold>
-                    <FontAwesome style={{ marginLeft: 10 }} name="paw" size={24} color={color.accent} />
+                <View style={{ alignItems: 'center', flexDirection: "row", marginHorizontal: 10 }}>
+                    <View style={{ alignItems: "center", justifyContent: "center" }}>
+                        <TouchableOpacity onPress={() => setOpenpets(!open)} style={[styles.imageplusadd]}>
+                            <AntDesign name="plus" size={30} color={color.neutral[500]} />
+                        </TouchableOpacity>
+                        <TextBold>Add</TextBold>
+                    </View>
                 </View>
             </View>
             <TouchableOpacity style={[styles.btnPrimary, styles.flexrow]}
@@ -164,79 +174,61 @@ export default function AddingKidsAndPets() {
             <Modal
                 animationType='slide'
                 transparent={true}
-                visible={kidopen}
-            >
+                visible={openpets}>
                 <View style={styles.topDummy} />
                 <View style={[styles.containerbg]}>
-                    <View style={[styles.container]}>
+                    <TouchableOpacity
+                        onPress={() => { setOpenpets(!openpets); }}
+                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
+                    </TouchableOpacity>
+                    <View>
                         <View style={{ alignItems: 'center', marginVertical: 10 }}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                         </View>
-                        <TextBold>Name</TextBold>
+                        <TextBold>First Name</TextBold>
                         <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
-                        <TextBold>Interests</TextBold>
-
-                        <View style={[styles.Card]}>
-                            <TextRegular style={{ color: color.neutral[300] }}>Explain your kids interests and Hobbies which makes easier to connect with other Kids eg: </TextRegular>
-                            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Introvert</TextRegular>
-                                    <TouchableOpacity style={{ marginLeft: 5 }}>
-                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Playstation</TextRegular>
-                                    <TouchableOpacity style={{ marginLeft: 5 }}>
-                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Programming</TextRegular>
-                                    <TouchableOpacity style={{ marginLeft: 5 }}>
-                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Enthusiastic</TextRegular>
-                                    <TouchableOpacity style={{ marginLeft: 5 }}>
-                                        <MaterialIcons name="cancel" size={15} color={color.accent} />
-                                    </TouchableOpacity>
-                                </View>
-
-                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center", marginTop: 8, }}>
-                                    <TextRegular style={{ fontSize: 14, marginHorizontal: 5 }}>Add</TextRegular>
-                                    <View style={{ alignItems: 'center' }}>
-                                        <View style={[styles.addinterests]}>
-                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-
-                            </View>
-                        </View>
-
+                        <TextBold>Last Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
+                        <TextBold>Relationship</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={relationship}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Relationship"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setRelationship(item.value)
+                            }}
+                        />
+                        <TextBold>Description</TextBold>
+                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
                     </View>
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                            <TouchableOpacity onPress={() => {
-                                setOpen(!open);
-                                setKidopen(!kidopen);
-                            }} style={[styles.Buttoncardinner, styles.Buttoncardwidth, { marginTop: 5 }]}>
-                                <View
+                            {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setOpen(!open);
+                                    }}
                                     style={[styles.flexrow]}>
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => {
-                                setKidopen(!kidopen);
-                            }} style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
-                                <View
+                                </Pressable>
+                            </View> */}
+                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setKidopen(!kidopen);
+                                        setOpen(!open);
+                                    }}
                                     style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add Kid</TextMedium>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                                </View>
-                            </TouchableOpacity>
+                                </Pressable>
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -460,7 +452,7 @@ const styles = StyleSheet.create({
     },
     Cardadd: {
         borderRadius: 10,
-        marginVertical: 10,
+        marginBottom: 10,
         flexDirection: "row",
         borderWidth: 1,
         paddingHorizontal: 10,

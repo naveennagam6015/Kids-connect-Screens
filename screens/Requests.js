@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     cancelButtonContainer: {
         position: 'absolute',
         top: 15,
-        right: 15,
+        right: 5,
     },
     containerbg2: {
         paddingHorizontal: 15,
@@ -395,8 +395,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         flexDirection: 'row',
         textAlign: 'center',
-        borderWidth: 1.5,
-        borderColor: color.primary,
         justifyContent: 'center',
         backgroundColor: color.primary,
         paddingVertical: 18,

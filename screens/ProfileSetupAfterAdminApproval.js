@@ -337,9 +337,6 @@ export default function ProfileSetupAfterAdminApproval() {
     <View style={[styles.container]}>
       <StatusBar />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <TextRegular>
-          Good Evening! <TextBold>Madisson</TextBold>
-        </TextRegular>
         <TextBold style={[styles.Headingtext]}>
           Let’s Complete your Profile{" "}
         </TextBold>
@@ -428,8 +425,7 @@ export default function ProfileSetupAfterAdminApproval() {
             <Icon name="cancel" size={30} color={color.neutral[300]} />
           </TouchableOpacity>
           <View
-            style={{ alignItems: "center", marginVertical: 10 }}
-          >
+            style={{ alignItems: "center", marginVertical: 10 }}>
             <Image
               style={[styles.profilepic]}
               source={require("../assets/images/user_placeholder.png")}
@@ -453,12 +449,6 @@ export default function ProfileSetupAfterAdminApproval() {
               <View style={styles.cameracontainerbg}>
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                   <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
-                  {/* <TouchableOpacity
-                    style={{ alignSelf: "flex-end" }}
-                    onPress={() => setCameraModal(!cameramodal)}
-                  >
-                    <TextBold style={{ marginBottom: 30, fontSize: 18 }}>Close</TextBold>
-                  </TouchableOpacity> */}
                   <TouchableOpacity
                     onPress={() => setCameraModal(!cameramodal)}
                     style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
@@ -616,51 +606,6 @@ export default function ProfileSetupAfterAdminApproval() {
       >
         <View style={styles.topDummy} />
         <View style={[styles.containerbg]}>
-          {/* <TextBold>SSN Number</TextBold>
-          <TextInput
-            style={styles.inputBox}
-            placeholderTextColor={styles.textinputcolor}
-            placeholder="Enter 6 digit SSN number"
-            onChangeText={(e) => setSsn(e)}
-          />
-          <TextBold>Upload SSN Image</TextBold>
-          <View style={styles.imageContainer}>
-            {!image && (
-              <Pressable style={styles.uploadButton} onPress={pickImage}>
-                <TextMedium style={styles.uploadButtonText}>Upload</TextMedium>
-              </Pressable>
-            )}
-            {image && (
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignSelf: "center",
-                }}
-              >
-                <TextMedium style={styles.imageText}>{imageName}</TextMedium>
-                <FontAwesome
-                  name="trash"
-                  size={24}
-                  color={color.error[300]}
-                  onPress={() => setImage(null)}
-                />
-              </View>
-            )}
-
-            {image && (
-              <Image
-                source={{ uri: image }}
-                style={{ width: 170, height: 100, borderRadius: 8 }}
-              />
-            )}
-            {!image && (
-              <Image
-                source={require("../assets/images/ssnplaceholder.webp")}
-                style={{ width: 170, height: 100, borderRadius: 8 }}
-              />
-            )}
-          </View> */}
           <TextBold style={{ marginTop: 15 }}>Relationship</TextBold>
           <Dropdown
             style={styles.dropdownStyle}
@@ -718,7 +663,6 @@ export default function ProfileSetupAfterAdminApproval() {
               {genderError}
             </TextBold>
           )}
-
           <TextBold>Address</TextBold>
           <TextInput
             style={styles.textArea}
@@ -965,7 +909,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   container: {
-    paddingHorizontal: 15,
+    padding: 15,
     justifyContent: "center",
   },
   containerbg: {
