@@ -751,289 +751,291 @@ export default function Home() {
   );
 }
 const styles = StyleSheet.create({
-  bgyellow: {
-    backgroundColor: color.accent,
-    padding: 10,
-  },
-  modalcontainer: {
-    paddingHorizontal: 20,
-    justifyContent: "center",
-    // backgroundColor: color.neutral[100]
-  },
-  textnetural: {
-    color: color.neutral[500],
-    marginVertical: 2,
-  },
-  Tags2: {
-    backgroundColor: color.white,
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 18,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    margin: 4,
-  },
-  Tags: {
-    borderColor: color.accent,
-    borderWidth: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 18,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    margin: 4,
-  },
-  Buttoncard: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    backgroundColor: color.neutral[100],
-    paddingVertical: 18,
-  },
-  Buttoncard2: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    borderWidth: 1.5,
-    borderColor: color.primary,
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 18,
-    marginVertical: 16,
-  },
-  Buttoncardinner: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    borderWidth: 1.5,
-    borderColor: color.accent,
-    paddingVertical: 16,
-    marginVertical: 16,
-  },
-  Buttoncardinner2: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    borderWidth: 1.5,
-    borderColor: color.primary,
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 16,
-    marginVertical: 16,
-  },
-  Buttoncardwidth: {
-    width: "48%",
-  },
-  Buttoncardfullwidth: {
-    width: "100%",
-  },
-  cancelButtonContainer: {
-    position: "absolute",
-    top: 15,
-    right: 15,
-  },
-  containerbg2: {
-    paddingHorizontal: 15,
-    backgroundColor: color.white,
-    justifyContent: "center",
-    paddingBottom: 10,
-  },
-  containerbg: {
-    paddingHorizontal: 15,
-    backgroundColor: color.white,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    justifyContent: "center",
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 30,
-      },
-    }),
-  },
-  topDummy: {
-    flex: 1,
-    opacity: 0,
-  },
-  btnPrimaryTextsize: {
-    fontSize: 16,
-  },
-  slide: {
-    width: screenWidth,
-    height: 180,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "skyblue",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
-  },
-  activeprofilr: {
-    borderWidth: 3,
-    borderColor: color.primary,
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-      },
-      android: {
-        elevation: 5,
-      },
-    }),
-  },
-  dot: {
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  arrow: {
-    marginLeft: 2,
-    marginTop: 3,
-  },
-  justiffsb: {
-    justifyContent: "space-between",
-  },
-  Buttoncardmoredetails: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 16,
-  },
-  Buttoncard: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    borderWidth: 1.5,
-    borderColor: color.accent,
-    paddingVertical: 16,
-    marginVertical: 16,
-  },
-  Buttoncardnodata: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    borderWidth: 1.5,
-    borderColor: color.primary,
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-  },
-  Buttoncard2: {
-    borderRadius: 8,
-    alignSelf: "center",
-    flexDirection: "row",
-    textAlign: "center",
-    borderWidth: 1.5,
-    borderColor: color.primary,
-    justifyContent: "center",
-    backgroundColor: color.primary,
-    paddingVertical: 16,
-    marginVertical: 16,
-  },
-  Buttoncardwidth: {
-    width: "48%",
-  },
-  Buttoncardwidth3: {
-    width: "50%",
-    marginRight: 10,
-  },
-  Buttoncardwidth2: {
-    width: "38%",
-    marginRight: 10,
-  },
-  childrenname: {
-    fontSize: 18,
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-  },
-  profilepic: {
-    marginRight: 8,
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-  },
-  innercardnodata: {
-    backgroundColor: color.neutral[100],
-    justifyContent: "space-between",
-    padding: 14,
-    borderTopRightRadius: 8,
-    borderTopLeftRadius: 8,
-  },
-  innercard1: {
-    backgroundColor: color.accent,
-    justifyContent: "space-between",
-    padding: 14,
-    borderTopRightRadius: 8,
-    borderTopLeftRadius: 8,
-  },
-  innercard2: {
-    justifyContent: "space-between",
-    padding: 14,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
-  },
-  flexrow: {
-    flexDirection: "row",
-  },
-  innerbtn1: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: color.primary,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    marginHorizontal: 5,
-  },
-  innerbtn: {
-    alignItems: "center",
-    marginHorizontal: 5,
-    borderWidth: 1,
-    borderColor: color.primary,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-  },
-  Headingtext: {
-    fontSize: 20,
-  },
-  Cardnodata: {
-    borderRadius: 10,
-    marginVertical: 10,
-    backgroundColor: color.neutral[200],
-  },
-  Card: {
-    borderRadius: 10,
-    marginVertical: 10,
-    borderWidth: 1,
-    borderColor: color.accent,
-    backgroundColor: color.white,
-  },
-  container: {
-    padding: 15,
-    justifyContent: "center",
-  },
+    bgyellow: {
+        backgroundColor: color.accent,
+        padding: 10
+    },
+    modalcontainer: {
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        // backgroundColor: color.neutral[100]
+    },
+    textnetural: {
+        color: color.neutral[500],
+        marginVertical: 2
+    },
+    Tags2: {
+        backgroundColor: color.white,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 18,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        margin: 4
+    },
+    Tags: {
+        borderColor: color.accent,
+        borderWidth: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 18,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        margin: 4
+    },
+    Buttoncard: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        backgroundColor: color.neutral[100],
+        paddingVertical: 18,
+    },
+    Buttoncard2: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 18,
+        marginVertical: 16,
+    },
+    Buttoncardinner: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardinner2: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardwidth: {
+        width: '48%'
+    },
+    Buttoncardfullwidth: {
+        width: '100%'
+    },
+    cancelButtonContainer: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+    },
+    containerbg2: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        justifyContent: 'center',
+        paddingBottom: 10
+    },
+    containerbg: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: 'center',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    topDummy: {
+        flex: 1,
+        opacity: 0
+    },
+    btnPrimaryTextsize: {
+        fontSize: 16,
+    },
+    slide: {
+        width: screenWidth,
+        height: 180,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'skyblue',
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    activeprofilr: {
+        borderWidth: 3,
+        borderColor: color.primary,
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
+    },
+    dot: {
+        alignItems: "center",
+        justifyContent: 'flex-end'
+    },
+    arrow: {
+        marginLeft: 2,
+        marginTop: 3
+    },
+    justiffsb: {
+        justifyContent: 'space-between'
+    },
+    Buttoncardmoredetails: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 16,
+    },
+    Buttoncard: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardnodata: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        marginBottom: 10,
+    },
+    Buttoncard2: {
+        borderRadius: 8,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        textAlign: 'center',
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: 'center',
+        backgroundColor: color.primary,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardwidth: {
+        width: '48%'
+    },
+    Buttoncardwidth3: {
+        width: '50%',
+        marginRight: 10
+    },
+    Buttoncardwidth2: {
+        width: '38%',
+        marginRight: 10
+    },
+    childrenname: {
+        fontSize: 18,
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
+    },
+    profilepic: {
+        marginRight: 8,
+        width: 80,
+        height: 80,
+        borderRadius: 50,
+    },
+    innercardnodata: {
+        backgroundColor: color.neutral[100],
+        justifyContent: 'space-between',
+        padding: 14,
+        borderTopRightRadius: 8,
+        borderTopLeftRadius: 8,
+    },
+    innercard1: {
+        backgroundColor: color.accent,
+        justifyContent: 'space-between',
+        padding: 14,
+        borderTopRightRadius: 8,
+        borderTopLeftRadius: 8,
+    },
+    innercard2: {
+        justifyContent: 'space-between',
+        padding: 14,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+    },
+    flexrow: {
+        flexDirection: 'row',
+    },
+    innerbtn1: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: color.primary,
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        marginHorizontal: 5,
+
+    },
+    innerbtn: {
+        alignItems: 'center',
+        marginHorizontal: 5,
+        borderWidth: 1,
+        borderColor: color.primary,
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+    },
+    Headingtext: {
+        fontSize: 20
+    },
+    Cardnodata: {
+        borderRadius: 10,
+        marginVertical: 10,
+        backgroundColor: color.neutral[200],
+    },
+    Card: {
+        borderRadius: 10,
+        marginVertical: 10,
+        borderWidth: 1,
+        borderColor: color.accent,
+        backgroundColor: color.white,
+    },
+    container: {
+        padding: 15,
+        marginBottom: 40,
+        justifyContent: 'center'
+    },
 });

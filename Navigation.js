@@ -116,7 +116,7 @@ function BottomNavigation() {
 
     return (
         <>
-            <BottomTab.Navigator
+            <BottomTab.Navigator style={{ padding: 50 }}
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ color, focused, size }) => {
                         let iconName;
