@@ -116,7 +116,7 @@ function BottomNavigation() {
 
     return (
         <>
-            <BottomTab.Navigator style={{ padding: 50 }}
+            <BottomTab.Navigator 
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ color, focused, size }) => {
                         let iconName;
@@ -143,6 +143,7 @@ function BottomNavigation() {
                         backgroundColor: 'transparent',
                         elevation: 0,
                         shadowOpacity: 0,
+                        padding: 5
                     },
                     tabBarBackground: () => (
                         <BlurView

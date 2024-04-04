@@ -86,7 +86,7 @@ export default function Home() {
         sliderWidth={screenWidth}
         itemWidth={screenWidth}
         loop
-        loopClonesPerSide={data.length}
+        // loopClonesPerSide={data.length}
         autoplay
         autoplayInterval={3000}
         onSnapToItem={(index) => setActiveIndex(index)}
