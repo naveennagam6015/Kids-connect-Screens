@@ -910,6 +910,7 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 15,
+        marginBottom: 40,
         justifyContent: 'center'
     },
 });
