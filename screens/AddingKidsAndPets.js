@@ -21,9 +21,74 @@ export default function AddingKidsAndPets() {
         setKidopen(false);
         setPetopen(false);
     };
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [description, setDescription] = useState("");
+
+    const [firstNameError, setFirstNameError] = useState("");
+    const [lastNameError, setLastNameError] = useState("");
+    const [relationshipError, setRelationshipError] = useState("");
+    const [descriptionError, setDescriptionError] = useState("");
 
 
 
+
+
+    /*============================================Validation Start===========================================*/
+
+  // validation of form
+  // done by Anita
+
+  const validateFirstName = (firstName, setFirstNameError) => {
+    const regex = /^[a-zA-Z ]+$/;
+    if (!regex.test(firstName)) {
+      setFirstNameError("Numbers are not allowed in the name field");
+      return false;
+    } else if (firstName.trim() === "") {
+      setFirstNameError("Name is required");
+      return false;
+    } else {
+      setFirstNameError("");
+      return true;
+    }
+  };
+
+  const validateLastName = (lastname, setLastNameErr) => {
+    const regex = /^[a-zA-Z ]+$/;
+    if (!regex.test(lastname)) {
+      setLastNameErr("Numbers are not allowed in the name field");
+      return false;
+    } else if (lastname.trim() === "") {
+      setLastNameErr("Name is required");
+      return false;
+    } else {
+      setLastNameErr("");
+      return true;
+    }
+  };
+
+  const validateRelationShip = (selectedRelationship, setRelationshipError) => {
+    if (!selectedRelationship) {
+        setRelationshipError("Relationship selection is required");
+        return false;
+    } else {
+        setRelationshipError("");
+        return true;
+    }
+};
+
+const validateDescription = (description, setDescriptionError) => {
+    if (description.trim() === "") {
+      setDescriptionError("Description is required");
+      return false;
+    } else {
+        setDescriptionError("");
+      return true;
+    }
+  };
+
+
+  
 
     return (
         <ScrollView style={[styles.container]}>
@@ -114,9 +179,32 @@ export default function AddingKidsAndPets() {
                             <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                         </View>
                         <TextBold>First Name</TextBold>
-                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextInput
+                            style={styles.inputBox}
+                            placeholder="Enter your first name"
+                            onChangeText={(e) => {
+                                setFirstName(e);
+                                validateFirstName(e, setFirstNameError);
+                            }}
+                        />
+                        {firstNameError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {firstNameError}
+                            </TextBold>
+                        )}
                         <TextBold>Last Name</TextBold>
-                        <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
+                        <TextInput style={styles.inputBox}
+                         placeholder="Enter your last name"
+                         onChangeText={(e) => {
+                            setLastName(e);
+                            validateLastName(e, setLastNameError);
+                          }}
+                         />
+                          {lastNameError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {lastNameError}
+                            </TextBold>
+                            )}
                         <TextBold>Relationship</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
@@ -128,11 +216,29 @@ export default function AddingKidsAndPets() {
                             placeholder="Relationship"
                             searchPlaceholder="Search..."
                             onChange={(item) => {
-                                setRelationship(item.value)
-                            }}
-                        />
+                                setRelationship(item.value);
+                                validateRelationShip(item.value, setRelationshipError);
+                              }}
+                            />
+                            {relationshipError !== "" && (
+                                <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {relationshipError}
+                                </TextBold>
+                            )}
                         <TextBold>Description</TextBold>
-                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                        <TextInput style={styles.textArea}
+                         multiline={true} numberOfLines={5} 
+                         placeholder="Enter your Description"
+                         onChangeText={(e) => {
+                            setDescription(e);
+                            validateDescription(e, setDescriptionError);
+                          }}
+                          />
+                          {descriptionError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {descriptionError}
+                            </TextBold>
+                            )}
                     </View>
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
@@ -145,17 +251,16 @@ export default function AddingKidsAndPets() {
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                                 </Pressable>
                             </View> */}
-                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
-                                <Pressable
+                                <TouchableOpacity
                                     onPress={() => {
                                         setKidopen(!kidopen);
                                         setOpen(!open);
                                     }}
-                                    style={[styles.flexrow]}>
+                                    style={[styles.flexrow, styles.Buttoncardinner2, styles.Buttoncardfullwidth]}>
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                                </Pressable>
-                            </View>
+                                </TouchableOpacity>
+                            
                         </View>
                     </View>
                 </View>

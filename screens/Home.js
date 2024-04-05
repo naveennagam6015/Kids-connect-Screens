@@ -39,16 +39,16 @@ export default function Home() {
 
         axios({
             method: 'get',
-            url: `${BASEURL}api/allBanners`,
+            url: `http://localhost:8000/api/allBanners`,
             headers: {
-                Accept: '*/*'
+                Accept: '*/*',
             }
         }).then(res => {
             const newBannerData = res.data.data.map((banner) => ({
                 image: banner.image
             }));
             setData(newBannerData);
-            console.log(res.data.data);
+            console.log(res.data);
         }).catch(err => {
             console.log(err);
         });
