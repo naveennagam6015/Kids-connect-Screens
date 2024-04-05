@@ -143,6 +143,28 @@ export default function AddingKidsAndPets() {
                         />
                         <TextBold>Description</TextBold>
                         <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                        <TextBold>Interests</TextBold>
+                        <View style={styles.textAreaInterests} >
+                            <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                </View>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Science Project</TextRegular>
+                                </View>
+                                <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusaddInterests]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+
                     </View>
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
@@ -162,7 +184,7 @@ export default function AddingKidsAndPets() {
                                         setOpen(!open);
                                     }}
                                     style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                                 </Pressable>
                             </View>
@@ -225,7 +247,7 @@ export default function AddingKidsAndPets() {
                                         setOpen(!open);
                                     }}
                                     style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                                 </Pressable>
                             </View>
@@ -239,6 +261,7 @@ export default function AddingKidsAndPets() {
     )
 }
 const styles = StyleSheet.create({
+
     Buttoncardfullwidth: {
         width: '100%'
     },
@@ -283,7 +306,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     Tags: {
-        marginTop: 8,
         borderColor: color.accent,
         borderWidth: 1,
         flexDirection: 'row',
@@ -301,6 +323,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: color.neutral[300],
         backgroundColor: color.white,
+    },
+    textAreaInterests: {
+        marginVertical: 5,
+        justifyContent: "flex-start",
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 8,
+        width: '100%',
+        marginBottom: 16
     },
     textArea: {
         marginVertical: 5,
@@ -424,6 +457,14 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: "center",
         alignSelf: "center",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
+    imageplusaddInterests: {
+        padding: 5,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
         borderRadius: 100,
         marginRight: 10,
         backgroundColor: color.accent

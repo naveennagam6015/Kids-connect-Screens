@@ -235,6 +235,8 @@ export default function Login() {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+            // onPress={() => navigation.navigate('ProfileEdit')}
+
             // onPress={LoginFunctionality}
             >
                 <TextMedium style={styles.btnText}>Direct Login</TextMedium>
