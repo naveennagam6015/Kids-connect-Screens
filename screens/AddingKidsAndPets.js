@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from "react";
-// import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Platform, Image, Modal, TextInput, Pressable, TouchableOpacity, ScrollView } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
-import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
+import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
     const [openpets, setOpenpets] = useState(false);
     const [kidopen, setKidopen] = useState(false);
-    const [petopen, setPetopen] = useState(false);
-    const [modalopen, setModalopen] = useState(false);
-    const [gender, setGender] = useState([
-        { label: "Male", value: "1" },
-        { label: "Female", value: "2" },
-        { label: "Others", value: "0" },
-      ]);
+    // const [petopen, setPetopen] = useState(false);
     const [relationship, setRelationship] = useState([
+        { label: 'Child', value: '1' },
+        { label: 'Sibling', value: '2' },
+        { label: 'Friend', value: '0' }
+    ]);
+    const [gender, setGender] = useState([
+        { label: 'Child', value: '1' },
+        { label: 'Sibling', value: '2' },
+        { label: 'Friend', value: '0' }
+    ]);
+    const [breed, setBreed] = useState([
         { label: 'Child', value: '1' },
         { label: 'Sibling', value: '2' },
         { label: 'Friend', value: '0' }
@@ -32,307 +33,6 @@ export default function AddingKidsAndPets() {
         setKidopen(false);
         setPetopen(false);
     };
-    const [roles, setRoles] = useState([{ label: "", value: "" }]);
-    const [email, setEmail] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [ssn, setSsn] = useState("");
-    const [pwd, setPwd] = useState("");
-    const [about, setAbout] = useState("");
-    const [roleId, setRoleId] = useState("");
-    const [dob, setDob] = useState("");
-    const [selectedGender, setSelectedGender] = useState("");
-    const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
-    const [cameramodal, setCameraModal] = useState(false);
-    const [firstNameError, setFirstNameError] = useState("");
-    const [lastNameError, setLastNameError] = useState("");
-    const [phoneError, setPhoneError] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [relationshipError, setRelationshipError] = useState("");
-    const [dobError, setDobError] = useState("");
-    const [genderError, setGenderError] = useState("");
-    const [addressError, setAddressError] = useState("");
-    const [passwordErr, setPasswordErr] = useState("");
-
-
-
-
-
-    /*============================================Validation Start===========================================*/
-
-  // validation of form
-  // done by Anita
-
-  const validateEmail = (email, setMailError) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email.trim() === "") {
-      setMailError("Email is required");
-      return false;
-    } else if (!regex.test(email)) {
-      setMailError("Enter a valid email id");
-      return false;
-    } else {
-      setMailError("");
-      return true;
-    }
-  };
-
-  const validateFirstName = (firstName, setFirstNameError) => {
-    const regex = /^[a-zA-Z ]+$/;
-    if (!regex.test(firstName)) {
-      setFirstNameError("Numbers are not allowed in the name field");
-      return false;
-    } else if (firstName.trim() === "") {
-      setFirstNameError("Name is required");
-      return false;
-    } else {
-      setFirstNameError("");
-      return true;
-    }
-  };
-
-  const validateLastName = (lastname, setLastNameErr) => {
-    const regex = /^[a-zA-Z ]+$/;
-    if (!regex.test(lastname)) {
-      setLastNameErr("Numbers are not allowed in the name field");
-      return false;
-    } else if (lastname.trim() === "") {
-      setLastNameErr("Name is required");
-      return false;
-    } else {
-      setLastNameErr("");
-      return true;
-    }
-  };
-
-  const validateMobileNumber = (mobile, setMobileError) => {
-    const regex = /^[0-9]{10}$/;
-    if (!regex.test(mobile)) {
-      setMobileError("Mobile number should be a 10-digit number");
-      return false;
-    } else if (mobile.trim() === "") {
-      setMobileError("Mobile number is required");
-      return false;
-    } else {
-      setMobileError("");
-      return true;
-    }
-  };
-
-  const validatePassword = (password, setPasswordErr) => {
-    const minLength = 8;
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasLowercase = /[a-z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
-
-    if (password.length < minLength) {
-      setPasswordErr("Password should be at least 8 characters long");
-      return false;
-    } else if (!hasUppercase) {
-      setPasswordErr("Password should contain at least one uppercase letter");
-      return false;
-    } else if (!hasLowercase) {
-      setPasswordErr("Password should contain at least one lowercase letter");
-      return false;
-    } else if (!hasNumber) {
-      setPasswordErr("Password should contain at least one number");
-      return false;
-    } else if (!hasSpecialChar) {
-      setPasswordErr("Password should contain at least one special character");
-      return false;
-    } else {
-      setPasswordErr("");
-      return true;
-    }
-  };
-
-  // const validateRole = (selectedRole, setRoleErr) => {
-  //     if (!selectedRole) {
-  //         setRoleErr('Role is required');
-  //         return false;
-  //     }
-  //     else {
-  //         setRoleErr('');
-  //         return true;
-  //     }
-  // };
-
-  const validateDob = (dob, setDobErr) => {
-    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-
-    if (!regex.test(dob)) {
-      setDobErr("Please enter a valid date in the format DD/MM/YYYY");
-      return false;
-    } else {
-      setDobErr("");
-      return true;
-    }
-  };
-
-  const validateGender = (selectedGender, setGenderErr) => {
-    if (!selectedGender) {
-      setGenderErr("Gender is required");
-      return false;
-    } else {
-      setGenderErr("");
-      return true;
-    }
-  };
-
-  const validateAddress = (address, setAddressErr) => {
-    if (!address.trim()) {
-      setAddressErr("Address is required");
-      return false;
-    } else {
-      setAddressErr("");
-      return true;
-    }
-  };
-
-  /*============================================Validation End===========================================*/
-
-  /*=============================================Camera Permission========================================*/
-
-  useEffect(() => {
-    (async () => {
-      const galleryStatus =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      setHasGalleryImagePermission(galleryStatus.status === "granted");
-    })();
-    loadImages();
-  }, []);
-
-  const loadImages = async () => {
-    await ensureDirExists();
-    const files = await FileSystem.readDirectoryAsync(imgDir);
-    if (files.length > 0) {
-      setImage(files.map((f) => imgDir + f));
-    }
-  };
-
-  const OpenCamera = async (useLibrary) => {
-    let result;
-    // if (!useLibrary) {
-    await ImagePicker.getCameraPermissionsAsync();
-
-    result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 1,
-    });
-    // }
-
-    if (!result.canceled) {
-      // Extracting the filename from the local URI
-      const filename =
-        Platform.OS === "android"
-          ? result.assets[0].uri.split("/").pop()
-          : result.assets[0].uri.split("/").pop().split(".")[0];
-
-      // console.log(result.assets[0].uri);
-      // setImage(result.assets[0].uri);
-      console.log(result);
-      saveImage(result.assets[0].uri);
-    }
-  };
-
-  /*==================================================Camera permission functionality end========================================= */
-
-  /*===================================================Upload Image functionality==================================================== */
-
-  const saveImage = async (uri) => {
-    await ensureDirExists();
-    const fileName = new Date().getTime() + ".jpg";
-    const dest = imgDir + fileName;
-    await FileSystem.copyAsync({ from: uri, to: dest });
-    setImage([...image, dest]);
-
-    try {
-      const fileName = uri.split("/").pop();
-      const base64Credentials = base64Encode(
-        "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
-      );
-      const formData = new FormData();
-      formData.append("file", {
-        uri: uri,
-        name: fileName,
-        type: "image/jpeg",
-      });
-
-      setButtonLoading(true);
-      // setGalleryLoading(true)
-      const response = await fetch(`${BASEURL}wp-json/wp/v2/media`, {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${base64Credentials}`,
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Upload to WordPress successful:", responseData);
-        console.log(responseData.source_url);
-        if (isPickingImage) {
-          setUploadImage((prevUploadImage) => [
-            ...prevUploadImage,
-            responseData.source_url,
-          ]);
-        } else {
-          setGalleryImages((prevUploadImage) => [
-            ...prevUploadImage,
-            responseData.source_url,
-          ]);
-        }
-      } else {
-        console.error(
-          "Upload to WordPress failed with status:",
-          response.status
-        );
-      }
-    } catch (error) {
-      console.error("Error uploading image to WordPress:", error);
-    } finally {
-      setButtonLoading(false);
-      // setGalleryLoading(false);
-      setIsPickingImage(false);
-    }
-  };
-
-  /*========================================================Image Upload Functionality end====================================== */
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      // aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-      const filePath = result.assets[0].uri;
-      const pathSegments = filePath.split("/");
-      const filename = pathSegments[pathSegments.length - 1];
-      setImageName(filename);
-    }
-  };
-
-  function SubmitData() {
-    axios({
-      method: "post",
-      url: `${BASEURL}`,
-      data: {},
-    });
-  }
-
-  
 
     return (
         <ScrollView style={[styles.container]}>
@@ -401,7 +101,7 @@ export default function AddingKidsAndPets() {
                 </View>
                 <View style={{ alignItems: 'center', flexDirection: "row", marginHorizontal: 10 }}>
                     <View style={{ alignItems: "center", justifyContent: "center" }}>
-                        <TouchableOpacity onPress={() => setOpenpets(!open)} style={[styles.imageplusadd]}>
+                        <TouchableOpacity onPress={() => setOpenpets(!openpets)} style={[styles.imageplusadd]}>
                             <AntDesign name="plus" size={30} color={color.neutral[500]} />
                         </TouchableOpacity>
                         <TextBold>Add</TextBold>
@@ -418,308 +118,166 @@ export default function AddingKidsAndPets() {
                 <TextRegular style={[styles.Skip,]}>Skip for now</TextRegular>
                 <MaterialIcons name="keyboard-double-arrow-right" size={24} color={color.fontcolor} />
             </TouchableOpacity>
-            <Modal animationType="slide" transparent={true} visible={open}>
-        <View style={styles.topDummy} />
-        <View style={[styles.containerbg]}>
-          <TouchableOpacity
-            onPress={() => { setOpen(!open); }}
-            style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
-            <Icon name="cancel" size={30} color={color.neutral[300]} />
-          </TouchableOpacity>
-          <View
-            style={{ alignItems: "center", marginVertical: 10 }}>
-            <Image
-              style={[styles.profilepic]}
-              source={require("../assets/images/user_placeholder.png")}
-            />
-            <TouchableOpacity
-              style={{
-                position: "absolute",
-                bottom: "2%",
-                right: "38%",
-                backgroundColor: "lightgray",
-                borderRadius: 50,
-                padding: 10,
-              }}
-              onPress={() => setCameraModal(!cameramodal)}
-            >
-              <Fontisto name="camera" size={20} color="black" />
-            </TouchableOpacity>
-          </View>
-          <Modal animationType="slide" transparent={true} visible={cameramodal}>
-            <View style={styles.topCamera}>
-              <View style={styles.cameracontainerbg}>
-                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                  <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
-                  <TouchableOpacity
-                    onPress={() => setCameraModal(!cameramodal)}
-                    style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
-                    <Icon name="cancel" size={30} color={color.neutral[300]} />
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.cameraModal}>
-                  <View>
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={open}>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
                     <TouchableOpacity
-                      style={[{ alignSelf: "center" },]}
-                      onPress={OpenCamera}
-                    >
-                      {/* <Fontisto name="camera" size={24} color="black" /> */}
-                      <Image
-                        source={require("../assets/images/Group 70.png")}
-                        style={{ width: 50, height: 40 }}
-                      />
+                        onPress={() => { setOpen(!open); }}
+                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
                     </TouchableOpacity>
-                    <TextRegular style={{ alignSelf: "center" }}>
-                      Camera
-                    </TextRegular>
-                  </View>
-                  <View>
-                    <TouchableOpacity
-                      style={[{ alignSelf: "center" },]}
-                      onPress={pickImage}
-                    >
-                      {/* <Fontisto name="picture" size={24} color="black" /> */}
-                      <Image
-                        source={require("../assets/images/Group 71.png")}
-                        style={{ width: 60, height: 40 }}
-                      />
-                    </TouchableOpacity>
-                    <TextRegular style={{ alignSelf: "center" }}>
-                      Gallery
-                    </TextRegular>
-                  </View>
+                    <View>
+                        <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                        </View>
+                        <TextBold>First Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextBold>Last Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
+                        <TextBold>Relationship</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={relationship}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Relationship"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setRelationship(item.value)
+                            }}
+                        />
+                        <TextBold>Description</TextBold>
+                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                        <TextBold>Interests</TextBold>
+                        <View style={styles.textAreaInterests} >
+                            <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                </View>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Science Project</TextRegular>
+                                </View>
+                                <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
 
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusaddInterests]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+
+                    </View>
+                    <View style={[styles.modalcontainer]}>
+                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                            {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
+                                </Pressable>
+                            </View> */}
+                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setKidopen(!kidopen);
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
+                                    <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                                </Pressable>
+                            </View>
+                        </View>
+                    </View>
                 </View>
+            </Modal>
 
-              </View>
-            </View>
-          </Modal>
-          <ScrollView>
-            <TextBold>First Name</TextBold>
-            <TextInput
-              style={styles.inputBox}
-              placeholder="Enter your first name"
-              onChangeText={(e) => {
-                setFirstName(e);
-                validateFirstName(e, setFirstNameError);
-              }}
-            />
-            {firstNameError !== "" && (
-              <TextBold style={{ marginBottom: 16, color: "red" }}>
-                {firstNameError}
-              </TextBold>
-            )}
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={openpets}>
+                <View style={styles.topDummy} />
+                <View style={[styles.containerbg]}>
+                    <TouchableOpacity
+                        onPress={() => { setOpenpets(!openpets); }}
+                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                        <Icon name="cancel" size={30} color={color.neutral[300]} />
+                    </TouchableOpacity>
+                    <View>
+                        <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/dogprofile.jpg')} />
+                        </View>
+                        <TextBold>Name</TextBold>
+                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextBold>Gender</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={gender}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Gender"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setGender(item.value)
+                            }}
+                        />
+                        <TextBold>Breed</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={breed}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Breed"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setBreed(item.value)
+                            }}
+                        />
+                        <TextBold>Description</TextBold>
+                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                    </View>
+                    <View style={[styles.modalcontainer]}>
+                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                            {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
+                                </Pressable>
+                            </View> */}
+                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setKidopen(!kidopen);
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
+                                    <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                                </Pressable>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
 
-            <TextBold>Last Name</TextBold>
-            <TextInput
-              style={styles.inputBox}
-              placeholder="Enter your last name"
-              onChangeText={(e) => {
-                setLastName(e);
-                validateLastName(e, setLastNameError);
-              }}
-            />
-            {lastNameError !== "" && (
-              <TextBold style={{ marginBottom: 16, color: "red" }}>
-                {lastNameError}
-              </TextBold>
-            )}
-
-            <TextBold>Phone Number</TextBold>
-            <TextInput
-              style={styles.inputBox}
-              placeholder="Enter your phone number"
-              keyboardType="numeric"
-              onChangeText={(e) => {
-                setPhone(e);
-                validateMobileNumber(e, setPhoneError);
-              }}
-            />
-            {phoneError !== "" && (
-              <TextBold style={{ marginBottom: 16, color: "red" }}>
-                {phoneError}
-              </TextBold>
-            )}
-
-            <TextBold>Email Address</TextBold>
-            <TextInput
-              style={styles.inputBox}
-              placeholder="Enter your mail"
-              onChangeText={(e) => {
-                setEmail(e);
-                validateEmail(e, setEmailError);
-              }}
-            />
-            {emailError !== "" && (
-              <TextBold style={{ marginBottom: 16, color: "red" }}>
-                {emailError}
-              </TextBold>
-            )}
-
-            <TextBold>Password</TextBold>
-            <TextInput
-              style={styles.inputBox}
-              placeholder="Enter your password"
-              onChangeText={(e) => {
-                setEmail(e);
-                validatePassword(e, setPasswordErr);
-              }}
-            />
-            {passwordErr !== "" && (
-              <TextBold style={{ marginBottom: 16, color: "red" }}>
-                {passwordErr}
-              </TextBold>
-            )}
-            <View style={[styles.modalcontainer]}>
-              <View
-                style={[styles.flexrow, { justifyContent: "space-between" }]}
-              >
-
-                <TouchableOpacity
-                  onPress={() => {
-                    setModalopen(!modalopen);
-                    setOpen(!open);
-                  }}
-                  style={[
-                    styles.flexrow,
-                    styles.Buttoncardinner2,
-                    styles.Buttoncardfullwidth,
-                  ]}
-                >
-                  <TextMedium style={[styles.btnPrimaryTextsize]}>
-                    Next
-                  </TextMedium>
-                  <AntDesign
-                    style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
-                    name="right"
-                    size={16}
-                    color={color.fontcolor}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </ScrollView>
-        </View>
-      </Modal>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalopen}
-      >
-        <View style={styles.topDummy} />
-        <View style={[styles.containerbg]}>
-          <TextBold style={{ marginTop: 15 }}>Relationship</TextBold>
-          <Dropdown
-            style={styles.dropdownStyle}
-            data={relationship}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder="Relationship"
-            searchPlaceholder="Search..."
-            onChange={(item) => {
-              setRelationship(item.value);
-              validateRelationShip(item.value, setRelationshipError);
-            }}
-          />
-          {relationshipError !== "" && (
-            <TextBold style={{ marginBottom: 16, color: "red" }}>
-              {relationshipError}
-            </TextBold>
-          )}
-
-          <TextBold>Enter D.O.B</TextBold>
-          <TextInput
-            style={styles.inputBox}
-            placeholderTextColor={styles.textinputcolor}
-            placeholder="DD/MM/YYYY"
-            onChangeText={(e) => {
-              setDob(e);
-              validateDob(e, setDobError);
-            }}
-          />
-          {dobError !== "" && (
-            <TextBold style={{ marginBottom: 16, color: "red" }}>
-              {dobError}
-            </TextBold>
-          )}
-
-          <TextBold>Gender</TextBold>
-          <Dropdown
-            style={styles.dropdownStyle}
-            data={gender}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder="Select Gender"
-            searchPlaceholder="Search..."
-            onChange={(item) => {
-              setSelectedGender(item.value);
-              validateGender(item.value, setGenderError);
-            }}
-          />
-          {genderError !== "" && (
-            <TextBold style={{ marginBottom: 16, color: "red" }}>
-              {genderError}
-            </TextBold>
-          )}
-          <TextBold>Address</TextBold>
-          <TextInput
-            style={styles.textArea}
-            multiline={true}
-            numberOfLines={5}
-            placeholder="Enter your current address"
-            onChangeText={(e) => {
-              setAddress(e);
-              validateAddress(e, setAddressError);
-            }}
-          />
-          {addressError !== "" && (
-            <TextBold style={{ marginBottom: 16, color: "red" }}>
-              {addressError}
-            </TextBold>
-          )}
-          <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-            <TouchableOpacity onPress={() => {
-              setModalopen(!modalopen);
-              setOpen(!open);
-            }} style={[styles.Buttoncardinner, styles.Buttoncardwidth]}>
-              <View
-
-                style={[styles.flexrow]}
-              >
-                <TextMedium style={[styles.btnPrimaryTextsize]}>
-                  Back
-                </TextMedium>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                // setOpen(!open)
-                setModalopen(!modalopen);
-                navigation.navigate("AddingKidsAndPets");
-              }}
-              style={[
-                styles.flexrow,
-                styles.Buttoncardinner2,
-                styles.Buttoncardwidth,
-              ]}
-            >
-              <TextMedium style={[styles.btnPrimaryTextsize]}>
-                Add Profile
-              </TextMedium>
-              <AntDesign
-                style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
-                name="right"
-                size={16}
-                color={color.fontcolor}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
         </ScrollView>
 
     )
