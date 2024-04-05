@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Platform, Image, Modal, TextInput, Pressable, TouchableOpacity, ScrollView } from 'react-native'
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
-import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
+import * as ImagePicker from "expo-image-picker";
+
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Entypo } from '@expo/vector-icons';
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -17,10 +20,16 @@ export default function AddingKidsAndPets() {
         { label: 'Sibling', value: '2' },
         { label: 'Friend', value: '0' }
     ]);
-    const [gender, setGender] = useState([
-        { label: 'Child', value: '1' },
-        { label: 'Sibling', value: '2' },
-        { label: 'Friend', value: '0' }
+    const [kidgender, setKidgender] = useState([
+        { label: 'Male', value: '1' },
+        { label: 'Female', value: '2' },
+        { label: 'other', value: '0' }
+    ]);
+
+    const [petgender, setGender] = useState([
+        { label: 'Male', value: '1' },
+        { label: 'Female', value: '2' },
+        { label: 'other', value: '0' }
     ]);
     const [breed, setBreed] = useState([
         { label: 'Child', value: '1' },
@@ -33,6 +42,314 @@ export default function AddingKidsAndPets() {
         setKidopen(false);
         setPetopen(false);
     };
+    const [roles, setRoles] = useState([{ label: "", value: "" }]);
+    const [email, setEmail] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [ssn, setSsn] = useState("");
+    const [pwd, setPwd] = useState("");
+    const [about, setAbout] = useState("");
+    const [roleId, setRoleId] = useState("");
+    const [dob, setDob] = useState("");
+    const [selectedGender, setSelectedGender] = useState("");
+    const [address, setAddress] = useState("");
+    const [description, setDescription] = useState('');
+    const [phone, setPhone] = useState("");
+    const [cameramodal, setCameraModal] = useState(false);
+    const [firstNameError, setFirstNameError] = useState("");
+    const [lastNameError, setLastNameError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [relationshipError, setRelationshipError] = useState("");
+    const [dobError, setDobError] = useState("");
+    const [genderError, setGenderError] = useState("");
+    const [addressError, setAddressError] = useState("");
+    const [passwordErr, setPasswordErr] = useState("");
+    const [descriptionError, setDescriptionError] = useState('');
+
+
+    /*============================================Validation Start===========================================*/
+
+    // validation of form
+    // done by soumya
+
+    const validateEmail = (email, setMailError) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email.trim() === "") {
+            setMailError("Email is required");
+            return false;
+        } else if (!regex.test(email)) {
+            setMailError("Enter a valid email id");
+            return false;
+        } else {
+            setMailError("");
+            return true;
+        }
+    };
+
+    const validateFirstName = (firstName, setFirstNameError) => {
+        const regex = /^[a-zA-Z ]+$/;
+        if (!regex.test(firstName)) {
+            setFirstNameError("Numbers are not allowed in the name field");
+            return false;
+        } else if (firstName.trim() === "") {
+            setFirstNameError("Name is required");
+            return false;
+        } else {
+            setFirstNameError("");
+            return true;
+        }
+    };
+
+    const validateLastName = (lastname, setLastNameErr) => {
+        const regex = /^[a-zA-Z ]+$/;
+        if (!regex.test(lastname)) {
+            setLastNameErr("Numbers are not allowed in the name field");
+            return false;
+        } else if (lastname.trim() === "") {
+            setLastNameErr("Name is required");
+            return false;
+        } else {
+            setLastNameErr("");
+            return true;
+        }
+    };
+
+    const validateMobileNumber = (mobile, setMobileError) => {
+        const regex = /^[0-9]{10}$/;
+        if (!regex.test(mobile)) {
+            setMobileError("Mobile number should be a 10-digit number");
+            return false;
+        } else if (mobile.trim() === "") {
+            setMobileError("Mobile number is required");
+            return false;
+        } else {
+            setMobileError("");
+            return true;
+        }
+    };
+
+    const validatePassword = (password, setPasswordErr) => {
+        const minLength = 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+
+        if (password.length < minLength) {
+            setPasswordErr("Password should be at least 8 characters long");
+            return false;
+        } else if (!hasUppercase) {
+            setPasswordErr("Password should contain at least one uppercase letter");
+            return false;
+        } else if (!hasLowercase) {
+            setPasswordErr("Password should contain at least one lowercase letter");
+            return false;
+        } else if (!hasNumber) {
+            setPasswordErr("Password should contain at least one number");
+            return false;
+        } else if (!hasSpecialChar) {
+            setPasswordErr("Password should contain at least one special character");
+            return false;
+        } else {
+            setPasswordErr("");
+            return true;
+        }
+    };
+
+    // const validateRole = (selectedRole, setRoleErr) => {
+    //     if (!selectedRole) {
+    //         setRoleErr('Role is required');
+    //         return false;
+    //     }
+    //     else {
+    //         setRoleErr('');
+    //         return true;
+    //     }
+    // };
+
+    const validateDob = (dob, setDobErr) => {
+        const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+        if (!regex.test(dob)) {
+            setDobErr("Please enter a valid date in the format DD/MM/YYYY");
+            return false;
+        } else {
+            setDobErr("");
+            return true;
+        }
+    };
+
+    const validateGender = (selectedGender, setGenderErr) => {
+        if (!selectedGender) {
+            setGenderErr("Gender is required");
+            return false;
+        } else {
+            setGenderErr("");
+            return true;
+        }
+    };
+
+    const validateAddress = (address, setAddressErr) => {
+        if (!address.trim()) {
+            setAddressErr("Address is required");
+            return false;
+        } else {
+            setAddressErr("");
+            return true;
+        }
+    };
+
+    const validateDescription = (description) => {
+        if (description.trim() === '') {
+            setDescriptionError('Description is required');
+            return false;
+        } else {
+            setDescriptionError('');
+            return true;
+        }
+    };
+
+    /*============================================Validation End===========================================*/
+
+    /*=============================================Camera Permission========================================*/
+    useEffect(() => {
+        (async () => {
+            const galleryStatus =
+                await ImagePicker.requestMediaLibraryPermissionsAsync();
+            setHasGalleryImagePermission(galleryStatus.status === "granted");
+        })();
+        loadImages();
+    }, []);
+
+    const loadImages = async () => {
+        await ensureDirExists();
+        const files = await FileSystem.readDirectoryAsync(imgDir);
+        if (files.length > 0) {
+            setImage(files.map((f) => imgDir + f));
+        }
+    };
+
+    const OpenCamera = async (useLibrary) => {
+        let result;
+        // if (!useLibrary) {
+        await ImagePicker.getCameraPermissionsAsync();
+
+        result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            quality: 1,
+        });
+        // }
+
+        if (!result.canceled) {
+            // Extracting the filename from the local URI
+            const filename =
+                Platform.OS === "android"
+                    ? result.assets[0].uri.split("/").pop()
+                    : result.assets[0].uri.split("/").pop().split(".")[0];
+
+            // console.log(result.assets[0].uri);
+            // setImage(result.assets[0].uri);
+            console.log(result);
+            saveImage(result.assets[0].uri);
+        }
+    };
+    /*==================================================Camera permission functionality end========================================= */
+
+    /*===================================================Upload Image functionality==================================================== */
+
+    const saveImage = async (uri) => {
+        await ensureDirExists();
+        const fileName = new Date().getTime() + ".jpg";
+        const dest = imgDir + fileName;
+        await FileSystem.copyAsync({ from: uri, to: dest });
+        setImage([...image, dest]);
+
+        try {
+            const fileName = uri.split("/").pop();
+            const base64Credentials = base64Encode(
+                "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
+            );
+            const formData = new FormData();
+            formData.append("file", {
+                uri: uri,
+                name: fileName,
+                type: "image/jpeg",
+            });
+
+            setButtonLoading(true);
+            // setGalleryLoading(true)
+            const response = await fetch(`${BASEURL}wp-json/wp/v2/media`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Basic ${base64Credentials}`,
+                    Accept: "application/json",
+                    "Content-Type": "multipart/form-data",
+                },
+                body: formData,
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log("Upload to WordPress successful:", responseData);
+                console.log(responseData.source_url);
+                if (isPickingImage) {
+                    setUploadImage((prevUploadImage) => [
+                        ...prevUploadImage,
+                        responseData.source_url,
+                    ]);
+                } else {
+                    setGalleryImages((prevUploadImage) => [
+                        ...prevUploadImage,
+                        responseData.source_url,
+                    ]);
+                }
+            } else {
+                console.error(
+                    "Upload to WordPress failed with status:",
+                    response.status
+                );
+            }
+        } catch (error) {
+            console.error("Error uploading image to WordPress:", error);
+        } finally {
+            setButtonLoading(false);
+            // setGalleryLoading(false);
+            setIsPickingImage(false);
+        }
+    };
+
+    /*========================================================Image Upload Functionality end====================================== */
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            // aspect: [4, 3],
+            quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+            const filePath = result.assets[0].uri;
+            const pathSegments = filePath.split("/");
+            const filename = pathSegments[pathSegments.length - 1];
+            setImageName(filename);
+        }
+    };
+
+    function SubmitData() {
+        axios({
+            method: "post",
+            url: `${BASEURL}`,
+            data: {},
+        });
+    }
+
+
 
     return (
         <ScrollView style={[styles.container]}>
@@ -131,12 +448,68 @@ export default function AddingKidsAndPets() {
                     </TouchableOpacity>
                     <View>
                         <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                            <TouchableOpacity
+                                style={{
+                                    position: "absolute",
+                                    bottom: "2%",
+                                    right: "38%",
+                                    backgroundColor: "lightgray",
+                                    borderRadius: 50,
+                                    padding: 8,
+                                }}
+                                onPress={() => setCameraModal(!cameramodal)}
+                            >
+                                <Fontisto name="camera" size={15} color="black" />
+                            </TouchableOpacity>
                         </View>
+                       
                         <TextBold>First Name</TextBold>
-                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextInput style={styles.inputBox}
+                            placeholder="Enter your first name"
+                            onChangeText={(e) => {
+                                setFirstName(e);
+                                validateFirstName(e, setFirstNameError);
+                            }}
+                        />
+                        {firstNameError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {firstNameError}
+                            </TextBold>
+                        )}
                         <TextBold>Last Name</TextBold>
-                        <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
+                        <TextInput style={styles.inputBox}
+                            placeholder="Enter your last name"
+                            onChangeText={(e) => {
+                                setLastName(e);
+                                validateLastName(e, setLastNameError);
+                            }}
+                        />
+                        {lastNameError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {lastNameError}
+                            </TextBold>
+                        )}
+                        <TextBold>Gender</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={kidgender}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Gender"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setSelectedGender(item.value);
+                                validateGender(item.value, setGenderError);
+                            }}
+                        />
+                        {genderError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {genderError}
+                            </TextBold>
+                        )}
                         <TextBold>Relationship</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
@@ -148,16 +521,33 @@ export default function AddingKidsAndPets() {
                             placeholder="Relationship"
                             searchPlaceholder="Search..."
                             onChange={(item) => {
-                                setRelationship(item.value)
+                                setRelationship(item.value);
+                                validateRelationShip(item.value, setRelationshipError);
                             }}
                         />
+                        {relationshipError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {relationshipError}
+                            </TextBold>
+                        )}
                         <TextBold>Description</TextBold>
-                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                        <TextInput style={styles.textArea}
+                            multiline={true} numberOfLines={5}
+                            placeholder="Enter your Description"
+                            onChangeText={(e) => {
+                                setDescription(e);
+                                validateDescription(e);
+                            }}
+                        />
+                        {descriptionError !== '' && (
+                            <Text style={{ color: 'red' }}>{descriptionError}</Text>
+                        )}
                         <TextBold>Interests</TextBold>
                         <View style={styles.textAreaInterests} >
                             <View style={[styles.flexrow, { alignItems: "center" }]}>
                                 <View style={[styles.Tags]}>
                                     <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                    <Entypo name="circle-with-cross" size={12} color="black" />
                                 </View>
                                 <View style={[styles.Tags]}>
                                     <TextRegular>Science Project</TextRegular>
@@ -197,11 +587,65 @@ export default function AddingKidsAndPets() {
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                                 </Pressable>
+
                             </View>
+
                         </View>
+
                     </View>
+
                 </View>
+
             </Modal>
+            <Modal animationType="slide" transparent={true} visible={cameramodal}>
+                            <View style={styles.topCamera}>
+                                <View style={styles.cameracontainerbg}>
+                                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                                        <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
+                                        <TouchableOpacity
+                                            onPress={() => setCameraModal(!cameramodal)}
+                                            style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
+                                            <Icon name="cancel" size={30} color={color.neutral[300]} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.cameraModal}>
+                                        <View>
+                                            <TouchableOpacity
+                                                style={[{ alignSelf: "center" },]}
+                                                onPress={OpenCamera}
+                                            >
+                                                {/* <Fontisto name="camera" size={24} color="black" /> */}
+                                                <Image
+                                                    source={require("../assets/images/Group 70.png")}
+                                                    style={{ width: 50, height: 40 }}
+                                                />
+                                            </TouchableOpacity>
+                                            <TextRegular style={{ alignSelf: "center" }}>
+                                                Camera
+                                            </TextRegular>
+                                        </View>
+                                        <View>
+                                            <TouchableOpacity
+                                                style={[{ alignSelf: "center" },]}
+                                                onPress={pickImage}
+                                            >
+                                                {/* <Fontisto name="picture" size={24} color="black" /> */}
+                                                <Image
+                                                    source={require("../assets/images/Group 71.png")}
+                                                    style={{ width: 60, height: 40 }}
+                                                />
+                                            </TouchableOpacity>
+                                            <TextRegular style={{ alignSelf: "center" }}>
+                                                Gallery
+                                            </TextRegular>
+                                        </View>
+
+                                    </View>
+
+                                </View>
+                            </View>
+                        </Modal>
+                        
 
             <Modal
                 animationType='slide'
@@ -215,15 +659,39 @@ export default function AddingKidsAndPets() {
                         <Icon name="cancel" size={30} color={color.neutral[300]} />
                     </TouchableOpacity>
                     <View>
-                        <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/dogprofile.jpg')} />
+                    <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                            <TouchableOpacity
+                                style={{
+                                    position: "absolute",
+                                    bottom: "2%",
+                                    right: "38%",
+                                    backgroundColor: "lightgray",
+                                    borderRadius: 50,
+                                    padding: 8,
+                                }}
+                                onPress={() => setCameraModal(!cameramodal)}
+                            >
+                                <Fontisto name="camera" size={15} color="black" />
+                            </TouchableOpacity>
                         </View>
                         <TextBold>Name</TextBold>
-                        <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
+                        <TextInput style={styles.inputBox}
+                         placeholder="Enter your first name" 
+                         onChangeText={(e) => {
+                            setFirstName(e);
+                            validateFirstName(e, setFirstNameError);
+                        }}
+                    />
+                    {firstNameError !== "" && (
+                        <TextBold style={{ marginBottom: 16, color: "red" }}>
+                            {firstNameError}
+                        </TextBold>
+                    )}
                         <TextBold>Gender</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
-                            data={gender}
+                            data={petgender}
                             search
                             maxHeight={300}
                             labelField="label"
@@ -231,9 +699,16 @@ export default function AddingKidsAndPets() {
                             placeholder="Gender"
                             searchPlaceholder="Search..."
                             onChange={(item) => {
-                                setGender(item.value)
+                                setSelectedGender(item.value);
+                                validateGender(item.value, setGenderError);
                             }}
                         />
+                        {genderError !== "" && (
+                            <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                {genderError}
+                            </TextBold>
+                        )}
+                  
                         <TextBold>Breed</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
@@ -249,7 +724,17 @@ export default function AddingKidsAndPets() {
                             }}
                         />
                         <TextBold>Description</TextBold>
-                        <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                        <TextInput style={styles.textArea}
+                         multiline={true} numberOfLines={5}
+                          placeholder="Enter your Description"
+                          onChangeText={(e) => {
+                            setDescription(e);
+                            validateDescription(e);
+                        }}
+                    />
+                    {descriptionError !== '' && (
+                        <Text style={{ color: 'red' }}>{descriptionError}</Text>
+                    )}
                     </View>
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
@@ -283,6 +768,246 @@ export default function AddingKidsAndPets() {
     )
 }
 const styles = StyleSheet.create({
+
+
+    cancelButtonContainerpic: {
+        position: "absolute",
+        top: 1,
+        right: 1,
+    },
+    cancelButtonContainer: {
+        position: "absolute",
+        top: 15,
+        right: 15,
+    },
+    topDummy: {
+        flex: 1,
+        opacity: 0,
+    },
+    topCamera: {
+        flex: 1,
+        justifyContent: "flex-end",
+        // alignItems: 'center',
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    cameraModal: {
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        // padding:10
+    },
+    textArea: {
+        marginVertical: 5,
+        height: 100,
+        textAlignVertical: "top",
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 8,
+        width: "100%",
+        marginBottom: 16,
+    },
+    dropdownStyle: {
+        padding: 8,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 6,
+        width: "100%",
+        marginBottom: 12,
+    },
+    imageContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    uploadButton: {
+        backgroundColor: color.primary,
+        justifyContent: "center",
+        padding: 10,
+        height: 50,
+        alignSelf: "center",
+        width: 140,
+        borderRadius: 8,
+    },
+    uploadButtonText: {
+        justifyContent: "center",
+        alignSelf: "center",
+    },
+    imageText: {
+        // justifyContent: 'center',
+        padding: 10,
+        height: 70,
+        alignSelf: "center",
+        width: 150,
+    },
+    flexrow: {
+        flexDirection: "row",
+    },
+    btnPrimaryTextsize: {
+        fontSize: 20,
+    },
+    Buttoncard: {
+        borderRadius: 8,
+        alignSelf: "center",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        backgroundColor: color.neutral[100],
+        paddingVertical: 18,
+    },
+    Buttoncard2: {
+        borderRadius: 8,
+        alignSelf: "center",
+        flexDirection: "row",
+        textAlign: "center",
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: "center",
+        backgroundColor: color.primary,
+        paddingVertical: 18,
+        marginVertical: 16,
+    },
+    Buttoncardinner: {
+        borderRadius: 8,
+        alignSelf: "center",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        borderWidth: 1.5,
+        borderColor: color.accent,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardinner2: {
+        borderRadius: 8,
+        alignSelf: "center",
+        flexDirection: "row",
+        textAlign: "center",
+        borderWidth: 1.5,
+        borderColor: color.primary,
+        justifyContent: "center",
+        backgroundColor: color.primary,
+        paddingVertical: 16,
+        marginVertical: 16,
+    },
+    Buttoncardfullwidth: {
+        width: "100%",
+    },
+    Buttoncardwidth: {
+        width: "48%",
+    },
+    modalcontainer: {
+        paddingHorizontal: 20,
+        // marginTop: "auto",
+        // height: "50%",
+        justifyContent: "center",
+    },
+    inputBox: {
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 6,
+        width: "100%",
+        marginBottom: 12,
+    },
+    Skip: {
+        fontSize: 20,
+        textDecorationLine: "underline",
+    },
+    childrenname: {
+        fontSize: 18,
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+    },
+    imageplus: {
+        padding: 30,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent,
+    },
+    profilepic: {
+        marginRight: 8,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+    },
+    Card: {
+        borderRadius: 10,
+        marginVertical: 10,
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        paddingVertical: 30,
+        borderColor: color.accent,
+    },
+    subtext: {
+        fontSize: 20,
+    },
+    image: {
+        justifyContent: "center",
+        marginVertical: 20,
+        alignItems: "center",
+    },
+    emailimage: {
+        width: 300,
+        height: 300,
+    },
+    container: {
+        padding: 15,
+        justifyContent: "center",
+    },
+    containerbg: {
+        paddingHorizontal: 15,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: "center",
+        ...Platform.select({
+            ios: {
+                shadowColor: "black",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    cameraBackground: {
+        // backgroundColor: "lightgray",
+        borderRadius: 50,
+        padding: 15,
+        marginBottom: 5,
+    },
+    cameracontainerbg: {
+        padding: 25,
+        backgroundColor: color.white,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: "center",
+        ...Platform.select({
+            ios: {
+                shadowColor: "black",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
+            },
+            android: {
+                elevation: 30,
+            },
+        }),
+    },
+    Headingtext: {
+        fontSize: 24,
+        marginVertical: 5,
+        color: color.primary,
+    },
+
 
     Buttoncardfullwidth: {
         width: '100%'
