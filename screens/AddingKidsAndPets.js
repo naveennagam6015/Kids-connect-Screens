@@ -725,6 +725,7 @@ export default function AddingKidsAndPets() {
     )
 }
 const styles = StyleSheet.create({
+
     Buttoncardfullwidth: {
         width: '100%'
     },
@@ -769,7 +770,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     Tags: {
-        marginTop: 8,
         borderColor: color.accent,
         borderWidth: 1,
         flexDirection: 'row',
@@ -787,6 +787,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: color.neutral[300],
         backgroundColor: color.white,
+    },
+    textAreaInterests: {
+        marginVertical: 5,
+        justifyContent: "flex-start",
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 8,
+        width: '100%',
+        marginBottom: 16
     },
     textArea: {
         marginVertical: 5,
@@ -910,6 +921,14 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: "center",
         alignSelf: "center",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
+    imageplusaddInterests: {
+        padding: 5,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
         borderRadius: 100,
         marginRight: 10,
         backgroundColor: color.accent
