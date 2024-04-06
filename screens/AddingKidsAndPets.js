@@ -11,8 +11,18 @@ export default function AddingKidsAndPets() {
     const [open, setOpen] = useState(false);
     const [openpets, setOpenpets] = useState(false);
     const [kidopen, setKidopen] = useState(false);
-    const [petopen, setPetopen] = useState(false);
+    // const [petopen, setPetopen] = useState(false);
     const [relationship, setRelationship] = useState([
+        { label: 'Child', value: '1' },
+        { label: 'Sibling', value: '2' },
+        { label: 'Friend', value: '0' }
+    ]);
+    const [gender, setGender] = useState([
+        { label: 'Child', value: '1' },
+        { label: 'Sibling', value: '2' },
+        { label: 'Friend', value: '0' }
+    ]);
+    const [breed, setBreed] = useState([
         { label: 'Child', value: '1' },
         { label: 'Sibling', value: '2' },
         { label: 'Friend', value: '0' }
@@ -91,7 +101,7 @@ export default function AddingKidsAndPets() {
                 </View>
                 <View style={{ alignItems: 'center', flexDirection: "row", marginHorizontal: 10 }}>
                     <View style={{ alignItems: "center", justifyContent: "center" }}>
-                        <TouchableOpacity onPress={() => setOpenpets(!open)} style={[styles.imageplusadd]}>
+                        <TouchableOpacity onPress={() => setOpenpets(!openpets)} style={[styles.imageplusadd]}>
                             <AntDesign name="plus" size={30} color={color.neutral[500]} />
                         </TouchableOpacity>
                         <TextBold>Add</TextBold>
@@ -143,6 +153,28 @@ export default function AddingKidsAndPets() {
                         />
                         <TextBold>Description</TextBold>
                         <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Enter your Description" onChangeText={e => setAddress(e)} />
+                        <TextBold>Interests</TextBold>
+                        <View style={styles.textAreaInterests} >
+                            <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                </View>
+                                <View style={[styles.Tags]}>
+                                    <TextRegular>Science Project</TextRegular>
+                                </View>
+                                <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
+                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={[styles.imageplusaddInterests]}>
+                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+
                     </View>
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
@@ -162,7 +194,7 @@ export default function AddingKidsAndPets() {
                                         setOpen(!open);
                                     }}
                                     style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                                 </Pressable>
                             </View>
@@ -184,24 +216,36 @@ export default function AddingKidsAndPets() {
                     </TouchableOpacity>
                     <View>
                         <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
+                            <Image style={[styles.profilepic]} source={require('../assets/images/dogprofile.jpg')} />
                         </View>
-                        <TextBold>First Name</TextBold>
+                        <TextBold>Name</TextBold>
                         <TextInput style={styles.inputBox} placeholder="Enter your first name" onChangeText={(e) => setFirstName(e)} />
-                        <TextBold>Last Name</TextBold>
-                        <TextInput style={styles.inputBox} placeholder="Enter your last name" onChangeText={e => setLastName(e)} />
-                        <TextBold>Relationship</TextBold>
+                        <TextBold>Gender</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
-                            data={relationship}
+                            data={gender}
                             search
                             maxHeight={300}
                             labelField="label"
                             valueField="value"
-                            placeholder="Relationship"
+                            placeholder="Gender"
                             searchPlaceholder="Search..."
                             onChange={(item) => {
-                                setRelationship(item.value)
+                                setGender(item.value)
+                            }}
+                        />
+                        <TextBold>Breed</TextBold>
+                        <Dropdown
+                            style={styles.dropdownStyle}
+                            data={breed}
+                            search
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            placeholder="Breed"
+                            searchPlaceholder="Search..."
+                            onChange={(item) => {
+                                setBreed(item.value)
                             }}
                         />
                         <TextBold>Description</TextBold>
@@ -225,7 +269,7 @@ export default function AddingKidsAndPets() {
                                         setOpen(!open);
                                     }}
                                     style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Next</TextMedium>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
                                     <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                                 </Pressable>
                             </View>
@@ -239,6 +283,7 @@ export default function AddingKidsAndPets() {
     )
 }
 const styles = StyleSheet.create({
+
     Buttoncardfullwidth: {
         width: '100%'
     },
@@ -283,7 +328,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     Tags: {
-        marginTop: 8,
         borderColor: color.accent,
         borderWidth: 1,
         flexDirection: 'row',
@@ -301,6 +345,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: color.neutral[300],
         backgroundColor: color.white,
+    },
+    textAreaInterests: {
+        marginVertical: 5,
+        justifyContent: "flex-start",
+        padding: 10,
+        borderColor: color.neutral[300],
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 8,
+        width: '100%',
+        marginBottom: 16
     },
     textArea: {
         marginVertical: 5,
@@ -424,6 +479,14 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: "center",
         alignSelf: "center",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
+    imageplusaddInterests: {
+        padding: 5,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
         borderRadius: 100,
         marginRight: 10,
         backgroundColor: color.accent

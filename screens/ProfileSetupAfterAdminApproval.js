@@ -554,7 +554,7 @@ export default function ProfileSetupAfterAdminApproval() {
                 <View style={styles.cameraModal}>
                   <View>
                     <TouchableOpacity
-                      style={[{ alignSelf: "center" }, styles.cameraBackground]}
+                      style={[{ alignSelf: "center" },]}
                       onPress={OpenCamera}
                     >
                       {/* <Fontisto name="camera" size={24} color="black" /> */}
@@ -569,7 +569,7 @@ export default function ProfileSetupAfterAdminApproval() {
                   </View>
                   <View>
                     <TouchableOpacity
-                      style={[{ alignSelf: "center" }, styles.cameraBackground]}
+                      style={[{ alignSelf: "center" },]}
                       onPress={pickImage}
                     >
                       {/* <Fontisto name="picture" size={24} color="black" /> */}
