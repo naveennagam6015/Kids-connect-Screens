@@ -129,6 +129,7 @@ export default function Login() {
             }).then(async res => {
                 const authData = JSON.stringify(res.data);
                 AsyncStorage.setItem('authData', authData);
+                console.log(authData);
                 await GetSubscriber(res.data.token);
                 navigation.navigate('ProfileSetupAfterAdminApproval');
             }).catch((err) => {
@@ -150,10 +151,10 @@ export default function Login() {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then(async res => {
+        }).then(async(res) => {
             console.log(res.data);
             const userData = JSON.stringify(res.data.data);
-            AsyncStorage.setItem('userDetails', userData);
+            await AsyncStorage.setItem('userDetails', userData);
         }).catch((err) => {
             console.log(err);
         }).finally(() => {

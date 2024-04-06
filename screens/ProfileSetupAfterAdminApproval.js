@@ -1,15 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Image, Modal, TextInput, ScrollView, TouchableOpacity, StatusBar, Platform, } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Modal,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar,
+  Platform,
+  Button,
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import * as ImagePicker from "expo-image-picker";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
-import { Foundation, AntDesign, MaterialIcons, Fontisto, } from "@expo/vector-icons";
+import {
+  Foundation,
+  AntDesign,
+  MaterialIcons,
+  Fontisto,
+} from "@expo/vector-icons";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { BASEURL } from "@env";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const imgDir = FileSystem.documentDirectory + "images/";
 
@@ -33,12 +50,13 @@ export default function ProfileSetupAfterAdminApproval() {
     { label: "Others", value: "0" },
   ]);
   const [relationship, setRelationship] = useState([
-    { label: "Child", value: "1" },
+    { label: "Teacher", value: "1" },
     { label: "Sibling", value: "2" },
     { label: "Friend", value: "0" },
   ]);
   const [roles, setRoles] = useState([{ label: "", value: "" }]);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [ssn, setSsn] = useState("");
@@ -59,6 +77,7 @@ export default function ProfileSetupAfterAdminApproval() {
   const [genderError, setGenderError] = useState("");
   const [addressError, setAddressError] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
+  const [userData, setUserData] = useState({});
 
   /*============================================Validation Start===========================================*/
 
@@ -206,7 +225,11 @@ export default function ProfileSetupAfterAdminApproval() {
   }, []);
 
   const loadImages = async () => {
+    console.log("hiiii");
     await ensureDirExists();
+    const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+    setUserData(userData);
+    console.log(userData);
     const files = await FileSystem.readDirectoryAsync(imgDir);
     if (files.length > 0) {
       setImage(files.map((f) => imgDir + f));
@@ -217,6 +240,7 @@ export default function ProfileSetupAfterAdminApproval() {
     let result;
     // if (!useLibrary) {
     await ImagePicker.getCameraPermissionsAsync();
+    setCameraModal(!cameramodal);
 
     result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -304,6 +328,12 @@ export default function ProfileSetupAfterAdminApproval() {
     }
   };
 
+  async function ClearData() {
+    const keysBeforeRemove = await AsyncStorage.getAllKeys();
+    await AsyncStorage.multiRemove(keysBeforeRemove);
+    navigation.navigate("Login");
+  }
+
   /*========================================================Image Upload Functionality end====================================== */
 
   const pickImage = async () => {
@@ -314,7 +344,7 @@ export default function ProfileSetupAfterAdminApproval() {
       quality: 1,
     });
 
-    console.log(result);
+    setCameraModal(!cameramodal);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -326,10 +356,39 @@ export default function ProfileSetupAfterAdminApproval() {
   };
 
   function SubmitData() {
+    const formData = new FormData();
+    formData.append("file", {
+      uri: "", //uri,
+      name: "", //filename,
+      type: "image/jpeg",
+    });
     axios({
       method: "post",
-      url: `${BASEURL}`,
-      data: {},
+      url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+      data: {
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
+        Dob: dob,
+        Gender: gender,
+        PhoneNumber: phone,
+        SSN: ssn,
+        Password: password,
+        About: about,
+        Address: address,
+        ProfileImage: image,
+        SSNimage: "",
+        Keywords: "keywords",
+        LoginType: "LoginType",
+        RoleId: roleId,
+        MainSubscriberId: userData.id,
+      },
+    }).then((res) => {
+      console.log(res.data);
     });
   }
 
@@ -399,6 +458,7 @@ export default function ProfileSetupAfterAdminApproval() {
             </View>
           </View>
         </View>
+        <Button title="Clear" onPress={() => ClearData()} />
         <TouchableOpacity
           onPress={() => navigation.navigate("AddingKidsAndPets")}
           style={{
@@ -420,38 +480,74 @@ export default function ProfileSetupAfterAdminApproval() {
         <View style={styles.topDummy} />
         <View style={[styles.containerbg]}>
           <TouchableOpacity
-            onPress={() => { setOpen(!open); }}
-            style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
-            <Icon name="cancel" size={30} color={color.neutral[300]} />
+            onPress={() => {
+              setOpen(!open);
+            }}
+            style={[styles.cancelButtonContainer, { alignItems: "flex-end" }]}
+          >
+            <Icon name="cancel" size={35} color={color.neutral[300]} />
           </TouchableOpacity>
-          <View
-            style={{ alignItems: "center", marginVertical: 10 }}>
-            <Image
-              style={[styles.profilepic]}
-              source={require("../assets/images/user_placeholder.png")}
-            />
-            <TouchableOpacity
-              style={{
-                position: "absolute",
-                bottom: "2%",
-                right: "38%",
-                backgroundColor: "lightgray",
-                borderRadius: 50,
-                padding: 10,
-              }}
-              onPress={() => setCameraModal(!cameramodal)}
-            >
-              <Fontisto name="camera" size={20} color="black" />
-            </TouchableOpacity>
+          <View style={{ alignItems: "center", marginVertical: 10 }}>
+            {image && (
+              <>
+                <Image source={{ uri: image }} style={[styles.profilepic]} />
+                <TouchableOpacity
+                  style={{
+                    position: "absolute",
+                    bottom: "2%",
+                    right: "38%",
+                    backgroundColor: "lightgray",
+                    borderRadius: 50,
+                    padding: 10,
+                  }}
+                  onPress={() => setCameraModal(!cameramodal)}
+                >
+                  <Fontisto name="camera" size={20} color="black" />
+                </TouchableOpacity>
+              </>
+            )}
+            {!image && (
+              <>
+                <Image
+                  style={[styles.profilepic]}
+                  source={require("../assets/images/user_placeholder.png")}
+                />
+                <TouchableOpacity
+                  style={{
+                    position: "absolute",
+                    bottom: "2%",
+                    right: "38%",
+                    backgroundColor: "lightgray",
+                    borderRadius: 50,
+                    padding: 10,
+                  }}
+                  onPress={() => setCameraModal(!cameramodal)}
+                >
+                  <Fontisto name="camera" size={20} color="black" />
+                </TouchableOpacity>
+              </>
+            )}
           </View>
           <Modal animationType="slide" transparent={true} visible={cameramodal}>
             <View style={styles.topCamera}>
               <View style={styles.cameracontainerbg}>
-                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                  <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <TextBold style={{ marginBottom: 20, fontSize: 18 }}>
+                    Upload Image
+                  </TextBold>
                   <TouchableOpacity
                     onPress={() => setCameraModal(!cameramodal)}
-                    style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
+                    style={[
+                      styles.cancelButtonContainerpic,
+                      { alignItems: "flex-end" },
+                    ]}
+                  >
                     <Icon name="cancel" size={30} color={color.neutral[300]} />
                   </TouchableOpacity>
                 </View>
@@ -486,9 +582,7 @@ export default function ProfileSetupAfterAdminApproval() {
                       Gallery
                     </TextRegular>
                   </View>
-
                 </View>
-
               </View>
             </View>
           </Modal>
@@ -559,7 +653,7 @@ export default function ProfileSetupAfterAdminApproval() {
               style={styles.inputBox}
               placeholder="Enter your password"
               onChangeText={(e) => {
-                setEmail(e);
+                setPassword(e);
                 validatePassword(e, setPasswordErr);
               }}
             />
@@ -572,7 +666,6 @@ export default function ProfileSetupAfterAdminApproval() {
               <View
                 style={[styles.flexrow, { justifyContent: "space-between" }]}
               >
-
                 <TouchableOpacity
                   onPress={() => {
                     setModalopen(!modalopen);
@@ -599,11 +692,7 @@ export default function ProfileSetupAfterAdminApproval() {
           </ScrollView>
         </View>
       </Modal>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalopen}
-      >
+      <Modal animationType="slide" transparent={true} visible={modalopen}>
         <View style={styles.topDummy} />
         <View style={[styles.containerbg]}>
           <TextBold style={{ marginTop: 15 }}>Relationship</TextBold>
@@ -680,14 +769,14 @@ export default function ProfileSetupAfterAdminApproval() {
             </TextBold>
           )}
           <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-            <TouchableOpacity onPress={() => {
-              setModalopen(!modalopen);
-              setOpen(!open);
-            }} style={[styles.Buttoncardinner, styles.Buttoncardwidth]}>
-              <View
-
-                style={[styles.flexrow]}
-              >
+            <TouchableOpacity
+              onPress={() => {
+                setModalopen(!modalopen);
+                setOpen(!open);
+              }}
+              style={[styles.Buttoncardinner, styles.Buttoncardwidth]}
+            >
+              <View style={[styles.flexrow]}>
                 <TextMedium style={[styles.btnPrimaryTextsize]}>
                   Back
                 </TextMedium>
@@ -739,8 +828,6 @@ const styles = StyleSheet.create({
   topCamera: {
     flex: 1,
     justifyContent: "flex-end",
-    // alignItems: 'center',
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   cameraModal: {
     flexDirection: "row",
