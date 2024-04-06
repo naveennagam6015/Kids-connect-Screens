@@ -37,9 +37,6 @@ function AppointmentModal({ isVisible, onClose }) {
     return (
         <Modal visible={isVisible} transparent={true} animationType="slide">
             <View style={{ flex: 1, opacity: 0 }} />
-
-            <Button title="Close Modal" onPress={onClose} />
-
             <View style={{
                 height: '10%',
                 justifyContent: 'center',
@@ -64,7 +61,10 @@ function AppointmentModal({ isVisible, onClose }) {
                 <View style={{ paddingHorizontal: 20 }}>
                     <View style={{ justifyContent: 'space-between', flexDirection: "row" }}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Appointment')}
+                            onPress={() => {
+                                navigation.navigate('Appointment');
+                                onClose();
+                            }}
                             style={{
                                 borderRadius: 8,
                                 alignSelf: 'center',
@@ -81,7 +81,10 @@ function AppointmentModal({ isVisible, onClose }) {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('ProfileSetup')}
+                            onPress={() => {
+                                navigation.navigate('ProfileSetup');
+                                onClose();
+                            }}
                             style={{
                                 borderRadius: 8,
                                 alignSelf: 'center',
@@ -116,7 +119,7 @@ function BottomNavigation() {
 
     return (
         <>
-            <BottomTab.Navigator 
+            <BottomTab.Navigator
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ color, focused, size }) => {
                         let iconName;
