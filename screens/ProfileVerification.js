@@ -213,7 +213,7 @@ export default function ProfileVerification() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `http://localhost:8000/api/roles`
+            url: `${BASEURL}/api/roles`
         }).then(res => {
             const roleData = res.data.data.map((role) => ({
                 label: (role.role).charAt(0).toUpperCase() + (role.role).slice(1),
