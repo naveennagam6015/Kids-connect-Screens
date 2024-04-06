@@ -68,11 +68,7 @@ export default function ProfileSetup() {
                                         <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
                                     </TouchableOpacity>
                                 </View>
-
-
-                            )}
-                        >
-
+                            )}>
                             <View style={[styles.Card]}>
                                 <View>
                                     <TextBold style={[styles.Headingtext]}>Choose Your Kids </TextBold>
@@ -134,48 +130,58 @@ export default function ProfileSetup() {
                                 </View>
                             </View>
                             <View>
-                                <TextRegular>Description about Jay.jr</TextRegular>
+                                <TextBold style={[styles.Headingtext]}>Description about Jay.jr</TextBold>
+                                <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Explain your kids interests and Hobbies which makes easier to connect with other Kids."
+                                />
+                                <TextRegular style={{ textAlign: 'right', color: color.neutral[500], marginRight: 5 }}>70 words</TextRegular>
+                                <TextBold style={[styles.Headingtext]}>Jay’s Interest, Hobbies here</TextBold>
 
+                                <View style={styles.textAreaInterests} >
+                                    <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                        <View style={[styles.Tags2, { alignItems: "center" }]}>
+                                            <TextRegular style={{ fontSize: 16 }}>3-5hrs</TextRegular>
+                                            <MaterialIcons style={{ marginLeft: 5 }} name="cancel" size={18} color={color.accent} />
+                                        </View>
+                                        <View style={[styles.Tags2, { alignItems: "center" }]}>
+                                            <TextRegular style={{ fontSize: 16 }}>3-5hrs</TextRegular>
+                                            <MaterialIcons style={{ marginLeft: 5 }} name="cancel" size={18} color={color.accent} />
+                                        </View>
+
+                                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
+                                            <TextRegular style={{ fontSize: 16, paddingRight: 5 }}>Add</TextRegular>
+
+                                            <View style={{ alignItems: 'center' }}>
+                                                <View style={[styles.imageplusaddInterests]}>
+                                                    <AntDesign name="plus" size={12} color={color.neutral[500]} />
+                                                </View>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+
+                                <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                    <Ionicons name="attach" size={24} color="black" />
+                                    <TextBold style={[styles.Headingtext]}>Attachments</TextBold>
+                                </View>
+                                <View style={styles.textAreaadd}>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <TouchableOpacity>
+                                            <AntDesign name="pluscircle" size={75} color={color.neutral[500]} />
+                                        </TouchableOpacity>
+                                        <View>
+                                            <TextRegular style={[styles.childrenname]}>Upload from Mobile</TextRegular>
+                                        </View>
+                                    </View>
+                                </View>
+                                <TextBold style={{ fontSize: 16, marginBottom: 50 }}>Note: <TextRegular style={{ color: color.secondaryOrange }}>Upload documents name less than 10 characters</TextRegular></TextBold>
                             </View>
                         </ProgressStep>
                         <ProgressStep label="Tags Setup" >
                             <View>
-                                {/* <View style={{ alignItems: 'center', justifyContent: 'center' }}> */}
-                                <View style={{ alignItems: 'center' }}>
-                                    <View>
-                                        <Image style={[styles.profilepicactive2]} source={require('../assets/images/women.png')} />
-                                    </View>
-                                    <View>
-                                        <TextRegular style={[styles.childrenname]}>Samanthaa</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={styles.Card1}>
-                                    <View style={{ justifyContent: "flex-end" }}>
-                                        <Foundation name="info" size={24} color="black" />
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Introvert</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={styles.Card1}>
-                                    <View style={{ justifyContent: "space-between" }}>
-                                        <TextRegular>Based on these tags you will get Kids suggestions.</TextRegular>
-                                        <Foundation name="info" size={24} color="black" />
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Introvert</TextRegular>
-                                    </View>
-                                </View>
+
+
                                 <TextBold style={[styles.Headingtext]}>Choose from...</TextBold>
-                                <View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Extrovert</TextRegular>
-                                    </View>
-                                    <View style={[styles.flexrow]}>
-                                        <TextRegular>View All</TextRegular>
-                                        <MaterialIcons name="arrow-forward-ios" size={24} color="black" />
-                                    </View>
-                                </View>
+
                                 <TouchableOpacity onPress={() => {
                                     setOpen(!open);
                                     setKidopen(!kidopen);
@@ -369,6 +375,27 @@ export default function ProfileSetup() {
     )
 }
 const styles = StyleSheet.create({
+    imageplusaddInterests: {
+        padding: 3,
+        justifyContent: "flex-end",
+        alignSelf: "flex-end",
+        borderRadius: 100,
+        marginRight: 10,
+        backgroundColor: color.accent
+    },
+    textAreaInterests: {
+        marginVertical: 5,
+        flexWrap: 'wrap',
+        justifyContent: "flex-start",
+        padding: 10,
+        borderColor: color.accent,
+        borderWidth: 1,
+        borderRadius: 8,
+        marginTop: 8,
+        width: '100%',
+        flexDirection: 'row',
+        marginBottom: 16
+    },
     customNextButton: {
         borderRadius: 8,
         alignSelf: 'center',
@@ -381,7 +408,24 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginVertical: 16,
     },
-
+    textAreaadd: {
+        marginVertical: 5,
+        textAlignVertical: 'top',
+        paddingVertical: 20,
+        borderColor: color.primary,
+        borderWidth: 1,
+        borderRadius: 8,
+        width: '100%',
+    },
+    textArea: {
+        marginVertical: 5,
+        textAlignVertical: 'top',
+        padding: 10,
+        borderColor: color.primary,
+        borderWidth: 1,
+        borderRadius: 8,
+        width: '100%',
+    },
     customNextButtonText: {
         fontSize: 20,
         color: color.fontcolor
@@ -499,8 +543,17 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginVertical: 16,
     },
-
-
+    Tags2: {
+        // backgroundColor: color.neutral[100],
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 18,
+        borderColor: color.accent,
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        marginRight: 4
+    },
     Tags: {
         backgroundColor: color.neutral[100],
         flexDirection: 'row',
