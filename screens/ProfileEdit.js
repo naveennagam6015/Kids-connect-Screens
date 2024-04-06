@@ -39,9 +39,22 @@ export default function ProfileEdit() {
         <ScrollView style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
                 <View style={{ alignItems: 'center' }}>
-                    <View>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                    </View>
+                <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                            <TouchableOpacity
+                                style={{
+                                    position: "absolute",
+                                    bottom: "2%",
+                                    right: "38%",
+                                    backgroundColor: "lightgray",
+                                    borderRadius: 50,
+                                    padding: 8,
+                                }}
+                                onPress={() => setCameraModal(!cameramodal)}
+                            >
+                                <Fontisto name="camera" size={15} color="black" />
+                            </TouchableOpacity>
+                        </View>
                 </View>
                 <TextBold>About</TextBold>
                 <TextInput multiline={true} numberOfLines={5} placeholder="About your self"
