@@ -9,6 +9,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Entypo } from '@expo/vector-icons';
+import AddKid from "../components/AddKid";
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -463,7 +464,7 @@ export default function AddingKidsAndPets() {
                                 <Fontisto name="camera" size={15} color="black" />
                             </TouchableOpacity>
                         </View>
-                       
+
                         <TextBold>First Name</TextBold>
                         <TextInput style={styles.inputBox}
                             placeholder="Enter your first name"
@@ -598,169 +599,62 @@ export default function AddingKidsAndPets() {
 
             </Modal>
             <Modal animationType="slide" transparent={true} visible={cameramodal}>
-                            <View style={styles.topCamera}>
-                                <View style={styles.cameracontainerbg}>
-                                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                        <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
-                                        <TouchableOpacity
-                                            onPress={() => setCameraModal(!cameramodal)}
-                                            style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
-                                            <Icon name="cancel" size={30} color={color.neutral[300]} />
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={styles.cameraModal}>
-                                        <View>
-                                            <TouchableOpacity
-                                                style={[{ alignSelf: "center" },]}
-                                                onPress={OpenCamera}
-                                            >
-                                                {/* <Fontisto name="camera" size={24} color="black" /> */}
-                                                <Image
-                                                    source={require("../assets/images/Group 70.png")}
-                                                    style={{ width: 50, height: 40 }}
-                                                />
-                                            </TouchableOpacity>
-                                            <TextRegular style={{ alignSelf: "center" }}>
-                                                Camera
-                                            </TextRegular>
-                                        </View>
-                                        <View>
-                                            <TouchableOpacity
-                                                style={[{ alignSelf: "center" },]}
-                                                onPress={pickImage}
-                                            >
-                                                {/* <Fontisto name="picture" size={24} color="black" /> */}
-                                                <Image
-                                                    source={require("../assets/images/Group 71.png")}
-                                                    style={{ width: 60, height: 40 }}
-                                                />
-                                            </TouchableOpacity>
-                                            <TextRegular style={{ alignSelf: "center" }}>
-                                                Gallery
-                                            </TextRegular>
-                                        </View>
-
-                                    </View>
-
-                                </View>
+                <View style={styles.topCamera}>
+                    <View style={styles.cameracontainerbg}>
+                        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                            <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
+                            <TouchableOpacity
+                                onPress={() => setCameraModal(!cameramodal)}
+                                style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
+                                <Icon name="cancel" size={30} color={color.neutral[300]} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.cameraModal}>
+                            <View>
+                                <TouchableOpacity
+                                    style={[{ alignSelf: "center" },]}
+                                    onPress={OpenCamera}
+                                >
+                                    {/* <Fontisto name="camera" size={24} color="black" /> */}
+                                    <Image
+                                        source={require("../assets/images/Group 70.png")}
+                                        style={{ width: 50, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                                <TextRegular style={{ alignSelf: "center" }}>
+                                    Camera
+                                </TextRegular>
                             </View>
-                        </Modal>
-                        
+                            <View>
+                                <TouchableOpacity
+                                    style={[{ alignSelf: "center" },]}
+                                    onPress={pickImage}
+                                >
+                                    {/* <Fontisto name="picture" size={24} color="black" /> */}
+                                    <Image
+                                        source={require("../assets/images/Group 71.png")}
+                                        style={{ width: 60, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                                <TextRegular style={{ alignSelf: "center" }}>
+                                    Gallery
+                                </TextRegular>
+                            </View>
+
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
+
 
             <Modal
                 animationType='slide'
                 transparent={true}
                 visible={openpets}>
                 <View style={styles.topDummy} />
-                <View style={[styles.containerbg]}>
-                    <TouchableOpacity
-                        onPress={() => { setOpenpets(!openpets); }}
-                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
-                        <Icon name="cancel" size={30} color={color.neutral[300]} />
-                    </TouchableOpacity>
-                    <View>
-                    <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
-                            <TouchableOpacity
-                                style={{
-                                    position: "absolute",
-                                    bottom: "2%",
-                                    right: "38%",
-                                    backgroundColor: "lightgray",
-                                    borderRadius: 50,
-                                    padding: 8,
-                                }}
-                                onPress={() => setCameraModal(!cameramodal)}
-                            >
-                                <Fontisto name="camera" size={15} color="black" />
-                            </TouchableOpacity>
-                        </View>
-                        <TextBold>Name</TextBold>
-                        <TextInput style={styles.inputBox}
-                         placeholder="Enter your first name" 
-                         onChangeText={(e) => {
-                            setFirstName(e);
-                            validateFirstName(e, setFirstNameError);
-                        }}
-                    />
-                    {firstNameError !== "" && (
-                        <TextBold style={{ marginBottom: 16, color: "red" }}>
-                            {firstNameError}
-                        </TextBold>
-                    )}
-                        <TextBold>Gender</TextBold>
-                        <Dropdown
-                            style={styles.dropdownStyle}
-                            data={petgender}
-                            search
-                            maxHeight={300}
-                            labelField="label"
-                            valueField="value"
-                            placeholder="Gender"
-                            searchPlaceholder="Search..."
-                            onChange={(item) => {
-                                setSelectedGender(item.value);
-                                validateGender(item.value, setGenderError);
-                            }}
-                        />
-                        {genderError !== "" && (
-                            <TextBold style={{ marginBottom: 16, color: "red" }}>
-                                {genderError}
-                            </TextBold>
-                        )}
-                  
-                        <TextBold>Breed</TextBold>
-                        <Dropdown
-                            style={styles.dropdownStyle}
-                            data={breed}
-                            search
-                            maxHeight={300}
-                            labelField="label"
-                            valueField="value"
-                            placeholder="Breed"
-                            searchPlaceholder="Search..."
-                            onChange={(item) => {
-                                setBreed(item.value)
-                            }}
-                        />
-                        <TextBold>Description</TextBold>
-                        <TextInput style={styles.textArea}
-                         multiline={true} numberOfLines={5}
-                          placeholder="Enter your Description"
-                          onChangeText={(e) => {
-                            setDescription(e);
-                            validateDescription(e);
-                        }}
-                    />
-                    {descriptionError !== '' && (
-                        <Text style={{ color: 'red' }}>{descriptionError}</Text>
-                    )}
-                    </View>
-                    <View style={[styles.modalcontainer]}>
-                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                            {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                                <Pressable
-                                    onPress={() => {
-                                        setOpen(!open);
-                                    }}
-                                    style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                                </Pressable>
-                            </View> */}
-                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
-                                <Pressable
-                                    onPress={() => {
-                                        setKidopen(!kidopen);
-                                        setOpen(!open);
-                                    }}
-                                    style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
-                                    <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                                </Pressable>
-                            </View>
-                        </View>
-                    </View>
-                </View>
+
+                <AddKid closed={() => setOpenpets(!openpets)} />
             </Modal>
 
         </ScrollView>

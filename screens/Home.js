@@ -95,7 +95,7 @@ export default function Home() {
       >
         Glance Area
       </TextBold>
-      {bannerLoading && (
+      {/* {bannerLoading && (
         <SkeletonContainer isLoading={bannerLoading} Gradient={Gradient}>
           <View style={styles.slide}></View>
         </SkeletonContainer>
@@ -115,7 +115,7 @@ export default function Home() {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )}
+      )} */}
 
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
