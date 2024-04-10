@@ -4,7 +4,9 @@ import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 import * as ImagePicker from "expo-image-picker";
-
+import axios from "axios";
+import { BASEURL } from "@env";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -42,6 +44,7 @@ export default function AddingKidsAndPets() {
         setKidopen(false);
         setPetopen(false);
     };
+    const [imageName, setImageName] = useState("");
     const [roles, setRoles] = useState([{ label: "", value: "" }]);
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -50,7 +53,7 @@ export default function AddingKidsAndPets() {
     const [pwd, setPwd] = useState("");
     const [about, setAbout] = useState("");
     const [roleId, setRoleId] = useState("");
-    const [dob, setDob] = useState("");
+    const [dob, setDOB] = useState("");
     const [selectedGender, setSelectedGender] = useState("");
     const [address, setAddress] = useState("");
     const [description, setDescription] = useState('');
@@ -61,12 +64,18 @@ export default function AddingKidsAndPets() {
     const [phoneError, setPhoneError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [relationshipError, setRelationshipError] = useState("");
-    const [dobError, setDobError] = useState("");
+    const [dobError, setDobErr] = useState("");
     const [genderError, setGenderError] = useState("");
     const [addressError, setAddressError] = useState("");
     const [passwordErr, setPasswordErr] = useState("");
     const [descriptionError, setDescriptionError] = useState('');
-
+    const [image, setImage] = useState(null);
+    const [userData, setUserData] = useState({});
+    const [petName, setPetName] = useState({});
+    const [petBreed, setPetBreed] = useState({});
+    const [selectedPetGender, setSelectedPetGender] = useState("");
+    const [petDOB, setpetDOB] = useState("");
+    const [PetNameError, setPetNameError] = useState("");
 
     /*============================================Validation Start===========================================*/
 
@@ -210,6 +219,21 @@ export default function AddingKidsAndPets() {
         }
     };
 
+    const validatePetName = (PetName, setPetNameError) => {
+        const regex = /^[a-zA-Z ]+$/;
+        if (!regex.test(PetName)) {
+            setPetNameError("Numbers are not allowed in the name field");
+            return false;
+        } else if (PetName.trim() === "") {
+            setPetNameError("Name is required");
+            return false;
+        } else {
+            setPetNameError("");
+            return true;
+        }
+    };
+
+
     /*============================================Validation End===========================================*/
 
     /*=============================================Camera Permission========================================*/
@@ -221,6 +245,19 @@ export default function AddingKidsAndPets() {
         })();
         loadImages();
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+            setUserData(userData);
+            console.log(userData, "NJHGFSDGFDSH");
+        };
+
+        fetchData();
+
+    }, []);
+
+
 
     const loadImages = async () => {
         await ensureDirExists();
@@ -341,11 +378,68 @@ export default function AddingKidsAndPets() {
         }
     };
 
-    function SubmitData() {
+    const openDatePicker = async () => {
+        try {
+            const { action, year, month, day } = await DatePickerAndroid.open({
+                date: new Date(dob), // Set the initial date in the DatePicker
+                mode: 'default', // Set the mode of the DatePicker (default, spinner, calendar)
+            });
+            if (action !== DatePickerAndroid.dismissedAction) {
+                // User has selected a date
+                const selectedDate = new Date(year, month, day);
+                setDOB(selectedDate);
+                validateDob(selectedDate);
+            }
+        } catch ({ code, message }) {
+            console.warn('Cannot open date picker', message);
+        }
+    };
+
+    function SubmitData(Role) {
+        let requestData = {};
+
+        if (Role === 5) {
+            requestData = {
+                FirstName: firstName,
+                LastName: lastName,
+                Email: email,
+                Dob: dob,
+                Gender: selectedGender,
+                PhoneNumber: phone,
+                SSN: ssn,
+                // Password: password,
+                About: description,
+                Address: address,
+                ProfileImage: image,
+                SSNimage: "",
+                Keywords: "keywords",
+                LoginType: 12,
+                RoleId: 5,
+                MainSubscriberId: userData.id
+            };
+        } else if (Role === 7) {
+            requestData = {
+                Name: petName,
+                Breed: petBreed,
+                Gender: petgender,
+                Dob: setDOB,
+                RoleId: 7,
+                MainSubscriberId: userData.id
+            };
+        }
+
         axios({
             method: "post",
-            url: `${BASEURL}`,
-            data: {},
+            url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "multipart/form-data",
+            },
+            data: requestData,
+        }).then((res) => {
+            console.log(res.data);
+        }).catch((err) => {
+            console.log(err);
         });
     }
 
@@ -439,10 +533,262 @@ export default function AddingKidsAndPets() {
                 animationType='slide'
                 transparent={true}
                 visible={open}>
+                <ScrollView>
+                    <View style={styles.topDummy} />
+                    <View style={[styles.containerbg]}>
+                        <TouchableOpacity
+                            onPress={() => { setOpen(!open); }}
+                            style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
+                            <Icon name="cancel" size={30} color={color.neutral[300]} />
+                        </TouchableOpacity>
+                        <View>
+                            <View style={{ alignItems: 'center', marginVertical: 10 }}>
+                                {
+                                    !image && (
+                                        <>
+                                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                                            <TouchableOpacity
+                                                style={{
+                                                    position: "absolute",
+                                                    bottom: "2%",
+                                                    right: "38%",
+                                                    backgroundColor: "lightgray",
+                                                    borderRadius: 50,
+                                                    padding: 8,
+                                                }}
+                                                onPress={() => setCameraModal(!cameramodal)}
+                                            >
+                                                <Fontisto name="camera" size={15} color="black" />
+                                            </TouchableOpacity>
+                                        </>
+                                    )
+                                }
+                                {image && (
+                                    <>
+                                        <Image source={{ uri: image }} style={[styles.profilepic]} />
+                                        <TouchableOpacity
+                                            style={{
+                                                position: "absolute",
+                                                bottom: "2%",
+                                                right: "38%",
+                                                backgroundColor: "lightgray",
+                                                borderRadius: 50,
+                                                padding: 10,
+                                            }}
+                                            onPress={() => setCameraModal(!cameramodal)}
+                                        >
+                                            <Fontisto name="camera" size={20} color="black" />
+                                        </TouchableOpacity>
+                                    </>
+                                )}
+                            </View>
+                            <TextBold>First Name</TextBold>
+                            <TextInput style={styles.inputBox}
+                                placeholder="Enter your first name"
+                                onChangeText={(e) => {
+                                    setFirstName(e);
+                                    validateFirstName(e, setFirstNameError);
+                                }}
+                            />
+                            {firstNameError !== "" && (
+                                <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                    {firstNameError}
+                                </TextBold>
+                            )}
+                            <TextBold>Last Name</TextBold>
+                            <TextInput style={styles.inputBox}
+                                placeholder="Enter your last name"
+                                onChangeText={(e) => {
+                                    setLastName(e);
+                                    validateLastName(e, setLastNameError);
+                                }}
+                            />
+                            {lastNameError !== "" && (
+                                <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                    {lastNameError}
+                                </TextBold>
+                            )}
+                            <TextBold>Date of Birth</TextBold>
+                            <TextInput style={styles.inputBox}
+                                placeholder="dd/mm/yyyy"
+                                onChangeText={(e) => {
+                                    setDOB(e);
+                                    validateDob(e, setDobErr);
+                                }}
+                            />
+                            {dobError !== "" && (
+                                <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                    {dobError}
+                                </TextBold>
+                            )}
+
+                            <TextBold>Gender</TextBold>
+                            <Dropdown
+                                style={styles.dropdownStyle}
+                                data={kidgender}
+                                search
+                                maxHeight={300}
+                                labelField="label"
+                                valueField="value"
+                                placeholder="Gender"
+                                searchPlaceholder="Search..."
+                                onChange={(item) => {
+                                    setSelectedGender(item.value);
+                                    validateGender(item.value, setGenderError);
+                                }}
+                            />
+                            {genderError !== "" && (
+                                <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                    {genderError}
+                                </TextBold>
+                            )}
+                            <TextBold>Relationship</TextBold>
+                            <Dropdown
+                                style={styles.dropdownStyle}
+                                data={relationship}
+                                search
+                                maxHeight={300}
+                                labelField="label"
+                                valueField="value"
+                                placeholder="Relationship"
+                                searchPlaceholder="Search..."
+                                onChange={(item) => {
+                                    setRelationship(item.value);
+                                    validateRelationShip(item.value, setRelationshipError);
+                                }}
+                            />
+                            {relationshipError !== "" && (
+                                <TextBold style={{ marginBottom: 16, color: "red" }}>
+                                    {relationshipError}
+                                </TextBold>
+                            )}
+                            <TextBold>Description</TextBold>
+                            <TextInput style={styles.textArea}
+                                multiline={true} numberOfLines={5}
+                                placeholder="Enter your Description"
+                                onChangeText={(e) => {
+                                    setDescription(e);
+                                    validateDescription(e);
+                                }}
+                            />
+                            {descriptionError !== '' && (
+                                <Text style={{ color: 'red' }}>{descriptionError}</Text>
+                            )}
+                            <TextBold>Interests</TextBold>
+                            <View style={styles.textAreaInterests} >
+                                <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                        <Entypo name="circle-with-cross" size={12} color="black" />
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science Project</TextRegular>
+                                    </View>
+                                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
+                                        <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
+
+                                        <View style={{ alignItems: 'center' }}>
+                                            <View style={[styles.imageplusaddInterests]}>
+                                                <AntDesign name="plus" size={10} color={color.neutral[500]} />
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+
+
+                        </View>
+                        <View style={[styles.modalcontainer]}>
+                            <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                                {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
+                                <Pressable
+                                    onPress={() => {
+                                        setOpen(!open);
+                                    }}
+                                    style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
+                                </Pressable>
+                            </View> */}
+                                <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
+                                    <Pressable
+                                        onPress={() => {
+                                            SubmitData(5);
+                                            setKidopen(!kidopen);
+                                            setOpen(!open);
+                                        }}
+                                        style={[styles.flexrow]}>
+                                        <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
+                                        <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
+                                    </Pressable>
+
+                                </View>
+
+                            </View>
+
+                        </View>
+
+                    </View>
+                </ScrollView>
+            </Modal>
+
+            <Modal animationType="slide" transparent={true} visible={cameramodal}>
+                <View style={styles.topCamera}>
+                    <View style={styles.cameracontainerbg}>
+                        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                            <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
+                            <TouchableOpacity
+                                onPress={() => setCameraModal(!cameramodal)}
+                                style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
+                                <Icon name="cancel" size={30} color={color.neutral[300]} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.cameraModal}>
+                            <View>
+                                <TouchableOpacity
+                                    style={[{ alignSelf: "center" },]}
+                                    onPress={OpenCamera}
+                                >
+                                    {/* <Fontisto name="camera" size={24} color="black" /> */}
+                                    <Image
+                                        source={require("../assets/images/Group 70.png")}
+                                        style={{ width: 50, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                                <TextRegular style={{ alignSelf: "center" }}>
+                                    Camera
+                                </TextRegular>
+                            </View>
+                            <View>
+                                <TouchableOpacity
+                                    style={[{ alignSelf: "center" },]}
+                                    onPress={pickImage}
+                                >
+                                    {/* <Fontisto name="picture" size={24} color="black" /> */}
+                                    <Image
+                                        source={require("../assets/images/Group 71.png")}
+                                        style={{ width: 60, height: 40 }}
+                                    />
+                                </TouchableOpacity>
+                                <TextRegular style={{ alignSelf: "center" }}>
+                                    Gallery
+                                </TextRegular>
+                            </View>
+
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
+
+
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={openpets}>
                 <View style={styles.topDummy} />
                 <View style={[styles.containerbg]}>
                     <TouchableOpacity
-                        onPress={() => { setOpen(!open); }}
+                        onPress={() => { setOpenpets(!openpets); }}
                         style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
                         <Icon name="cancel" size={30} color={color.neutral[300]} />
                     </TouchableOpacity>
@@ -463,37 +809,37 @@ export default function AddingKidsAndPets() {
                                 <Fontisto name="camera" size={15} color="black" />
                             </TouchableOpacity>
                         </View>
-                       
-                        <TextBold>First Name</TextBold>
+                        <TextBold>Name</TextBold>
                         <TextInput style={styles.inputBox}
                             placeholder="Enter your first name"
                             onChangeText={(e) => {
-                                setFirstName(e);
-                                validateFirstName(e, setFirstNameError);
+                                setPetName(e);
+                                validatePetName(e, setPetNameError);
                             }}
                         />
-                        {firstNameError !== "" && (
+                        {PetNameError !== "" && (
                             <TextBold style={{ marginBottom: 16, color: "red" }}>
-                                {firstNameError}
+                                {PetNameError}
                             </TextBold>
                         )}
-                        <TextBold>Last Name</TextBold>
+
+                        <TextBold>Date of Birth</TextBold>
                         <TextInput style={styles.inputBox}
-                            placeholder="Enter your last name"
+                            placeholder="dd/mm/yyyy"
                             onChangeText={(e) => {
-                                setLastName(e);
-                                validateLastName(e, setLastNameError);
+                                setpetDOB(e);
+                                validateDob(e, setDobErr);
                             }}
                         />
-                        {lastNameError !== "" && (
+                        {dobError !== "" && (
                             <TextBold style={{ marginBottom: 16, color: "red" }}>
-                                {lastNameError}
+                                {dobError}
                             </TextBold>
                         )}
                         <TextBold>Gender</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
-                            data={kidgender}
+                            data={petgender}
                             search
                             maxHeight={300}
                             labelField="label"
@@ -501,7 +847,7 @@ export default function AddingKidsAndPets() {
                             placeholder="Gender"
                             searchPlaceholder="Search..."
                             onChange={(item) => {
-                                setSelectedGender(item.value);
+                                setSelectedPetGender(item.value);
                                 validateGender(item.value, setGenderError);
                             }}
                         />
@@ -510,26 +856,21 @@ export default function AddingKidsAndPets() {
                                 {genderError}
                             </TextBold>
                         )}
-                        <TextBold>Relationship</TextBold>
+
+                        <TextBold>Breed</TextBold>
                         <Dropdown
                             style={styles.dropdownStyle}
-                            data={relationship}
+                            data={breed}
                             search
                             maxHeight={300}
                             labelField="label"
                             valueField="value"
-                            placeholder="Relationship"
+                            placeholder="Breed"
                             searchPlaceholder="Search..."
                             onChange={(item) => {
-                                setRelationship(item.value);
-                                validateRelationShip(item.value, setRelationshipError);
+                                setPetBreed(item.value)
                             }}
                         />
-                        {relationshipError !== "" && (
-                            <TextBold style={{ marginBottom: 16, color: "red" }}>
-                                {relationshipError}
-                            </TextBold>
-                        )}
                         <TextBold>Description</TextBold>
                         <TextInput style={styles.textArea}
                             multiline={true} numberOfLines={5}
@@ -542,29 +883,6 @@ export default function AddingKidsAndPets() {
                         {descriptionError !== '' && (
                             <Text style={{ color: 'red' }}>{descriptionError}</Text>
                         )}
-                        <TextBold>Interests</TextBold>
-                        <View style={styles.textAreaInterests} >
-                            <View style={[styles.flexrow, { alignItems: "center" }]}>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    <Entypo name="circle-with-cross" size={12} color="black" />
-                                </View>
-                                <View style={[styles.Tags]}>
-                                    <TextRegular>Science Project</TextRegular>
-                                </View>
-                                <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
-                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
-
-                                    <View style={{ alignItems: 'center' }}>
-                                        <View style={[styles.imageplusaddInterests]}>
-                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-
-
                     </View>
                     <View style={[styles.modalcontainer]}>
                         <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
@@ -580,178 +898,9 @@ export default function AddingKidsAndPets() {
                             <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
                                 <Pressable
                                     onPress={() => {
-                                        setKidopen(!kidopen);
-                                        setOpen(!open);
-                                    }}
-                                    style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
-                                    <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />
-                                </Pressable>
-
-                            </View>
-
-                        </View>
-
-                    </View>
-
-                </View>
-
-            </Modal>
-            <Modal animationType="slide" transparent={true} visible={cameramodal}>
-                            <View style={styles.topCamera}>
-                                <View style={styles.cameracontainerbg}>
-                                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                        <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
-                                        <TouchableOpacity
-                                            onPress={() => setCameraModal(!cameramodal)}
-                                            style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
-                                            <Icon name="cancel" size={30} color={color.neutral[300]} />
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={styles.cameraModal}>
-                                        <View>
-                                            <TouchableOpacity
-                                                style={[{ alignSelf: "center" },]}
-                                                onPress={OpenCamera}
-                                            >
-                                                {/* <Fontisto name="camera" size={24} color="black" /> */}
-                                                <Image
-                                                    source={require("../assets/images/Group 70.png")}
-                                                    style={{ width: 50, height: 40 }}
-                                                />
-                                            </TouchableOpacity>
-                                            <TextRegular style={{ alignSelf: "center" }}>
-                                                Camera
-                                            </TextRegular>
-                                        </View>
-                                        <View>
-                                            <TouchableOpacity
-                                                style={[{ alignSelf: "center" },]}
-                                                onPress={pickImage}
-                                            >
-                                                {/* <Fontisto name="picture" size={24} color="black" /> */}
-                                                <Image
-                                                    source={require("../assets/images/Group 71.png")}
-                                                    style={{ width: 60, height: 40 }}
-                                                />
-                                            </TouchableOpacity>
-                                            <TextRegular style={{ alignSelf: "center" }}>
-                                                Gallery
-                                            </TextRegular>
-                                        </View>
-
-                                    </View>
-
-                                </View>
-                            </View>
-                        </Modal>
-                        
-
-            <Modal
-                animationType='slide'
-                transparent={true}
-                visible={openpets}>
-                <View style={styles.topDummy} />
-                <View style={[styles.containerbg]}>
-                    <TouchableOpacity
-                        onPress={() => { setOpenpets(!openpets); }}
-                        style={[styles.cancelButtonContainer, { alignItems: "flex-end", }]}>
-                        <Icon name="cancel" size={30} color={color.neutral[300]} />
-                    </TouchableOpacity>
-                    <View>
-                    <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
-                            <TouchableOpacity
-                                style={{
-                                    position: "absolute",
-                                    bottom: "2%",
-                                    right: "38%",
-                                    backgroundColor: "lightgray",
-                                    borderRadius: 50,
-                                    padding: 8,
-                                }}
-                                onPress={() => setCameraModal(!cameramodal)}
-                            >
-                                <Fontisto name="camera" size={15} color="black" />
-                            </TouchableOpacity>
-                        </View>
-                        <TextBold>Name</TextBold>
-                        <TextInput style={styles.inputBox}
-                         placeholder="Enter your first name" 
-                         onChangeText={(e) => {
-                            setFirstName(e);
-                            validateFirstName(e, setFirstNameError);
-                        }}
-                    />
-                    {firstNameError !== "" && (
-                        <TextBold style={{ marginBottom: 16, color: "red" }}>
-                            {firstNameError}
-                        </TextBold>
-                    )}
-                        <TextBold>Gender</TextBold>
-                        <Dropdown
-                            style={styles.dropdownStyle}
-                            data={petgender}
-                            search
-                            maxHeight={300}
-                            labelField="label"
-                            valueField="value"
-                            placeholder="Gender"
-                            searchPlaceholder="Search..."
-                            onChange={(item) => {
-                                setSelectedGender(item.value);
-                                validateGender(item.value, setGenderError);
-                            }}
-                        />
-                        {genderError !== "" && (
-                            <TextBold style={{ marginBottom: 16, color: "red" }}>
-                                {genderError}
-                            </TextBold>
-                        )}
-                  
-                        <TextBold>Breed</TextBold>
-                        <Dropdown
-                            style={styles.dropdownStyle}
-                            data={breed}
-                            search
-                            maxHeight={300}
-                            labelField="label"
-                            valueField="value"
-                            placeholder="Breed"
-                            searchPlaceholder="Search..."
-                            onChange={(item) => {
-                                setBreed(item.value)
-                            }}
-                        />
-                        <TextBold>Description</TextBold>
-                        <TextInput style={styles.textArea}
-                         multiline={true} numberOfLines={5}
-                          placeholder="Enter your Description"
-                          onChangeText={(e) => {
-                            setDescription(e);
-                            validateDescription(e);
-                        }}
-                    />
-                    {descriptionError !== '' && (
-                        <Text style={{ color: 'red' }}>{descriptionError}</Text>
-                    )}
-                    </View>
-                    <View style={[styles.modalcontainer]}>
-                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                            {/* <View style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
-                                <Pressable
-                                    onPress={() => {
-                                        setOpen(!open);
-                                    }}
-                                    style={[styles.flexrow]}>
-                                    <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
-                                </Pressable>
-                            </View> */}
-                            <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
-                                <Pressable
-                                    onPress={() => {
-                                        setKidopen(!kidopen);
-                                        setOpen(!open);
+                                        SubmitData(7);
+                                        setOpenpets(!openpets);
+                                        // setOpen(!open);
                                     }}
                                     style={[styles.flexrow]}>
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
