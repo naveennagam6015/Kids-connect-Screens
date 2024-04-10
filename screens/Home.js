@@ -12,7 +12,7 @@ import {
   Modal,
 } from "react-native";
 import { color } from "../assets/colors/theme";
-import Carousel from "react-native-snap-carousel";
+// import Carousel from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { Calendar } from "react-native-calendars";
 import {
@@ -32,6 +32,7 @@ import axios from "axios";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { BASEURL } from "@env";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import ListField from "../components/ListField";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
@@ -101,7 +102,7 @@ export default function Home() {
         </SkeletonContainer>
       )}
 
-      {!bannerLoading && (
+      {/* {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -115,8 +116,9 @@ export default function Home() {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )}
+      )} */}
 
+    <ListField />
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
           <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>

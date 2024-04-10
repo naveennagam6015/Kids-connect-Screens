@@ -78,6 +78,7 @@ export default function ProfileSetupAfterAdminApproval() {
   const [addressError, setAddressError] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [userData, setUserData] = useState({});
+  const [secondaryPersonData, setSecondaryPersonData] = useState([]);
 
   /*============================================Validation Start===========================================*/
 
@@ -224,12 +225,35 @@ export default function ProfileSetupAfterAdminApproval() {
     loadImages();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      // Get the login user info
+
+      const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+      setUserData(userData);
+
+      // Fetch secondary person data
+
+      axios({
+        method: "get",
+        url: `${BASEURL}api/mainSecondary/${userData.id}`,
+      })
+        .then((res) => {
+          console.log(res.data);
+          setSecondaryPersonData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    fetchData();
+  }, []);
+
   const loadImages = async () => {
     console.log("hiiii");
     await ensureDirExists();
-    const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
-    setUserData(userData);
-    console.log(userData);
+
     const files = await FileSystem.readDirectoryAsync(imgDir);
     if (files.length > 0) {
       setImage(files.map((f) => imgDir + f));
@@ -259,6 +283,7 @@ export default function ProfileSetupAfterAdminApproval() {
       // console.log(result.assets[0].uri);
       // setImage(result.assets[0].uri);
       console.log(result);
+      setImage(result.assets[0].uri);
       saveImage(result.assets[0].uri);
     }
   };
@@ -357,11 +382,38 @@ export default function ProfileSetupAfterAdminApproval() {
 
   function SubmitData() {
     const formData = new FormData();
+    console.log(userData.RoleId);
+
+    // Append the image to formData
     formData.append("file", {
-      uri: "", //uri,
-      name: "", //filename,
+      uri: image, // URI of the image
+      name: imageName, // Filename of the image
       type: "image/jpeg",
     });
+
+    const data = {
+      FirstName: firstName, // string field
+      LastName: lastName, // string field
+      Email: email, //string
+      Dob: dob, // date format(yyyy-mm-dd)
+      Gender: selectedGender, //number
+      PhoneNumber: phone, //string
+      SSN: ssn, //string
+      Password: password, //string
+      About: about, // string
+      Address: address, // string
+      // ProfileImage: image, // This line can be removed if you're already appending the image to formData
+      SSNimage: imageName, // Corrected this to use imageName
+      Keywords: "keywords", // string
+      LoginType: 2, // Login type from google or direct
+      RoleId: userData.RoleId, // number
+      MainSubscriberId: userData.id, // number
+    };
+
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+
     axios({
       method: "post",
       url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
@@ -369,27 +421,15 @@ export default function ProfileSetupAfterAdminApproval() {
         Accept: "application/json",
         "Content-Type": "multipart/form-data",
       },
-      data: {
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
-        Dob: dob,
-        Gender: gender,
-        PhoneNumber: phone,
-        SSN: ssn,
-        Password: password,
-        About: about,
-        Address: address,
-        ProfileImage: image,
-        SSNimage: "",
-        Keywords: "keywords",
-        LoginType: "LoginType",
-        RoleId: roleId,
-        MainSubscriberId: userData.id,
-      },
-    }).then((res) => {
-      console.log(res.data);
-    });
+      data: formData, // Pass formData as data
+    })
+      .then((res) => {
+        console.log(res.data);
+        navigation.navigate("AddingKidsAndPets");
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error); // Log any errors
+      });
   }
 
   return (
@@ -417,14 +457,14 @@ export default function ProfileSetupAfterAdminApproval() {
               <View>
                 <Image
                   style={[styles.profilepic]}
-                  source={require("../assets/images/women.png")}
+                  source={{ uri: userData.ProfileImage }}
                 />
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextRegular style={[styles.childrenname]}>
-                  Lucy{" "}
+                  {userData.FirstName}
                   <TextRegular style={{ fontSize: 14, color: color.success }}>
-                    (Primary)
+                    ({userData.IsMain == 1 ? "Primary" : "Secondary"})
                   </TextRegular>
                 </TextRegular>
                 <Foundation
@@ -436,29 +476,70 @@ export default function ProfileSetupAfterAdminApproval() {
               </View>
             </View>
             <View style={{ alignItems: "center" }}>
-              <TouchableOpacity
-                onPress={() => {
-                  setOpen(!open);
-                }}
-                style={[styles.imageplus]}
-              >
-                <AntDesign name="plus" size={40} color={color.neutral[500]} />
-              </TouchableOpacity>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <TextRegular style={{ fontSize: 14 }}>
-                  Add Secondary Persons
-                </TextRegular>
-                <Foundation
-                  style={{ marginLeft: 8, marginTop: 2 }}
-                  name="info"
-                  size={16}
-                  color={color.neutral[500]}
-                />
-              </View>
+              {secondaryPersonData.length == 0 && (
+                <>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setOpen(!open);
+                    }}
+                    style={[styles.imageplus]}
+                  >
+                    <AntDesign
+                      name="plus"
+                      size={40}
+                      color={color.neutral[500]}
+                    />
+                  </TouchableOpacity>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <TextRegular style={{ fontSize: 14 }}>
+                      Add Secondary Persons
+                    </TextRegular>
+                    <Foundation
+                      style={{ marginLeft: 8, marginTop: 2 }}
+                      name="info"
+                      size={16}
+                      color={color.neutral[500]}
+                    />
+                  </View>
+                </>
+              )}
+
+              {secondaryPersonData.length > 0 && (
+                <>
+                  <View>
+                    <Image
+                      style={[styles.profilepic]}
+                      source={{
+                        uri: BASEURL + secondaryPersonData[0].ProfileImage,
+                      }}
+                    />
+                  </View>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <TextRegular style={[styles.childrenname]}>
+                      {secondaryPersonData[0].FirstName}
+                      <TextRegular
+                        style={{ fontSize: 14, color: color.success }}
+                      >
+                        (
+                        {secondaryPersonData[0].IsMain == 1
+                          ? "Primary"
+                          : "Secondary"}
+                        )
+                      </TextRegular>
+                    </TextRegular>
+                    <Foundation
+                      style={{ marginLeft: 8, marginTop: 2 }}
+                      name="info"
+                      size={16}
+                      color={color.neutral[500]}
+                    />
+                  </View>
+                </>
+              )}
             </View>
           </View>
         </View>
-        <Button title="Clear" onPress={() => ClearData()} />
+        {/* <Button title="Clear" onPress={() => ClearData()} /> */}
         <TouchableOpacity
           onPress={() => navigation.navigate("AddingKidsAndPets")}
           style={{
@@ -554,7 +635,7 @@ export default function ProfileSetupAfterAdminApproval() {
                 <View style={styles.cameraModal}>
                   <View>
                     <TouchableOpacity
-                      style={[{ alignSelf: "center" },]}
+                      style={[{ alignSelf: "center" }]}
                       onPress={OpenCamera}
                     >
                       {/* <Fontisto name="camera" size={24} color="black" /> */}
@@ -569,7 +650,7 @@ export default function ProfileSetupAfterAdminApproval() {
                   </View>
                   <View>
                     <TouchableOpacity
-                      style={[{ alignSelf: "center" },]}
+                      style={[{ alignSelf: "center" }]}
                       onPress={pickImage}
                     >
                       {/* <Fontisto name="picture" size={24} color="black" /> */}
@@ -786,7 +867,8 @@ export default function ProfileSetupAfterAdminApproval() {
               onPress={() => {
                 // setOpen(!open)
                 setModalopen(!modalopen);
-                navigation.navigate("AddingKidsAndPets");
+                // navigation.navigate("AddingKidsAndPets");
+                SubmitData();
               }}
               style={[
                 styles.flexrow,
@@ -974,6 +1056,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
+    borderWidth: 0.8,
   },
   Card: {
     borderRadius: 10,
