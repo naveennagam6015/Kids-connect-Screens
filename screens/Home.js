@@ -96,7 +96,7 @@ export default function Home() {
       >
         Glance Area
       </TextBold>
-      {bannerLoading && (
+      {/* {bannerLoading && (
         <SkeletonContainer isLoading={bannerLoading} Gradient={Gradient}>
           <View style={styles.slide}></View>
         </SkeletonContainer>

@@ -6,6 +6,7 @@ import { color } from '../assets/colors/theme';
 import { AntDesign, MaterialIcons, Foundation, Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import tickIcon from '../assets/images/tick.png';
 
 
 export default function ProfileSetup() {
@@ -17,6 +18,8 @@ export default function ProfileSetup() {
     const [openRequest, setOpenRequest] = useState(false);
     const [requests, setRequests] = useState(false);
     const [selected, setSelected] = useState(false);
+    const [isSelected, setIsSelected] = useState(false);
+    const [dogSelect, setDogSelect] = useState(false);
 
     const onClose = () => {
         setOpen(false);
@@ -25,6 +28,13 @@ export default function ProfileSetup() {
     };
     const handleLongPress = () => {
         setSelected(!selected);
+    };
+
+    const handlepressdog = () => {
+        setDogSelect(!dogSelect);
+    };
+    const handlePress = () => {
+        setIsSelected(!isSelected);
     };
     return (
         <ScrollView>
@@ -72,27 +82,21 @@ export default function ProfileSetup() {
                             <View style={[styles.Card]}>
                                 <View>
                                     <TextBold style={[styles.Headingtext]}>Choose Your Kids </TextBold>
-                                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                                    <View style={[styles.flexrow, { justifyContent: 'space-around' }]}>
                                         <View style={{ alignItems: 'center' }}>
-                                            <View>
+                                            <TouchableOpacity onPress={handlePress}>
                                                 <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                                            </View>
+                                                {isSelected && <Image style={styles.tickIcon2} source={tickIcon} />}
+                                            </TouchableOpacity>
                                             <View>
                                                 <TextRegular style={[styles.childrenname]}>Samanthaa</TextRegular>
                                             </View>
                                         </View>
+
                                         <View style={{ alignItems: 'center' }}>
-                                            <View>
-                                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                                            </View>
-                                            <View>
-                                                <TextRegular style={[styles.childrenname]}>Pratheek</TextRegular>
-                                            </View>
-                                        </View>
-                                        <View style={{ alignItems: 'center' }}>
-                                            <View>
+                                            <TouchableOpacity>
                                                 <AntDesign name="pluscircle" size={75} color={color.accent} />
-                                            </View>
+                                            </TouchableOpacity>
                                             <View>
                                                 <TextRegular style={[styles.childrenname]}>Add</TextRegular>
                                             </View>
@@ -100,27 +104,21 @@ export default function ProfileSetup() {
                                     </View>
                                     <View>
                                         <TextBold style={[styles.Headingtext]}>Choose Pets Profiles</TextBold>
-                                        <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                                        <View style={[styles.flexrow, { justifyContent: 'space-around' }]}>
+
                                             <View style={{ alignItems: 'center' }}>
-                                                <View>
+                                                <TouchableOpacity onPress={handlepressdog}>
                                                     <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                                                </View>
-                                                <View>
-                                                    <TextRegular style={[styles.childrenname]}>Lucy</TextRegular>
-                                                </View>
-                                            </View>
-                                            <View style={{ alignItems: 'center' }}>
-                                                <View>
-                                                    <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                                                </View>
+                                                    {dogSelect && <Image style={styles.tickIcon2} source={tickIcon} />}
+                                                </TouchableOpacity>
                                                 <View>
                                                     <TextRegular style={[styles.childrenname]}>Trippy</TextRegular>
                                                 </View>
                                             </View>
                                             <View style={{ alignItems: 'center' }}>
-                                                <View>
+                                                <TouchableOpacity>
                                                     <AntDesign name="pluscircle" size={75} color={color.accent} />
-                                                </View>
+                                                </TouchableOpacity>
                                                 <View>
                                                     <TextRegular style={[styles.childrenname]}>Add</TextRegular>
                                                 </View>
@@ -452,6 +450,14 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
 
+    tickIcon2: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        borderRadius: 100,
+        width: 30,
+        height: 30,
+    },
     tickIcon: {
         position: 'absolute',
         bottom: 0,
