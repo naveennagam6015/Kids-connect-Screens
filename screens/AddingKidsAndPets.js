@@ -370,7 +370,7 @@ export default function AddingKidsAndPets() {
         });
 
         console.log(result);
-
+        setCameraModal(!cameramodal);
         if (!result.canceled) {
             setImage(result.assets[0].uri);
             const filePath = result.assets[0].uri;
@@ -423,7 +423,7 @@ export default function AddingKidsAndPets() {
             requestData = {
                 Name: petName,
                 Breed: petBreed,
-                gender: selectedPetGender,
+                Gender: selectedPetGender,
                 Dob: petDOB,
                 RoleId: 7,
                 MainSubscriberId: userData.id,
@@ -796,8 +796,47 @@ export default function AddingKidsAndPets() {
                         <Icon name="cancel" size={30} color={color.neutral[300]} />
                     </TouchableOpacity>
                     <View>
+                        
                         <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                            <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                        {
+                            !image && (
+                                <>
+                                    <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                                    <TouchableOpacity
+                                        style={{
+                                            position: "absolute",
+                                            bottom: "2%",
+                                            right: "38%",
+                                            backgroundColor: "lightgray",
+                                            borderRadius: 50,
+                                            padding: 8,
+                                        }}
+                                        onPress={() => setCameraModal(!cameramodal)}
+                                    >
+                                        <Fontisto name="camera" size={15} color="black" />
+                                    </TouchableOpacity>
+                                </>
+                            )
+                        }
+                        {image && (
+                            <>
+                                <Image source={{ uri: image }} style={[styles.profilepic]} />
+                                <TouchableOpacity
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "2%",
+                                        right: "38%",
+                                        backgroundColor: "lightgray",
+                                        borderRadius: 50,
+                                        padding: 10,
+                                    }}
+                                    onPress={() => setCameraModal(!cameramodal)}
+                                >
+                                    <Fontisto name="camera" size={20} color="black" />
+                                </TouchableOpacity>
+                            </>
+                        )}
+                            {/* <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
                             <TouchableOpacity
                                 style={{
                                     position: "absolute",
@@ -810,7 +849,7 @@ export default function AddingKidsAndPets() {
                                 onPress={() => setCameraModal(!cameramodal)}
                             >
                                 <Fontisto name="camera" size={15} color="black" />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                         <TextBold>Name</TextBold>
                         <TextInput style={styles.inputBox}

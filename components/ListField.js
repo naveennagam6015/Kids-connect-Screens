@@ -12,28 +12,8 @@ import { Ionicons, Entypo } from "@expo/vector-icons";
 import { TextBold, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
 
-export default function ListField() {
-  const [interests, setInterests] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [newInterest, setNewInterest] = useState("");
-
-  function AddInterest() {
-    if (newInterest == "") {
-      Alert.alert("Please Enter a interest");
-    } else {
-      setInterests([...interests, newInterest]);
-      setIsModalVisible(false);
-      setNewInterest("");
-    }
-  }
-
-  function removeInterest(index) {
-    const updatedInterests = [...interests];
-    updatedInterests.splice(index, 1);
-    setInterests(updatedInterests);
-  }
-  
-  
+export default function ListField({ onChangeInterest, newInterest, isModalVisible, interests, removeInterest, AddInterest }) {
+  const [modalVisible, setModalVisible] = useState(isModalVisible); // Use local state for modal visibility
 
   return (
     <View style={styles.container}>
@@ -48,29 +28,29 @@ export default function ListField() {
 
       <TouchableOpacity
         style={styles.addButton}
-        onPress={() => setIsModalVisible(true)}
+        onPress={() => setModalVisible(true)} // Open modal when the "Add" button is pressed
       >
         <TextRegular style={{ justifyContent: "center" }}>Add</TextRegular>
         <Ionicons name="add-circle-outline" size={20} color="black" />
       </TouchableOpacity>
 
-      <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <TextInput
               style={styles.inputBox}
               placeholder="Type interest here"
-              onChangeText={(text) => setNewInterest(text)}
+              onChangeText={onChangeInterest}
               value={newInterest}
             />
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.closeButton}
-                onPress={() => setIsModalVisible(false)}
+                onPress={() => setModalVisible(false)} // Close modal
               >
                 <TextBold style={{ alignSelf: "center" }}>Close</TextBold>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.addBtn} onPress={AddInterest}>
+              <TouchableOpacity style={styles.addBtn} onPress={() => { AddInterest(); setModalVisible(false); }}>
                 <TextBold style={{ alignSelf: "center" }}>Add</TextBold>
               </TouchableOpacity>
             </View>
@@ -80,6 +60,7 @@ export default function ListField() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
