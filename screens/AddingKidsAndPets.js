@@ -422,7 +422,7 @@ export default function AddingKidsAndPets() {
             requestData = {
                 Name: petName,
                 Breed: petBreed,
-                gender: selectedPetGender,
+                Gender: selectedPetGender,
                 Dob: petDOB,
                 RoleId: 7,
                 MainSubscriberId: userData.id,
