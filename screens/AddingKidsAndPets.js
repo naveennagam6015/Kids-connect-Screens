@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Entypo } from '@expo/vector-icons';
 import AddKid from "../components/AddKid";
+import ListField from "../components/ListField";
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -77,6 +78,33 @@ export default function AddingKidsAndPets() {
     const [selectedPetGender, setSelectedPetGender] = useState("");
     const [petDOB, setpetDOB] = useState("");
     const [PetNameError, setPetNameError] = useState("");
+    const [secondaryPersonData, setSecondaryPersonData] = useState([]);
+    const [interests, setInterests] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [newInterest, setNewInterest] = useState("");
+
+    const handleChangeInterest = (interest) => {
+        setNewInterest(interest);
+        // You can perform any additional actions here, such as updating state in this component
+    };
+
+    // Function to add interest
+    const handleAddInterest = () => {
+        if (newInterest === "") {
+            Alert.alert("Please Enter an interest");
+        } else {
+            setInterests([...interests, newInterest]);
+            setIsModalVisible(false);
+            setNewInterest("");
+        }
+    };
+
+    // Function to remove interest
+    const handleRemoveInterest = (index) => {
+        const updatedInterests = [...interests];
+        updatedInterests.splice(index, 1);
+        setInterests(updatedInterests);
+    };
 
     /*============================================Validation Start===========================================*/
 
@@ -249,13 +277,41 @@ export default function AddingKidsAndPets() {
 
     useEffect(() => {
         const fetchData = async () => {
+            // Get the login user info
+
             const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
             setUserData(userData);
-            console.log(userData, "NJHGFSDGFDSH");
+
+            // Fetch secondary person data
+
+            let url;
+
+            if (userData.IsMain == 1) {
+                url = `${BASEURL}api/mainSecondary/${userData.id}`;
+            } else if (userData.IsMain == 0) {
+                url = `${BASEURL}api/mainSecondary/${userData.MainSubscriberId}`;
+            }
+
+            axios({
+                method: "get",
+                url: url,
+            })
+                .then((res) => {
+                    let mainData;
+                    if (userData.IsMain == 1) {
+                        mainData = res.data.data.filter((e) => e.IsMain == 0);
+                    } else {
+                        mainData = res.data.data.filter((e) => e.IsMain == 1);
+                    }
+
+                    setSecondaryPersonData(mainData);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         };
 
         fetchData();
-
     }, []);
 
 
@@ -280,6 +336,7 @@ export default function AddingKidsAndPets() {
         });
         // }
 
+        setCameraModal(!cameramodal);
         if (!result.canceled) {
             // Extracting the filename from the local URI
             const filename =
@@ -290,7 +347,8 @@ export default function AddingKidsAndPets() {
             // console.log(result.assets[0].uri);
             // setImage(result.assets[0].uri);
             console.log(result);
-            saveImage(result.assets[0].uri);
+            setImage(result.assets[0].uri);
+            // saveImage(result.assets[0].uri);
         }
     };
     /*==================================================Camera permission functionality end========================================= */
@@ -397,6 +455,16 @@ export default function AddingKidsAndPets() {
     };
 
     function SubmitData(Role) {
+        const formData = new FormData();
+        console.log(userData.RoleId);
+
+        // Append the image to formData
+        formData.append("ProfileImage", {
+            uri: image, // URI of the image
+            ProfileImage: imageName, // Filename of the image
+            type: "image/jpeg",
+        });
+
         let requestData = {};
 
         if (Role === 5) {
@@ -411,9 +479,9 @@ export default function AddingKidsAndPets() {
                 // Password: password,
                 About: description,
                 Address: address,
-                ProfileImage: image,
+                // ProfileImage: image,
                 SSNimage: "",
-                Keywords: "keywords",
+                Keywords: interests,
                 LoginType: 12,
                 RoleId: 5,
                 MainSubscriberId: userData.id
@@ -429,6 +497,10 @@ export default function AddingKidsAndPets() {
                 Description: description
             };
         }
+
+        Object.keys(requestData).forEach(key => {
+            formData.append(key, requestData[key]);
+        });
 
         axios({
             method: "post",
@@ -455,23 +527,61 @@ export default function AddingKidsAndPets() {
             <View style={{ marginTop: 20 }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <View style={{ alignItems: 'center' }}>
-                        <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        </View>
-                        <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <TextRegular style={[styles.childrenname]}>Lucy <TextRegular style={{ fontSize: 14, color: color.success }}>(Primary)</TextRegular></TextRegular>
-                            <Foundation style={{ marginLeft: 8, marginTop: 2 }} name="info" size={16} color={color.neutral[500]} />
-                        </View>
+                        {secondaryPersonData.length > 0 && (
+                            <>
+                                <View>
+                                    <Image
+                                        style={[styles.profilepic]}
+                                        source={{
+                                            uri: BASEURL + secondaryPersonData[0].ProfileImage,
+                                        }}
+                                    />
+                                </View>
+                                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                    <TextRegular style={[styles.childrenname]}>
+                                        {secondaryPersonData[0].FirstName}
+                                        <TextRegular style={{ fontSize: 14, color: color.success }}>
+                                            (
+                                            {secondaryPersonData[0].IsMain == 1
+                                                ? "Primary"
+                                                : "Secondary"}
+                                            )
+                                        </TextRegular>
+                                    </TextRegular>
+                                    <Foundation
+                                        style={{ marginLeft: 8, marginTop: 2 }}
+                                        name="info"
+                                        size={16}
+                                        color={color.neutral[500]}
+                                    />
+                                </View>
+                            </>
+                        )}
                     </View>
-                    <View style={{ alignItems: 'center' }}>
-                        <View>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/man3.jpg')} />
-                        </View>
-                        <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <TextRegular style={[styles.childrenname]}>Lucy <TextRegular style={{ fontSize: 14, color: color.success }}>(2nd)</TextRegular></TextRegular>
-                            <Foundation style={{ marginLeft: 8, marginTop: 2 }} name="info" size={16} color={color.neutral[500]} />
-                        </View>
-                    </View>
+                    <View style={{ alignItems: "center" }}>
+            <View>
+              <Image
+                style={[styles.profilepic]}
+                source={{
+                  uri: BASEURL + userData.ProfileImage,
+                }}
+              />
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <TextRegular style={[styles.childrenname]}>
+                {userData.FirstName}
+                <TextRegular style={{ fontSize: 14, color: color.success }}>
+                  ({userData.IsMain == 1 ? "Primary" : "Secondary"})
+                </TextRegular>
+              </TextRegular>
+              <Foundation
+                style={{ marginLeft: 8, marginTop: 2 }}
+                name="info"
+                size={16}
+                color={color.neutral[500]}
+              />
+            </View>
+          </View>
                 </View>
             </View>
             <View style={[styles.flexrow, { justifyContent: "flex-start", alignItems: "center" }]}>
@@ -677,26 +787,14 @@ export default function AddingKidsAndPets() {
                                 <Text style={{ color: 'red' }}>{descriptionError}</Text>
                             )}
                             <TextBold>Interests</TextBold>
-                            <View style={styles.textAreaInterests} >
-                                <View style={[styles.flexrow, { alignItems: "center" }]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                        <Entypo name="circle-with-cross" size={12} color="black" />
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
-                                        <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
-
-                                        <View style={{ alignItems: 'center' }}>
-                                            <View style={[styles.imageplusaddInterests]}>
-                                                <AntDesign name="plus" size={10} color={color.neutral[500]} />
-                                            </View>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
+                            <ListField
+                                onChangeInterest={handleChangeInterest}
+                                newInterest={newInterest}
+                                isModalVisible={isModalVisible}
+                                interests={interests}
+                                removeInterest={handleRemoveInterest}
+                                AddInterest={handleAddInterest}
+                            />
 
 
                         </View>
@@ -795,12 +893,31 @@ export default function AddingKidsAndPets() {
                         <Icon name="cancel" size={30} color={color.neutral[300]} />
                     </TouchableOpacity>
                     <View>
-                        
+
                         <View style={{ alignItems: 'center', marginVertical: 10 }}>
-                        {
-                            !image && (
+                            {
+                                !image && (
+                                    <>
+                                        <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                                        <TouchableOpacity
+                                            style={{
+                                                position: "absolute",
+                                                bottom: "2%",
+                                                right: "38%",
+                                                backgroundColor: "lightgray",
+                                                borderRadius: 50,
+                                                padding: 8,
+                                            }}
+                                            onPress={() => setCameraModal(!cameramodal)}
+                                        >
+                                            <Fontisto name="camera" size={15} color="black" />
+                                        </TouchableOpacity>
+                                    </>
+                                )
+                            }
+                            {image && (
                                 <>
-                                    <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
+                                    <Image source={{ uri: image }} style={[styles.profilepic]} />
                                     <TouchableOpacity
                                         style={{
                                             position: "absolute",
@@ -808,33 +925,14 @@ export default function AddingKidsAndPets() {
                                             right: "38%",
                                             backgroundColor: "lightgray",
                                             borderRadius: 50,
-                                            padding: 8,
+                                            padding: 10,
                                         }}
                                         onPress={() => setCameraModal(!cameramodal)}
                                     >
-                                        <Fontisto name="camera" size={15} color="black" />
+                                        <Fontisto name="camera" size={20} color="black" />
                                     </TouchableOpacity>
                                 </>
-                            )
-                        }
-                        {image && (
-                            <>
-                                <Image source={{ uri: image }} style={[styles.profilepic]} />
-                                <TouchableOpacity
-                                    style={{
-                                        position: "absolute",
-                                        bottom: "2%",
-                                        right: "38%",
-                                        backgroundColor: "lightgray",
-                                        borderRadius: 50,
-                                        padding: 10,
-                                    }}
-                                    onPress={() => setCameraModal(!cameramodal)}
-                                >
-                                    <Fontisto name="camera" size={20} color="black" />
-                                </TouchableOpacity>
-                            </>
-                        )}
+                            )}
                             {/* <Image style={[styles.profilepic]} source={require("../assets/images/user_placeholder.png")} />
                             <TouchableOpacity
                                 style={{
