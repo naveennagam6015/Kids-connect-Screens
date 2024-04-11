@@ -236,10 +236,10 @@ export default function ProfileSetupAfterAdminApproval() {
 
       let url;
 
-      if(userData.IsMain == 1){
-        url= `${BASEURL}api/mainSecondary/${userData.id}`
-      }else if(userData.IsMain == 0){
-        url = `${BASEURL}api/mainSecondary/${userData.MainSubscriberId}`
+      if (userData.IsMain == 1) {
+        url = `${BASEURL}api/mainSecondary/${userData.id}`;
+      } else if (userData.IsMain == 0) {
+        url = `${BASEURL}api/mainSecondary/${userData.MainSubscriberId}`;
       }
 
       axios({
@@ -248,12 +248,12 @@ export default function ProfileSetupAfterAdminApproval() {
       })
         .then((res) => {
           let mainData;
-          if(userData.IsMain == 1){
-             mainData = res.data.data.filter(e => e.IsMain == 0);
-          }else{
-            mainData = res.data.data.filter(e => e.IsMain == 1);
+          if (userData.IsMain == 1) {
+            mainData = res.data.data.filter((e) => e.IsMain == 0);
+          } else {
+            mainData = res.data.data.filter((e) => e.IsMain == 1);
           }
-          
+
           setSecondaryPersonData(mainData);
         })
         .catch((err) => {
@@ -583,7 +583,7 @@ export default function ProfileSetupAfterAdminApproval() {
             <Icon name="cancel" size={35} color={color.neutral[300]} />
           </TouchableOpacity>
           <View style={{ alignItems: "center", marginVertical: 10 }}>
-            {image && (
+            {image ? (
               <>
                 <Image source={{ uri: image }} style={[styles.profilepic]} />
                 <TouchableOpacity
@@ -600,8 +600,7 @@ export default function ProfileSetupAfterAdminApproval() {
                   <Fontisto name="camera" size={20} color="black" />
                 </TouchableOpacity>
               </>
-            )}
-            {!image && (
+            ) : (
               <>
                 <Image
                   style={[styles.profilepic]}
