@@ -457,7 +457,9 @@ export default function ProfileSetupAfterAdminApproval() {
               <View>
                 <Image
                   style={[styles.profilepic]}
-                  source={{ uri: userData.ProfileImage }}
+                  source={{
+                    uri: BASEURL + userData.ProfileImage,
+                  }}
                 />
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -539,7 +541,7 @@ export default function ProfileSetupAfterAdminApproval() {
             </View>
           </View>
         </View>
-        {/* <Button title="Clear" onPress={() => ClearData()} /> */}
+        <Button title="Clear" onPress={() => ClearData()} />
         <TouchableOpacity
           onPress={() => navigation.navigate("AddingKidsAndPets")}
           style={{
@@ -571,7 +573,7 @@ export default function ProfileSetupAfterAdminApproval() {
           <View style={{ alignItems: "center", marginVertical: 10 }}>
             {image && (
               <>
-                <Image source={{ uri: image }} style={[styles.profilepic]} />
+                {/* <Image source={{ uri: image }} style={[styles.profilepic]} /> */}
                 <TouchableOpacity
                   style={{
                     position: "absolute",
