@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as ImagePicker from "expo-image-picker";
+import OpenCameraModal from '../components/OpenCameraModal';
 
 
 export default function ProfileEdit() {
@@ -22,7 +23,7 @@ export default function ProfileEdit() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [address, setAddress] = useState("");
-    
+
     const [aboutError, setaboutError] = useState('');
     const [firstNameError, setFirstNameError] = useState("");
     const [lastNameError, setLastNameError] = useState("");
@@ -47,7 +48,7 @@ export default function ProfileEdit() {
         GetUserData();
     }, [])
 
-/*============================================Validation Start===========================================*/
+    /*============================================Validation Start===========================================*/
 
     // validation of form
     // done by anita
@@ -92,14 +93,14 @@ export default function ProfileEdit() {
 
     const validateAddress = (address, setAddressErr) => {
         if (!address.trim()) {
-          setAddressErr("Address is required");
-          return false;
+            setAddressErr("Address is required");
+            return false;
         } else {
-          setAddressErr("");
-          return true;
+            setAddressErr("");
+            return true;
         }
-      };
-    
+    };
+
 
     /*=============================================Camera Permission========================================*/
 
@@ -255,50 +256,7 @@ export default function ProfileEdit() {
                 </View>
                 <Modal animationType="slide" transparent={true} visible={cameramodal}>
                     <View style={styles.topCamera}>
-                        <View style={styles.cameracontainerbg}>
-                            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
-                                <TouchableOpacity
-                                    onPress={() => setCameraModal(!cameramodal)}
-                                    style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
-                                    <Icon name="cancel" size={30} color={color.neutral[300]} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.cameraModal}>
-                                <View>
-                                    <TouchableOpacity
-                                        style={[{ alignSelf: "center" },]}
-                                        onPress={OpenCamera}
-                                    >
-                                        {/* <Fontisto name="camera" size={24} color="black" /> */}
-                                        <Image
-                                            source={require("../assets/images/Group 70.png")}
-                                            style={{ width: 50, height: 40 }}
-                                        />
-                                    </TouchableOpacity>
-                                    <TextRegular style={{ alignSelf: "center" }}>
-                                        Camera
-                                    </TextRegular>
-                                </View>
-                                <View>
-                                    <TouchableOpacity
-                                        style={[{ alignSelf: "center" },]}
-                                        onPress={pickImage}
-                                    >
-                                        {/* <Fontisto name="picture" size={24} color="black" /> */}
-                                        <Image
-                                            source={require("../assets/images/Group 71.png")}
-                                            style={{ width: 60, height: 40 }}
-                                        />
-                                    </TouchableOpacity>
-                                    <TextRegular style={{ alignSelf: "center" }}>
-                                        Gallery
-                                    </TextRegular>
-                                </View>
-
-                            </View>
-
-                        </View>
+                        <OpenCameraModal />
                     </View>
                 </Modal>
                 <TextBold>About</TextBold>
@@ -313,7 +271,7 @@ export default function ProfileEdit() {
                 {aboutError !== '' && (
                     <Text style={{ color: 'red' }}>{aboutError}</Text>
                 )}
-                
+
                 {/* <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more" /> */}
                 <TextBold>First Name</TextBold>
                 <TextInput placeholder="Enter your last name"
@@ -366,15 +324,15 @@ export default function ProfileEdit() {
                     onChangeText={(e) => {
                         setAddress(e);
                         validateAddress(e, setAddressError);
-                      }}
-                    />
-                    {addressError !== "" && (
-                      <TextBold style={{ marginBottom: 16, color: "red" }}>
+                    }}
+                />
+                {addressError !== "" && (
+                    <TextBold style={{ marginBottom: 16, color: "red" }}>
                         {addressError}
-                      </TextBold>
-                    )}
+                    </TextBold>
+                )}
                 <View style={[styles.modalcontainer]}>
-                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                    <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: "center" }]}>
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Discard</TextMedium>
                         </TouchableOpacity>
