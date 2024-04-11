@@ -46,6 +46,32 @@ export default function Home() {
   const bottomTabBarHeight = useBottomTabBarHeight();
   const [activeIndex, setActiveIndex] = useState(0);
   const [bannerLoading, setBannerLoading] = useState(false);
+  const [interests, setInterests] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [newInterest, setNewInterest] = useState("");
+
+  const handleChangeInterest = (interest) => {
+    setNewInterest(interest);
+    // You can perform any additional actions here, such as updating state in this component
+  };
+
+  // Function to add interest
+  const handleAddInterest = () => {
+    if (newInterest === "") {
+      Alert.alert("Please Enter an interest");
+    } else {
+      setInterests([...interests, newInterest]);
+      setIsModalVisible(false);
+      setNewInterest("");
+    }
+  };
+
+  // Function to remove interest
+  const handleRemoveInterest = (index) => {
+    const updatedInterests = [...interests];
+    updatedInterests.splice(index, 1);
+    setInterests(updatedInterests);
+  };
   const renderItem = ({ item }) => {
     return (
       <View style={styles.slide}>
@@ -118,7 +144,14 @@ export default function Home() {
         />
       )} */}
 
-    <ListField />
+      <ListField
+        onChangeInterest={handleChangeInterest}
+        newInterest={newInterest}
+        isModalVisible={isModalVisible}
+        interests={interests}
+        removeInterest={handleRemoveInterest}
+        AddInterest={handleAddInterest}
+      />
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
           <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>
