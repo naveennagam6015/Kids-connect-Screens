@@ -42,7 +42,7 @@ export default function ProfileSetupAfterAdminApproval() {
 
   const [open, setOpen] = useState(false);
   const [modalopen, setModalopen] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [imageName, setImageName] = useState("");
   const [gender, setGender] = useState([
     { label: "Male", value: "1" },
@@ -269,9 +269,10 @@ export default function ProfileSetupAfterAdminApproval() {
     await ensureDirExists();
 
     const files = await FileSystem.readDirectoryAsync(imgDir);
-    if (files.length > 0) {
-      setImage(files.map((f) => imgDir + f));
-    }
+    console.log(files, "jhzhjh");
+    // if (files.length > 0) {
+    //   setImage(files.map((f) => imgDir + f));
+    // }
   };
 
   const OpenCamera = async (useLibrary) => {
@@ -298,7 +299,7 @@ export default function ProfileSetupAfterAdminApproval() {
       // setImage(result.assets[0].uri);
       console.log(result);
       setImage(result.assets[0].uri);
-      saveImage(result.assets[0].uri);
+      // saveImage(result.assets[0].uri);
     }
   };
 
@@ -384,6 +385,7 @@ export default function ProfileSetupAfterAdminApproval() {
     });
 
     setCameraModal(!cameramodal);
+    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -585,44 +587,38 @@ export default function ProfileSetupAfterAdminApproval() {
             <Icon name="cancel" size={35} color={color.neutral[300]} />
           </TouchableOpacity>
           <View style={{ alignItems: "center", marginVertical: 10 }}>
-            {image ? (
-              <>
-                <Image source={{ uri: image }} style={[styles.profilepic]} />
-                <TouchableOpacity
-                  style={{
-                    position: "absolute",
-                    bottom: "2%",
-                    right: "38%",
-                    backgroundColor: "lightgray",
-                    borderRadius: 50,
-                    padding: 10,
-                  }}
-                  onPress={() => setCameraModal(!cameramodal)}
-                >
-                  <Fontisto name="camera" size={20} color="black" />
-                </TouchableOpacity>
-              </>
-            ) : (
-              <>
-                <Image
-                  style={[styles.profilepic]}
-                  source={require("../assets/images/user_placeholder.png")}
-                />
-                <TouchableOpacity
-                  style={{
-                    position: "absolute",
-                    bottom: "2%",
-                    right: "38%",
-                    backgroundColor: "lightgray",
-                    borderRadius: 50,
-                    padding: 10,
-                  }}
-                  onPress={() => setCameraModal(!cameramodal)}
-                >
-                  <Fontisto name="camera" size={20} color="black" />
-                </TouchableOpacity>
-              </>
-            )}
+            <>
+              {image !== '' ? (
+                <View>
+                  <Image
+                    source={{ uri: image }}
+                    style={styles.profilepic}
+                    onError={() => console.log('Error loading image')}
+                  />
+                  <TouchableOpacity
+                    style={styles.cameraButton}
+                    onPress={() => setCameraModal(!cameramodal)}
+                  >
+                    <Fontisto name="camera" size={20} color="black" />
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <View>
+                  <Image
+                    style={styles.profilepic}
+                    source={require("../assets/images/user_placeholder.png")}
+                    onError={() => console.log('Error loading placeholder image')}
+                  />
+                  <TouchableOpacity
+                    style={styles.cameraButton}
+                    onPress={() => setCameraModal(!cameramodal)}
+                  >
+                    <Fontisto name="camera" size={20} color="black" />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </>
+
           </View>
           <Modal animationType="slide" transparent={true} visible={cameramodal}>
             <View style={styles.topCamera}>
@@ -1037,6 +1033,15 @@ const styles = StyleSheet.create({
     // marginTop: "auto",
     // height: "50%",
     justifyContent: "center",
+  },
+  cameraButton:{
+    position: "absolute",
+    bottom: "2%",
+    right: "1%",
+    backgroundColor: "lightgray",
+    borderRadius: 50,
+    padding: 10,
+
   },
   inputBox: {
     padding: 10,
