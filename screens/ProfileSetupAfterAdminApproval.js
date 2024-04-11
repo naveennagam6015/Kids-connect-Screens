@@ -234,13 +234,27 @@ export default function ProfileSetupAfterAdminApproval() {
 
       // Fetch secondary person data
 
+      let url;
+
+      if(userData.IsMain == 1){
+        url= `${BASEURL}api/mainSecondary/${userData.id}`
+      }else if(userData.IsMain == 0){
+        url = `${BASEURL}api/mainSecondary/${userData.MainSubscriberId}`
+      }
+
       axios({
         method: "get",
-        url: `${BASEURL}api/mainSecondary/${userData.id}`,
+        url: url,
       })
         .then((res) => {
-          console.log(res.data);
-          setSecondaryPersonData(res.data.data);
+          let mainData;
+          if(userData.IsMain == 1){
+             mainData = res.data.data.filter(e => e.IsMain == 0);
+          }else{
+            mainData = res.data.data.filter(e => e.IsMain == 1);
+          }
+          
+          setSecondaryPersonData(mainData);
         })
         .catch((err) => {
           console.log(err);
