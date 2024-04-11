@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Entypo } from '@expo/vector-icons';
 import AddKid from "../components/AddKid";
+import OpenCameraModal from "../components/OpenCameraModal";
 export default function AddingKidsAndPets() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -735,7 +736,9 @@ export default function AddingKidsAndPets() {
 
             <Modal animationType="slide" transparent={true} visible={cameramodal}>
                 <View style={styles.topCamera}>
-                    <View style={styles.cameracontainerbg}>
+                    <OpenCameraModal OpenCamera={() => OpenCamera()} pickImage={() => pickImage()} close={() => setCameraModal(!cameramodal)} />
+
+                    {/* <View style={styles.cameracontainerbg}>
                         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                             <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
                             <TouchableOpacity
@@ -750,7 +753,6 @@ export default function AddingKidsAndPets() {
                                     style={[{ alignSelf: "center" },]}
                                     onPress={OpenCamera}
                                 >
-                                    {/* <Fontisto name="camera" size={24} color="black" /> */}
                                     <Image
                                         source={require("../assets/images/Group 70.png")}
                                         style={{ width: 50, height: 40 }}
@@ -765,7 +767,6 @@ export default function AddingKidsAndPets() {
                                     style={[{ alignSelf: "center" },]}
                                     onPress={pickImage}
                                 >
-                                    {/* <Fontisto name="picture" size={24} color="black" /> */}
                                     <Image
                                         source={require("../assets/images/Group 71.png")}
                                         style={{ width: 60, height: 40 }}
@@ -778,7 +779,7 @@ export default function AddingKidsAndPets() {
 
                         </View>
 
-                    </View>
+                    </View> */}
                 </View>
             </Modal>
 
@@ -939,7 +940,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         // alignItems: 'center',
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        // backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     cameraModal: {
         flexDirection: "row",

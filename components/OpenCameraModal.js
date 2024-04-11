@@ -1,16 +1,11 @@
-import { Image, SafeAreaView, TouchableOpacity, Platform, StyleSheet, Modal, ScrollView, View, TextInput } from 'react-native';
-import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText';
-import { Dropdown } from 'react-native-element-dropdown';
+import { Image, TouchableOpacity, Platform, StyleSheet, Modal, ScrollView, View, TextInput } from 'react-native';
+import { TextBold, TextRegular } from '../assets/fonts/CustomText';
 import React, { useEffect, useState } from 'react'
 import { color } from '../assets/colors/theme'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as ImagePicker from "expo-image-picker";
 
-export default function OpenCameraModal() {
-    const [cameramodal, setCameraModal] = useState(false);
+export default function OpenCameraModal({ close, pickImage, OpenCamera }) {
 
     /*=============================================Camera Permission========================================*/
 
@@ -31,31 +26,31 @@ export default function OpenCameraModal() {
         }
     };
 
-    const OpenCamera = async (useLibrary) => {
-        let result;
-        // if (!useLibrary) {
-        await ImagePicker.getCameraPermissionsAsync();
+    // const OpenCamera = async (useLibrary) => {
+    //     let result;
+    //     // if (!useLibrary) {
+    //     await ImagePicker.getCameraPermissionsAsync();
 
-        result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            quality: 1,
-        });
-        // }
+    //     result = await ImagePicker.launchCameraAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //         allowsEditing: true,
+    //         quality: 1,
+    //     });
+    //     // }
 
-        if (!result.canceled) {
-            // Extracting the filename from the local URI
-            const filename =
-                Platform.OS === "android"
-                    ? result.assets[0].uri.split("/").pop()
-                    : result.assets[0].uri.split("/").pop().split(".")[0];
+    //     if (!result.canceled) {
+    //         // Extracting the filename from the local URI
+    //         const filename =
+    //             Platform.OS === "android"
+    //                 ? result.assets[0].uri.split("/").pop()
+    //                 : result.assets[0].uri.split("/").pop().split(".")[0];
 
-            // console.log(result.assets[0].uri);
-            // setImage(result.assets[0].uri);
-            console.log(result);
-            saveImage(result.assets[0].uri);
-        }
-    };
+    //         // console.log(result.assets[0].uri);
+    //         // setImage(result.assets[0].uri);
+    //         console.log(result);
+    //         saveImage(result.assets[0].uri);
+    //     }
+    // };
 
     /*==================================================Camera permission functionality end========================================= */
 
@@ -123,24 +118,24 @@ export default function OpenCameraModal() {
     };
 
     /*========================================================Image Upload Functionality end====================================== */
-    const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            // aspect: [4, 3],
-            quality: 1,
-        });
+    // const pickImage = async () => {
+    //     let result = await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //         allowsEditing: true,
+    //         // aspect: [4, 3],
+    //         quality: 1,
+    //     });
 
-        console.log(result);
+    //     console.log(result);
 
-        if (!result.canceled) {
-            setImage(result.assets[0].uri);
-            const filePath = result.assets[0].uri;
-            const pathSegments = filePath.split("/");
-            const filename = pathSegments[pathSegments.length - 1];
-            setImageName(filename);
-        }
-    };
+    //     if (!result.canceled) {
+    //         setImage(result.assets[0].uri);
+    //         const filePath = result.assets[0].uri;
+    //         const pathSegments = filePath.split("/");
+    //         const filename = pathSegments[pathSegments.length - 1];
+    //         setImageName(filename);
+    //     }
+    // };
 
 
     return (
@@ -149,7 +144,7 @@ export default function OpenCameraModal() {
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                     <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
                     <TouchableOpacity
-                        onPress={() => setCameraModal(!cameramodal)}
+                        onPress={close}
                         style={{ alignItems: "flex-end", }}>
                         <Icon name="cancel" size={30} color={color.neutral[300]} />
                     </TouchableOpacity>
@@ -199,7 +194,7 @@ const styles = StyleSheet.create({
     },
     cameracontainerbg: {
         padding: 25,
-        backgroundColor: color.white,
+        backgroundColor: color.primary,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         justifyContent: "center",
@@ -214,10 +209,5 @@ const styles = StyleSheet.create({
                 elevation: 30,
             },
         }),
-    },
-    topCamera: {
-        flex: 1,
-        justifyContent: "flex-end",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
 })

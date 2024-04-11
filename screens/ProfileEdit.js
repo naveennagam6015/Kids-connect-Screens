@@ -123,7 +123,6 @@ export default function ProfileEdit() {
 
     const OpenCamera = async (useLibrary) => {
         let result;
-        // if (!useLibrary) {
         await ImagePicker.getCameraPermissionsAsync();
 
         result = await ImagePicker.launchCameraAsync({
@@ -131,88 +130,18 @@ export default function ProfileEdit() {
             allowsEditing: true,
             quality: 1,
         });
-        // }
 
         if (!result.canceled) {
-            // Extracting the filename from the local URI
             const filename =
                 Platform.OS === "android"
                     ? result.assets[0].uri.split("/").pop()
                     : result.assets[0].uri.split("/").pop().split(".")[0];
-
-            // console.log(result.assets[0].uri);
-            // setImage(result.assets[0].uri);
             console.log(result);
             saveImage(result.assets[0].uri);
         }
     };
 
-    /*==================================================Camera permission functionality end========================================= */
 
-    /*===================================================Upload Image functionality==================================================== */
-
-    const saveImage = async (uri) => {
-        await ensureDirExists();
-        const fileName = new Date().getTime() + ".jpg";
-        const dest = imgDir + fileName;
-        await FileSystem.copyAsync({ from: uri, to: dest });
-        setImage([...image, dest]);
-
-        try {
-            const fileName = uri.split("/").pop();
-            const base64Credentials = base64Encode(
-                "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
-            );
-            const formData = new FormData();
-            formData.append("file", {
-                uri: uri,
-                name: fileName,
-                type: "image/jpeg",
-            });
-
-            setButtonLoading(true);
-            // setGalleryLoading(true)
-            const response = await fetch(`${BASEURL}wp-json/wp/v2/media`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Basic ${base64Credentials}`,
-                    Accept: "application/json",
-                    "Content-Type": "multipart/form-data",
-                },
-                body: formData,
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log("Upload to WordPress successful:", responseData);
-                console.log(responseData.source_url);
-                if (isPickingImage) {
-                    setUploadImage((prevUploadImage) => [
-                        ...prevUploadImage,
-                        responseData.source_url,
-                    ]);
-                } else {
-                    setGalleryImages((prevUploadImage) => [
-                        ...prevUploadImage,
-                        responseData.source_url,
-                    ]);
-                }
-            } else {
-                console.error(
-                    "Upload to WordPress failed with status:",
-                    response.status
-                );
-            }
-        } catch (error) {
-            console.error("Error uploading image to WordPress:", error);
-        } finally {
-            setButtonLoading(false);
-            // setGalleryLoading(false);
-            setIsPickingImage(false);
-        }
-    };
-
-    /*========================================================Image Upload Functionality end====================================== */
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -231,7 +160,7 @@ export default function ProfileEdit() {
             setImageName(filename);
         }
     };
-
+    // ============================================ Camera Permission END=====================================
 
     return (
         <ScrollView style={{ flex: 1 }}>
@@ -256,7 +185,7 @@ export default function ProfileEdit() {
                 </View>
                 <Modal animationType="slide" transparent={true} visible={cameramodal}>
                     <View style={styles.topCamera}>
-                        <OpenCameraModal />
+                        <OpenCameraModal OpenCamera={() => OpenCamera()} pickImage={() => pickImage()} close={() => setCameraModal(!cameramodal)} />
                     </View>
                 </Modal>
                 <TextBold>About</TextBold>
@@ -427,7 +356,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         // alignItems: 'center',
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        // backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     cameraModal: {
         flexDirection: "row",
