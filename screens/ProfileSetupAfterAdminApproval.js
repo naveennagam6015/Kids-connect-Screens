@@ -587,7 +587,7 @@ export default function ProfileSetupAfterAdminApproval() {
           <View style={{ alignItems: "center", marginVertical: 10 }}>
             {image ? (
               <>
-                {/* <Image source={{ uri: image }} style={[styles.profilepic]} /> */}
+                <Image source={{ uri: image }} style={[styles.profilepic]} />
                 <TouchableOpacity
                   style={{
                     position: "absolute",
