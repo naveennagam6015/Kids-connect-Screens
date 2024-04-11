@@ -585,26 +585,10 @@ export default function ProfileSetupAfterAdminApproval() {
           <View style={{ alignItems: "center", marginVertical: 10 }}>
             {image ? (
               <>
-                <Image source={{ uri: image }} style={[styles.profilepic]} />
-                <TouchableOpacity
-                  style={{
-                    position: "absolute",
-                    bottom: "2%",
-                    right: "38%",
-                    backgroundColor: "lightgray",
-                    borderRadius: 50,
-                    padding: 10,
-                  }}
-                  onPress={() => setCameraModal(!cameramodal)}
-                >
-                  <Fontisto name="camera" size={20} color="black" />
-                </TouchableOpacity>
-              </>
-            ) : (
-              <>
                 <Image
+                  source={{ uri: image }}
                   style={[styles.profilepic]}
-                  source={require("../assets/images/user_placeholder.png")}
+                  onError={() => console.log("Error loading image")}
                 />
                 <TouchableOpacity
                   style={{
@@ -620,6 +604,27 @@ export default function ProfileSetupAfterAdminApproval() {
                   <Fontisto name="camera" size={20} color="black" />
                 </TouchableOpacity>
               </>
+            ) : (
+              <View>
+                <Image
+                  style={[styles.profilepic]}
+                  source={require("../assets/images/user_placeholder.png")}
+                  onError={() => console.log("Error loading placeholder image")}
+                />
+                <TouchableOpacity
+                  style={{
+                    position: "absolute",
+                    bottom: "2%",
+                    right: "38%",
+                    backgroundColor: "lightgray",
+                    borderRadius: 50,
+                    padding: 10,
+                  }}
+                  onPress={() => setCameraModal(!cameramodal)}
+                >
+                  <Fontisto name="camera" size={20} color="black" />
+                </TouchableOpacity>
+              </View>
             )}
           </View>
           <Modal animationType="slide" transparent={true} visible={cameramodal}>
