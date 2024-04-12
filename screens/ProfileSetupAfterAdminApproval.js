@@ -286,7 +286,7 @@ export default function ProfileSetupAfterAdminApproval() {
     console.log(userData.RoleId);
 
     // Append the image to formData
-    formData.append("file", {
+    formData.append("ProfileImage", {
       uri: image, // URI of the image
       name: imageName, // Filename of the image
       type: "image/jpeg",
