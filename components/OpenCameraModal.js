@@ -25,11 +25,6 @@ export default function OpenCameraModal({ close, pickImage, OpenCamera }) {
             setImage(files.map((f) => imgDir + f));
         }
     };
-
-
-
-
-
     return (
         <View>
             <View style={styles.cameracontainerbg}>
