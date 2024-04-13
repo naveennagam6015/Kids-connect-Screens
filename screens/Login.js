@@ -151,7 +151,7 @@ export default function Login() {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then(async(res) => {
+        }).then(async (res) => {
             console.log(res.data);
             const userData = JSON.stringify(res.data.data);
             await AsyncStorage.setItem('userDetails', userData);
@@ -230,7 +230,7 @@ export default function Login() {
 
             {/* dummy */}
             <TouchableOpacity style={styles.btnPrimary}
-                onPress={() => navigation.navigate('ProfileSetup')}
+                onPress={() => navigation.navigate('Chat')}
             >
                 <TextMedium style={styles.btnText}>Chat</TextMedium>
             </TouchableOpacity>

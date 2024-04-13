@@ -27,6 +27,7 @@ import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { BASEURL } from "@env";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import OpenCameraModal from "../components/OpenCameraModal";
 
 const imgDir = FileSystem.documentDirectory + "images/";
 
@@ -216,22 +217,12 @@ export default function ProfileSetupAfterAdminApproval() {
 
   /*=============================================Camera Permission========================================*/
 
-  useEffect(() => {
-    (async () => {
-      const galleryStatus =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      setHasGalleryImagePermission(galleryStatus.status === "granted");
-    })();
-    loadImages();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       // Get the login user info
-
       const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
       setUserData(userData);
-
       // Fetch secondary person data
 
       let url;
@@ -260,9 +251,9 @@ export default function ProfileSetupAfterAdminApproval() {
           console.log(err);
         });
     };
-
     fetchData();
   }, []);
+
 
   const loadImages = async () => {
     console.log("hiiii");
@@ -305,76 +296,6 @@ export default function ProfileSetupAfterAdminApproval() {
 
   /*==================================================Camera permission functionality end========================================= */
 
-  /*===================================================Upload Image functionality==================================================== */
-
-  const saveImage = async (uri) => {
-    await ensureDirExists();
-    const fileName = new Date().getTime() + ".jpg";
-    const dest = imgDir + fileName;
-    await FileSystem.copyAsync({ from: uri, to: dest });
-    setImage([...image, dest]);
-
-    try {
-      const fileName = uri.split("/").pop();
-      const base64Credentials = base64Encode(
-        "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
-      );
-      const formData = new FormData();
-      formData.append("file", {
-        uri: uri,
-        name: fileName,
-        type: "image/jpeg",
-      });
-
-      setButtonLoading(true);
-      // setGalleryLoading(true)
-      const response = await fetch(`${BASEURL}wp-json/wp/v2/media`, {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${base64Credentials}`,
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Upload to WordPress successful:", responseData);
-        console.log(responseData.source_url);
-        if (isPickingImage) {
-          setUploadImage((prevUploadImage) => [
-            ...prevUploadImage,
-            responseData.source_url,
-          ]);
-        } else {
-          setGalleryImages((prevUploadImage) => [
-            ...prevUploadImage,
-            responseData.source_url,
-          ]);
-        }
-      } else {
-        console.error(
-          "Upload to WordPress failed with status:",
-          response.status
-        );
-      }
-    } catch (error) {
-      console.error("Error uploading image to WordPress:", error);
-    } finally {
-      setButtonLoading(false);
-      // setGalleryLoading(false);
-      setIsPickingImage(false);
-    }
-  };
-
-  async function ClearData() {
-    const keysBeforeRemove = await AsyncStorage.getAllKeys();
-    await AsyncStorage.multiRemove(keysBeforeRemove);
-    navigation.navigate("Login");
-  }
-
-  /*========================================================Image Upload Functionality end====================================== */
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -401,7 +322,7 @@ export default function ProfileSetupAfterAdminApproval() {
     console.log(userData.RoleId);
 
     // Append the image to formData
-    formData.append("file", {
+    formData.append("ProfileImage", {
       uri: image, // URI of the image
       name: imageName, // Filename of the image
       type: "image/jpeg",
@@ -622,7 +543,8 @@ export default function ProfileSetupAfterAdminApproval() {
           </View>
           <Modal animationType="slide" transparent={true} visible={cameramodal}>
             <View style={styles.topCamera}>
-              <View style={styles.cameracontainerbg}>
+              <OpenCameraModal OpenCamera={() => OpenCamera()} pickImage={() => pickImage()} close={() => setCameraModal(!cameramodal)} />
+              {/* <View style={styles.cameracontainerbg}>
                 <View
                   style={{
                     flexDirection: "row",
@@ -649,7 +571,6 @@ export default function ProfileSetupAfterAdminApproval() {
                       style={[{ alignSelf: "center" }]}
                       onPress={OpenCamera}
                     >
-                      {/* <Fontisto name="camera" size={24} color="black" /> */}
                       <Image
                         source={require("../assets/images/Group 70.png")}
                         style={{ width: 50, height: 40 }}
@@ -664,7 +585,6 @@ export default function ProfileSetupAfterAdminApproval() {
                       style={[{ alignSelf: "center" }]}
                       onPress={pickImage}
                     >
-                      {/* <Fontisto name="picture" size={24} color="black" /> */}
                       <Image
                         source={require("../assets/images/Group 71.png")}
                         style={{ width: 60, height: 40 }}
@@ -675,7 +595,7 @@ export default function ProfileSetupAfterAdminApproval() {
                     </TextRegular>
                   </View>
                 </View>
-              </View>
+              </View> */}
             </View>
           </Modal>
           <ScrollView>
@@ -1034,7 +954,7 @@ const styles = StyleSheet.create({
     // height: "50%",
     justifyContent: "center",
   },
-  cameraButton:{
+  cameraButton: {
     position: "absolute",
     bottom: "2%",
     right: "1%",

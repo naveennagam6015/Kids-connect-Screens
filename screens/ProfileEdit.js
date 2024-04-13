@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Foundation, AntDesign, FontAwesome, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as ImagePicker from "expo-image-picker";
+import OpenCameraModal from '../components/OpenCameraModal';
 
 
 export default function ProfileEdit() {
@@ -22,7 +23,7 @@ export default function ProfileEdit() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [address, setAddress] = useState("");
-    
+
     const [aboutError, setaboutError] = useState('');
     const [firstNameError, setFirstNameError] = useState("");
     const [lastNameError, setLastNameError] = useState("");
@@ -47,7 +48,7 @@ export default function ProfileEdit() {
         GetUserData();
     }, [])
 
-/*============================================Validation Start===========================================*/
+    /*============================================Validation Start===========================================*/
 
     // validation of form
     // done by anita
@@ -92,14 +93,14 @@ export default function ProfileEdit() {
 
     const validateAddress = (address, setAddressErr) => {
         if (!address.trim()) {
-          setAddressErr("Address is required");
-          return false;
+            setAddressErr("Address is required");
+            return false;
         } else {
-          setAddressErr("");
-          return true;
+            setAddressErr("");
+            return true;
         }
-      };
-    
+    };
+
 
     /*=============================================Camera Permission========================================*/
 
@@ -122,7 +123,6 @@ export default function ProfileEdit() {
 
     const OpenCamera = async (useLibrary) => {
         let result;
-        // if (!useLibrary) {
         await ImagePicker.getCameraPermissionsAsync();
 
         result = await ImagePicker.launchCameraAsync({
@@ -130,88 +130,18 @@ export default function ProfileEdit() {
             allowsEditing: true,
             quality: 1,
         });
-        // }
 
         if (!result.canceled) {
-            // Extracting the filename from the local URI
             const filename =
                 Platform.OS === "android"
                     ? result.assets[0].uri.split("/").pop()
                     : result.assets[0].uri.split("/").pop().split(".")[0];
-
-            // console.log(result.assets[0].uri);
-            // setImage(result.assets[0].uri);
             console.log(result);
             saveImage(result.assets[0].uri);
         }
     };
 
-    /*==================================================Camera permission functionality end========================================= */
 
-    /*===================================================Upload Image functionality==================================================== */
-
-    const saveImage = async (uri) => {
-        await ensureDirExists();
-        const fileName = new Date().getTime() + ".jpg";
-        const dest = imgDir + fileName;
-        await FileSystem.copyAsync({ from: uri, to: dest });
-        setImage([...image, dest]);
-
-        try {
-            const fileName = uri.split("/").pop();
-            const base64Credentials = base64Encode(
-                "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
-            );
-            const formData = new FormData();
-            formData.append("file", {
-                uri: uri,
-                name: fileName,
-                type: "image/jpeg",
-            });
-
-            setButtonLoading(true);
-            // setGalleryLoading(true)
-            const response = await fetch(`${BASEURL}wp-json/wp/v2/media`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Basic ${base64Credentials}`,
-                    Accept: "application/json",
-                    "Content-Type": "multipart/form-data",
-                },
-                body: formData,
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log("Upload to WordPress successful:", responseData);
-                console.log(responseData.source_url);
-                if (isPickingImage) {
-                    setUploadImage((prevUploadImage) => [
-                        ...prevUploadImage,
-                        responseData.source_url,
-                    ]);
-                } else {
-                    setGalleryImages((prevUploadImage) => [
-                        ...prevUploadImage,
-                        responseData.source_url,
-                    ]);
-                }
-            } else {
-                console.error(
-                    "Upload to WordPress failed with status:",
-                    response.status
-                );
-            }
-        } catch (error) {
-            console.error("Error uploading image to WordPress:", error);
-        } finally {
-            setButtonLoading(false);
-            // setGalleryLoading(false);
-            setIsPickingImage(false);
-        }
-    };
-
-    /*========================================================Image Upload Functionality end====================================== */
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -230,7 +160,7 @@ export default function ProfileEdit() {
             setImageName(filename);
         }
     };
-
+    // ============================================ Camera Permission END=====================================
 
     return (
         <ScrollView style={{ flex: 1 }}>
@@ -255,50 +185,7 @@ export default function ProfileEdit() {
                 </View>
                 <Modal animationType="slide" transparent={true} visible={cameramodal}>
                     <View style={styles.topCamera}>
-                        <View style={styles.cameracontainerbg}>
-                            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                <TextBold style={{ marginBottom: 20, fontSize: 18 }}>Upload Image</TextBold>
-                                <TouchableOpacity
-                                    onPress={() => setCameraModal(!cameramodal)}
-                                    style={[styles.cancelButtonContainerpic, { alignItems: "flex-end", }]}>
-                                    <Icon name="cancel" size={30} color={color.neutral[300]} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.cameraModal}>
-                                <View>
-                                    <TouchableOpacity
-                                        style={[{ alignSelf: "center" },]}
-                                        onPress={OpenCamera}
-                                    >
-                                        {/* <Fontisto name="camera" size={24} color="black" /> */}
-                                        <Image
-                                            source={require("../assets/images/Group 70.png")}
-                                            style={{ width: 50, height: 40 }}
-                                        />
-                                    </TouchableOpacity>
-                                    <TextRegular style={{ alignSelf: "center" }}>
-                                        Camera
-                                    </TextRegular>
-                                </View>
-                                <View>
-                                    <TouchableOpacity
-                                        style={[{ alignSelf: "center" },]}
-                                        onPress={pickImage}
-                                    >
-                                        {/* <Fontisto name="picture" size={24} color="black" /> */}
-                                        <Image
-                                            source={require("../assets/images/Group 71.png")}
-                                            style={{ width: 60, height: 40 }}
-                                        />
-                                    </TouchableOpacity>
-                                    <TextRegular style={{ alignSelf: "center" }}>
-                                        Gallery
-                                    </TextRegular>
-                                </View>
-
-                            </View>
-
-                        </View>
+                        <OpenCameraModal OpenCamera={() => OpenCamera()} pickImage={() => pickImage()} close={() => setCameraModal(!cameramodal)} />
                     </View>
                 </Modal>
                 <TextBold>About</TextBold>
@@ -313,7 +200,7 @@ export default function ProfileEdit() {
                 {aboutError !== '' && (
                     <Text style={{ color: 'red' }}>{aboutError}</Text>
                 )}
-                
+
                 {/* <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more" /> */}
                 <TextBold>First Name</TextBold>
                 <TextInput placeholder="Enter your last name"
@@ -366,15 +253,15 @@ export default function ProfileEdit() {
                     onChangeText={(e) => {
                         setAddress(e);
                         validateAddress(e, setAddressError);
-                      }}
-                    />
-                    {addressError !== "" && (
-                      <TextBold style={{ marginBottom: 16, color: "red" }}>
+                    }}
+                />
+                {addressError !== "" && (
+                    <TextBold style={{ marginBottom: 16, color: "red" }}>
                         {addressError}
-                      </TextBold>
-                    )}
+                    </TextBold>
+                )}
                 <View style={[styles.modalcontainer]}>
-                    <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
+                    <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: "center" }]}>
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Discard</TextMedium>
                         </TouchableOpacity>
@@ -469,7 +356,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         // alignItems: 'center',
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        // backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     cameraModal: {
         flexDirection: "row",
