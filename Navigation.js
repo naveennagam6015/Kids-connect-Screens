@@ -28,6 +28,7 @@ import Test from './Test';
 import ProfileSetup from './screens/ProfileSetup';
 import Confirmation from './screens/Confirmation ';
 import { TextBold } from './assets/fonts/CustomText';
+import GlobalSearch from './screens/GlobalSearch';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -201,6 +202,7 @@ function StackNavigation() {
             <Stack.Screen name='AccountDeletion' component={AccountDeletion} options={{ headerTitle: "Account Deletion" }} />
             <Stack.Screen name='Thankyou' component={Thankyou} options={{ headerShown: false }} />
             <Stack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: "Confirmation" }} />
+            <Stack.Screen name='GlobalSearch' component={GlobalSearch} options={{ headerShown: false }} />
         </Stack.Navigator>
     );
 }
