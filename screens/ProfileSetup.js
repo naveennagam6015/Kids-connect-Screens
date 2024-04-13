@@ -7,6 +7,7 @@ import { AntDesign, MaterialIcons, Foundation, Feather, Ionicons } from '@expo/v
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import tickIcon from '../assets/images/tick.png';
+import ListField from '../components/ListField';
 
 
 export default function ProfileSetup() {
@@ -20,6 +21,32 @@ export default function ProfileSetup() {
     const [selected, setSelected] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
     const [dogSelect, setDogSelect] = useState(false);
+    const [interests, setInterests] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [newInterest, setNewInterest] = useState("");
+    const handleChangeInterest = (interest) => {
+        setNewInterest(interest);
+        // You can perform any additional actions here, such as updating state in this component
+    };
+
+    // Function to add interest
+    const handleAddInterest = () => {
+        if (newInterest === "") {
+            Alert.alert("Please Enter an interest");
+        } else {
+            setInterests([...interests, newInterest]);
+            setIsModalVisible(false);
+            setNewInterest("");
+        }
+    };
+
+    // Function to remove interest
+    const handleRemoveInterest = (index) => {
+        const updatedInterests = [...interests];
+        updatedInterests.splice(index, 1);
+        setInterests(updatedInterests);
+    };
+
 
     const onClose = () => {
         setOpen(false);
@@ -134,29 +161,14 @@ export default function ProfileSetup() {
                                 <TextRegular style={{ textAlign: 'right', color: color.neutral[500], marginRight: 5 }}>70 words</TextRegular>
                                 <TextBold style={[styles.Headingtext]}>Jay’s Interest, Hobbies here</TextBold>
 
-                                <View style={styles.textAreaInterests} >
-                                    <View style={[styles.flexrow, { alignItems: "center" }]}>
-                                        <View style={[styles.Tags2, { alignItems: "center" }]}>
-                                            <TextRegular style={{ fontSize: 16 }}>3-5hrs</TextRegular>
-                                            <MaterialIcons style={{ marginLeft: 5 }} name="cancel" size={18} color={color.accent} />
-                                        </View>
-                                        <View style={[styles.Tags2, { alignItems: "center" }]}>
-                                            <TextRegular style={{ fontSize: 16 }}>3-5hrs</TextRegular>
-                                            <MaterialIcons style={{ marginLeft: 5 }} name="cancel" size={18} color={color.accent} />
-                                        </View>
-
-                                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: "center", marginLeft: 10 }}>
-                                            <TextRegular style={{ fontSize: 16, paddingRight: 5 }}>Add</TextRegular>
-
-                                            <View style={{ alignItems: 'center' }}>
-                                                <View style={[styles.imageplusaddInterests]}>
-                                                    <AntDesign name="plus" size={12} color={color.neutral[500]} />
-                                                </View>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-
+                                <ListField
+                                    onChangeInterest={handleChangeInterest}
+                                    newInterest={newInterest}
+                                    isModalVisible={isModalVisible}
+                                    interests={interests}
+                                    removeInterest={handleRemoveInterest}
+                                    AddInterest={handleAddInterest}
+                                />
                                 <View style={[styles.flexrow, { alignItems: "center" }]}>
                                     <Ionicons name="attach" size={24} color="black" />
                                     <TextBold style={[styles.Headingtext]}>Attachments</TextBold>

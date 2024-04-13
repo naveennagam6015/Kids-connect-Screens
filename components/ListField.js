@@ -13,7 +13,7 @@ import { TextBold, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
 
 export default function ListField({ onChangeInterest, newInterest, isModalVisible, interests, removeInterest, AddInterest }) {
-  const [modalVisible, setModalVisible] = useState(isModalVisible); // Use local state for modal visibility
+  const [modalVisible, setModalVisible] = useState(isModalVisible);
 
   return (
     <View style={styles.container}>
@@ -28,12 +28,11 @@ export default function ListField({ onChangeInterest, newInterest, isModalVisibl
 
       <TouchableOpacity
         style={styles.addButton}
-        onPress={() => setModalVisible(true)} // Open modal when the "Add" button is pressed
+        onPress={() => setModalVisible(true)}
       >
-        <TextRegular style={{ justifyContent: "center" }}>Add</TextRegular>
-        <Ionicons name="add-circle-outline" size={20} color="black" />
+        <TextRegular style={{ justifyContent: "center", fontSize: 16, marginRight: 4 }}>Add</TextRegular>
+        <Ionicons name="add-circle" size={20} color={color.accent} />
       </TouchableOpacity>
-
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
@@ -65,25 +64,27 @@ export default function ListField({ onChangeInterest, newInterest, isModalVisibl
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
+    justifyContent: "center",
+    borderColor: "#CCCCCC",
+    borderRadius: 8,
+    marginTop: 8,
+    marginBottom: 12,
     width: "100%",
   },
   addButton: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "10%",
+    borderWidth: 1,
+    borderColor: "#CCCCCC",
+    borderRadius: 100,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   inputBox: {
     borderWidth: 1,
@@ -122,19 +123,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   textContainer: {
-    padding: 10,
     flexDirection: "row",
     justifyContent: "space-around",
-    borderRadius: 20,
     borderColor: color.secondaryOrange,
-    borderWidth: 1,
     marginRight: 10,
-    marginBottom: 10,
+    marginBottom: 5,
+    marginTop: 5,
+    borderWidth: 1,
+    borderRadius: 100,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   interestsContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "flex-start",
     width: "80%",
+
   },
 });
