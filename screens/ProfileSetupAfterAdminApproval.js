@@ -218,6 +218,42 @@ export default function ProfileSetupAfterAdminApproval() {
   /*=============================================Camera Permission========================================*/
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      // Get the login user info
+      const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+      setUserData(userData);
+      // Fetch secondary person data
+
+      let url;
+
+      if (userData.IsMain == 1) {
+        url = `${BASEURL}api/mainSecondary/${userData.id}`;
+      } else if (userData.IsMain == 0) {
+        url = `${BASEURL}api/mainSecondary/${userData.MainSubscriberId}`;
+      }
+
+      axios({
+        method: "get",
+        url: url,
+      })
+        .then((res) => {
+          let mainData;
+          if (userData.IsMain == 1) {
+            mainData = res.data.data.filter((e) => e.IsMain == 0);
+          } else {
+            mainData = res.data.data.filter((e) => e.IsMain == 1);
+          }
+
+          setSecondaryPersonData(mainData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetchData();
+  }, []);
+
 
   const loadImages = async () => {
     console.log("hiiii");
