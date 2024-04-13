@@ -870,7 +870,7 @@ export default function AddingKidsAndPets() {
                                     />
                                 </TouchableOpacity>
                                 <TextRegular style={{ alignSelf: "center" }}>
-                                    Gallery
+                                    GallerypickImage
                                 </TextRegular>
                             </View>
 
