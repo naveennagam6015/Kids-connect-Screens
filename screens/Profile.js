@@ -198,6 +198,26 @@ export default function Profile() {
                 <View style={[styles.yellowcard,]}>
                     <View style={{ paddingHorizontal: 10 }}>
                         <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>Support</TextBold>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('ContactUs')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>ContactUs</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Aboutus')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>About us</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
                         <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
                                 <MaterialIcons name="dark-mode" size={24} color={color.white} />

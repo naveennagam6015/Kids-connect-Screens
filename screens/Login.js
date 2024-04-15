@@ -234,6 +234,11 @@ export default function Login() {
             >
                 <TextMedium style={styles.btnText}>Chat</TextMedium>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.btnPrimary}
+                onPress={() => navigation.navigate('About')}
+            >
+                <TextMedium style={styles.btnText}>About</TextMedium>
+            </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
             // onPress={() => navigation.navigate('ProfileEdit')}

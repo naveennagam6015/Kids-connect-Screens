@@ -479,6 +479,9 @@ export default function ProfileSetupAfterAdminApproval() {
           </View>
         </View>
         <Button title="Clear" onPress={() => ClearData()} />
+        <View></View>
+        <Button title="About" onPress={() => navigation.navigate('Aboutus')} />
+
         <TouchableOpacity
           onPress={() => navigation.navigate("AddingKidsAndPets")}
           style={{
