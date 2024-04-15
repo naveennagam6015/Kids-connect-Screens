@@ -252,7 +252,7 @@ export default function ProfileVerification() {
             method: 'post',
             url: `${BASEURL}api/subscriberlogins`,
             data: {
-                "RoleId": roleId,
+                "RoleId": 1,
                 "FirstName": firstName,
                 "LastName": lastName,
                 "Email": email,
@@ -268,6 +268,8 @@ export default function ProfileVerification() {
         }).then(res => {
             alert("Form submitted successfully");
 
+        }).catch(err => {
+            console.log(err)
         })
     }
 
@@ -397,8 +399,8 @@ export default function ProfileVerification() {
                 }} />
                 <TextBold style={{ marginBottom: 16, color: 'red' }}>{addressErr}</TextBold>
                 <TouchableOpacity style={styles.submitButton}
-                    onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                // onPress={SubmitData}
+                    // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+                onPress={SubmitData}
                 >
                     <TextMedium style={styles.submitButtonText}>Register</TextMedium>
                 </TouchableOpacity>

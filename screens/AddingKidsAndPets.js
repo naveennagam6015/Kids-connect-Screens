@@ -32,6 +32,7 @@ import AddKid from "../components/AddKid";
 import ListField from "../components/ListField";
 import OpenCameraModal from "../components/OpenCameraModal";
 import * as FileSystem from "expo-file-system";
+import { encode as base64Encode } from "base-64";
 
 
 
@@ -114,6 +115,7 @@ export default function AddingKidsAndPets() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newInterest, setNewInterest] = useState("");
   const [hasGalleryPermission, setHasGalleryImagePermission] = useState(null);
+  const [authData, setAuthData] = useState({});
   const [kidsData, setKidsData] = useState([]);
   const [petsData, setPetsData] = useState([]);
   
@@ -344,7 +346,9 @@ export default function AddingKidsAndPets() {
       // Get the login user info
 
       const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+      const authData = JSON.parse(await AsyncStorage.getItem('authData'));
       setUserData(userData);
+      setAuthData(authData);
 
       // Fetch secondary person data
 
@@ -434,75 +438,167 @@ export default function AddingKidsAndPets() {
       ? result.assets[0].uri.split('/').pop()
       : result.assets[0].uri.split('\\').pop();
     //   const filename = pathSegments[pathSegments.length - 1];
-      console.log(fileName);
+      console.log(result.assets[0].uri);
       setImageName(fileName); // Use filename instead of result.assets[0].fileName
+
+      // const base64Credentials = base64Encode(
+      //   "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
+      // );
+      const formData = new FormData();
+      formData.append("ProfileImage", {
+        uri: result.assets[0].uri,
+        name: fileName,
+        type: "image/jpeg",
+      });
+      const response = await fetch(`${BASEURL}api/imageupload`, {
+        method: "POST",
+        headers: {
+          // Authorization: `Basic ${base64Credentials}`,
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+        body: formData,
+      });
+
+      console.log(response.json());
     }
   };
 
-  function SubmitData(Role) {
+  async function SubmitData(Role) {
     const formData = new FormData();
     
-    const imageType = imageName.split('.').pop().toLowerCase();
-    console.log(imageType, "mjhj");
     // Append the image to formData
     formData.append('ProfileImage', {
-      uri: image,
-      name: imageName,
-      type: `image/jpg`,
+        uri: image,
+        name: imageName,
+        type: `image/jpeg`,
     });
 
     let requestData = {};
 
     if (Role === 5) {
-      requestData = {
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
-        Dob: dob,
-        Gender: selectedGender,
-        PhoneNumber: phone,
-        SSN: ssn,
-        About: description,
-        Address: address,
-        Keywords: interests,
-        LoginType: 12,
-        RoleId: 5,
-        MainSubscriberId: userData.id,
-      };
+        requestData = {
+            FirstName: firstName,
+            LastName: lastName,
+            Email: email,
+            Dob: dob,
+            Gender: selectedGender,
+            PhoneNumber: phone,
+            SSN: ssn,
+            About: description,
+            Address: address,
+            Keywords: interests,
+            LoginType: 12,
+            RoleId: 5,
+            MainSubscriberId: userData.id,
+        };
     } else if (Role === 7) {
-      requestData = {
-        Name: petName,
-        Breed: petBreed,
-        gender: selectedPetGender,
-        Dob: petDOB,
-        RoleId: 7,
-        MainSubscriberId: userData.id,
-        Description: description,
-      };
+        requestData = {
+            Name: petName,
+            Breed: petBreed,
+            gender: selectedPetGender,
+            Dob: petDOB,
+            RoleId: 7,
+            MainSubscriberId: userData.id,
+            Description: description,
+        };
     }
 
     // Append other data to formData
     Object.keys(requestData).forEach((key) => {
-      formData.append(key, requestData[key]);
+        formData.append(key, requestData[key]);
     });
 
-    console.log(formData);
-    axios({
-      method: "post",
-      url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "multipart/form-data",
-      },
-      data: formData,
-    })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    try {
+        const response = await axios.post(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, formData, {
+            headers: {
+                'Authorization': `Bearer ${authData.token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
+  // async function SubmitData(Role) {
+  //   const formData = new FormData();
+    
+   
+  //   // Append the image to formData
+  //   formData.append('ProfileImage', {
+  //     uri: image,
+  //     name: imageName,
+  //     type: `image/jpeg`,
+  //   });
+
+  //   let requestData = {};
+
+  //   if (Role === 5) {
+  //     requestData = {
+  //       FirstName: firstName,
+  //       LastName: lastName,
+  //       Email: email,
+  //       Dob: dob,
+  //       Gender: selectedGender,
+  //       PhoneNumber: phone,
+  //       SSN: ssn,
+  //       About: description,
+  //       Address: address,
+  //       Keywords: interests,
+  //       LoginType: 12,
+  //       RoleId: 5,
+  //       MainSubscriberId: userData.id,
+  //     };
+  //   } else if (Role === 7) {
+  //     requestData = {
+  //       Name: petName,
+  //       Breed: petBreed,
+  //       gender: selectedPetGender,
+  //       Dob: petDOB,
+  //       RoleId: 7,
+  //       MainSubscriberId: userData.id,
+  //       Description: description,
+  //     };
+  //   }
+
+  //   // Append other data to formData
+  //   Object.keys(requestData).forEach((key) => {
+  //     formData.append(key, requestData[key]);
+  //   });
+
+  //   console.log(formData);
+  //   const response = await fetch(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${authData.token}`,
+  //         Accept: "application/json",
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //       body: formData,
+  //     });
+
+  //     console.log(response.json());
+  //   // axios({
+  //   //   method: "post",
+  //   //   url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
+  //   //   headers: {
+  //   //     Authorization:`Bearer ${authData.token}`,
+  //   //     Accept: "application/json",
+  //   //     "Content-Type": "multipart/form-data",
+  //   //   },
+  //   //   data: formData,
+  //   // })
+  //   //   .then((res) => {
+  //   //     console.log(res.data);
+  //   //   })
+  //   //   .catch((err) => {
+  //   //     console.log(err);
+  //   //   });
+  // }
 
   return (
     <ScrollView style={[styles.container]}>

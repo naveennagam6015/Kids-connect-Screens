@@ -113,7 +113,6 @@ export default function Login() {
     /*=====================================Login Functionality Start===================================== */
 
     function LoginFunctionality() {
-        console.log(BASEURL)
         if (email == '') {
             validateEmail(email, setEmailError);
         } else if (password == '') {
