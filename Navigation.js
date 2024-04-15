@@ -28,6 +28,10 @@ import Test from './Test';
 import ProfileSetup from './screens/ProfileSetup';
 import Confirmation from './screens/Confirmation ';
 import { TextBold } from './assets/fonts/CustomText';
+import GlobalSearch from './screens/GlobalSearch';
+import About from './screens/About';
+import AboutUs from './screens/AboutUs';
+import ContactUs from './screens/ContactUs';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -201,6 +205,10 @@ function StackNavigation() {
             <Stack.Screen name='AccountDeletion' component={AccountDeletion} options={{ headerTitle: "Account Deletion" }} />
             <Stack.Screen name='Thankyou' component={Thankyou} options={{ headerShown: false }} />
             <Stack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: "Confirmation" }} />
+            <Stack.Screen name='GlobalSearch' component={GlobalSearch} options={{ headerShown: false }} />
+            <Stack.Screen name='About' component={About} options={{ headerShown: false }} />
+            <Stack.Screen name='Aboutus' component={AboutUs} options={{ headerTitle: "About us" }} />
+            <Stack.Screen name='ContactUs' component={ContactUs} />
         </Stack.Navigator>
     );
 }

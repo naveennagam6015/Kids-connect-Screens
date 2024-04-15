@@ -546,7 +546,7 @@ export default function Chat() {
                 </View>
             </ScrollView>
             <TouchableOpacity
-                onPress={() => navigation.navigate('ChatAddingGroup')}
+                onPress={() => navigation.navigate('GlobalSearch')}
                 style={{ position: 'absolute', bottom: 30, right: 30, padding: 10, borderRadius: 10, }}>
                 <View style={{ alignItems: 'center' }}>
                     <AntDesign name="pluscircle" size={60} color={color.accent} />
