@@ -13,22 +13,19 @@ export default function TermsAndConditions() {
 
 
     useEffect(() => {
-
-
-
-
         const AboutUsData = async () => {
             const authData = JSON.parse(await AsyncStorage.getItem('authData'))
 
             axios({
                 method: 'get',
-                url: `${BASEURL}api/allPages/1`,
+                url: `${BASEURL}api/allPages/2`,
                 // headers: {
                 //     Authorization: `Bearer ${authData.token}`
                 // }
             }).then(res => {
-                console.log(res, "Naveen")
-                setPagecontent(res.data.data.Pagecontent);
+                console.log(res, "Naveen");
+                const contentWithoutTags = res.data.data.Pagecontent.replace(/<\/?[^>]+(>|$)/g, "");
+                setPagecontent(contentWithoutTags);
                 setPagetitle(res.data.data.Pagetitle);
             }).catch(err => {
                 console.log(err)
@@ -36,16 +33,15 @@ export default function TermsAndConditions() {
         }
 
         AboutUsData();
-
-
     }, []);
+
     const formattedContent = pagecontent.replace(/<\/?p>/g, '');
     console.log(formattedContent)
     return (
         <ScrollView>
             <View style={[styles.container]}>
                 {/* <TextBold>{pagetitle}</TextBold> */}
-                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
                     <TextRegular style={{ textAlign: 'justify', fontSize: 16 }}>{formattedContent}</TextRegular>
                 </View>
             </View>

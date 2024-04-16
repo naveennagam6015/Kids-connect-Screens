@@ -22,7 +22,7 @@ export default function ContactUs() {
 
             axios({
                 method: 'get',
-                url: `${BASEURL}api/allPages/1`,
+                url: `${BASEURL}api/allPages/5`,
                 // headers: {
                 //     Authorization: `Bearer ${authData.token}`
                 // }
@@ -45,7 +45,7 @@ export default function ContactUs() {
         <ScrollView>
             <View style={[styles.container]}>
                 {/* <TextBold>{pagetitle}</TextBold> */}
-                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
                     <TextRegular style={{ textAlign: 'justify', fontSize: 16 }}>{formattedContent}</TextRegular>
                 </View>
             </View>

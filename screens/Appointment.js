@@ -71,32 +71,36 @@ export default function Appointment({ close }) {
                     <View style={[styles.Card]}>
                         <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
                             <TouchableOpacity
+                                style={{ width: "35%" }}
                                 onPress={() => setProfileDetails(!profileDetails)}>
                                 <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
                             </TouchableOpacity>
-                            <View>
+                            <View style={[styles.justiffsb, { width: "65%" }]}>
                                 <TouchableOpacity
                                     onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
                                     <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
+                                    <View>
+                                        <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
+                                    </View>
                                     {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
                                 </TouchableOpacity>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
+                                <View style={[styles.flexrow,]}>
                                     <View style={[styles.ratingstarborder]}>
                                         <View style={[styles.flexrow]}>
+                                            <TextBold>4.0</TextBold>
                                             <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
                                             <TextRegular>(65)</TextRegular>
                                         </View>
-                                        <View style={[styles.flexrow]}>
+                                        <TouchableOpacity style={[styles.flexrow]}>
                                             <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
                                             <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
+                                        </TouchableOpacity>
                                     </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
+                                    <View style={{ marginLeft: 10 }}>
+                                        <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                            <TextBold style={{ fontSize: 14, marginRight: 5 }}>100+</TextBold >
+                                            <FontAwesome name="group" size={14} color={color.accent} />
+                                        </View>
                                         <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
                                     </View>
                                 </View>
@@ -105,22 +109,23 @@ export default function Appointment({ close }) {
                                         <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
                                     </View>
                                     <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
+                                        <TextRegular>Science</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Time</TextRegular>
                                     </View>
                                 </View>
                                 <View style={[styles.flexrow, styles.mt8]}>
 
                                     <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
+                                        <TextRegular>Feb 17th</TextRegular>
                                     </View>
                                     <View style={[styles.Tags]}>
                                         <TextRegular>In-House</TextRegular>
                                     </View>
                                 </View>
                             </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-                            </View>
+
                         </View>
                         <TextRegular style={[styles.carddec]}>
                             Maecenas dignissim justo eget nulla rutrum
@@ -135,606 +140,7 @@ export default function Appointment({ close }) {
                 </View>
 
                 {/* dummy card start */}
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
 
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
-                <View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </View>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
-                                <View style={[styles.flexrow, styles.justiffsb]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <Feather style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <View style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </View>
-                                    </View>
-                                    <View style={[styles.pl10]}>
-                                        <TextRegular style={{ fontSize: 14 }}><TextBold>100+</TextBold > Connections</TextRegular>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science Project</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th | Monday</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-                            <View>
-                                <FontAwesome name="bookmark" size={18} color={color.accent} />
-
-                            </View>
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                </View>
                 {/* dummy card end */}
 
             </View>
@@ -810,8 +216,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cardimg: {
-        width: 80,
+        width: 100,
         height: 120,
+        marginRight: 10,
         borderRadius: 8,
     },
     profilepic: {

@@ -45,7 +45,7 @@ export default function AboutUs() {
         <ScrollView>
             <View style={[styles.container]}>
                 {/* <TextBold>{pagetitle}</TextBold> */}
-                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
                     <TextRegular style={{ textAlign: 'justify', fontSize: 16 }}>{formattedContent}</TextRegular>
                 </View>
             </View>

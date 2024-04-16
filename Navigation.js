@@ -212,9 +212,9 @@ function StackNavigation() {
             <Stack.Screen name='GlobalSearch' component={GlobalSearch} options={{ headerShown: false }} />
             <Stack.Screen name='About' component={About} options={{ headerShown: false }} />
             <Stack.Screen name='Aboutus' component={AboutUs} options={{ headerTitle: "About us" }} />
-            <Stack.Screen name='ContactUs' component={ContactUs} />
-            <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} />
-            <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} />
+            <Stack.Screen name='ContactUs' component={ContactUs} options={{ headerTitle: "Contact Us" }} />
+            <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} options={{ headerTitle: "Privacy Policy" }} />
+            <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
         </Stack.Navigator>

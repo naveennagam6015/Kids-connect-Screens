@@ -9,6 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/core";
 import axios from "axios";
 import { BASEURL } from '@env';
+import { Alert } from 'react-native';
 
 export default function Login() {
 
@@ -92,6 +93,7 @@ export default function Login() {
 
 
 
+
     const validatePassword = (pwd, setPasswordErr) => {
         if (pwd.trim() === '') {
             setPasswordErr('Password is required');
@@ -111,6 +113,7 @@ export default function Login() {
     // Done by Soumya
 
     /*=====================================Login Functionality Start===================================== */
+
 
     function LoginFunctionality() {
         if (email == '') {
@@ -133,11 +136,12 @@ export default function Login() {
                 navigation.navigate('ProfileSetupAfterAdminApproval');
             }).catch((err) => {
                 console.log(err);
+                // Show alert message for incorrect username or password
+                Alert.alert('Login Error', 'Incorrect username or password');
             }).finally(() => {
 
             })
         }
-
     }
 
     // Get the user on the basis of token
@@ -186,6 +190,9 @@ export default function Login() {
 
 
                     <View style={styles.inputContainer}>
+
+
+
                         <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
                         <TouchableOpacity onPress={togglePasswordVisibility}>
                             <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
