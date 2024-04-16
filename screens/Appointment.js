@@ -1,14 +1,19 @@
-import React from 'react'
-import { View, StyleSheet, Pressable, Image, Platform, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, Pressable, Image, Platform, TouchableOpacity, Modal } from 'react-native'
 import { TextBold, TextLight, TextRegular } from '../assets/fonts/CustomText'
 import Search from '../components/Search'
 import { color } from '../assets/colors/theme'
 import { MaterialIcons, Entypo, FontAwesome, Feather } from '@expo/vector-icons';
 import { ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import ProfileDetails from '../components/ProfileDetails'
 
-export default function Appointment() {
+export default function Appointment({ close }) {
     const navigation = useNavigation();
+    const [profileDetails, setProfileDetails] = useState(false);
+    const onClose = () => {
+        setProfileDetails(false);
+    };
     function CircleRequests() {
 
     }
@@ -53,25 +58,28 @@ export default function Appointment() {
                 </View>
                 <View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                        <TouchableOpacity
+                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
                             <TextLight>(Mother)</TextLight>
-                        </View>
+                        </TouchableOpacity>
                         <View style={[styles.flexrow, styles.alineitemscenter]}>
                             <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
                         </View>
                     </View>
                     <View style={[styles.Card]}>
                         <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <View>
+                            <TouchableOpacity
+                                onPress={() => setProfileDetails(!profileDetails)}>
                                 <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
-                            </View>
+                            </TouchableOpacity>
                             <View>
-                                <View style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                <TouchableOpacity
+                                    onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
                                     <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
                                     {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </View>
+                                </TouchableOpacity>
                                 <View style={[styles.flexrow, styles.justiffsb]}>
                                     <View style={[styles.ratingstarborder]}>
                                         <View style={[styles.flexrow]}>
@@ -730,6 +738,11 @@ export default function Appointment() {
                 {/* dummy card end */}
 
             </View>
+            <Modal
+                animationType="slide" transparent={true} visible={profileDetails}>
+                <View style={styles.topDummy} />
+                <ProfileDetails name={"Naveen"} close={() => setProfileDetails(!profileDetails)} />
+            </Modal>
         </ScrollView>
     )
 }

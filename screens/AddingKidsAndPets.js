@@ -118,7 +118,7 @@ export default function AddingKidsAndPets() {
   const [authData, setAuthData] = useState({});
   const [kidsData, setKidsData] = useState([]);
   const [petsData, setPetsData] = useState([]);
-  
+
 
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
@@ -308,24 +308,24 @@ export default function AddingKidsAndPets() {
   useEffect(() => {
 
     const fetchKidData = () => {
-        axios({
-            method:'get',
-            url:`${BASEURL}`,
-        }).then(res => {
-    
-        });
+      axios({
+        method: 'get',
+        url: `${BASEURL}`,
+      }).then(res => {
+
+      });
     }
 
     const fetchPetData = () => {
-        axios({
-            method:'get',
-            url:`${BASEURL}`
-        }).then(res => {
+      axios({
+        method: 'get',
+        url: `${BASEURL}`
+      }).then(res => {
 
-        });
+      });
     }
-    
-  },[])
+
+  }, [])
 
 
   /*=============================================Fetch kids and pets data end =================================================== */
@@ -388,7 +388,7 @@ export default function AddingKidsAndPets() {
     console.log(files);
     if (files.length > 0) {
       setImage(files.map((f) => imgDir + f));
-      
+
     }
   };
 
@@ -435,9 +435,9 @@ export default function AddingKidsAndPets() {
       setImage(result.assets[0].uri);
       const filePath = result.assets[0].uri;
       const fileName = Platform.OS === 'ios'
-      ? result.assets[0].uri.split('/').pop()
-      : result.assets[0].uri.split('\\').pop();
-    //   const filename = pathSegments[pathSegments.length - 1];
+        ? result.assets[0].uri.split('/').pop()
+        : result.assets[0].uri.split('\\').pop();
+      //   const filename = pathSegments[pathSegments.length - 1];
       console.log(result.assets[0].uri);
       setImageName(fileName); // Use filename instead of result.assets[0].fileName
 
@@ -466,68 +466,68 @@ export default function AddingKidsAndPets() {
 
   async function SubmitData(Role) {
     const formData = new FormData();
-    
+
     // Append the image to formData
     formData.append('ProfileImage', {
-        uri: image,
-        name: imageName,
-        type: `image/jpeg`,
+      uri: image,
+      name: imageName,
+      type: `image/jpeg`,
     });
 
     let requestData = {};
 
     if (Role === 5) {
-        requestData = {
-            FirstName: firstName,
-            LastName: lastName,
-            Email: email,
-            Dob: dob,
-            Gender: selectedGender,
-            PhoneNumber: phone,
-            SSN: ssn,
-            About: description,
-            Address: address,
-            Keywords: interests,
-            LoginType: 12,
-            RoleId: 5,
-            MainSubscriberId: userData.id,
-        };
+      requestData = {
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
+        Dob: dob,
+        Gender: selectedGender,
+        PhoneNumber: phone,
+        SSN: ssn,
+        About: description,
+        Address: address,
+        Keywords: interests,
+        LoginType: 12,
+        RoleId: 5,
+        MainSubscriberId: userData.id,
+      };
     } else if (Role === 7) {
-        requestData = {
-            Name: petName,
-            Breed: petBreed,
-            gender: selectedPetGender,
-            Dob: petDOB,
-            RoleId: 7,
-            MainSubscriberId: userData.id,
-            Description: description,
-        };
+      requestData = {
+        Name: petName,
+        Breed: petBreed,
+        gender: selectedPetGender,
+        Dob: petDOB,
+        RoleId: 7,
+        MainSubscriberId: userData.id,
+        Description: description,
+      };
     }
 
     // Append other data to formData
     Object.keys(requestData).forEach((key) => {
-        formData.append(key, requestData[key]);
+      formData.append(key, requestData[key]);
     });
 
     try {
-        const response = await axios.post(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, formData, {
-            headers: {
-                'Authorization': `Bearer ${authData.token}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+      const response = await axios.post(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, formData, {
+        headers: {
+          'Authorization': `Bearer ${authData.token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-        console.log(response.data);
+      console.log(response.data);
     } catch (error) {
-        console.error('Error:', error);
+      console.error('Error:', error);
     }
-}
+  }
 
 
   // async function SubmitData(Role) {
   //   const formData = new FormData();
-    
-   
+
+
   //   // Append the image to formData
   //   formData.append('ProfileImage', {
   //     uri: image,

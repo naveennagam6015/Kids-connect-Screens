@@ -32,13 +32,16 @@ import axios from "axios";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { BASEURL } from "@env";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import ProfileDetails from "../components/ProfileDetails";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
-export default function Home() {
+export default function Home({ close }) {
   const [open, setOpen] = useState(false);
+  const [profileDetails, setProfileDetails] = useState(false);
   const onClose = () => {
     setOpen(false);
+    setProfileDetails(false);
   };
   const [data, setData] = useState([{ image: "" }]);
   const carouselRef = useRef(null);
@@ -294,7 +297,9 @@ export default function Home() {
 
           <View style={[styles.Card]}>
             <View style={[styles.innercard1, styles.flexrow]}>
-              <View style={{ alignItems: "center" }}>
+              <TouchableOpacity
+                onPress={() => setProfileDetails(!profileDetails)}
+                style={{ alignItems: "center" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -302,10 +307,13 @@ export default function Home() {
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                  <TextBold style={[styles.childrenname]}>Samantha</TextBold>
                 </View>
-              </View>
-              <View style={{ alignItems: "center" }}>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => setProfileDetails(!profileDetails)}
+                style={{ alignItems: "center" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -315,10 +323,11 @@ export default function Home() {
                 <View>
                   <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
                 </View>
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={[styles.innercard2, styles.flexrow]}>
-              <View style={{ alignItems: "flex-start" }}>
+              <TouchableOpacity
+                onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-start" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -333,7 +342,7 @@ export default function Home() {
                     </TextBold>
                   </TextBold>
                 </View>
-              </View>
+              </TouchableOpacity>
               <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <TextRegular>3-5hrs</TextRegular>
                 <AntDesign
@@ -343,7 +352,8 @@ export default function Home() {
                 />
                 <TextRegular>Feb 17th | Monday</TextRegular>
               </View>
-              <View style={{ alignItems: "flex-end" }}>
+              <TouchableOpacity
+                onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-end" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -358,7 +368,7 @@ export default function Home() {
                     </TextBold>
                   </TextBold>
                 </View>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View
@@ -427,7 +437,8 @@ export default function Home() {
 
         <View style={[styles.Card]}>
           <View style={[styles.innercard2, styles.flexrow]}>
-            <View style={{ alignItems: "flex-start" }}>
+            <TouchableOpacity
+              onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-start" }}>
               <View>
                 <Image
                   style={[styles.profilepic, styles.activeprofilr]}
@@ -437,7 +448,7 @@ export default function Home() {
               <View>
                 <TextBold style={[styles.childrenname]}>Aron Finch</TextBold>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <TextRegular>3-5hrs</TextRegular>
               <AntDesign
@@ -447,7 +458,8 @@ export default function Home() {
               />
               <TextRegular>Feb 17th | Monday</TextRegular>
             </View>
-            <View style={{ alignItems: "flex-end" }}>
+            <TouchableOpacity
+              onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-end" }}>
               <View>
                 <Image
                   style={[styles.profilepic]}
@@ -456,12 +468,12 @@ export default function Home() {
               </View>
               <View>
                 <TextBold
-                  style={[styles.childrenname, { color: color.neutral[300] }]}
+                  style={[styles.childrenname]}
                 >
                   Iman Gadzi
                 </TextBold>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
           <View
@@ -800,7 +812,12 @@ export default function Home() {
           </TextLight>
         </View>
       </Modal>
-    </ScrollView>
+      <Modal
+        animationType="slide" transparent={true} visible={profileDetails}>
+        <View style={styles.topDummy} />
+        <ProfileDetails name={"Naveen"} close={() => setProfileDetails(!profileDetails)} />
+      </Modal>
+    </ScrollView >
   );
 }
 const styles = StyleSheet.create({

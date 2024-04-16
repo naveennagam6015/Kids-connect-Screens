@@ -203,7 +203,37 @@ export default function Profile() {
                             style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
                                 <MaterialIcons name="dark-mode" size={24} color={color.white} />
-                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>ContactUs</TextBold>
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Contact Us</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('TermsAndConditions')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Terms & Conditions</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('PrivacyPolicy')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Privacy Policy</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('FAQs')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>FAQs</TextBold>
                             </View>
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
                         </TouchableOpacity>
