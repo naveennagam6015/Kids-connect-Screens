@@ -1,4 +1,4 @@
-import { Button, Image, ImageBackground, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, Image, ImageBackground, Modal, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { color, tokens } from "../assets/colors/theme";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import * as WebBrowser from "expo-web-browser";
@@ -10,7 +10,7 @@ import { useNavigation } from "@react-navigation/core";
 import axios from "axios";
 import { BASEURL } from '@env';
 import { Alert } from 'react-native';
-
+import { AntDesign } from '@expo/vector-icons'; // Assuming you're using Expo for vector icons
 export default function Login() {
 
     const navigation = useNavigation();
@@ -168,7 +168,43 @@ export default function Login() {
 
     /*=========================================Login Functionality End======================================*/
 
+    /*=====================================Forgot password Functionality Start===================================== */
 
+    const handleSubmit = async () => {
+        try {
+
+            axios({
+                method: 'post',
+                url: `${BASEURL}api / forgotPassword`,
+                data: {
+                    "email": email
+                }
+            }).then(res => {
+                console.log(res.data);
+            })
+
+
+
+
+            // Reset the email input field and loading state
+            setEmail('');
+            //   setIsLoading(false);
+        } catch (error) {
+            console.error('Error submitting email:', error);
+
+        }
+    };
+
+    const handleCloseModal = () => {
+        // Handle closing the modal here
+        console.log('Modal closed');
+
+        // You can also reset any state variables related to the modal if needed
+    };
+
+
+
+    /*=====================================Forgot password Functionality End===================================== */
     return (
         <ScrollView>
 
@@ -209,7 +245,9 @@ export default function Login() {
                             <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{passwordErr}</TextBold>
                         )
                     }
-                    <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
+                    <TouchableOpacity>
+                        <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity style={styles.btnPrimary}
@@ -262,6 +300,27 @@ export default function Login() {
                 </TouchableOpacity>
 
             </View>
+
+            {/* Forgot password */}
+            <Modal visible={false} animationType="slide" transparent={true}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                    <View style={{ backgroundColor: 'white', padding: 30, borderRadius: 10 }}>
+                        <TouchableOpacity onPress={handleCloseModal} style={{ alignSelf: 'flex-end' }}>
+                            <AntDesign name="close" size={24} color="black" />
+                        </TouchableOpacity>
+                        <TextInput
+                            placeholder="Enter your email"
+                            value={email}
+                            onChangeText={e => setEmail(e)}
+                            style={{ marginBottom: 10, borderBottomWidth: 1, borderBottomColor: 'gray' }}
+                        />
+                        <TouchableOpacity onPress={handleSubmit} style={styles.btnPrimary}>
+                            <Text style={{ color: 'white', textAlign: 'center' }}>Submit</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
         </ScrollView>
 
     )
