@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, TouchableOpacity, Platform, StyleSheet, Modal, ScrollView, View, TextInput } from 'react-native';
+import { Image, SafeAreaView, TouchableOpacity, Platform, StyleSheet, Modal, ScrollView, View, TextInput, Text } from 'react-native';
 import { TextBold, TextMedium, TextRegular } from '../assets/fonts/CustomText';
 import { Dropdown } from 'react-native-element-dropdown';
 import React, { useEffect, useState } from 'react'
@@ -42,7 +42,11 @@ export default function ProfileEdit() {
             const year = date_object.getUTCFullYear();
             setMonth(month);
             setYear(year);
-            setUserData(userDetails)
+            setUserData(userDetails);
+            setabout(userDetails.About);
+            setFirstName(userDetails.FirstName);
+            setLastName(userDetails.LastName);
+            setAddress(userDetails.Address);
         }
 
         GetUserData();
@@ -54,7 +58,7 @@ export default function ProfileEdit() {
     // done by anita
 
     const validateAbout = (description) => {
-        if (abouta.trim() === '') {
+        if (about.trim() === '') {
             setaboutError('About is required');
             return false;
         } else {
@@ -102,6 +106,56 @@ export default function ProfileEdit() {
     };
 
 
+
+    const updateUserProfile = async () => {
+        // Validate form fields before making the API call
+        const isAboutValid = validateAbout(about);
+        const isFirstNameValid = validateFirstName(firstName);
+        const isLastNameValid = validateLastName(lastName);
+        const isAddressValid = validateAddress(address);
+    
+        // If any validation fails, do not proceed with the API call
+        if (!isAboutValid || !isFirstNameValid || !isLastNameValid || !isAddressValid) {
+            return;
+        }
+    
+        // Prepare the data to be sent in the request body
+        const requestData = {
+            About: about,
+            FirstName: firstName,
+            LastName: lastName,
+            Address: address,
+            // Add other fields as needed...
+        };
+    
+        try {
+            // Make the API call to update the user's profile
+            const response = await fetch(`${BASEURL}api/subscriberlogins/${userData.id}/edit`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any other headers as needed...
+                },
+                body: JSON.stringify(requestData),
+            });
+    
+            // Check if the API call was successful
+            if (response.ok) {
+                // Handle the successful response
+                console.log('User profile updated successfully');
+                // Optionally, provide feedback to the user and navigate to another screen
+            } else {
+                // Handle errors in the API response
+                console.error('Failed to update user profile');
+                // Optionally, display an error message to the user
+            }
+        } catch (error) {
+            // Handle network errors or other exceptions
+            console.error('Error updating user profile:', error);
+            // Optionally, display an error message to the user
+        }
+    };
+    
     /*=============================================Camera Permission========================================*/
 
     useEffect(() => {
@@ -191,7 +245,7 @@ export default function ProfileEdit() {
                 <TextBold>About</TextBold>
                 <TextInput multiline={true} numberOfLines={5} placeholder="About your self"
                     style={styles.textArea}
-                    value={userData.About}
+                    value={about}
                     onChangeText={(e) => {
                         setabout(e);
                         validateAbout(e);
@@ -205,7 +259,7 @@ export default function ProfileEdit() {
                 <TextBold>First Name</TextBold>
                 <TextInput placeholder="Enter your last name"
                     style={styles.inputBox}
-                    value={userData.FirstName}
+                    value={firstName}
                     onChangeText={(e) => {
                         setFirstName(e);
                         validateFirstName(e, setFirstNameError);
@@ -219,7 +273,7 @@ export default function ProfileEdit() {
                 <TextBold>Last Name</TextBold>
                 <TextInput placeholder="Enter your last name"
                     style={styles.inputBox}
-                    value={userData.LastName}
+                    value={lastName}
                     onChangeText={(e) => {
                         setLastName(e);
                         validateLastName(e, setLastNameError);
@@ -249,7 +303,7 @@ export default function ProfileEdit() {
                 {/* <TextInput style={styles.inputBox}  /> */}
                 <TextInput placeholder="Enter your address"
                     style={styles.inputBox}
-                    value={userData.Address}
+                    value={address}
                     onChangeText={(e) => {
                         setAddress(e);
                         validateAddress(e, setAddressError);
@@ -265,7 +319,7 @@ export default function ProfileEdit() {
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Discard</TextMedium>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                        <TouchableOpacity onPress={() => updateUserProfile()} style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Save</TextMedium>
                         </TouchableOpacity>
                     </View>

@@ -114,9 +114,9 @@ export default function AddingKidsAndPets() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newInterest, setNewInterest] = useState("");
   const [hasGalleryPermission, setHasGalleryImagePermission] = useState(null);
-  const [kidsData, setKidsData] = useState([]);
-  const [petsData, setPetsData] = useState([]);
-  
+  const [kidsData, setKidData] = useState([]);
+  const [petsData, setPetData] = useState([]);
+
 
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
@@ -304,26 +304,37 @@ export default function AddingKidsAndPets() {
 
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const authdata = JSON.parse(await AsyncStorage.getItem('authData'));
+        const userData = JSON.parse(await AsyncStorage.getItem('userDetails'));
 
-    const fetchKidData = () => {
-        axios({
-            method:'get',
-            url:`${BASEURL}`,
-        }).then(res => {
-    
+        // Fetch kid data
+        const kidResponse = await axios.get(`${BASEURL}api/subscriberkidsdata/${userData.id}`, {
+          headers: {
+            Authorization: `Bearer ${authdata.token}`,
+          },
         });
-    }
+        setKidData(kidResponse.data.data);
 
-    const fetchPetData = () => {
-        axios({
-            method:'get',
-            url:`${BASEURL}`
-        }).then(res => {
-
+        // Fetch pet data
+        const petResponse = await axios.get(`${BASEURL}api/subscriberpetdata/${userData.id}`, {
+          headers: {
+            Authorization: `Bearer ${authdata.token}`,
+          },
         });
-    }
-    
-  },[])
+        setPetData(petResponse.data.data); // Assuming your API returns the pet data directly
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
 
 
   /*=============================================Fetch kids and pets data end =================================================== */
@@ -384,7 +395,7 @@ export default function AddingKidsAndPets() {
     console.log(files);
     if (files.length > 0) {
       setImage(files.map((f) => imgDir + f));
-      
+
     }
   };
 
@@ -431,9 +442,9 @@ export default function AddingKidsAndPets() {
       setImage(result.assets[0].uri);
       const filePath = result.assets[0].uri;
       const fileName = Platform.OS === 'ios'
-      ? result.assets[0].uri.split('/').pop()
-      : result.assets[0].uri.split('\\').pop();
-    //   const filename = pathSegments[pathSegments.length - 1];
+        ? result.assets[0].uri.split('/').pop()
+        : result.assets[0].uri.split('\\').pop();
+      //   const filename = pathSegments[pathSegments.length - 1];
       console.log(fileName);
       setImageName(fileName); // Use filename instead of result.assets[0].fileName
     }
@@ -441,7 +452,7 @@ export default function AddingKidsAndPets() {
 
   function SubmitData(Role) {
     const formData = new FormData();
-    
+
     const imageType = imageName.split('.').pop().toLowerCase();
     console.log(imageType, "mjhj");
     // Append the image to formData
@@ -589,36 +600,30 @@ export default function AddingKidsAndPets() {
           color={color.accent}
         />
       </View>
-      <View style={[styles.Cardadd]}>
-        {/* we need to show this Kid after profile added */}
-        <View style={{ alignItems: "center" }}>
-          <View>
-            <Image
-              style={[styles.profilepicactive2]}
-              source={require("../assets/images/KID.jpg")}
-            />
+      <View>
+        {/* Render each kid's profile */}
+        {kidsData.map((kid, index) => (
+          <View key={index} style={[styles.Cardadd]}>
+            <View style={{ alignItems: 'center' }}>
+              <View>
+                {/* Assuming kid.profilePic holds the source of the kid's profile picture */}
+                <Image style={[styles.profilepicactive2]} source={{ uri: kid.profilePic }} />
+              </View>
+              <View>
+                {/* Assuming kid.FirstName holds the name of the kid */}
+                <TextRegular style={[styles.childrenname]}>{kid.FirstName}</TextRegular>
+              </View>
+            </View>
+            <View style={{ alignItems: 'center', flexDirection: 'row', marginHorizontal: 10 }}>
+              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
+                  <AntDesign name="plus" size={30} color={color.neutral[500]} />
+                </TouchableOpacity>
+                <TextBold>Add</TextBold>
+              </View>
+            </View>
           </View>
-          <View>
-            <TextRegular style={[styles.childrenname]}>Samantha</TextRegular>
-          </View>
-        </View>
-        <View
-          style={{
-            alignItems: "center",
-            flexDirection: "row",
-            marginHorizontal: 10,
-          }}
-        >
-          <View style={{ alignItems: "center", justifyContent: "center" }}>
-            <TouchableOpacity
-              onPress={() => setOpen(!open)}
-              style={[styles.imageplusadd]}
-            >
-              <AntDesign name="plus" size={30} color={color.neutral[500]} />
-            </TouchableOpacity>
-            <TextBold>Add</TextBold>
-          </View>
-        </View>
+        ))}
       </View>
       <View
         style={[
@@ -636,37 +641,36 @@ export default function AddingKidsAndPets() {
           color={color.accent}
         />
       </View>
-      <View style={[styles.Cardadd]}>
-        {/* we need to show this pet after profile added */}
-        <View style={{ alignItems: "center" }}>
-          <View>
-            <Image
-              style={[styles.profilepicactive2]}
-              source={require("../assets/images/dog.jpg")}
-            />
+      <View>
+        {/* Render each pet's profile */}
+          <View style={[styles.Cardadd]}>
+        <ScrollView horizontal={true}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              {petsData.map((pet, index) => (
+                <View style={{ marginRight: 10 }} key={index}>
+                  <View>
+                    {/* Assuming pet.profilePic holds the source of the pet's profile picture */}
+                    <Image style={[styles.profilepicactive2]} source={{ uri: pet.profilePic }} />
+                  </View>
+                  <View>
+                    {/* Assuming pet.name holds the name of the pet */}
+                    <TextRegular style={[styles.childrenname]}>{pet.Name}</TextRegular>
+                  </View>
+                </View>
+              ))}
+            </View>
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <TouchableOpacity onPress={() => setOpenpets(!openpets)} style={[styles.imageplusadd]}>
+                <AntDesign name="plus" size={30} color={color.neutral[500]} />
+              </TouchableOpacity>
+              <TextBold>Add</TextBold>
+            </View>
+        </ScrollView>
           </View>
-          <View>
-            <TextRegular style={[styles.childrenname]}>Puppy</TextRegular>
-          </View>
-        </View>
-        <View
-          style={{
-            alignItems: "center",
-            flexDirection: "row",
-            marginHorizontal: 10,
-          }}
-        >
-          <View style={{ alignItems: "center", justifyContent: "center" }}>
-            <TouchableOpacity
-              onPress={() => setOpenpets(!openpets)}
-              style={[styles.imageplusadd]}
-            >
-              <AntDesign name="plus" size={30} color={color.neutral[500]} />
-            </TouchableOpacity>
-            <TextBold>Add</TextBold>
-          </View>
-        </View>
+
+
       </View>
+
       <TouchableOpacity
         style={[styles.btnPrimary, styles.flexrow]}
         onPress={() => navigation.navigate("BottomNavigation")}
