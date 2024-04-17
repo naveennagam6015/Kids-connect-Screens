@@ -34,8 +34,6 @@ import OpenCameraModal from "../components/OpenCameraModal";
 import * as FileSystem from "expo-file-system";
 import { encode as base64Encode } from "base-64";
 
-
-
 const imgDir = FileSystem.documentDirectory + "images/";
 
 const ensureDirExists = async () => {
@@ -118,7 +116,6 @@ export default function AddingKidsAndPets() {
   const [authData, setAuthData] = useState({});
   const [kidsData, setKidsData] = useState([]);
   const [petsData, setPetsData] = useState([]);
-  
 
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
@@ -301,35 +298,25 @@ export default function AddingKidsAndPets() {
 
   /*============================================Validation End===========================================*/
 
-
   /*================================================Fetch Kids and Pets Data===============================*/
 
-
   useEffect(() => {
-
     const fetchKidData = () => {
-        axios({
-            method:'get',
-            url:`${BASEURL}`,
-        }).then(res => {
-    
-        });
-    }
+      axios({
+        method: "get",
+        url: `${BASEURL}`,
+      }).then((res) => {});
+    };
 
     const fetchPetData = () => {
-        axios({
-            method:'get',
-            url:`${BASEURL}`
-        }).then(res => {
-
-        });
-    }
-    
-  },[])
-
+      axios({
+        method: "get",
+        url: `${BASEURL}`,
+      }).then((res) => {});
+    };
+  }, []);
 
   /*=============================================Fetch kids and pets data end =================================================== */
-
 
   /*=============================================Camera Permission========================================*/
   useEffect(() => {
@@ -346,7 +333,7 @@ export default function AddingKidsAndPets() {
       // Get the login user info
 
       const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
-      const authData = JSON.parse(await AsyncStorage.getItem('authData'));
+      const authData = JSON.parse(await AsyncStorage.getItem("authData"));
       setUserData(userData);
       setAuthData(authData);
 
@@ -388,7 +375,6 @@ export default function AddingKidsAndPets() {
     console.log(files);
     if (files.length > 0) {
       setImage(files.map((f) => imgDir + f));
-      
     }
   };
 
@@ -431,103 +417,114 @@ export default function AddingKidsAndPets() {
 
     console.log(result, "vzsvs");
     setCameraModal(!cameramodal);
+
     if (!result.canceled) {
       setImage(result.assets[0].uri);
       const filePath = result.assets[0].uri;
-      const fileName = Platform.OS === 'ios'
-      ? result.assets[0].uri.split('/').pop()
-      : result.assets[0].uri.split('\\').pop();
-    //   const filename = pathSegments[pathSegments.length - 1];
-      console.log(result.assets[0].uri);
-      setImageName(fileName); // Use filename instead of result.assets[0].fileName
+      const fileName =
+        Platform.OS === "ios"
+          ? result.assets[0].uri.split("/").pop()
+          : result.assets[0].uri.split("\\").pop();
+      // Get the file extension from the fileName
+      const fileExtension = fileName.split(".").pop().toLowerCase();
 
-      // const base64Credentials = base64Encode(
-      //   "glansaapi:MB9j xRKL jJSX CtmR nAC3 XBlL"
-      // );
+      // Determine the MIME type based on the file extension
+      let mimeType = "";
+      if (fileExtension === "jpg" || fileExtension === "jpeg") {
+        mimeType = "image/jpeg";
+      } else if (fileExtension === "png") {
+        mimeType = "image/png";
+      }
+
+      setImageName(fileName); // Use fileName instead of result.assets[0].fileName
+
       const formData = new FormData();
       formData.append("ProfileImage", {
         uri: result.assets[0].uri,
         name: fileName,
-        type: "image/jpeg",
+        type: mimeType, // Set the MIME type dynamically
       });
+
       const response = await fetch(`${BASEURL}api/imageupload`, {
         method: "POST",
         headers: {
-          // Authorization: `Basic ${base64Credentials}`,
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
         body: formData,
       });
 
-      console.log(response.json());
+     const image =  await response.json();
+     setImage(image.data);
     }
   };
 
   async function SubmitData(Role) {
     const formData = new FormData();
-    
+
     // Append the image to formData
-    formData.append('ProfileImage', {
-        uri: image,
-        name: imageName,
-        type: `image/jpeg`,
+    formData.append("ProfileImage", {
+      uri: image,
+      name: imageName,
+      type: `image/jpeg`,
     });
 
     let requestData = {};
 
     if (Role === 5) {
-        requestData = {
-            FirstName: firstName,
-            LastName: lastName,
-            Email: email,
-            Dob: dob,
-            Gender: selectedGender,
-            PhoneNumber: phone,
-            SSN: ssn,
-            About: description,
-            Address: address,
-            Keywords: interests,
-            LoginType: 12,
-            RoleId: 5,
-            MainSubscriberId: userData.id,
-        };
+      requestData = {
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
+        Dob: dob,
+        Gender: selectedGender,
+        PhoneNumber: phone,
+        SSN: ssn,
+        About: description,
+        Address: address,
+        Keywords: interests,
+        LoginType: 12,
+        RoleId: 5,
+        MainSubscriberId: userData.id,
+      };
     } else if (Role === 7) {
-        requestData = {
-            Name: petName,
-            Breed: petBreed,
-            gender: selectedPetGender,
-            Dob: petDOB,
-            RoleId: 7,
-            MainSubscriberId: userData.id,
-            Description: description,
-        };
+      requestData = {
+        Name: petName,
+        Breed: petBreed,
+        gender: selectedPetGender,
+        Dob: petDOB,
+        RoleId: 7,
+        MainSubscriberId: userData.id,
+        Description: description,
+      };
     }
 
     // Append other data to formData
     Object.keys(requestData).forEach((key) => {
-        formData.append(key, requestData[key]);
+      formData.append(key, requestData[key]);
     });
 
     try {
-        const response = await axios.post(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, formData, {
-            headers: {
-                'Authorization': `Bearer ${authData.token}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+      const response = await axios.post(
+        `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${authData.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-        console.log(response.data);
+      console.log(response.data);
     } catch (error) {
-        console.error('Error:', error);
+      console.error("Error:", error);
     }
-}
-
+  }
 
   // async function SubmitData(Role) {
   //   const formData = new FormData();
-    
-   
+
   //   // Append the image to formData
   //   formData.append('ProfileImage', {
   //     uri: image,
@@ -1031,7 +1028,7 @@ export default function AddingKidsAndPets() {
               )}
               {image && (
                 <>
-                  <Image source={{ uri: image }} style={[styles.profilepic]} />
+                  <Image source={{ uri: BASEURL + image }} style={[styles.profilepic]} />
                   <TouchableOpacity
                     style={{
                       position: "absolute",

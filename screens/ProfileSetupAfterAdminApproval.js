@@ -80,6 +80,7 @@ export default function ProfileSetupAfterAdminApproval() {
   const [passwordErr, setPasswordErr] = useState("");
   const [userData, setUserData] = useState({});
   const [secondaryPersonData, setSecondaryPersonData] = useState([]);
+  const [mimeType, setMimeType] = useState('');
 
   /*============================================Validation Start===========================================*/
 
@@ -222,6 +223,7 @@ export default function ProfileSetupAfterAdminApproval() {
     const fetchData = async () => {
       // Get the login user info
       const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+      const authData = JSON.parse(await AsyncStorage.getItem('authData'))
       setUserData(userData);
       // Fetch secondary person data
 
@@ -236,6 +238,9 @@ export default function ProfileSetupAfterAdminApproval() {
       axios({
         method: "get",
         url: url,
+        headers:{
+          Authorization:`Bearer ${authData.token}`
+        }
       })
         .then((res) => {
           let mainData;
@@ -305,27 +310,49 @@ export default function ProfileSetupAfterAdminApproval() {
       quality: 1,
     });
 
+    console.log(result, "vzsvs");
+  //   img = result.assets[0].uri;
+  //   console.log(img, "img")
+  //   setImage(img)
     setCameraModal(!cameramodal);
-    console.log(result);
-
-    if (!result.canceled) {
+    if (!result.canceled && result.assets.length > 0) {
+        console.log("hiiii");
+      const selectedImage = result.assets[0];
+      // console.log(selectedImage.uri);
       setImage(result.assets[0].uri);
-      const filePath = result.assets[0].uri;
-      const pathSegments = filePath.split("/");
-      const filename = pathSegments[pathSegments.length - 1];
-      setImageName(filename);
+      // setImage(result);
+
+      const fileName =
+        Platform.OS === "ios"
+          ? selectedImage.uri.split("/").pop()
+          : selectedImage.uri.split("\\").pop();
+          console.log(fileName, "jxhjxgj");
+      // Get the file extension from the fileName
+      const fileExtension = fileName.split(".").pop().toLowerCase();
+
+      // Determine the MIME type based on the file extension
+      let mimetype = "";
+      if (fileExtension === "jpg" || fileExtension === "jpeg") {
+        mimetype = "image/jpeg";
+      } else if (fileExtension === "png") {
+        mimetype = "image/png";
+      }
+      
+      setImageName(fileName); // Use fileName directly
+      setMimeType(mimetype);
+      console.log(mimetype);
     }
   };
 
   function SubmitData() {
     const formData = new FormData();
-    console.log(userData.RoleId);
+    console.log(image, imageName, mimeType);
 
     // Append the image to formData
     formData.append("ProfileImage", {
       uri: image, // URI of the image
       name: imageName, // Filename of the image
-      type: "image/jpeg",
+      type: mimeType,
     });
 
     const data = {

@@ -104,6 +104,8 @@ export default function ProfileSetup() {
         }
     }).then(res => {
       console.log(res.data);
+    }).catch(err => {
+      console.log(err);
     })
   }
   return (
