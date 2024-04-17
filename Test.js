@@ -15,6 +15,53 @@ export default function Test() {
             <TextRegular style={[styles.fontsize]}> ViewPropTypes will be removed from React Native, along with all other PropTypes. We recommend that you migrate away
                 from PropTypes and switch to a type system like TypeScript. If you need to continue using ViewPropTypes, migrate to the 'deprecated-react-native-prop-types' package.
             </TextRegular>
+
+            {/* <Collapse>
+                    <CollapseHeader>
+                        <View style={[styles.accordionheader, styles.flexrow]}>
+                            <TextBold style={[styles.headerfont]}>User on boarding related</TextBold>
+                            <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
+                        </View>
+                    </CollapseHeader>
+                    <CollapseBody>
+                        <View style={[styles.accordionbody]}>
+
+                            <TextRegular>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</TextRegular>
+                        </View>
+
+                    </CollapseBody>
+                </Collapse>
+                <Collapse>
+                    <CollapseHeader>
+                        <View style={[styles.accordionheader, styles.flexrow]}>
+                            <TextBold style={[styles.headerfont]}>User related</TextBold>
+                            <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
+                        </View>
+                    </CollapseHeader>
+                    <CollapseBody>
+                        <View style={[styles.accordionbody]}>
+
+                            <TextRegular>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</TextRegular>
+                        </View>
+
+                    </CollapseBody>
+                </Collapse>
+                <Collapse>
+                    <CollapseHeader>
+                        <View style={[styles.accordionheader, styles.flexrow]}>
+                            <TextBold style={[styles.headerfont]}>Kids connect related</TextBold>
+                            <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
+                        </View>
+                    </CollapseHeader>
+                    <CollapseBody>
+                        <View style={[styles.accordionbody]}>
+
+                            <TextRegular>It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</TextRegular>
+                        </View>
+
+                    </CollapseBody>
+                </Collapse> */}
+
         </View>
     );
 

@@ -32,8 +32,7 @@ import AddKid from "../components/AddKid";
 import ListField from "../components/ListField";
 import OpenCameraModal from "../components/OpenCameraModal";
 import * as FileSystem from "expo-file-system";
-
-
+import { encode as base64Encode } from "base-64";
 
 const imgDir = FileSystem.documentDirectory + "images/";
 
@@ -114,10 +113,10 @@ export default function AddingKidsAndPets() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newInterest, setNewInterest] = useState("");
   const [hasGalleryPermission, setHasGalleryImagePermission] = useState(null);
+  const [authData, setAuthData] = useState({});
+  // const [kidsData, setKidsData] = useState([]);
   const [kidsData, setKidData] = useState([]);
   const [petsData, setPetData] = useState([]);
-
-
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
     // You can perform any additional actions here, such as updating state in this component
@@ -299,9 +298,7 @@ export default function AddingKidsAndPets() {
 
   /*============================================Validation End===========================================*/
 
-
   /*================================================Fetch Kids and Pets Data===============================*/
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -333,12 +330,7 @@ export default function AddingKidsAndPets() {
     fetchData();
   }, []);
 
-
-
-
-
   /*=============================================Fetch kids and pets data end =================================================== */
-
 
   /*=============================================Camera Permission========================================*/
   useEffect(() => {
@@ -355,7 +347,9 @@ export default function AddingKidsAndPets() {
       // Get the login user info
 
       const userData = JSON.parse(await AsyncStorage.getItem("userDetails"));
+      const authData = JSON.parse(await AsyncStorage.getItem("authData"));
       setUserData(userData);
+      setAuthData(authData);
 
       // Fetch secondary person data
 
@@ -395,7 +389,6 @@ export default function AddingKidsAndPets() {
     console.log(files);
     if (files.length > 0) {
       setImage(files.map((f) => imgDir + f));
-
     }
   };
 
@@ -438,28 +431,56 @@ export default function AddingKidsAndPets() {
 
     console.log(result, "vzsvs");
     setCameraModal(!cameramodal);
+
     if (!result.canceled) {
       setImage(result.assets[0].uri);
       const filePath = result.assets[0].uri;
-      const fileName = Platform.OS === 'ios'
-        ? result.assets[0].uri.split('/').pop()
-        : result.assets[0].uri.split('\\').pop();
-      //   const filename = pathSegments[pathSegments.length - 1];
-      console.log(fileName);
-      setImageName(fileName); // Use filename instead of result.assets[0].fileName
+      const fileName =
+        Platform.OS === "ios"
+          ? result.assets[0].uri.split("/").pop()
+          : result.assets[0].uri.split("\\").pop();
+      // Get the file extension from the fileName
+      const fileExtension = fileName.split(".").pop().toLowerCase();
+
+      // Determine the MIME type based on the file extension
+      let mimeType = "";
+      if (fileExtension === "jpg" || fileExtension === "jpeg") {
+        mimeType = "image/jpeg";
+      } else if (fileExtension === "png") {
+        mimeType = "image/png";
+      }
+
+      setImageName(fileName); // Use fileName instead of result.assets[0].fileName
+
+      const formData = new FormData();
+      formData.append("ProfileImage", {
+        uri: result.assets[0].uri,
+        name: fileName,
+        type: mimeType, // Set the MIME type dynamically
+      });
+
+      const response = await fetch(`${BASEURL}api/imageupload`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+        body: formData,
+      });
+
+      const image = await response.json();
+      setImage(image.data);
     }
   };
 
-  function SubmitData(Role) {
+  async function SubmitData(Role) {
     const formData = new FormData();
 
-    const imageType = imageName.split('.').pop().toLowerCase();
-    console.log(imageType, "mjhj");
     // Append the image to formData
-    formData.append('ProfileImage', {
+    formData.append("ProfileImage", {
       uri: image,
       name: imageName,
-      type: `image/jpg`,
+      type: `image/jpeg`,
     });
 
     let requestData = {};
@@ -497,23 +518,98 @@ export default function AddingKidsAndPets() {
       formData.append(key, requestData[key]);
     });
 
-    console.log(formData);
-    axios({
-      method: "post",
-      url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "multipart/form-data",
-      },
-      data: formData,
-    })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const response = await axios.post(
+        `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${authData.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
+
+  // async function SubmitData(Role) {
+  //   const formData = new FormData();
+
+  //   // Append the image to formData
+  //   formData.append('ProfileImage', {
+  //     uri: image,
+  //     name: imageName,
+  //     type: `image/jpeg`,
+  //   });
+
+  //   let requestData = {};
+
+  //   if (Role === 5) {
+  //     requestData = {
+  //       FirstName: firstName,
+  //       LastName: lastName,
+  //       Email: email,
+  //       Dob: dob,
+  //       Gender: selectedGender,
+  //       PhoneNumber: phone,
+  //       SSN: ssn,
+  //       About: description,
+  //       Address: address,
+  //       Keywords: interests,
+  //       LoginType: 12,
+  //       RoleId: 5,
+  //       MainSubscriberId: userData.id,
+  //     };
+  //   } else if (Role === 7) {
+  //     requestData = {
+  //       Name: petName,
+  //       Breed: petBreed,
+  //       gender: selectedPetGender,
+  //       Dob: petDOB,
+  //       RoleId: 7,
+  //       MainSubscriberId: userData.id,
+  //       Description: description,
+  //     };
+  //   }
+
+  //   // Append other data to formData
+  //   Object.keys(requestData).forEach((key) => {
+  //     formData.append(key, requestData[key]);
+  //   });
+
+  //   console.log(formData);
+  //   const response = await fetch(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${authData.token}`,
+  //         Accept: "application/json",
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //       body: formData,
+  //     });
+
+  //     console.log(response.json());
+  //   // axios({
+  //   //   method: "post",
+  //   //   url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
+  //   //   headers: {
+  //   //     Authorization:`Bearer ${authData.token}`,
+  //   //     Accept: "application/json",
+  //   //     "Content-Type": "multipart/form-data",
+  //   //   },
+  //   //   data: formData,
+  //   // })
+  //   //   .then((res) => {
+  //   //     console.log(res.data);
+  //   //   })
+  //   //   .catch((err) => {
+  //   //     console.log(err);
+  //   //   });
+  // }
 
   return (
     <ScrollView style={[styles.container]}>
@@ -600,31 +696,28 @@ export default function AddingKidsAndPets() {
           color={color.accent}
         />
       </View>
-      <View>
-        {/* Render each kid's profile */}
-        {kidsData.map((kid, index) => (
-          <View key={index} style={[styles.Cardadd]}>
-            <View style={{ alignItems: 'center' }}>
-              <View>
-                {/* Assuming kid.profilePic holds the source of the kid's profile picture */}
-                <Image style={[styles.profilepicactive2]} source={{ uri: kid.profilePic }} />
-              </View>
-              <View>
-                {/* Assuming kid.FirstName holds the name of the kid */}
-                <TextRegular style={[styles.childrenname]}>{kid.FirstName}</TextRegular>
-              </View>
+      {kidsData.map((kid, index) => (
+        <View key={index} style={[styles.Cardadd]}>
+          <View style={{ alignItems: 'center' }}>
+            <View>
+              {/* Assuming kid.profilePic holds the source of the kid's profile picture */}
+              <Image style={[styles.profilepicactive2]} source={{ uri: kid.profilePic }} />
             </View>
-            <View style={{ alignItems: 'center', flexDirection: 'row', marginHorizontal: 10 }}>
-              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
-                  <AntDesign name="plus" size={30} color={color.neutral[500]} />
-                </TouchableOpacity>
-                <TextBold>Add</TextBold>
-              </View>
+            <View>
+              {/* Assuming kid.FirstName holds the name of the kid */}
+              <TextRegular style={[styles.childrenname]}>{kid.FirstName}</TextRegular>
             </View>
           </View>
-        ))}
-      </View>
+          <View style={{ alignItems: 'center', flexDirection: 'row', marginHorizontal: 10 }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
+                <AntDesign name="plus" size={30} color={color.neutral[500]} />
+              </TouchableOpacity>
+              <TextBold>Add</TextBold>
+            </View>
+          </View>
+        </View>
+      ))}
       <View
         style={[
           styles.flexrow,
@@ -641,34 +734,29 @@ export default function AddingKidsAndPets() {
           color={color.accent}
         />
       </View>
-      <View>
-        {/* Render each pet's profile */}
-          <View style={[styles.Cardadd]}>
-        <ScrollView horizontal={true}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              {petsData.map((pet, index) => (
-                <View style={{ marginRight: 10 }} key={index}>
-                  <View>
-                    {/* Assuming pet.profilePic holds the source of the pet's profile picture */}
-                    <Image style={[styles.profilepicactive2]} source={{ uri: pet.profilePic }} />
-                  </View>
-                  <View>
-                    {/* Assuming pet.name holds the name of the pet */}
-                    <TextRegular style={[styles.childrenname]}>{pet.Name}</TextRegular>
-                  </View>
+      <View style={[styles.Cardadd]}>
+        <ScrollView horizontal={true} >
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            {petsData.map((pet, index) => (
+              <View style={{ marginRight: 10 }} key={index}>
+                <View>
+                  {/* Assuming pet.profilePic holds the source of the pet's profile picture */}
+                  <Image style={[styles.profilepicactive2]} source={{ uri: pet.profilePic }} />
                 </View>
-              ))}
-            </View>
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-              <TouchableOpacity onPress={() => setOpenpets(!openpets)} style={[styles.imageplusadd]}>
-                <AntDesign name="plus" size={30} color={color.neutral[500]} />
-              </TouchableOpacity>
-              <TextBold>Add</TextBold>
-            </View>
-        </ScrollView>
+                <View>
+                  {/* Assuming pet.name holds the name of the pet */}
+                  <TextRegular style={[styles.childrenname]}>{pet.Name}</TextRegular>
+                </View>
+              </View>
+            ))}
           </View>
-
-
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <TouchableOpacity onPress={() => setOpenpets(!openpets)} style={[styles.imageplusadd]}>
+              <AntDesign name="plus" size={30} color={color.neutral[500]} />
+            </TouchableOpacity>
+            <TextBold>Add</TextBold>
+          </View>
+        </ScrollView>
       </View>
 
       <TouchableOpacity
@@ -939,7 +1027,7 @@ export default function AddingKidsAndPets() {
               )}
               {image && (
                 <>
-                  <Image source={{ uri: image }} style={[styles.profilepic]} />
+                  <Image source={{ uri: BASEURL + image }} style={[styles.profilepic]} />
                   <TouchableOpacity
                     style={{
                       position: "absolute",

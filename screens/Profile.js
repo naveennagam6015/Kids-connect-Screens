@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity, Switch } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
-import { MaterialCommunityIcons, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
@@ -198,6 +198,56 @@ export default function Profile() {
                 <View style={[styles.yellowcard,]}>
                     <View style={{ paddingHorizontal: 10 }}>
                         <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>Support</TextBold>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('ContactUs')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="contact-phone" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Contact Us</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('TermsAndConditions')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <Foundation name="clipboard-notes" style={{ marginLeft: 5 }} size={28} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Terms & Conditions</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('PrivacyPolicy')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="privacy-tip" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Privacy Policy</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('FAQs')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>FAQs</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Aboutus')}
+                            style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <FontAwesome name="group" size={22} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>About us</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
+                        <View style={[styles.line]}></View>
                         <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
                             <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
                                 <MaterialIcons name="dark-mode" size={24} color={color.white} />
@@ -205,15 +255,6 @@ export default function Profile() {
                             </View>
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
                         </View>
-                        <View style={[styles.line]}></View>
-                        <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
-                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
-                                <Foundation name="clipboard-notes" size={24} color={color.white} />
-                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Terms & Conditions</TextBold>
-                            </View>
-                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
-                        </View>
-
                     </View>
                 </View>
 
