@@ -1,4 +1,4 @@
-import { Button, Image, ImageBackground, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, Image, ImageBackground, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { color, tokens } from "../assets/colors/theme";
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText";
 import * as WebBrowser from "expo-web-browser";
@@ -9,6 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/core";
 import axios from "axios";
 import { BASEURL } from '@env';
+import { Alert } from 'react-native';
 
 export default function Login() {
 
@@ -92,6 +93,7 @@ export default function Login() {
 
 
 
+
     const validatePassword = (pwd, setPasswordErr) => {
         if (pwd.trim() === '') {
             setPasswordErr('Password is required');
@@ -111,6 +113,7 @@ export default function Login() {
     // Done by Soumya
 
     /*=====================================Login Functionality Start===================================== */
+
 
     function LoginFunctionality() {
         if (email == '') {
@@ -133,11 +136,12 @@ export default function Login() {
                 navigation.navigate('ProfileSetupAfterAdminApproval');
             }).catch((err) => {
                 console.log(err);
+                // Show alert message for incorrect username or password
+                Alert.alert('Login Error', 'Incorrect username or password');
             }).finally(() => {
 
             })
         }
-
     }
 
     // Get the user on the basis of token
@@ -166,88 +170,100 @@ export default function Login() {
 
 
     return (
-        <View style={styles.container}>
-            <StatusBar />
-            {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
-            <TextBold style={styles.heading}>Kids Connect</TextBold>
-            <TextBold style={styles.subheading}>Welcome</TextBold>
-            <View>
-                <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(email) => {
-                    setEmail(email);
-                    validateEmail(email, setEmailError);
-                }} />
-                {
-                    emailError !== '' && (
-                        <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{emailError}</TextBold>
-                    )
-                }
+        <ScrollView>
+
+            <View style={styles.container}>
+                <StatusBar />
+                {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
+                <TextBold style={styles.heading}>Kids Connect</TextBold>
+                <TextBold style={styles.subheading}>Welcome</TextBold>
+                <View>
+                    <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(email) => {
+                        setEmail(email);
+                        validateEmail(email, setEmailError);
+                    }} />
+                    {
+                        emailError !== '' && (
+                            <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{emailError}</TextBold>
+                        )
+                    }
 
 
-                <View style={styles.inputContainer}>
-                    <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
-                    <TouchableOpacity onPress={togglePasswordVisibility}>
-                        <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
-                    </TouchableOpacity>
-                </View>
+                    <View style={styles.inputContainer}>
 
 
-                {/* <TextInput style={styles.inputBox} placeholder="Enter your password" onChangeText={(pwd) => {
+
+                        <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
+                        <TouchableOpacity onPress={togglePasswordVisibility}>
+                            <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
+                        </TouchableOpacity>
+                    </View>
+
+
+                    {/* <TextInput style={styles.inputBox} placeholder="Enter your password" onChangeText={(pwd) => {
                     setPassword(pwd);
                     validatePassword(pwd, setPasswordErr);
                 }} /> */}
-                {
-                    passwordErr !== '' && (
-                        <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{passwordErr}</TextBold>
-                    )
-                }
-                <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
-            </View>
-            <View>
-                <TouchableOpacity style={styles.btnPrimary}
-                    // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                    onPress={LoginFunctionality}
-                >
-                    <TextMedium style={styles.btnText}>Login</TextMedium>
-                </TouchableOpacity>
-                <View style={styles.mainView}>
-                    <View style={styles.horizontalLine}></View>
-                    <TextRegular style={styles.textR}>or Login with</TextRegular>
-                    <View style={styles.horizontalLine}></View>
+                    {
+                        passwordErr !== '' && (
+                            <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{passwordErr}</TextBold>
+                        )
+                    }
+                    <TextRegular style={styles.forgotPwd}>Forgot Password?</TextRegular>
                 </View>
-                <TouchableOpacity style={styles.googleImage} onPress={() => promptAsync()}>
-                    <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
-                    <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
-                </TouchableOpacity>
-                <View style={styles.signupView}>
-                    <TextRegular>Don't have an Account! </TextRegular>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <TextMedium style={styles.signUpMediumText}>Signup</TextMedium>
+                <View>
+                    <TouchableOpacity style={styles.btnPrimary}
+                        // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+                        onPress={LoginFunctionality}
+                    >
+                        <TextMedium style={styles.btnText}>Login</TextMedium>
                     </TouchableOpacity>
+                    <View style={styles.mainView}>
+                        <View style={styles.horizontalLine}></View>
+                        <TextRegular style={styles.textR}>or Login with</TextRegular>
+                        <View style={styles.horizontalLine}></View>
+                    </View>
+                    <TouchableOpacity style={styles.googleImage} onPress={() => promptAsync()}>
+                        <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
+                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
+                    </TouchableOpacity>
+                    <View style={styles.signupView}>
+                        <TextRegular>Don't have an Account! </TextRegular>
+                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                            <TextMedium style={styles.signUpMediumText}>Signup</TextMedium>
+                        </TouchableOpacity>
+                    </View>
+                    {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
                 </View>
-                {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
+
+                {/* dummy */}
+                <TouchableOpacity style={styles.btnPrimary}
+                    onPress={() => navigation.navigate('Chat')}
+                >
+                    <TextMedium style={styles.btnText}>Chat</TextMedium>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnPrimary}
+                    onPress={() => navigation.navigate('About')}
+                >
+                    <TextMedium style={styles.btnText}>About</TextMedium>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnPrimary}
+                    onPress={() => navigation.navigate('ProfileDetails')}
+                >
+                    <TextMedium style={styles.btnText}>Details</TextMedium>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+                // onPress={() => navigation.navigate('ProfileEdit')}
+
+                // onPress={LoginFunctionality}
+                >
+                    <TextMedium style={styles.btnText}>Direct Login</TextMedium>
+                </TouchableOpacity>
+
             </View>
+        </ScrollView>
 
-            {/* dummy */}
-            <TouchableOpacity style={styles.btnPrimary}
-                onPress={() => navigation.navigate('Chat')}
-            >
-                <TextMedium style={styles.btnText}>Chat</TextMedium>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnPrimary}
-                onPress={() => navigation.navigate('About')}
-            >
-                <TextMedium style={styles.btnText}>About</TextMedium>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-            // onPress={() => navigation.navigate('ProfileEdit')}
-
-            // onPress={LoginFunctionality}
-            >
-                <TextMedium style={styles.btnText}>Direct Login</TextMedium>
-            </TouchableOpacity>
-
-        </View>
     )
 }
 

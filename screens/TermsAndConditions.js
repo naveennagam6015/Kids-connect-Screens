@@ -5,7 +5,7 @@ import { BASEURL } from "@env";
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextBold, TextRegular } from '../assets/fonts/CustomText';
-export default function ContactUs() {
+export default function TermsAndConditions() {
     const navigation = useNavigation();
     const [authData, setAuthData] = useState({});
     const [pagecontent, setPagecontent] = useState('');
@@ -13,22 +13,19 @@ export default function ContactUs() {
 
 
     useEffect(() => {
-
-
-
-
         const AboutUsData = async () => {
             const authData = JSON.parse(await AsyncStorage.getItem('authData'))
 
             axios({
                 method: 'get',
-                url: `${BASEURL}api/allPages/5`,
+                url: `${BASEURL}api/allPages/2`,
                 // headers: {
                 //     Authorization: `Bearer ${authData.token}`
                 // }
             }).then(res => {
-                console.log(res, "Naveen")
-                setPagecontent(res.data.data.Pagecontent);
+                console.log(res, "Naveen");
+                const contentWithoutTags = res.data.data.Pagecontent.replace(/<\/?[^>]+(>|$)/g, "");
+                setPagecontent(contentWithoutTags);
                 setPagetitle(res.data.data.Pagetitle);
             }).catch(err => {
                 console.log(err)
@@ -36,9 +33,8 @@ export default function ContactUs() {
         }
 
         AboutUsData();
-
-
     }, []);
+
     const formattedContent = pagecontent.replace(/<\/?p>/g, '');
     console.log(formattedContent)
     return (

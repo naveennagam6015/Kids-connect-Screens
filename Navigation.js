@@ -32,6 +32,10 @@ import GlobalSearch from './screens/GlobalSearch';
 import About from './screens/About';
 import AboutUs from './screens/AboutUs';
 import ContactUs from './screens/ContactUs';
+import PrivacyPolicy from './screens/PrivacyPolicy';
+import TermsAndConditions from './screens/TermsAndConditions';
+import FAQs from './screens/FAQs';
+import ProfileDetails from './components/ProfileDetails';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -208,7 +212,11 @@ function StackNavigation() {
             <Stack.Screen name='GlobalSearch' component={GlobalSearch} options={{ headerShown: false }} />
             <Stack.Screen name='About' component={About} options={{ headerShown: false }} />
             <Stack.Screen name='Aboutus' component={AboutUs} options={{ headerTitle: "About us" }} />
-            <Stack.Screen name='ContactUs' component={ContactUs} />
+            <Stack.Screen name='ContactUs' component={ContactUs} options={{ headerTitle: "Contact Us" }} />
+            <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} options={{ headerTitle: "Privacy Policy" }} />
+            <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
+            <Stack.Screen name='FAQs' component={FAQs} />
+            <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
         </Stack.Navigator>
     );
 }
