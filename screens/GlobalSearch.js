@@ -31,23 +31,26 @@ export default function GlobalSearch() {
 
                     <View style={[styles.flexrow, styles.global, styles.justalinecenter, styles.mv10]}>
                         <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View style={{ alignItems: "center" }}>
+                            <View style={{ alignItems: "center", width: "28%" }}>
                                 <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                                 <View style={[styles.flexrow, { justifyContent: "center", alignItems: "center" }]}>
                                     <TextRegular>4.5</TextRegular>
                                     <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
                                 </View>
                             </View>
-                            <View style={styles.jcfs}>
+                            <View style={[styles.jcfs, { width: "36%" }]}>
                                 <View style={[styles.flexrow]}>
                                     <TextMedium style={[styles.childrenname]}>Shreyas,<TextMedium style={[styles.age]}>14yrs</TextMedium></TextMedium>
                                 </View>
                                 <TextRegular style={[styles.textnetural,]}>4130 Butternut Lane, IL 62002,New York </TextRegular>
                             </View>
+                            <View style={[styles.jcfs, { width: "36%" }]}>
+                                <View style={[styles.flexrow]}>
+                                    <TextMedium style={[styles.childrenname]}>Shreyas,<TextMedium style={[styles.age]}>14yrs</TextMedium></TextMedium>
+                                </View>
+                            </View>
                         </View>
-                        <View>
 
-                        </View>
                     </View>
 
                 </View>
@@ -58,6 +61,9 @@ export default function GlobalSearch() {
 const styles = StyleSheet.create({
     global: {
         borderWidth: 1,
+        borderColor: color.accent,
+        padding: 8,
+        borderRadius: 8,
     },
     mh5: {
         marginHorizontal: 5,
@@ -80,8 +86,8 @@ const styles = StyleSheet.create({
     },
     profilepic: {
         marginRight: 12,
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         borderRadius: 50,
     },
     textnetural: {

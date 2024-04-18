@@ -701,7 +701,13 @@ export default function AddingKidsAndPets() {
           <View style={{ alignItems: 'center' }}>
             <View>
               {/* Assuming kid.profilePic holds the source of the kid's profile picture */}
-              <Image style={[styles.profilepicactive2]} source={{ uri: kid.profilePic }} />
+              {/* <Image style={[styles.profilepicactive2]} source={{ uri: kid.profilePic }} /> */}
+              <Image
+                style={[styles.profilepic]}
+                source={{
+                  uri: BASEURL + kid.ProfileImage,
+                }}
+              />
             </View>
             <View>
               {/* Assuming kid.FirstName holds the name of the kid */}
@@ -735,13 +741,19 @@ export default function AddingKidsAndPets() {
         />
       </View>
       <View style={[styles.Cardadd]}>
-        <ScrollView horizontal={true} >
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {petsData.map((pet, index) => (
               <View style={{ marginRight: 10 }} key={index}>
                 <View>
                   {/* Assuming pet.profilePic holds the source of the pet's profile picture */}
-                  <Image style={[styles.profilepicactive2]} source={{ uri: pet.profilePic }} />
+                  {/* <Image style={[styles.profilepicactive2, { borderWidth: 2, borderColor: color.accent }]} source={{ uri: pet.profilePic }} /> */}
+                  <Image
+                    style={[styles.profilepic]}
+                    source={{
+                      uri: BASEURL + pet.ProfileImage,
+                    }}
+                  />
                 </View>
                 <View>
                   {/* Assuming pet.name holds the name of the pet */}
@@ -1456,7 +1468,7 @@ const styles = StyleSheet.create({
     opacity: 0,
   },
   profilepicactive2: {
-    marginRight: 8,
+    marginHorizontal: 8,
     width: 70,
     height: 70,
     borderRadius: 50,
@@ -1659,7 +1671,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: "row",
     borderWidth: 1,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     paddingVertical: 10,
     borderColor: color.accent,
   },
