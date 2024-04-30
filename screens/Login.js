@@ -165,7 +165,7 @@ export default function Login() {
                 <View>
                     <TouchableOpacity style={styles.btnPrimary}
                         // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                        onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+                        onPress={() => navigation.navigate('ProfileVerification')}
                     >
                         <TextMedium style={styles.btnText}>Login</TextMedium>
                     </TouchableOpacity>
@@ -178,12 +178,7 @@ export default function Login() {
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
                     </TouchableOpacity>
-                    <View style={styles.signupView}>
-                        <TextRegular>Don't have an Account! </TextRegular>
-                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                            <TextMedium style={styles.signUpMediumText}>Signup</TextMedium>
-                        </TouchableOpacity>
-                    </View>
+
                     {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
                 </View>
 

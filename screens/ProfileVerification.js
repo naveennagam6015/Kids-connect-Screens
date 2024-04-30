@@ -406,27 +406,7 @@ export default function ProfileVerification({ route, navigation }) {
       </View>
       <View style={[styles.container]}>
         <View style={{ alignItems: "center", marginVertical: 10 }}>
-          {!image && (
-            <>
-              <Image
-                style={[styles.profilepic]}
-                source={require("../assets/images/user_placeholder.png")}
-              />
-              <TouchableOpacity
-                style={{
-                  position: "absolute",
-                  bottom: "2%",
-                  right: "38%",
-                  backgroundColor: "lightgray",
-                  borderRadius: 50,
-                  padding: 8,
-                }}
-                onPress={() => setCameraModal(!cameramodal)}
-              >
-                <Fontisto name="camera" size={15} color="black" />
-              </TouchableOpacity>
-            </>
-          )}
+
           {image && (
             <>
               {/* <Image source={{ uri: image }} style={[styles.profilepic]} /> */}

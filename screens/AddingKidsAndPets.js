@@ -587,6 +587,29 @@ export default function AddingKidsAndPets() {
                 source={require("../assets/images/man3.jpg")}
               />
             </View>
+
+
+
+            <>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Profile")}
+                style={[styles.imageplus]}
+              >
+                <AntDesign
+                  name="plus"
+                  size={40}
+                  color={color.neutral[500]}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity >
+                <TextRegular style={{ fontSize: 14 }}>
+                  Add Secondary Persons
+                </TextRegular>
+              </TouchableOpacity>
+            </>
+
+
+
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <TextRegular style={[styles.childrenname]}>
                 {/* {userData.FirstName} */}
