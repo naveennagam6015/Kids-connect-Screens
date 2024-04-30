@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity, Switch, Text, Button, TextInput } from 'react-native'
+import { ScrollView, StyleSheet, View, Platform, Image,Text, TextInput, TouchableOpacity, Switch, Modal } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
 import { MaterialCommunityIcons, FontAwesome, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign, Octicons } from '@expo/vector-icons';
@@ -8,6 +8,7 @@ import { Feather } from '@expo/vector-icons';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import AddKid from '../components/AddKid';
 
 export default function Profile() {
     const navigation = useNavigation();
@@ -16,7 +17,12 @@ export default function Profile() {
     const [year, setYear] = useState('');
     const [notifications, setNotifications] = useState(false);
     const [darkmode, setDarkmode] = useState(false);
+    const [open, setOpen] = useState(false);
 
+    const onClose = () => {
+        setOpen(false);
+
+    };
 
     useEffect(() => {
         async function GetUserData() {
@@ -80,12 +86,13 @@ export default function Profile() {
                         <View>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <View style={{ marginRight: 10 }}>
-                                    <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
+                                    <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/bgwhite.png')} />
                                 </View>
-                                <View>
+                                {/* <View>
                                     <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
-                                </View>
-                                <TouchableOpacity style={{ flexDirection: 'row' }}>
+                                </View> */}
+                                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setOpen(!open)}
+                                >
                                     <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
 
                                     <View style={{ alignItems: 'center' }}>
@@ -95,7 +102,7 @@ export default function Profile() {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <View>
                                     <Image style={[styles.profilepic, { width: 50, height: 50 },]} source={require('../assets/images/women.png')} />
                                 </View>
@@ -108,7 +115,7 @@ export default function Profile() {
                                         </View>
                                     </View>
                                 </TouchableOpacity>
-                            </View>
+                            </View> */}
                         </View>
                         {/* <View style={{ marginLeft: 10, flex: 1 }}>
                             <TextRegular style={[styles.textnetural]}>Additional content goes here...</TextRegular>
@@ -315,6 +322,9 @@ export default function Profile() {
                     </View>
                 </View>
 
+                <Modal visible={open}>
+                    <AddKid />
+                </Modal>
             </SafeAreaView>
         </ScrollView>
     )

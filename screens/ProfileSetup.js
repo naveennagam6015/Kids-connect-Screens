@@ -92,16 +92,16 @@ export default function ProfileSetup() {
 
   const submitRequestdata = () => {
     axios({
-        method:'post',
-        url:`${BASEURL}api/requests`,
-        data:{
-            'Subject': subject,
-            'SubscriberId':2,
-            'SubschildId':2,
-            'Keywords':interests,
-            // 'Keywords':'keywords',
-            'Statusid':2
-        }
+      method: 'post',
+      url: `${BASEURL}api/requests`,
+      data: {
+        'Subject': subject,
+        'SubscriberId': 2,
+        'SubschildId': 2,
+        'Keywords': interests,
+        // 'Keywords':'keywords',
+        'Statusid': 2
+      }
     }).then(res => {
       console.log(res.data);
     }).catch(err => {
@@ -181,7 +181,7 @@ export default function ProfileSetup() {
                       <TouchableOpacity onPress={handlePress}>
                         <Image
                           style={[styles.profilepic]}
-                          source={require("../assets/images/women.png")}
+                          source={require("../assets/images/bgwhite.png")}
                         />
                         {isSelected && (
                           <Image style={styles.tickIcon2} source={tickIcon} />
@@ -189,7 +189,7 @@ export default function ProfileSetup() {
                       </TouchableOpacity>
                       <View>
                         <TextRegular style={[styles.childrenname]}>
-                          Samanthaa
+                          Soumya
                         </TextRegular>
                       </View>
                     </View>
@@ -255,7 +255,7 @@ export default function ProfileSetup() {
               </View>
               <View>
                 <TextBold style={[styles.Headingtext]}>
-                  Description about Jay.jr
+                  Description about Soumya
                 </TextBold>
                 <TextInput
                   style={styles.textArea}
@@ -314,41 +314,41 @@ export default function ProfileSetup() {
                 </TextBold>
               </View>
               <View
-                  style={[styles.flexrow, { justifyContent: "space-between", width:'100%' }]}
+                style={[styles.flexrow, { justifyContent: "space-between", width: '100%' }]}
+              >
+                <TouchableOpacity
+                  // onPress={() => { setModalopen(!modalopen); setOpen(!open); }}
+                  style={[styles.Buttoncardinner, styles.Buttoncardwidth]}
                 >
-                  <TouchableOpacity
-                    // onPress={() => { setModalopen(!modalopen); setOpen(!open); }}
-                    style={[styles.Buttoncardinner, styles.Buttoncardwidth]}
-                  >
-                    <View style={[styles.flexrow]}>
-                      <TextMedium style={[styles.btnPrimaryTextsize]}>
-                        Back
-                      </TextMedium>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    // onPress={() => {
-                    //     setModalopen(!modalopen)
-                    //     navigation.navigate('AddingKidsAndPets');
-                    // }}
-                    onPress={() => submitRequestdata()}
-                    style={[
-                      styles.flexrow,
-                      styles.Buttoncardinner2,
-                      styles.Buttoncardwidth,
-                    ]}
-                  >
+                  <View style={[styles.flexrow]}>
                     <TextMedium style={[styles.btnPrimaryTextsize]}>
-                      Add Profile
+                      Back
                     </TextMedium>
-                    <AntDesign
-                      style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
-                      name="right"
-                      size={16}
-                      color={color.fontcolor}
-                    />
-                  </TouchableOpacity>
-                </View>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  // onPress={() => {
+                  //     setModalopen(!modalopen)
+                  //     navigation.navigate('AddingKidsAndPets');
+                  // }}
+                  onPress={() => submitRequestdata()}
+                  style={[
+                    styles.flexrow,
+                    styles.Buttoncardinner2,
+                    styles.Buttoncardwidth,
+                  ]}
+                >
+                  <TextMedium style={[styles.btnPrimaryTextsize]}>
+                    Add Profile
+                  </TextMedium>
+                  <AntDesign
+                    style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
+                    name="right"
+                    size={16}
+                    color={color.fontcolor}
+                  />
+                </TouchableOpacity>
+              </View>
             </ProgressStep>
             <ProgressStep label="Tags Setup">
               <View>

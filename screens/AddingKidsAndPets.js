@@ -550,15 +550,19 @@ export default function AddingKidsAndPets() {
       <View style={{ marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ alignItems: "center" }}>
+            <Image
+              style={[styles.profilepic]}
+              source={require("../assets/images/man3.jpg")}
+
+            />
+            <TextRegular style={[styles.childrenname]}>
+              Krishna
+              <TextRegular style={{ fontSize: 14, color: color.success }}>
+                {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
+              </TextRegular>
+            </TextRegular>
             {secondaryPersonData.length > 0 && (
               <>
-                <View>
-                  <Image
-                    style={[styles.profilepic]}
-                    source={require("../assets/images/man3.jpg")}
-
-                  />
-                </View>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <TextRegular style={[styles.childrenname]}>
                     {/* {secondaryPersonData[0].FirstName} */}
@@ -581,12 +585,40 @@ export default function AddingKidsAndPets() {
             )}
           </View>
           <View style={{ alignItems: "center" }}>
-            <View>
+            {/* <View>
               <Image
                 style={[styles.profilepic]}
-                source={require("../assets/images/man3.jpg")}
+                source={require("../assets/images/women.png")}
               />
-            </View>
+               <TextRegular style={[styles.childrenname]}>
+                  Radha
+                  <TextRegular style={{ fontSize: 14, color: color.success }}>
+                  </TextRegular>
+                </TextRegular>
+            </View> */}
+
+
+
+            <>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Profile")}
+                style={[styles.imageplus]}
+              >
+                <AntDesign
+                  name="plus"
+                  size={40}
+                  color={color.neutral[500]}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity >
+                <TextRegular style={{ fontSize: 14 }}>
+                  Add Secondary Persons
+                </TextRegular>
+              </TouchableOpacity>
+            </>
+
+
+
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <TextRegular style={[styles.childrenname]}>
                 {/* {userData.FirstName} */}
@@ -594,12 +626,7 @@ export default function AddingKidsAndPets() {
                   {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                 </TextRegular>
               </TextRegular>
-              <Foundation
-                style={{ marginLeft: 8, marginTop: 2 }}
-                name="info"
-                size={16}
-                color={color.neutral[500]}
-              />
+
             </View>
           </View>
         </View>
@@ -652,7 +679,7 @@ export default function AddingKidsAndPets() {
         </ScrollView>
       </View>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={[styles.btnPrimary, styles.flexrow]}
         onPress={() => navigation.navigate("BottomNavigation")}
       >
@@ -663,7 +690,7 @@ export default function AddingKidsAndPets() {
           size={16}
           color={color.fontcolor}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         onPress={() => navigation.navigate("BottomNavigation")}
         style={{

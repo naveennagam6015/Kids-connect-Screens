@@ -36,6 +36,7 @@ import PrivacyPolicy from './screens/PrivacyPolicy';
 import TermsAndConditions from './screens/TermsAndConditions';
 import FAQs from './screens/FAQs';
 import ProfileDetails from './components/ProfileDetails';
+import PasswordSettingScr2 from './screens/PasswordSettingScr2';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -193,7 +194,8 @@ const Stack = createStackNavigator();
 
 function StackNavigation() {
     return (
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='Passwordsetup'>
+            <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerShown: false }} />
             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='Test' component={Test} options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name='BottomNavigation' component={BottomNavigation} options={{ headerShown: false }} />
@@ -201,7 +203,7 @@ function StackNavigation() {
             <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Step 1 of 2" }} />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{ headerShown: false }} />
             <Stack.Screen name='ProfileSetup' component={ProfileSetup} options={{ headerTitle: "Profile Setup" }} />
-            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids And Pets" }} />
+            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids" }} />
             <Stack.Screen name='Chat' component={Chat} options={{ headerTitle: "Chat" }} />
             <Stack.Screen name='ChatAddingGroup' component={ChatAddingGroup} options={{ headerTitle: "Chat Adding Group" }} />
             <Stack.Screen name='GroupSettings' component={GroupSettings} options={{ headerTitle: "Group Settings" }} />

@@ -420,15 +420,7 @@ export default function ProfileSetupAfterAdminApproval() {
         <TextBold style={[styles.Headingtext]}>
           Let’s Complete your Profile{" "}
         </TextBold>
-        <View style={[styles.image]}>
-          <Image
-            style={[styles.emailimage]}
-            source={require("../assets/images/Email-icon.jpeg")}
-          />
-          <TextRegular style={[styles.subtext, { marginTop: 10 }]}>
-            Admin has verified your profile
-          </TextRegular>
-        </View>
+
         <TextBold>WELCOME! to Kids Connect</TextBold>
         <View style={[styles.Card]}>
           <View
@@ -444,7 +436,7 @@ export default function ProfileSetupAfterAdminApproval() {
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextRegular style={[styles.childrenname]}>
-                  Sathwik
+                  Krishna
                   <TextRegular style={{ fontSize: 14, color: color.success }}>
                     {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                   </TextRegular>
@@ -460,22 +452,22 @@ export default function ProfileSetupAfterAdminApproval() {
             <View style={{ alignItems: "center" }}>
               {/* {secondaryPersonData.length == 0 && ( */}
               <>
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Profile")}
-                style={[styles.imageplus]}
-              >
-                <AntDesign
-                  name="plus"
-                  size={40}
-                  color={color.neutral[500]}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity >
-                <TextRegular style={{ fontSize: 14 }}>
-                  Add Secondary Persons
-                </TextRegular>
-              </TouchableOpacity>
-            </>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Profile")}
+                  style={[styles.imageplus]}
+                >
+                  <AntDesign
+                    name="plus"
+                    size={40}
+                    color={color.neutral[500]}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity >
+                  <TextRegular style={{ fontSize: 14 }}>
+                    Add Secondary Persons
+                  </TextRegular>
+                </TouchableOpacity>
+              </>
               {/* )} */}
             </View>
           </View>
