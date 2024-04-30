@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
 
     referal: {
         fontWeight: '600',
-        fontSize: "25",
+        fontSize: 25,
         color: color.fontcolor,
         marginBottom: 12,
     },
