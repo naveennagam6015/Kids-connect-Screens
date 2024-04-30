@@ -165,7 +165,7 @@ export default function Login() {
                 <View>
                     <TouchableOpacity style={styles.btnPrimary}
                         // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                        onPress={() => navigation.navigate('ProfileVerification')}
+                        onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
                     >
                         <TextMedium style={styles.btnText}>Login</TextMedium>
                     </TouchableOpacity>

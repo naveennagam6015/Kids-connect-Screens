@@ -855,9 +855,8 @@ export default function AddingKidsAndPets() {
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                                 </Pressable>
                             </View> */}
-                <TouchableOpacity onPress={() => {
-                  setOpen(!open);
-                }}
+                <TouchableOpacity onPress={() => navigation.navigate('AddingKidsAndPets2')}
+
                   style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth]}
                 >
                   <View
