@@ -38,6 +38,7 @@ import FAQs from './screens/FAQs';
 import ProfileDetails from './components/ProfileDetails';
 import PasswordSettingScr2 from './screens/PasswordSettingScr2';
 import AddingKidsAndPets2 from './screens/AddingKidsAndPets2';
+import VerificationScreen from './screens/VerificationCode';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -202,7 +203,8 @@ const Stack = createStackNavigator();
 
 function StackNavigation() {
     return (
-        <Stack.Navigator initialRouteName='Passwordsetup'>
+        <Stack.Navigator initialRouteName='VerificationScreen'>
+            <Stack.Screen name='VerificationScreen' component={VerificationScreen} options={{ headerShown: false }} />
             <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerShown: false }} />
             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='Test' component={Test} options={{ headerShown: false, presentation: 'modal' }} />
