@@ -113,12 +113,12 @@ export default function ProfileEdit() {
         const isFirstNameValid = validateFirstName(firstName);
         const isLastNameValid = validateLastName(lastName);
         const isAddressValid = validateAddress(address);
-    
+
         // If any validation fails, do not proceed with the API call
         if (!isAboutValid || !isFirstNameValid || !isLastNameValid || !isAddressValid) {
             return;
         }
-    
+
         // Prepare the data to be sent in the request body
         const requestData = {
             About: about,
@@ -127,7 +127,7 @@ export default function ProfileEdit() {
             Address: address,
             // Add other fields as needed...
         };
-    
+
         try {
             // Make the API call to update the user's profile
             const response = await fetch(`${BASEURL}api/subscriberlogins/${userData.id}/edit`, {
@@ -138,7 +138,7 @@ export default function ProfileEdit() {
                 },
                 body: JSON.stringify(requestData),
             });
-    
+
             // Check if the API call was successful
             if (response.ok) {
                 // Handle the successful response
@@ -155,7 +155,7 @@ export default function ProfileEdit() {
             // Optionally, display an error message to the user
         }
     };
-    
+
     /*=============================================Camera Permission========================================*/
 
     useEffect(() => {
@@ -319,7 +319,7 @@ export default function ProfileEdit() {
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Discard</TextMedium>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => updateUserProfile()} style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                        <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Save</TextMedium>
                         </TouchableOpacity>
                     </View>
@@ -334,29 +334,29 @@ export default function ProfileEdit() {
 
 
 const styles = StyleSheet.create({
-    Buttoncardinner: {
-        borderRadius: 8,
-        alignSelf: 'center',
-        flexDirection: 'row',
-        textAlign: 'center',
-        justifyContent: 'center',
-        borderWidth: 1.5,
-        borderColor: color.accent,
-        paddingVertical: 16,
-        marginVertical: 16,
-    },
-    Buttoncardinner2: {
-        borderRadius: 8,
-        alignSelf: 'center',
-        flexDirection: 'row',
-        textAlign: 'center',
-        borderWidth: 1.5,
-        borderColor: color.primary,
-        justifyContent: 'center',
-        backgroundColor: color.primary,
-        paddingVertical: 16,
-        marginVertical: 16,
-    },
+    // Buttoncardinner: {
+    //     borderRadius: 8,
+    //     alignSelf: 'center',
+    //     flexDirection: 'row',
+    //     textAlign: 'center',
+    //     justifyContent: 'center',
+    //     borderWidth: 1.5,
+    //     borderColor: color.accent,
+    //     paddingVertical: 16,
+    //     marginVertical: 16,
+    // },
+    // Buttoncardinner2: {
+    //     borderRadius: 8,
+    //     alignSelf: 'center',
+    //     flexDirection: 'row',
+    //     textAlign: 'center',
+    //     borderWidth: 1.5,
+    //     borderColor: color.primary,
+    //     justifyContent: 'center',
+    //     backgroundColor: color.primary,
+    //     paddingVertical: 16,
+    //     marginVertical: 16,
+    // },
     Buttoncardwidth: {
         width: '48%'
     },
@@ -510,7 +510,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: color.primary,
         paddingVertical: 16,
-        marginVertical: 16,
     },
     Buttoncardfullwidth: {
         width: "100%",
