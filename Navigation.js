@@ -198,7 +198,6 @@ function BottomNavigation() {
         </>
     );
 }
-
 const Stack = createStackNavigator();
 
 function StackNavigation() {
