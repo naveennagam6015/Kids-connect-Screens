@@ -309,7 +309,7 @@ export default function Home({ close }) {
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Samantha</TextBold>
+                  <TextBold style={[styles.childrenname]}>Radha</TextBold>
                 </View>
               </TouchableOpacity>
 
@@ -323,7 +323,7 @@ export default function Home({ close }) {
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                  <TextBold style={[styles.childrenname]}>Rakesh</TextBold>
                 </View>
               </TouchableOpacity>
             </View>
@@ -338,9 +338,9 @@ export default function Home({ close }) {
                 </View>
                 <View>
                   <TextBold style={[styles.childrenname]}>
-                    Aron Finch{" "}
+                    Soumya{" "}
                     <TextBold style={{ color: color.neutral[300] }}>
-                      (F)
+                      (M)
                     </TextBold>
                   </TextBold>
                 </View>
@@ -359,14 +359,14 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/profile1.jpg")}
+                    source={require("../assets/images/KID.jpg")}
                   />
                 </View>
                 <View>
                   <TextBold style={[styles.childrenname]}>
-                    Sai Pallavi{" "}
+                    Anita{" "}
                     <TextBold style={{ color: color.neutral[300] }}>
-                      (F)
+                      (M)
                     </TextBold>
                   </TextBold>
                 </View>
