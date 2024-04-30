@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity, Switch } from 'react-native'
+import { ScrollView, StyleSheet, View, Platform, Image, TouchableOpacity, Switch, Text, Button, TextInput } from 'react-native'
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme'
-import { MaterialCommunityIcons, FontAwesome, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome, FontAwesome5, Foundation, MaterialIcons, Ionicons, AntDesign, Octicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
@@ -116,8 +116,47 @@ export default function Profile() {
                         {/* </View> */}
                     </View>
                 </View>
-                <View style={[styles.ProfileCard]}>
-                    
+                <View style={[styles.paddingcard]}>
+                    <View style={[styles.ProfileCard]}>
+                        <View>             
+                        <Text style={[styles.referal]}>Referal Code</Text>
+                        <View style={{flexDirection:'row', width:'100%'}}>
+                            <View style={[styles.text]}>
+                                <TextInput style={[styles.inputtxt]}>12345</TextInput>
+                            </View>
+                            <View style={[styles.Button]}>
+                                <TouchableOpacity>
+                                    <Text style={[styles.txtbtn]}>Refer</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <TouchableOpacity>
+                            <View style={[styles.radio]}>
+                                <Text>Copy</Text>
+                                <Feather name="copy" size={18} color="black" />
+                            </View>
+                        </TouchableOpacity>
+                        </View>
+                        <View>             
+                        <Text style={[styles.referal]}>Invitation Link</Text>
+                        <View style={{flexDirection:'row', width:'100%'}}>
+                            <View style={[styles.text]}>
+                                <TextInput style={[styles.inputlink]}>kidsconnect/madisson.kd</TextInput>
+                            </View>
+                            <View style={[styles.Button]}>
+                                <TouchableOpacity>
+                                    <Text style={[styles.txtbtn]}>Invite</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <TouchableOpacity>
+                            <View style={[styles.radio]}>
+                                <Text>Copy</Text>
+                                <Feather name="copy" size={18} color="black" />
+                            </View>
+                        </TouchableOpacity>
+                        </View>
+                    </View>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.Card, styles.flexrow, styles.justsb]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Bookings</TextBold>
@@ -281,10 +320,62 @@ export default function Profile() {
     )
 }
 const styles = StyleSheet.create({
-    ProfileCard:{
-        backgroundColor: "#fff",
-        margin: 10,
+    radio: {
+        flexDirection: 'row-reverse',
+        marginTop: 10,
+        alignItems: 'center',
+
+    },
+    inputtxt: {
+        fontWeight: "bold",
+        fontSize: 20,
+        color: color.fontcolor,
+        textAlign: "center",
+    },
+    inputlink:{
+        fontWeight: "600",
+        fontSize: 15,
+        color: color.fontcolor,
+        textAlign: "center",
+    },
+    txtbtn: {
+        fontWeight: "bold",
+        fontSize: 20,
+        color: color.fontcolor,
+        textAlign: "center",
+    },
+    text: {
+        width:"55%",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: color.white,
+        borderTopLeftRadius: 8,
+        borderBottomLeftRadius: 8,
+        borderWidth: 3,
+        borderColor: color.neutral[100],
+        borderStyle: 'dotted',
         padding: 8,
+    },
+    Button: {
+        width:"45%",
+        flexDirection: 'row',
+        justifyContent: 'center',  
+        backgroundColor: color.primary,
+       marginLeft: "-1%",
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: color.neutral[100],
+        // borderStyle: 'dotted',
+        padding: 8,
+    },
+    paddingcard: {
+        padding: 1,
+
+    },
+    ProfileCard: {
+        backgroundColor: color.neutral[100],
+        margin: 10,
+        padding: 20,
         borderRadius: 8,
         shadowColor: "#000",
 
@@ -297,6 +388,13 @@ const styles = StyleSheet.create({
 
         elevation: 11,
 
+    },
+
+    referal: {
+        fontWeight: '600',
+        fontSize: "25",
+        color: color.fontcolor,
+        marginBottom: 12,
     },
     justsb: {
         justifyContent: "space-between"
