@@ -181,7 +181,7 @@ export default function ProfileSetup() {
                       <TouchableOpacity onPress={handlePress}>
                         <Image
                           style={[styles.profilepic]}
-                          source={require("../assets/images/women.png")}
+                          source={require("../assets/images/bgwhite.png")}
                         />
                         {isSelected && (
                           <Image style={styles.tickIcon2} source={tickIcon} />
@@ -189,7 +189,7 @@ export default function ProfileSetup() {
                       </TouchableOpacity>
                       <View>
                         <TextRegular style={[styles.childrenname]}>
-                          Samanthaa
+                          Soumya
                         </TextRegular>
                       </View>
                     </View>
@@ -209,7 +209,7 @@ export default function ProfileSetup() {
                       </View>
                     </View>
                   </View>
-                  <View>
+                  {/* <View>
                     <TextBold style={[styles.Headingtext]}>
                       Choose Pets Profiles
                     </TextBold>
@@ -250,12 +250,12 @@ export default function ProfileSetup() {
                         </View>
                       </View>
                     </View>
-                  </View>
+                  </View> */}
                 </View>
               </View>
               <View>
                 <TextBold style={[styles.Headingtext]}>
-                  Description about Jay.jr
+                  Description about Soumya
                 </TextBold>
                 <TextInput
                   style={styles.textArea}

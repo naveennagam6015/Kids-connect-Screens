@@ -319,7 +319,7 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/man3.jpg")}
+                    source={require("../assets/images/2men3.jpg")}
                   />
                 </View>
                 <View>
@@ -424,7 +424,7 @@ export default function Home({ close }) {
               />
             </TouchableOpacity>
           </View>
-          <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold>
+          {/* <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold> */}
         </View>
         <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
           <TextBold style={[styles.Headingtext]}>Previous Connection</TextBold>
@@ -445,11 +445,11 @@ export default function Home({ close }) {
               <View>
                 <Image
                   style={[styles.profilepic, styles.activeprofilr]}
-                  source={require("../assets/images/man3.jpg")}
+                  source={require("../assets/images/bgwhite.png")}
                 />
               </View>
               <View>
-                <TextBold style={[styles.childrenname]}>Aron Finch</TextBold>
+                <TextBold style={[styles.childrenname]}>Soumya(M)</TextBold>
               </View>
             </TouchableOpacity>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -466,14 +466,12 @@ export default function Home({ close }) {
               <View>
                 <Image
                   style={[styles.profilepic]}
-                  source={require("../assets/images/women.png")}
+                  source={require("../assets/images/KID.jpg")}
                 />
               </View>
               <View>
-                <TextBold
-                  style={[styles.childrenname]}
-                >
-                  Iman Gadzi
+                <TextBold style={[styles.childrenname]}>
+                  Anita(F)
                 </TextBold>
               </View>
             </TouchableOpacity>
