@@ -12,7 +12,7 @@ import {
   Modal,
 } from "react-native";
 import { color } from "../assets/colors/theme";
-// import Carousel from "react-native-snap-carousel";
+import Carousel from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { Calendar } from "react-native-calendars";
 import {
@@ -132,7 +132,7 @@ export default function Home({ close }) {
         </SkeletonContainer>
       )}
 
-      {/* {!bannerLoading && (
+      {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -146,17 +146,17 @@ export default function Home({ close }) {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )} */}
+      )}
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
-          <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>
+          {/* <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>
             <View style={[styles.flexrow]}>
               <TextBold style={[styles.btnPrimaryTextsize]}>
                 Circle Requests
               </TextBold>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity
             style={[styles.Buttoncard2, styles.Buttoncardwidth]}
           >
             <View style={[styles.flexrow]}>
@@ -164,7 +164,7 @@ export default function Home({ close }) {
                 All Requests
               </TextBold>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         {/* <View style={[styles.flexrow]}>
@@ -424,7 +424,7 @@ export default function Home({ close }) {
               />
             </TouchableOpacity>
           </View>
-          {/* <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold> */}
+          <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold>
         </View>
         <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
           <TextBold style={[styles.Headingtext]}>Previous Connection</TextBold>

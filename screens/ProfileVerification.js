@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Platform,
+  Platform,Alert
 } from "react-native";
 import {
   TextBold,
@@ -27,6 +27,7 @@ import { BASEURL } from "@env";
 import * as FileSystem from "expo-file-system";
 import { useNavigation } from "@react-navigation/native";
 import OpenCameraModal from "../components/OpenCameraModal";
+import Login from "./Login";
 
 const imgDir = FileSystem.documentDirectory + "images/";
 
@@ -386,12 +387,22 @@ export default function ProfileVerification({ route, navigation }) {
         console.log(err);
       });
   }
+  function alertregister() {
+    Alert.alert(
+      "Successfully Registered",
+      "You have successfully registered!",
+      [
+        { text: 'OK', onPress: () => navigation.navigate("Login") },
+      ]
+    );
+  }
 
   return (
     <ScrollView
       style={styles.containertop}
       showsVerticalScrollIndicator={false}
     >
+
       <View style={[styles.flexrow, styles.mb10]}>
         <AntDesign
           style={[styles.mr10, styles.arrowback]}
@@ -405,36 +416,66 @@ export default function ProfileVerification({ route, navigation }) {
         <TextLight>Generally it takes around a 1-2 day</TextLight>
       </View>
       <View style={[styles.container]}>
-        <View style={{ alignItems: "center", marginVertical: 10 }}>
-
-          {image && (
-            <>
-              {/* <Image source={{ uri: image }} style={[styles.profilepic]} /> */}
-              <TouchableOpacity
-                style={{
-                  position: "absolute",
-                  bottom: "2%",
-                  right: "38%",
-                  backgroundColor: "lightgray",
-                  borderRadius: 50,
-                  padding: 10,
-                }}
-                onPress={() => setCameraModal(!cameramodal)}
-              >
-                <Fontisto name="camera" size={20} color="black" />
-              </TouchableOpacity>
-            </>
-          )}
-        </View>
-        <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+      <View style={{ alignItems: "center", marginVertical: 10 }}>
+                {!image && (
+                  <>
+                    <Image
+                      style={[styles.profilepic]}
+                      source={require("../assets/images/user_placeholder.png")}
+                    />
+                    <TouchableOpacity
+                      style={{
+                        position: "absolute",
+                        bottom: "2%",
+                        right: "38%",
+                        backgroundColor: "lightgray",
+                        borderRadius: 50,
+                        padding: 8,
+                      }}
+                      onPress={() => setCameraModal(!cameramodal)}
+                    >
+                      <Fontisto name="camera" size={15} color="black" />
+                    </TouchableOpacity>
+                  </>
+                )}
+                {image && (
+                  <>
+                    <Image
+                      source={{ uri: image }}
+                      style={[styles.profilepic]}
+                    />
+                    <TouchableOpacity
+                      style={{
+                        position: "absolute",
+                        bottom: "2%",
+                        right: "38%",
+                        backgroundColor: "lightgray",
+                        borderRadius: 50,
+                        padding: 10,
+                      }}
+                      onPress={() => setCameraModal(!cameramodal)}
+                    >
+                      <Fontisto name="camera" size={20} color="black" />
+                    </TouchableOpacity>
+                  </>
+                )}
+              </View>
+        <TextBold style={[styles.Headingtextinput]}>About</TextBold>
         <TextInput
-          style={styles.inputBox}
-          placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your mail"
+          style={styles.textArea}
+          multiline={true}
+          numberOfLines={5}
+          placeholder="Write about yourself"
+          onChangeText={(e) => {
+            setAbout(e);
+            validateAbout(e, setAboutErr);
+          }}
         />
-        <TextBold style={{ marginBottom: 16, color: "red" }}>
-          {mailError}
-        </TextBold>
+        {aboutErr !== "" && (
+          <TextBold style={{ marginBottom: 16, color: "red" }}>
+            {aboutErr}
+          </TextBold>
+        )}
         <TextBold style={[styles.Headingtextinput]}>First Name</TextBold>
         <TextInput
           style={styles.inputBox}
@@ -460,117 +501,54 @@ export default function ProfileVerification({ route, navigation }) {
             validateLastName(e, setLastNameErr);
           }}
         />
-        {lastNameErr !== "" && (
-          <TextBold style={{ marginBottom: 16, color: "red" }}>
-            {lastNameErr}
-          </TextBold>
-        )}
+
+        <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your mail"
+        />
+       
 
         <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
           placeholder="Enter your phone number"
-          onChangeText={(e) => {
-            setPhone(e);
-            validateMobileNumber(e, setMobileError);
-          }}
+          // onChangeText={(e) => {
+          //   setPhone(e);
+          //   validateMobileNumber(e, setMobileError);
+          // }}
         />
-        {mobileError !== "" && (
-          <TextBold style={{ marginBottom: 16, color: "red" }}>
-            {mobileError}
-          </TextBold>
-        )}
-
-        <TextBold style={[styles.Headingtextinput]}>Password</TextBold>
-        <TextInput
-          style={styles.inputBox}
-          placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter password"
-          onChangeText={(e) => {
-            setPwd(e);
-            validatePassword(e, setPasswordErr);
-          }}
+       
+{/* <TextBold style={{ marginBottom: 16, color: "red" }}>{dobErr}</TextBold> */}
+        <TextBold style={[styles.Headingtextinput]}>Gender</TextBold>
+        <Dropdown
+          style={styles.dropdownStyle}
+          data={gender}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder="Select Gender"
+          searchPlaceholder="Search..."
+          // onChange={(item) => {
+          //   setSelectedGender(item.value);
+          //   validateGender(item.value, setGenderErr);
+          // }}
+          // renderLeftIcon={() => (
+          //   <AntDesign
+          //     style={styles.icon}
+          //     color="#3D833F"
+          //     name="Safety"
+          //     size={20}
+          //   />
+          // )}
         />
-        {passwordErr !== "" && (
-          <TextBold style={{ marginBottom: 16, color: "red" }}>
-            {passwordErr}
-          </TextBold>
-        )}
-
-        <TextBold style={[styles.Headingtextinput]}>About</TextBold>
-        <TextInput
-          style={styles.textArea}
-          multiline={true}
-          numberOfLines={5}
-          placeholder="Write about yourself"
-          onChangeText={(e) => {
-            setAbout(e);
-            validateAbout(e, setAboutErr);
-          }}
-        />
-        {aboutErr !== "" && (
-          <TextBold style={{ marginBottom: 16, color: "red" }}>
-            {aboutErr}
-          </TextBold>
-        )}
-
-        <TextBold style={[styles.Headingtextinput]}>SSN Number</TextBold>
-        <TextInput
-          style={styles.inputBox}
-          placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter 6 digit SSN number"
-          onChangeText={(e) => {
-            setSsn(e);
-            validateSsn(e, setSsnErr);
-          }}
-        />
-
-        {ssnErr !== "" && (
-          <TextBold style={{ marginBottom: 16, color: "red" }}>
-            {ssnErr}
-          </TextBold>
-        )}
-        <TextBold style={[styles.Headingtextinput]}>Upload SSN Image</TextBold>
-        <View style={styles.imageContainer}>
-          {!image && (
-            <Pressable style={styles.uploadButton}>
-              <TextMedium style={styles.uploadButtonText}>Upload</TextMedium>
-            </Pressable>
-          )}
-          {image && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignSelf: "center",
-              }}
-            >
-              <TextMedium style={styles.imageText}>{imageName}</TextMedium>
-              <FontAwesome
-                name="trash"
-                size={24}
-                color={color.error[300]}
-                onPress={() => setImage(null)}
-              />
-            </View>
-          )}
-
-          {image && (
-            <Image
-              source={{ uri: image }}
-              style={{ width: 170, height: 100, borderRadius: 8 }}
-            />
-          )}
-          {!image && (
-            <Image
-              source={require("../assets/images/ssnplaceholder.webp")}
-              style={{ width: 170, height: 100, borderRadius: 8 }}
-            />
-          )}
-        </View>
+      
+        
         {/* <TextBold style={{ marginBottom: 16, color: 'red' }}>{lastNameErr}</TextBold> */}
-        <TextBold style={[styles.Headingtextinput]}>Select Role</TextBold>
+        <TextBold style={[styles.Headingtextinput]}>Select Relationship</TextBold>
         <Dropdown
           style={styles.dropdownStyle}
           data={roles}
@@ -593,9 +571,7 @@ export default function ProfileVerification({ route, navigation }) {
             />
           )}
         />
-        <TextBold style={{ marginBottom: 16, color: "red" }}>
-          {roleErr}
-        </TextBold>
+        
         <TextBold style={[styles.Headingtextinput]}>Enter D.O.B</TextBold>
         <TextInput
           style={styles.inputBox}
@@ -606,50 +582,59 @@ export default function ProfileVerification({ route, navigation }) {
             validateDob(e, setDobErr);
           }}
         />
-        <TextBold style={{ marginBottom: 16, color: "red" }}>{dobErr}</TextBold>
-        <TextBold style={[styles.Headingtextinput]}>Gender</TextBold>
-        <Dropdown
-          style={styles.dropdownStyle}
-          data={gender}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder="Select Gender"
-          searchPlaceholder="Search..."
-          onChange={(item) => {
-            setSelectedGender(item.value);
-            validateGender(item.value, setGenderErr);
-          }}
-          renderLeftIcon={() => (
-            <AntDesign
-              style={styles.icon}
-              color="#3D833F"
-              name="Safety"
-              size={20}
-            />
-          )}
-        />
-        <TextBold style={{ marginBottom: 16, color: "red" }}>
-          {genderErr}
-        </TextBold>
-        <TextBold style={[styles.Headingtextinput]}>Address</TextBold>
+        
+        <TextBold style={[styles.Headingtextinput]}>Street Address</TextBold>
         <TextInput
-          style={styles.textArea}
-          multiline={true}
-          numberOfLines={5}
-          placeholder="Enter your current address"
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your phone number"
           onChangeText={(e) => {
-            setAddress(e);
-            validateAddress(e, setAddressErr);
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
           }}
         />
-        <TextBold style={{ marginBottom: 16, color: "red" }}>
-          {addressErr}
-        </TextBold>
+
+        <TextBold style={[styles.Headingtextinput]}>City</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your phone number"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
+
+        <TextBold style={[styles.Headingtextinput]}>State</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your phone number"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
+
+        <TextBold style={[styles.Headingtextinput]}>Zipcode</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your phone number"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
+
+
+
+
+        
+       
         <TouchableOpacity
           style={styles.submitButton}
-          onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+          onPress={alertregister}
         // onPress={SubmitData}
         >
           <TextMedium style={styles.submitButtonText}>Register</TextMedium>
@@ -671,6 +656,11 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     justifyContent: "center",
+  },
+  Headingtextinput:
+  {
+    
+    marginTop: 10,
   },
   inputBox: {
     padding: 10,
@@ -715,7 +705,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   containertop: {
-    marginTop: 60,
+    marginTop: 10,
     // justifyContent: 'center'
     flex: 1,
   },
