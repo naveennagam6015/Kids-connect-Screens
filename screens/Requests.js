@@ -5,8 +5,11 @@ import { color } from '../assets/colors/theme';
 import { AntDesign, FontAwesome, Feather, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProfileDetails from '../components/ProfileDetails';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Requests() {
+    const navigation = useNavigation();
+
     const [open, setOpen] = useState(false);
     const [profileDetails, setProfileDetails] = useState(false);
     const onClose = () => {
@@ -72,13 +75,9 @@ export default function Requests() {
                 </View>
 
                 <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
-                        <View>
-                            <MaterialIcons name="message" size={20} color="black" />
-                        </View>
-                        <View>
-                            <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
-                        </View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
@@ -130,7 +129,7 @@ export default function Requests() {
                 </View>
 
                 <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <MaterialIcons name="message" size={20} color="black" />
                         </View>
@@ -187,7 +186,7 @@ export default function Requests() {
                 </View>
 
                 <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <MaterialIcons name="message" size={20} color="black" />
                         </View>
@@ -244,7 +243,7 @@ export default function Requests() {
                 </View>
 
                 <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <MaterialIcons name="message" size={20} color="black" />
                         </View>
@@ -300,7 +299,7 @@ export default function Requests() {
                 </View>
 
                 <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <MaterialIcons name="message" size={20} color="black" />
                         </View>
@@ -414,14 +413,14 @@ export default function Requests() {
                                             </View>
                                         </View>
                                         <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
-                                            <View style={{ padding: 5, marginHorizontal: 10 }}>
+                                            <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
                                                 <View>
                                                     <MaterialIcons name="message" size={20} color={color.neutral[500]} />
                                                 </View>
                                                 <View>
                                                     <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Chat</TextRegular>
                                                 </View>
-                                            </View>
+                                            </TouchableOpacity>
                                             <View style={{ padding: 5, marginHorizontal: 10 }}>
                                                 <View>
                                                     <Ionicons name="call" size={20} color={color.neutral[500]} />
@@ -476,7 +475,8 @@ export default function Requests() {
                                     <TextBold style={[styles.btnPrimaryTextsize]}>Modify</TextBold>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                            <TouchableOpacity onPress={onClose}
+                                style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
                                 <View
                                     style={[styles.flexrow]}>
                                     <TextBold style={[styles.btnPrimaryTextsize]}>Accept</TextBold>

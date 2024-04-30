@@ -33,10 +33,12 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { BASEURL } from "@env";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import ProfileDetails from "../components/ProfileDetails";
+import { useNavigation } from "@react-navigation/native";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
 export default function Home({ close }) {
+  const navigation = useNavigation();
   const [open, setOpen] = useState(false);
   const [profileDetails, setProfileDetails] = useState(false);
   const onClose = () => {
@@ -378,7 +380,8 @@ export default function Home({ close }) {
               { justifyContent: "space-between", alignItems: "center" },
             ]}
           >
-            <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Chat')}
+              style={{ padding: 5, marginHorizontal: 10 }}>
               <View>
                 <MaterialIcons name="message" size={20} color="black" />
               </View>
@@ -489,14 +492,14 @@ export default function Home({ close }) {
                 </TextRegular>
               </View>
             </View>
-            <View style={{ padding: 5, marginHorizontal: 10 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
               <View>
                 <MaterialIcons name="message" size={20} color="black" />
               </View>
               <View>
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity
               style={[styles.Buttoncard2, styles.Buttoncardwidth2]}
             >
@@ -667,7 +670,8 @@ export default function Home({ close }) {
                         },
                       ]}
                     >
-                      <View style={{ padding: 5, marginHorizontal: 10 }}>
+                      <TouchableOpacity onPress={() => navigation.navigate('Chat')}
+                        style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                           <MaterialIcons
                             name="message"
@@ -682,7 +686,7 @@ export default function Home({ close }) {
                             Chat
                           </TextRegular>
                         </View>
-                      </View>
+                      </TouchableOpacity>
                       <View style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                           <Ionicons

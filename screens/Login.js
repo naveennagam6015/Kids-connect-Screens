@@ -191,11 +191,7 @@ export default function Login() {
                 </View>
 
                 {/* dummy */}
-                <TouchableOpacity style={styles.btnPrimary}
-                    onPress={() => navigation.navigate('Chat')}
-                >
-                    <TextMedium style={styles.btnText}>Chat</TextMedium>
-                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.btnPrimary}
                     onPress={() => navigation.navigate('About')}
                 >
