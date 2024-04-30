@@ -389,14 +389,14 @@ export default function Home({ close }) {
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+            {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
               <View>
                 <Ionicons name="call" size={20} color="black" />
               </View>
               <View>
                 <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => setOpen(!open)}
               style={[styles.Buttoncardmoredetails, styles.Buttoncardwidth3]}
