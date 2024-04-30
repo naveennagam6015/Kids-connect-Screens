@@ -180,13 +180,8 @@ function BottomNavigation() {
                     component={Appointment}
                 />
                 <BottomTab.Screen name="Requests" component={Requests} />
-                <BottomTab.Screen name="Profile"  
-                    listeners={({ navigation }) => ({
-                        tabPress: (e) => {
-                            e.preventDefault();
-                            toggleModal();
-                        },
-                    })}
+                <BottomTab.Screen name="Profile"
+
                     component={Profile} />
             </BottomTab.Navigator>
             <AppointmentModal isVisible={isModalVisible} onClose={toggleModal} />
