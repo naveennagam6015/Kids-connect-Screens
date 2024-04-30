@@ -392,7 +392,7 @@ export default function ProfileVerification({ route, navigation }) {
       "Successfully Registered",
       "You have successfully registered!",
       [
-        { text: 'OK', onPress: () => navigation.navigate("Login") },
+        { text: 'OK', onPress: () => navigation.navigate("ProfileSetupAfterAdminApproval") },
       ]
     );
   }
