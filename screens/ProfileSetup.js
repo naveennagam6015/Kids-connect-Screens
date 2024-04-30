@@ -209,7 +209,7 @@ export default function ProfileSetup() {
                       </View>
                     </View>
                   </View>
-                  <View>
+                  {/* <View>
                     <TextBold style={[styles.Headingtext]}>
                       Choose Pets Profiles
                     </TextBold>
@@ -250,7 +250,7 @@ export default function ProfileSetup() {
                         </View>
                       </View>
                     </View>
-                  </View>
+                  </View> */}
                 </View>
               </View>
               <View>

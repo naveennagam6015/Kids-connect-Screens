@@ -21,18 +21,18 @@ export default function Appointment({ close }) {
         <ScrollView>
             <View style={[styles.container]}>
                 <Search />
-                <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular>
+                {/* <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular> */}
                 <View style={[styles.flexrow, styles.justiffsb]}>
-                    <TouchableOpacity onPress={() => navigation.navigate('ProfileSetup')} style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('ProfileSetup')} style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
                         <View style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
                         </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={CircleRequests} style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
+                    </TouchableOpacity> */}
+                    {/* <TouchableOpacity onPress={CircleRequests} style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
                         <View style={[styles.flexrow]}>
                             <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
                 <View style={[styles.flexrow]}>
                     <TextBold style={[styles.Headingtext]}>MOST SEARCHED TAGS
@@ -46,9 +46,9 @@ export default function Appointment({ close }) {
                     <TouchableOpacity style={[styles.innerbtn]}>
                         <TextRegular>In-House</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.innerbtn]}>
+                    {/* <TouchableOpacity style={[styles.innerbtn]}>
                         <TextRegular>No Pet</TextRegular>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <View style={[styles.justifyflexend]}>
                         <TouchableOpacity style={[styles.flexrow]}>
                             <TextRegular>All filters</TextRegular>
@@ -60,8 +60,8 @@ export default function Appointment({ close }) {
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
                             onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Madisson</TextBold>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
                         </TouchableOpacity>
                         <View style={[styles.flexrow, styles.alineitemscenter]}>
@@ -73,12 +73,172 @@ export default function Appointment({ close }) {
                             <TouchableOpacity
                                 style={{ width: "35%" }}
                                 onPress={() => setProfileDetails(!profileDetails)}>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/women.png')} />
+                                <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
                             </TouchableOpacity>
                             <View style={[styles.justiffsb, { width: "65%" }]}>
                                 <TouchableOpacity
                                     onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Naveen Nagam </TextBold>
+                                    <TextBold style={[styles.childrenname]}>Anita </TextBold>
+                                    <View>
+                                        <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
+                                    </View>
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </TouchableOpacity>
+                                <View style={[styles.flexrow,]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <TextBold>4.0</TextBold>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <TouchableOpacity style={[styles.flexrow]}>
+                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ marginLeft: 10 }}>
+                                        <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                            <TextBold style={{ fontSize: 14, marginRight: 5 }}>100+</TextBold >
+                                            <FontAwesome name="group" size={14} color={color.accent} />
+                                        </View>
+                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Time</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <TouchableOpacity
+                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </TouchableOpacity>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <TouchableOpacity
+                                style={{ width: "35%" }}
+                                onPress={() => setProfileDetails(!profileDetails)}>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
+                            </TouchableOpacity>
+                            <View style={[styles.justiffsb, { width: "65%" }]}>
+                                <TouchableOpacity
+                                    onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Anita </TextBold>
+                                    <View>
+                                        <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
+                                    </View>
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </TouchableOpacity>
+                                <View style={[styles.flexrow,]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <TextBold>4.0</TextBold>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <TouchableOpacity style={[styles.flexrow]}>
+                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ marginLeft: 10 }}>
+                                        <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                            <TextBold style={{ fontSize: 14, marginRight: 5 }}>100+</TextBold >
+                                            <FontAwesome name="group" size={14} color={color.accent} />
+                                        </View>
+                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Time</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <TouchableOpacity
+                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </TouchableOpacity>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <TouchableOpacity
+                                style={{ width: "35%" }}
+                                onPress={() => setProfileDetails(!profileDetails)}>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
+                            </TouchableOpacity>
+                            <View style={[styles.justiffsb, { width: "65%" }]}>
+                                <TouchableOpacity
+                                    onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Anita </TextBold>
                                     <View>
                                         <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
                                     </View>

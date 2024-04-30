@@ -20,15 +20,15 @@ export default function ProfileDetails({ close, name }) {
                 <View style={[styles.flexrow,]} >
                     <View style={{ marginVertical: 10, marginRight: 5, justifyContent: "center", alignItems: "center" }}>
                         <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                        <TextRegular style={[styles.childrenname]}>{name} (F) </TextRegular>
+                        <TextRegular style={[styles.childrenname]}>Tulika (F) </TextRegular>
                         <TextRegular style={[styles.mobilrnumber, { color: color.neutral[500] }]}>+91 8328424553 </TextRegular>
                     </View>
 
                     <View style={{ flex: 1, justifyContent: "space-evenly" }}>
                         <View>
                             <View style={[styles.flexrow, { marginTop: 5, alignItems: "center", maxWidth: '70%' }]}>
-                                <FontAwesome style={{ marginRight: 10, marginLeft: 3 }} name="map-pin" size={16} color={color.neutral[500]} />
-                                <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>Architect, TCS</TextRegular>
+                                {/* <FontAwesome style={{ marginRight: 10, marginLeft: 3 }} name="map-pin" size={16} color={color.neutral[500]} /> */}
+                                {/* <TextRegular style={[styles.textnetural, { fontSize: 16, }]}>Architect, TCS</TextRegular> */}
                             </View>
                             <View style={[styles.flexrow, { marginTop: 5, alignItems: "center" }]}>
                                 <FontAwesome style={{ marginRight: 10, marginLeft: 3 }} name="map-pin" size={16} color={color.neutral[500]} />
@@ -41,7 +41,7 @@ export default function ProfileDetails({ close, name }) {
                         </View>
                         <View style={[styles.flexrow, { justifyContent: 'center', alignItems: 'center', }]}>
 
-                            <TouchableOpacity onPress={close}
+                            {/* <TouchableOpacity onPress={close}
                                 style={[styles.bgclr, { padding: 5, marginHorizontal: 10 }]}>
                                 <View>
                                     <Ionicons name="call" size={20} color="black" />
@@ -49,8 +49,8 @@ export default function ProfileDetails({ close, name }) {
                                 <View>
                                     <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                                 </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={close}
+                            </TouchableOpacity> */}
+                            {/* <TouchableOpacity onPress={close}
                                 style={[styles.bgclr, { padding: 5, marginHorizontal: 10 }]}>
                                 <View>
                                     <MaterialIcons name="message" size={20} color="black" />
@@ -58,29 +58,29 @@ export default function ProfileDetails({ close, name }) {
                                 <View>
                                     <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                                 </View>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
                         </View>
                     </View>
                 </View>
-                <TextBold style={{ fontSize: 20, }}>Kids</TextBold>
+                <TextBold style={{ fontSize: 20, }}>Kid</TextBold>
                 <View style={[styles.flexrow, { marginTop: 5 }]}>
                     <View style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
                         <View>
                             <Image style={[styles.profilepicactive]} source={require('../assets/images/women.png')} />
                         </View>
                         <View>
-                            <TextRegular style={[styles.childrenname]}>Shrey</TextRegular>
+                            <TextRegular style={[styles.childrenname]}>Anita</TextRegular>
                         </View>
                     </View>
-                    <View style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
+                    {/* <View style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
                         <View>
                             <Image style={[styles.profilepicactive]} source={require('../assets/images/women.png')} />
                         </View>
                         <View>
                             <TextRegular style={[styles.childrenname]}>Jisoo</TextRegular>
                         </View>
-                    </View>
+                    </View> */}
                 </View>
             </View>
             <View style={[styles.bgfull,]}>

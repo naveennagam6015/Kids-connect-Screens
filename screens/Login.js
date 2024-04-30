@@ -184,7 +184,7 @@ export default function Login() {
 
                 {/* dummy */}
 
-                <TouchableOpacity style={styles.btnPrimary}
+                {/* <TouchableOpacity style={styles.btnPrimary}
                     onPress={() => navigation.navigate('About')}
                 >
                     <TextMedium style={styles.btnText}>About</TextMedium>
@@ -193,7 +193,7 @@ export default function Login() {
                     onPress={() => navigation.navigate('ProfileDetails')}
                 >
                     <TextMedium style={styles.btnText}>Details</TextMedium>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
 
             </View>
