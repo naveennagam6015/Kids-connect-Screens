@@ -32,7 +32,7 @@ export default function Referal() {
         <View style={[styles.containertop]}>
 
             {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
-            <TextBold style={styles.heading}>Kids Connect</TextBold>
+            <TextBold style={styles.heading}>Kid Connect</TextBold>
             <TextBold style={styles.subheading}>Welcome!</TextBold>
             <View>
                 <View style={[styles.container]}>

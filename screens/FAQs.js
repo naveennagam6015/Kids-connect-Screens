@@ -112,7 +112,7 @@ export default function FAQs() {
                 <Collapse>
                     <CollapseHeader>
                         <View style={[styles.accordionheader, styles.flexrow]}>
-                            <TextBold style={[styles.headerfont]}>Kids connect related</TextBold>
+                            <TextBold style={[styles.headerfont]}>Kid connect related</TextBold>
                             <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
                         </View>
                     </CollapseHeader>

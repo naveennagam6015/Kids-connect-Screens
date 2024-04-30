@@ -124,13 +124,13 @@ export default function Home({ close }) {
       >
         Glance Area
       </TextBold>
-       {bannerLoading && (
+      {bannerLoading && (
         <SkeletonContainer isLoading={bannerLoading} Gradient={Gradient}>
           <View style={styles.slide}></View>
         </SkeletonContainer>
       )}
 
-       {!bannerLoading && (
+      {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -144,7 +144,7 @@ export default function Home({ close }) {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )} 
+      )}
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
           <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>
@@ -781,7 +781,8 @@ export default function Home({ close }) {
         <View style={[styles.containerbg2]}>
           <View style={[styles.modalcontainer]}>
             <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-              <TouchableOpacity
+              <TouchableOpacity onPress={onClose}
+
                 style={[styles.Buttoncardinner, styles.Buttoncardwidth]}
               >
                 <View style={[styles.flexrow]}>
@@ -790,7 +791,8 @@ export default function Home({ close }) {
                   </TextBold>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity
+              <TouchableOpacity onPress={onClose}
+
                 style={[styles.Buttoncardinner2, styles.Buttoncardwidth]}
               >
                 <View style={[styles.flexrow]}>

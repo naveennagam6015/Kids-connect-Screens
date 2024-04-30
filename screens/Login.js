@@ -21,7 +21,7 @@ export default function Login() {
     const [passwordErr, setPasswordErr] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -37,48 +37,7 @@ export default function Login() {
     });
 
 
-    // useEffect(() => {
-    //     handleSigninWithGoogle();
-    // }, [response]);
 
-
-    // async function handleSigninWithGoogle() {
-    //     const user = await AsyncStorage.getItem('@user');
-    //     if (!user) {
-    //         if (response?.type === 'success') {
-    //             await getUserInfo(response.authentication.accessToken);
-    //         }
-
-    //     } else {
-    //         setUserInfo(JSON.parse(user));
-    //     }
-    // }
-
-    const getUserInfo = async (token) => {
-        if (!token) return;
-        try {
-            const response = await fetch('https://www.googleapis.com/userinfo/v2/me',
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            );
-
-            const user = await response.json();
-            await AsyncStorage.setItem('@user', JSON.stringify(user));
-            setUserInfo(user);
-            console.log(user);
-        } catch (error) {
-            console.log(error.response);
-        }
-    }
-
-    // Validation of Login
-    // Done by Soumya
-
-    /*=================================Validation Start====================================== */
-
-    // Email Validation
-    // Done by Soumya
     const validateEmail = (email, setEmailError) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email.trim() === '') {
@@ -106,48 +65,7 @@ export default function Login() {
         }
     }
 
-    /*=================================Validation End====================================== */
 
-
-
-
-    // Login Functionality by generating token
-    // Done by Soumya
-
-    /*=====================================Login Functionality Start===================================== */
-
-
-    function LoginFunctionality() {
-        if (email == '') {
-            validateEmail(email, setEmailError);
-        } else if (password == '') {
-            validatePassword(password, setPasswordErr);
-        } else {
-            axios({
-                method: 'post',
-                url: `${BASEURL}api/login`,
-                data: {
-                    "Email": email,
-                    "password": password
-                }
-            }).then(async res => {
-                const authData = JSON.stringify(res.data);
-                AsyncStorage.setItem('authData', authData);
-                console.log(authData);
-                await GetSubscriber(res.data.token);
-                navigation.navigate('ProfileSetupAfterAdminApproval');
-            }).catch((err) => {
-                console.log(err);
-                // Show alert message for incorrect username or password
-                Alert.alert('Login Error', 'Incorrect username or password');
-            }).finally(() => {
-
-            })
-        }
-    }
-
-    // Get the user on the basis of token
-    // Done by Soumya
 
     async function GetSubscriber(token) {
         axios({
@@ -206,14 +124,13 @@ export default function Login() {
 
 
 
-    /*=====================================Forgot password Functionality End===================================== */
     return (
         <ScrollView>
 
             <View style={styles.container}>
                 <StatusBar />
                 {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
-                <TextBold style={styles.heading}>Kids Connect</TextBold>
+                <TextBold style={styles.heading}>Kid Connect</TextBold>
                 <TextBold style={styles.subheading}>Welcome</TextBold>
                 <View>
                     <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(email) => {
@@ -238,10 +155,7 @@ export default function Login() {
                     </View>
 
 
-                    {/* <TextInput style={styles.inputBox} placeholder="Enter your password" onChangeText={(pwd) => {
-                    setPassword(pwd);
-                    validatePassword(pwd, setPasswordErr);
-                }} /> */}
+
                     {
                         passwordErr !== '' && (
                             <TextBold style={{ marginBottom: 10, color: 'red', paddingLeft: 18 }}>{passwordErr}</TextBold>
@@ -254,7 +168,7 @@ export default function Login() {
                 <View>
                     <TouchableOpacity style={styles.btnPrimary}
                         // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                        onPress={LoginFunctionality}
+                        onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
                     >
                         <TextMedium style={styles.btnText}>Login</TextMedium>
                     </TouchableOpacity>
@@ -263,7 +177,7 @@ export default function Login() {
                         <TextRegular style={styles.textR}>or Login with</TextRegular>
                         <View style={styles.horizontalLine}></View>
                     </View>
-                    <TouchableOpacity style={styles.googleImage} onPress={() => promptAsync()}>
+                    <TouchableOpacity style={styles.googleImage}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
                     </TouchableOpacity>
@@ -292,14 +206,7 @@ export default function Login() {
                 >
                     <TextMedium style={styles.btnText}>Details</TextMedium>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                // onPress={() => navigation.navigate('ProfileEdit')}
 
-                // onPress={LoginFunctionality}
-                >
-                    <TextMedium style={styles.btnText}>Direct Login</TextMedium>
-                </TouchableOpacity>
 
             </View>
 

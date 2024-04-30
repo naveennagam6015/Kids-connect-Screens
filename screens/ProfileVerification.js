@@ -39,7 +39,6 @@ const ensureDirExists = async () => {
 
 export default function ProfileVerification({ route, navigation }) {
   // const navigation = useNavigation();
-  const { email } = route.params;
 
   const [img, setImg] = useState(null);
 
@@ -80,19 +79,7 @@ export default function ProfileVerification({ route, navigation }) {
   // Done by soumya
   /*=================================== Validation Start=================================*/
 
-  const validateEmail = (email, setMailError) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email.trim() === "") {
-      setMailError("Email is required");
-      return false;
-    } else if (!regex.test(email)) {
-      setMailError("Enter a valid email id");
-      return false;
-    } else {
-      setMailError("");
-      return true;
-    }
-  };
+
 
   const validateFirstName = (firstName, setFirstNameError) => {
     const regex = /^[a-zA-Z ]+$/;
@@ -199,13 +186,13 @@ export default function ProfileVerification({ route, navigation }) {
     const regex = /^\d{4}-\d{2}-\d{2}$/;
 
     if (!regex.test(dob)) {
-        setDobErr("Please enter a valid date in the format YYYY-MM-DD");
-        return false;
+      setDobErr("Please enter a valid date in the format YYYY-MM-DD");
+      return false;
     } else {
-        setDobErr("");
-        return true;
+      setDobErr("");
+      return true;
     }
-};
+  };
 
 
   const validateGender = (selectedGender, setGenderErr) => {
@@ -304,49 +291,49 @@ export default function ProfileVerification({ route, navigation }) {
 
   /*============================================Image pick from gallery start ================================== */
 
-    const pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        // aspect: [4, 3],
-        quality: 1,
-      });
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      // aspect: [4, 3],
+      quality: 1,
+    });
 
-      console.log(result, "vzsvs");
+    console.log(result, "vzsvs");
     //   img = result.assets[0].uri;
     //   console.log(img, "img")
     //   setImage(img)
-      setCameraModal(!cameramodal);
-      if (!result.canceled && result.assets.length > 0) {
-          console.log("hiiii");
-        const selectedImage = result.assets[0];
-        // console.log(selectedImage.uri);
-        setImg(result.assets[0].uri);
-        // setImage(result);
+    setCameraModal(!cameramodal);
+    if (!result.canceled && result.assets.length > 0) {
+      console.log("hiiii");
+      const selectedImage = result.assets[0];
+      // console.log(selectedImage.uri);
+      setImg(result.assets[0].uri);
+      // setImage(result);
 
-        const fileName =
-          Platform.OS === "ios"
-            ? selectedImage.uri.split("/").pop()
-            : selectedImage.uri.split("\\").pop();
-            console.log(fileName, "jxhjxgj");
-        // Get the file extension from the fileName
-        const fileExtension = fileName.split(".").pop().toLowerCase();
+      const fileName =
+        Platform.OS === "ios"
+          ? selectedImage.uri.split("/").pop()
+          : selectedImage.uri.split("\\").pop();
+      console.log(fileName, "jxhjxgj");
+      // Get the file extension from the fileName
+      const fileExtension = fileName.split(".").pop().toLowerCase();
 
-        // Determine the MIME type based on the file extension
-        let mimetype = "";
-        if (fileExtension === "jpg" || fileExtension === "jpeg") {
-          mimetype = "image/jpeg";
-        } else if (fileExtension === "png") {
-          mimetype = "image/png";
-        }
-        
-        setImageName(fileName); // Use fileName directly
-        setMimeType(mimetype);
-        console.log(mimetype);
+      // Determine the MIME type based on the file extension
+      let mimetype = "";
+      if (fileExtension === "jpg" || fileExtension === "jpeg") {
+        mimetype = "image/jpeg";
+      } else if (fileExtension === "png") {
+        mimetype = "image/png";
       }
-    };
 
-  
+      setImageName(fileName); // Use fileName directly
+      setMimeType(mimetype);
+      console.log(mimetype);
+    }
+  };
+
+
 
   /*============================================Image pick from gallery end ================================== */
 
@@ -369,7 +356,6 @@ export default function ProfileVerification({ route, navigation }) {
       RoleId: roleId,
       FirstName: firstName,
       LastName: lastName,
-      Email: email,
       Dob: dob,
       Gender: selectedGender,
       PhoneNumber: phone,
@@ -462,7 +448,6 @@ export default function ProfileVerification({ route, navigation }) {
         </View>
         <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
         <TextInput
-          value={email}
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
           placeholder="Enter your mail"
@@ -684,8 +669,8 @@ export default function ProfileVerification({ route, navigation }) {
         </TextBold>
         <TouchableOpacity
           style={styles.submitButton}
-          // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-          onPress={SubmitData}
+          onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
+        // onPress={SubmitData}
         >
           <TextMedium style={styles.submitButtonText}>Register</TextMedium>
         </TouchableOpacity>

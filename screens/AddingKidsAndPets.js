@@ -487,7 +487,7 @@ export default function AddingKidsAndPets() {
 
     if (Role === 5) {
       requestData = {
-        FirstName: firstName,
+        // FirstName: firstName,
         LastName: lastName,
         Email: email,
         Dob: dob,
@@ -536,80 +536,7 @@ export default function AddingKidsAndPets() {
     }
   }
 
-  // async function SubmitData(Role) {
-  //   const formData = new FormData();
 
-  //   // Append the image to formData
-  //   formData.append('ProfileImage', {
-  //     uri: image,
-  //     name: imageName,
-  //     type: `image/jpeg`,
-  //   });
-
-  //   let requestData = {};
-
-  //   if (Role === 5) {
-  //     requestData = {
-  //       FirstName: firstName,
-  //       LastName: lastName,
-  //       Email: email,
-  //       Dob: dob,
-  //       Gender: selectedGender,
-  //       PhoneNumber: phone,
-  //       SSN: ssn,
-  //       About: description,
-  //       Address: address,
-  //       Keywords: interests,
-  //       LoginType: 12,
-  //       RoleId: 5,
-  //       MainSubscriberId: userData.id,
-  //     };
-  //   } else if (Role === 7) {
-  //     requestData = {
-  //       Name: petName,
-  //       Breed: petBreed,
-  //       gender: selectedPetGender,
-  //       Dob: petDOB,
-  //       RoleId: 7,
-  //       MainSubscriberId: userData.id,
-  //       Description: description,
-  //     };
-  //   }
-
-  //   // Append other data to formData
-  //   Object.keys(requestData).forEach((key) => {
-  //     formData.append(key, requestData[key]);
-  //   });
-
-  //   console.log(formData);
-  //   const response = await fetch(`${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${authData.token}`,
-  //         Accept: "application/json",
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //       body: formData,
-  //     });
-
-  //     console.log(response.json());
-  //   // axios({
-  //   //   method: "post",
-  //   //   url: `${BASEURL}api/subscriberloginsCreateAccount/${userData.id}`,
-  //   //   headers: {
-  //   //     Authorization:`Bearer ${authData.token}`,
-  //   //     Accept: "application/json",
-  //   //     "Content-Type": "multipart/form-data",
-  //   //   },
-  //   //   data: formData,
-  //   // })
-  //   //   .then((res) => {
-  //   //     console.log(res.data);
-  //   //   })
-  //   //   .catch((err) => {
-  //   //     console.log(err);
-  //   //   });
-  // }
 
   return (
     <ScrollView style={[styles.container]}>
@@ -618,7 +545,7 @@ export default function AddingKidsAndPets() {
         Let’s Complete your Profile{" "}
       </TextBold>
       <TextRegular style={{ fontSize: 18 }}>
-        To get started, create an account with Kids Connect below,{" "}
+        To get started, create an account with Kid Connect below,{" "}
       </TextRegular>
       <View style={{ marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -628,20 +555,19 @@ export default function AddingKidsAndPets() {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={{
-                      uri: BASEURL + secondaryPersonData[0].ProfileImage,
-                    }}
+                    source={require("../assets/images/man3.jpg")}
+
                   />
                 </View>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <TextRegular style={[styles.childrenname]}>
-                    {secondaryPersonData[0].FirstName}
+                    {/* {secondaryPersonData[0].FirstName} */}
                     <TextRegular style={{ fontSize: 14, color: color.success }}>
-                      (
+                      {/* (
                       {secondaryPersonData[0].IsMain == 1
                         ? "Primary"
                         : "Secondary"}
-                      )
+                      ) */}
                     </TextRegular>
                   </TextRegular>
                   <Foundation
@@ -658,16 +584,14 @@ export default function AddingKidsAndPets() {
             <View>
               <Image
                 style={[styles.profilepic]}
-                source={{
-                  uri: BASEURL + userData.ProfileImage,
-                }}
+                source={require("../assets/images/man3.jpg")}
               />
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <TextRegular style={[styles.childrenname]}>
-                {userData.FirstName}
+                {/* {userData.FirstName} */}
                 <TextRegular style={{ fontSize: 14, color: color.success }}>
-                  ({userData.IsMain == 1 ? "Primary" : "Secondary"})
+                  {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                 </TextRegular>
               </TextRegular>
               <Foundation
@@ -680,6 +604,8 @@ export default function AddingKidsAndPets() {
           </View>
         </View>
       </View>
+
+
       <View
         style={[
           styles.flexrow,
@@ -696,50 +622,6 @@ export default function AddingKidsAndPets() {
           color={color.accent}
         />
       </View>
-      {kidsData.map((kid, index) => (
-        <View key={index} style={[styles.Cardadd]}>
-          <View style={{ alignItems: 'center' }}>
-            <View>
-              {/* Assuming kid.profilePic holds the source of the kid's profile picture */}
-              {/* <Image style={[styles.profilepicactive2]} source={{ uri: kid.profilePic }} /> */}
-              <Image
-                style={[styles.profilepic]}
-                source={{
-                  uri: BASEURL + kid.ProfileImage,
-                }}
-              />
-            </View>
-            <View>
-              {/* Assuming kid.FirstName holds the name of the kid */}
-              <TextRegular style={[styles.childrenname]}>{kid.FirstName}</TextRegular>
-            </View>
-          </View>
-          <View style={{ alignItems: 'center', flexDirection: 'row', marginHorizontal: 10 }}>
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-              <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
-                <AntDesign name="plus" size={30} color={color.neutral[500]} />
-              </TouchableOpacity>
-              <TextBold>Add</TextBold>
-            </View>
-          </View>
-        </View>
-      ))}
-      <View
-        style={[
-          styles.flexrow,
-          { justifyContent: "flex-start", alignItems: "center" },
-        ]}
-      >
-        <TextBold style={{ marginTop: 10, marginBottom: 5, fontSize: 18 }}>
-          Add your Pets Profile
-        </TextBold>
-        <FontAwesome
-          style={{ marginLeft: 10 }}
-          name="paw"
-          size={24}
-          color={color.accent}
-        />
-      </View>
       <View style={[styles.Cardadd]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -750,9 +632,8 @@ export default function AddingKidsAndPets() {
                   {/* <Image style={[styles.profilepicactive2, { borderWidth: 2, borderColor: color.accent }]} source={{ uri: pet.profilePic }} /> */}
                   <Image
                     style={[styles.profilepic]}
-                    source={{
-                      uri: BASEURL + pet.ProfileImage,
-                    }}
+                    source={require("../assets/images/man3.jpg")}
+
                   />
                 </View>
                 <View>
@@ -763,7 +644,7 @@ export default function AddingKidsAndPets() {
             ))}
           </View>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <TouchableOpacity onPress={() => setOpenpets(!openpets)} style={[styles.imageplusadd]}>
+            <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
               <AntDesign name="plus" size={30} color={color.neutral[500]} />
             </TouchableOpacity>
             <TextBold>Add</TextBold>
@@ -975,15 +856,13 @@ export default function AddingKidsAndPets() {
                                     <TextMedium style={[styles.btnPrimaryTextsize]}>Back</TextMedium>
                                 </Pressable>
                             </View> */}
-                <View
+                <TouchableOpacity onPress={() => {
+                  setOpen(!open);
+                }}
                   style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth]}
                 >
-                  <Pressable
-                    onPress={() => {
-                      SubmitData(5);
-                      setKidopen(!kidopen);
-                      setOpen(!open);
-                    }}
+                  <View
+
                     style={[styles.flexrow]}
                   >
                     <TextMedium style={[styles.btnPrimaryTextsize]}>
@@ -995,8 +874,8 @@ export default function AddingKidsAndPets() {
                       size={16}
                       color={color.fontcolor}
                     />
-                  </Pressable>
-                </View>
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

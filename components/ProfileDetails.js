@@ -41,7 +41,8 @@ export default function ProfileDetails({ close, name }) {
                         </View>
                         <View style={[styles.flexrow, { justifyContent: 'center', alignItems: 'center', }]}>
 
-                            <TouchableOpacity style={[styles.bgclr, { padding: 5, marginHorizontal: 10 }]}>
+                            <TouchableOpacity onPress={close}
+                                style={[styles.bgclr, { padding: 5, marginHorizontal: 10 }]}>
                                 <View>
                                     <Ionicons name="call" size={20} color="black" />
                                 </View>
@@ -49,7 +50,8 @@ export default function ProfileDetails({ close, name }) {
                                     <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.bgclr, { padding: 5, marginHorizontal: 10 }]}>
+                            <TouchableOpacity onPress={close}
+                                style={[styles.bgclr, { padding: 5, marginHorizontal: 10 }]}>
                                 <View>
                                     <MaterialIcons name="message" size={20} color="black" />
                                 </View>

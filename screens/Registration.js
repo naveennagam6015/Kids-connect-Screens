@@ -34,18 +34,18 @@ export default function Registration({ navigation, route }) {
 
   useEffect(() => {
     function generateOTP() {
-        // Declare a digits variable
-        // which stores all digits
-        let digits = "0123456789";
-        let OTP = "";
-        for (let i = 0; i < 5; i++) {
-          OTP += digits[Math.floor(Math.random() * 10)];
-        }
-        return OTP;
+      // Declare a digits variable
+      // which stores all digits
+      let digits = "0123456789";
+      let OTP = "";
+      for (let i = 0; i < 5; i++) {
+        OTP += digits[Math.floor(Math.random() * 10)];
       }
+      return OTP;
+    }
     setOtp(generateOTP());
-  },[])
-  
+  }, [])
+
 
   const validateEmail = (text) => {
     // Simple email validation regex
@@ -89,7 +89,7 @@ export default function Registration({ navigation, route }) {
       {
         text: "Cancel",
         style: "cancel",
-        onPress: () => {},
+        onPress: () => { },
       },
       {
         text: "Resend",
@@ -106,7 +106,7 @@ export default function Registration({ navigation, route }) {
   function emailSubmit() {
     console.log(otp)
     if (mail !== "") {
-      
+
       setStep2(true);
       setStep1(false);
       axios({
@@ -146,7 +146,7 @@ export default function Registration({ navigation, route }) {
         <View style={[styles.container]}>
           <TextBold style={[styles.Headingtext]}>Enter your mail</TextBold>
           <TextRegular style={[styles.subtext]}>
-            To get started, create an account with Kids Connect below,
+            To get started, create an account with Kid Connect below,
           </TextRegular>
           <View style={[styles.image]}>
             <Image
@@ -174,7 +174,8 @@ export default function Registration({ navigation, route }) {
               )}
               {/* <View style={[styles.Buttoncard, styles.Buttoncardwidth]}> */}
               <Pressable
-                onPress={emailSubmit}
+                onPress={() => navigation.navigate("ProfileVerification")
+                }
                 style={[
                   // styles.flexrow,
                   styles.Buttoncard,
@@ -226,9 +227,8 @@ export default function Registration({ navigation, route }) {
                 <TextBold style={[styles.Headingtextinput]}>
                   Enter Your Verification Code
                 </TextBold>
-                <TextRegular style={styles.time}>{`${minutes}:${
-                  remainingSeconds < 10 ? "0" : ""
-                }${remainingSeconds} sec`}</TextRegular>
+                <TextRegular style={styles.time}>{`${minutes}:${remainingSeconds < 10 ? "0" : ""
+                  }${remainingSeconds} sec`}</TextRegular>
               </View>
               <View style={[styles.flexrow, styles.justiffsb]}>
                 <TextInput
@@ -254,7 +254,7 @@ export default function Registration({ navigation, route }) {
           </View>
         )}
       </View>
-    </ScrollView>
+    </ScrollView >
   );
 }
 const styles = StyleSheet.create({

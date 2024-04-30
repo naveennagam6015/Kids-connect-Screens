@@ -82,6 +82,23 @@ export default function ProfileSetupAfterAdminApproval() {
   const [secondaryPersonData, setSecondaryPersonData] = useState([]);
   const [mimeType, setMimeType] = useState('');
 
+  const SignoutPress = async () => {
+    try {
+      const keysBeforeRemove = await AsyncStorage.getAllKeys();
+      console.log('Keys before removal:', keysBeforeRemove);
+
+      await AsyncStorage.multiRemove(keysBeforeRemove);
+
+      const keysAfterRemove = await AsyncStorage.getAllKeys();
+      console.log('Keys after removal:', keysAfterRemove);
+
+      // dispatch(clearCart());
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error('Error during signout:', error);
+    }
+  };
+
   /*============================================Validation Start===========================================*/
 
   // validation of form
@@ -238,8 +255,8 @@ export default function ProfileSetupAfterAdminApproval() {
       axios({
         method: "get",
         url: url,
-        headers:{
-          Authorization:`Bearer ${authData.token}`
+        headers: {
+          Authorization: `Bearer ${authData.token}`
         }
       })
         .then((res) => {
@@ -311,12 +328,12 @@ export default function ProfileSetupAfterAdminApproval() {
     });
 
     console.log(result, "vzsvs");
-  //   img = result.assets[0].uri;
-  //   console.log(img, "img")
-  //   setImage(img)
+    //   img = result.assets[0].uri;
+    //   console.log(img, "img")
+    //   setImage(img)
     setCameraModal(!cameramodal);
     if (!result.canceled && result.assets.length > 0) {
-        console.log("hiiii");
+      console.log("hiiii");
       const selectedImage = result.assets[0];
       // console.log(selectedImage.uri);
       setImage(result.assets[0].uri);
@@ -326,7 +343,7 @@ export default function ProfileSetupAfterAdminApproval() {
         Platform.OS === "ios"
           ? selectedImage.uri.split("/").pop()
           : selectedImage.uri.split("\\").pop();
-          console.log(fileName, "jxhjxgj");
+      console.log(fileName, "jxhjxgj");
       // Get the file extension from the fileName
       const fileExtension = fileName.split(".").pop().toLowerCase();
 
@@ -337,7 +354,7 @@ export default function ProfileSetupAfterAdminApproval() {
       } else if (fileExtension === "png") {
         mimetype = "image/png";
       }
-      
+
       setImageName(fileName); // Use fileName directly
       setMimeType(mimetype);
       console.log(mimetype);
@@ -421,16 +438,15 @@ export default function ProfileSetupAfterAdminApproval() {
               <View>
                 <Image
                   style={[styles.profilepic]}
-                  source={{
-                    uri: BASEURL + userData.ProfileImage,
-                  }}
+                  source={require("../assets/images/man3.jpg")}
+
                 />
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextRegular style={[styles.childrenname]}>
-                  {userData.FirstName}
+                  Sathwik
                   <TextRegular style={{ fontSize: 14, color: color.success }}>
-                    ({userData.IsMain == 1 ? "Primary" : "Secondary"})
+                    {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                   </TextRegular>
                 </TextRegular>
                 <Foundation
@@ -475,9 +491,7 @@ export default function ProfileSetupAfterAdminApproval() {
                   <View>
                     <Image
                       style={[styles.profilepic]}
-                      source={{
-                        uri: BASEURL + secondaryPersonData[0].ProfileImage,
-                      }}
+                      source={require("../assets/images/man3.jpg")}
                     />
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -486,11 +500,11 @@ export default function ProfileSetupAfterAdminApproval() {
                       <TextRegular
                         style={{ fontSize: 14, color: color.success }}
                       >
-                        (
+                        {/* (
                         {secondaryPersonData[0].IsMain == 1
                           ? "Primary"
                           : "Secondary"}
-                        )
+                        ) */}
                       </TextRegular>
                     </TextRegular>
                     <Foundation
@@ -505,7 +519,7 @@ export default function ProfileSetupAfterAdminApproval() {
             </View>
           </View>
         </View>
-        <Button title="Clear" onPress={() => ClearData()} />
+        <Button title="Clear" onPress={() => SignoutPress()} />
         <View></View>
         <Button title="About" onPress={() => navigation.navigate('Aboutus')} />
 

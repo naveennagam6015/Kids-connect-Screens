@@ -255,6 +255,13 @@ export default function Profile() {
                             </View>
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
                         </View>
+                        <TouchableOpacity style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
+                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
+                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
+                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Logout</TextBold>
+                            </View>
+                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
