@@ -39,13 +39,13 @@ export default function Profile() {
             <SafeAreaView style={styles.container}>
                 <View style={{ flexDirection: "row" }} >
                     <View style={[{ width: "35%" }, styles.profileName]}>
-                        <Image style={[styles.profilepic]} source={{ uri: userData.ProfileImage }} />
+                        <Image style={[styles.profilepic]} source={require('../assets/images/man3.jpg')} />
                     </View>
                     <View style={[{ width: "45%", }, styles.profileName]}>
-                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>{userData.FirstName} {userData.LastName} ({userData.Gender == 1 ? 'M' : userData.Gender == 2 ? 'F' : 'O'})</TextBold>
-                        <TextBold style={{ fontSize: 12 }}>{userData.Email}</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>{userData.Address}</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since {month} {year})</TextBold>
+                        <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Krishna (M)</TextBold>
+                        <TextBold style={{ fontSize: 12 }}>krishna2024@gmail.com</TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}></TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since 2022)</TextBold>
 
                     </View>
                     <View style={[{ width: "15%", marginTop: 10, marginRight: 7 }]}>
@@ -74,7 +74,7 @@ export default function Profile() {
                             </View>
 
                             <View style={{ alignItems: 'flex-start' }}>
-                                <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                                <TextBold style={[styles.childrenname]}>Radha </TextBold>
                             </View>
                         </View>
                         <View>
