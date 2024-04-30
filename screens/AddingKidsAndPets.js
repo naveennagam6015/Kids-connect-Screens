@@ -550,17 +550,17 @@ export default function AddingKidsAndPets() {
       <View style={{ marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ alignItems: "center" }}>
-          <Image
-                    style={[styles.profilepic]}
-                    source={require("../assets/images/man3.jpg")}
+            <Image
+              style={[styles.profilepic]}
+              source={require("../assets/images/man3.jpg")}
 
-                  />
-                   <TextRegular style={[styles.childrenname]}>
-                  Krishna
-                  <TextRegular style={{ fontSize: 14, color: color.success }}>
-                    {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
-                  </TextRegular>
-                </TextRegular>
+            />
+            <TextRegular style={[styles.childrenname]}>
+              Krishna
+              <TextRegular style={{ fontSize: 14, color: color.success }}>
+                {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
+              </TextRegular>
+            </TextRegular>
             {secondaryPersonData.length > 0 && (
               <>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -585,7 +585,7 @@ export default function AddingKidsAndPets() {
             )}
           </View>
           <View style={{ alignItems: "center" }}>
-            <View>
+            {/* <View>
               <Image
                 style={[styles.profilepic]}
                 source={require("../assets/images/women.png")}
@@ -593,10 +593,9 @@ export default function AddingKidsAndPets() {
                <TextRegular style={[styles.childrenname]}>
                   Radha
                   <TextRegular style={{ fontSize: 14, color: color.success }}>
-                    {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                   </TextRegular>
                 </TextRegular>
-            </View>
+            </View> */}
 
 
 
@@ -627,7 +626,7 @@ export default function AddingKidsAndPets() {
                   {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                 </TextRegular>
               </TextRegular>
-             
+
             </View>
           </View>
         </View>
@@ -680,7 +679,7 @@ export default function AddingKidsAndPets() {
         </ScrollView>
       </View>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={[styles.btnPrimary, styles.flexrow]}
         onPress={() => navigation.navigate("BottomNavigation")}
       >
@@ -691,7 +690,7 @@ export default function AddingKidsAndPets() {
           size={16}
           color={color.fontcolor}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         onPress={() => navigation.navigate("BottomNavigation")}
         style={{
