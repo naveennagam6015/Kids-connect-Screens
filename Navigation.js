@@ -203,7 +203,7 @@ function StackNavigation() {
             <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Step 1 of 2" }} />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{ headerShown: false }} />
             <Stack.Screen name='ProfileSetup' component={ProfileSetup} options={{ headerTitle: "Profile Setup" }} />
-            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids And Pets" }} />
+            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids" }} />
             <Stack.Screen name='Chat' component={Chat} options={{ headerTitle: "Chat" }} />
             <Stack.Screen name='ChatAddingGroup' component={ChatAddingGroup} options={{ headerTitle: "Chat Adding Group" }} />
             <Stack.Screen name='GroupSettings' component={GroupSettings} options={{ headerTitle: "Group Settings" }} />

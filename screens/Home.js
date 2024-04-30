@@ -309,7 +309,7 @@ export default function Home({ close }) {
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Samantha</TextBold>
+                  <TextBold style={[styles.childrenname]}>Radha</TextBold>
                 </View>
               </TouchableOpacity>
 
@@ -319,11 +319,11 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/man3.jpg")}
+                    source={require("../assets/images/2men3.jpg")}
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Samanthaa</TextBold>
+                  <TextBold style={[styles.childrenname]}>Rakesh</TextBold>
                 </View>
               </TouchableOpacity>
             </View>
@@ -338,9 +338,9 @@ export default function Home({ close }) {
                 </View>
                 <View>
                   <TextBold style={[styles.childrenname]}>
-                    Aron Finch{" "}
+                    Soumya{" "}
                     <TextBold style={{ color: color.neutral[300] }}>
-                      (F)
+                      (M)
                     </TextBold>
                   </TextBold>
                 </View>
@@ -359,14 +359,14 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/profile1.jpg")}
+                    source={require("../assets/images/KID.jpg")}
                   />
                 </View>
                 <View>
                   <TextBold style={[styles.childrenname]}>
-                    Sai Pallavi{" "}
+                    Anita{" "}
                     <TextBold style={{ color: color.neutral[300] }}>
-                      (F)
+                      (M)
                     </TextBold>
                   </TextBold>
                 </View>
@@ -389,14 +389,14 @@ export default function Home({ close }) {
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+            {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
               <View>
                 <Ionicons name="call" size={20} color="black" />
               </View>
               <View>
                 <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => setOpen(!open)}
               style={[styles.Buttoncardmoredetails, styles.Buttoncardwidth3]}
@@ -424,6 +424,7 @@ export default function Home({ close }) {
               />
             </TouchableOpacity>
           </View>
+          {/* <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold> */}
         </View>
         <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
           <TextBold style={[styles.Headingtext]}>Previous Connection</TextBold>
@@ -444,11 +445,11 @@ export default function Home({ close }) {
               <View>
                 <Image
                   style={[styles.profilepic, styles.activeprofilr]}
-                  source={require("../assets/images/man3.jpg")}
+                  source={require("../assets/images/bgwhite.png")}
                 />
               </View>
               <View>
-                <TextBold style={[styles.childrenname]}>Aron Finch</TextBold>
+                <TextBold style={[styles.childrenname]}>Soumya(M)</TextBold>
               </View>
             </TouchableOpacity>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -465,14 +466,12 @@ export default function Home({ close }) {
               <View>
                 <Image
                   style={[styles.profilepic]}
-                  source={require("../assets/images/women.png")}
+                  source={require("../assets/images/KID.jpg")}
                 />
               </View>
               <View>
-                <TextBold
-                  style={[styles.childrenname]}
-                >
-                  Iman Gadzi
+                <TextBold style={[styles.childrenname]}>
+                  Anita(F)
                 </TextBold>
               </View>
             </TouchableOpacity>

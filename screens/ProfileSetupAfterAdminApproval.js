@@ -436,7 +436,7 @@ export default function ProfileSetupAfterAdminApproval() {
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextRegular style={[styles.childrenname]}>
-                  Sathwik
+                  Krishna
                   <TextRegular style={{ fontSize: 14, color: color.success }}>
                     {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                   </TextRegular>

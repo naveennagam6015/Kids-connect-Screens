@@ -550,15 +550,19 @@ export default function AddingKidsAndPets() {
       <View style={{ marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ alignItems: "center" }}>
-            {secondaryPersonData.length > 0 && (
-              <>
-                <View>
-                  <Image
+          <Image
                     style={[styles.profilepic]}
                     source={require("../assets/images/man3.jpg")}
 
                   />
-                </View>
+                   <TextRegular style={[styles.childrenname]}>
+                  Krishna
+                  <TextRegular style={{ fontSize: 14, color: color.success }}>
+                    {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
+                  </TextRegular>
+                </TextRegular>
+            {secondaryPersonData.length > 0 && (
+              <>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <TextRegular style={[styles.childrenname]}>
                     {/* {secondaryPersonData[0].FirstName} */}
@@ -584,8 +588,14 @@ export default function AddingKidsAndPets() {
             <View>
               <Image
                 style={[styles.profilepic]}
-                source={require("../assets/images/man3.jpg")}
+                source={require("../assets/images/women.png")}
               />
+               <TextRegular style={[styles.childrenname]}>
+                  Radha
+                  <TextRegular style={{ fontSize: 14, color: color.success }}>
+                    {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
+                  </TextRegular>
+                </TextRegular>
             </View>
 
 
@@ -617,12 +627,7 @@ export default function AddingKidsAndPets() {
                   {/* ({userData.IsMain == 1 ? "Primary" : "Secondary"}) */}
                 </TextRegular>
               </TextRegular>
-              <Foundation
-                style={{ marginLeft: 8, marginTop: 2 }}
-                name="info"
-                size={16}
-                color={color.neutral[500]}
-              />
+             
             </View>
           </View>
         </View>
