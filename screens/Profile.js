@@ -44,7 +44,7 @@ export default function Profile() {
                     <View style={[{ width: "45%", }, styles.profileName]}>
                         <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Krishna (M)</TextBold>
                         <TextBold style={{ fontSize: 12 }}>krishna2024@gmail.com</TextBold>
-                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}></TextBold>
+                        <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>4387 Farland Avenue, San Antonio, TX 78212</TextBold>
                         <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>(Since 2022)</TextBold>
 
                     </View>
