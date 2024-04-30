@@ -116,6 +116,9 @@ export default function Profile() {
                         {/* </View> */}
                     </View>
                 </View>
+                <View style={[styles.ProfileCard]}>
+                    
+                </View>
                 <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.Card, styles.flexrow, styles.justsb]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Bookings</TextBold>
                     <MaterialIcons style={{ marginTop: 8, marginRight: 8 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
@@ -278,6 +281,23 @@ export default function Profile() {
     )
 }
 const styles = StyleSheet.create({
+    ProfileCard:{
+        backgroundColor: "#fff",
+        margin: 10,
+        padding: 8,
+        borderRadius: 8,
+        shadowColor: "#000",
+
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+
+        elevation: 11,
+
+    },
     justsb: {
         justifyContent: "space-between"
     },

@@ -145,9 +145,6 @@ export default function Login() {
 
 
                     <View style={styles.inputContainer}>
-
-
-
                         <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
                         <TouchableOpacity onPress={togglePasswordVisibility}>
                             <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
