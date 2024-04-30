@@ -180,7 +180,14 @@ function BottomNavigation() {
                     component={Appointment}
                 />
                 <BottomTab.Screen name="Requests" component={Requests} />
-                <BottomTab.Screen name="Profile" component={Profile} />
+                <BottomTab.Screen name="Profile"  
+                    listeners={({ navigation }) => ({
+                        tabPress: (e) => {
+                            e.preventDefault();
+                            toggleModal();
+                        },
+                    })}
+                    component={Profile} />
             </BottomTab.Navigator>
             <AppointmentModal isVisible={isModalVisible} onClose={toggleModal} />
         </>
@@ -217,6 +224,7 @@ function StackNavigation() {
             <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
+            <Stack.Screen name='Profile' component={Profile} />
         </Stack.Navigator>
     );
 }
