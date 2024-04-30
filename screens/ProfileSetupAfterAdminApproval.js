@@ -458,71 +458,28 @@ export default function ProfileSetupAfterAdminApproval() {
               </View>
             </View>
             <View style={{ alignItems: "center" }}>
-              {secondaryPersonData.length == 0 && (
-                <>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setOpen(!open);
-                    }}
-                    style={[styles.imageplus]}
-                  >
-                    <AntDesign
-                      name="plus"
-                      size={40}
-                      color={color.neutral[500]}
-                    />
-                  </TouchableOpacity>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <TextRegular style={{ fontSize: 14 }}>
-                      Add Secondary Persons
-                    </TextRegular>
-                    <Foundation
-                      style={{ marginLeft: 8, marginTop: 2 }}
-                      name="info"
-                      size={16}
-                      color={color.neutral[500]}
-                    />
-                  </View>
-                </>
-              )}
-
-              {secondaryPersonData.length > 0 && (
-                <>
-                  <View>
-                    <Image
-                      style={[styles.profilepic]}
-                      source={require("../assets/images/man3.jpg")}
-                    />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <TextRegular style={[styles.childrenname]}>
-                      {secondaryPersonData[0].FirstName}
-                      <TextRegular
-                        style={{ fontSize: 14, color: color.success }}
-                      >
-                        {/* (
-                        {secondaryPersonData[0].IsMain == 1
-                          ? "Primary"
-                          : "Secondary"}
-                        ) */}
-                      </TextRegular>
-                    </TextRegular>
-                    <Foundation
-                      style={{ marginLeft: 8, marginTop: 2 }}
-                      name="info"
-                      size={16}
-                      color={color.neutral[500]}
-                    />
-                  </View>
-                </>
-              )}
+              {/* {secondaryPersonData.length == 0 && ( */}
+              <>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Profile")}
+                style={[styles.imageplus]}
+              >
+                <AntDesign
+                  name="plus"
+                  size={40}
+                  color={color.neutral[500]}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity >
+                <TextRegular style={{ fontSize: 14 }}>
+                  Add Secondary Persons
+                </TextRegular>
+              </TouchableOpacity>
+            </>
+              {/* )} */}
             </View>
           </View>
         </View>
-        <Button title="Clear" onPress={() => SignoutPress()} />
-        <View></View>
-        <Button title="About" onPress={() => navigation.navigate('Aboutus')} />
-
         <TouchableOpacity
           onPress={() => navigation.navigate("AddingKidsAndPets")}
           style={{
