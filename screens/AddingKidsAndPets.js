@@ -567,11 +567,7 @@ export default function AddingKidsAndPets() {
                   <TextRegular style={[styles.childrenname]}>
                     {/* {secondaryPersonData[0].FirstName} */}
                     <TextRegular style={{ fontSize: 14, color: color.success }}>
-                      {/* (
-                      {secondaryPersonData[0].IsMain == 1
-                        ? "Primary"
-                        : "Secondary"}
-                      ) */}
+
                     </TextRegular>
                   </TextRegular>
                   <Foundation
@@ -585,19 +581,6 @@ export default function AddingKidsAndPets() {
             )}
           </View>
           <View style={{ alignItems: "center" }}>
-            {/* <View>
-              <Image
-                style={[styles.profilepic]}
-                source={require("../assets/images/women.png")}
-              />
-               <TextRegular style={[styles.childrenname]}>
-                  Radha
-                  <TextRegular style={{ fontSize: 14, color: color.success }}>
-                  </TextRegular>
-                </TextRegular>
-            </View> */}
-
-
 
             <>
               <TouchableOpacity
@@ -679,18 +662,7 @@ export default function AddingKidsAndPets() {
         </ScrollView>
       </View>
 
-      {/* <TouchableOpacity
-        style={[styles.btnPrimary, styles.flexrow]}
-        onPress={() => navigation.navigate("BottomNavigation")}
-      >
-        <TextMedium style={styles.btnText}>Proceed to Home Screen</TextMedium>
-        <AntDesign
-          style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
-          name="right"
-          size={16}
-          color={color.fontcolor}
-        />
-      </TouchableOpacity> */}
+
       <TouchableOpacity
         onPress={() => navigation.navigate("BottomNavigation")}
         style={{
