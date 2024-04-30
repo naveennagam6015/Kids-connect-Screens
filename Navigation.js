@@ -36,6 +36,8 @@ import PrivacyPolicy from './screens/PrivacyPolicy';
 import TermsAndConditions from './screens/TermsAndConditions';
 import FAQs from './screens/FAQs';
 import ProfileDetails from './components/ProfileDetails';
+import PasswordSettingScr2 from './screens/PasswordSettingScr2';
+import AddingKidsAndPets2 from './screens/AddingKidsAndPets2';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -125,6 +127,14 @@ function BottomNavigation() {
         setIsModalVisible(!isModalVisible);
     };
 
+    const headerRight = ({ item }) => {
+        return (
+            <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+                <Text>Chat</Text>
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <>
             <BottomTab.Navigator
@@ -168,8 +178,8 @@ function BottomNavigation() {
                     ),
                 })}
             >
-                <BottomTab.Screen name="Home" component={Home} />
-                <BottomTab.Screen
+                <BottomTab.Screen name="Home" component={Home} options={{ headerRight: headerRight }} />
+                <BottomTab.Screen options={{ headerRight: headerRight }}
                     name="Appointment"
                     listeners={({ navigation }) => ({
                         tabPress: (e) => {
@@ -179,7 +189,7 @@ function BottomNavigation() {
                     })}
                     component={Appointment}
                 />
-                <BottomTab.Screen name="Requests" component={Requests} />
+                <BottomTab.Screen name="Requests" component={Requests} options={{ headerRight: headerRight }} />
                 <BottomTab.Screen name="Profile"
 
                     component={Profile} />
@@ -192,7 +202,8 @@ const Stack = createStackNavigator();
 
 function StackNavigation() {
     return (
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='Passwordsetup'>
+            <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerShown: false }} />
             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='Test' component={Test} options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name='BottomNavigation' component={BottomNavigation} options={{ headerShown: false }} />
@@ -200,7 +211,8 @@ function StackNavigation() {
             <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Step 1 of 2" }} />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{ headerShown: false }} />
             <Stack.Screen name='ProfileSetup' component={ProfileSetup} options={{ headerTitle: "Profile Setup" }} />
-            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kid" }} />
+            <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids" }} />
+            <Stack.Screen name='AddingKidsAndPets2' component={AddingKidsAndPets2} options={{ headerTitle: "Adding Kids" }} />
             <Stack.Screen name='Chat' component={Chat} options={{ headerTitle: "Chat" }} />
             <Stack.Screen name='ChatAddingGroup' component={ChatAddingGroup} options={{ headerTitle: "Chat Adding Group" }} />
             <Stack.Screen name='GroupSettings' component={GroupSettings} options={{ headerTitle: "Group Settings" }} />
@@ -218,7 +230,8 @@ function StackNavigation() {
             <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
-            <Stack.Screen name='Profile' component={Profile} />
+            {/* <Stack.Screen name='Profile' component={Profile} /> */}
+            {/* <Stack.Screen name='Chatinner' component={ } options={{ headerShown: false }} /> */}
         </Stack.Navigator>
     );
 }
