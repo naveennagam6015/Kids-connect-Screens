@@ -512,7 +512,7 @@ export default function ProfileSetup() {
               >
                 <View>
                   <TextBold style={{ marginLeft: 20, fontSize: 16 }}>
-                    Circle
+                  Open Request{" "}
                   </TextBold>
                 </View>
                 <Switch
@@ -534,7 +534,7 @@ export default function ProfileSetup() {
                   { justifyContent: "space-between", alignItems: "center" },
                 ]}
               >
-                <View>
+                {/* <View>
                   <TextBold style={{ marginLeft: 20, fontSize: 16 }}>
                     Open Request{" "}
                   </TextBold>
@@ -550,7 +550,7 @@ export default function ProfileSetup() {
                     setOpenRequest((previousState) => !previousState)
                   }
                   value={openRequest}
-                />
+                /> */}
               </View>
             </View>
             <View
