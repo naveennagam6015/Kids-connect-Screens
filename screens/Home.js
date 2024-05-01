@@ -331,7 +331,7 @@ export default function Home({ close }) {
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Tulika (M)</TextBold>
+                  <TextBold style={[styles.childrenname]}>Tulika (F)</TextBold>
                 </View>
               </TouchableOpacity>
             </View>
@@ -841,8 +841,9 @@ export default function Home({ close }) {
       </Modal>
       <Modal
         animationType="slide" transparent={true} visible={anotherparentdetails}>
-        <View style={styles.topDummy} />
+        <View style={styles.topDummy}>
         <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+        </View>
       </Modal>
     </ScrollView >
   );
@@ -961,7 +962,8 @@ const styles = StyleSheet.create({
   },
   topDummy: {
     flex: 1,
-    opacity: 0,
+    // opacity: 0,
+    justifyContent:'flex-end'
   },
   btnPrimaryTextsize: {
     fontSize: 16,
