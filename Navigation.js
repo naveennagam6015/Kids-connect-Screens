@@ -236,7 +236,8 @@ function BottomNavigation({ navigation }) {
 }
 const Stack = createStackNavigator();
 
-function StackNavigation({ navigation }) {
+function StackNavigation() {
+  const navigation =  useNavigation();
   return (
     <Stack.Navigator initialRouteName="VerificationScreen">
       <Stack.Screen
