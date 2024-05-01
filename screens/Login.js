@@ -11,9 +11,9 @@ import axios from "axios";
 import { BASEURL } from '@env';
 import { Alert } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; // Assuming you're using Expo for vector icons
-export default function Login() {
-
-    const navigation = useNavigation();
+export default function Login({ navigation, route }) {
+    const { data } = route.params;
+    // const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
@@ -166,7 +166,7 @@ export default function Login() {
                 <View>
                     <TouchableOpacity style={styles.btnPrimary}
                         // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
-                        onPress={() => navigation.navigate('ProfileVerification')}
+                        onPress={() => navigation.navigate('ProfileVerification', { data: data })}
                     >
                         <TextMedium style={styles.btnText}>Sign in</TextMedium>
                     </TouchableOpacity>
@@ -175,6 +175,7 @@ export default function Login() {
                         <TextRegular style={styles.textR}>or Sign in with</TextRegular>
                         <View style={styles.horizontalLine}></View>
                     </View>
+                    {/* <Button title="Profile" onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})} /> */}
                     <TouchableOpacity style={styles.googleImage}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Sign in with google</TextMedium>

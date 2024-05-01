@@ -12,7 +12,7 @@ import {
   Modal,
 } from "react-native";
 import { color } from "../assets/colors/theme";
-import Carousel from "react-native-snap-carousel";
+// import Carousel from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { Calendar } from "react-native-calendars";
 import {
@@ -34,6 +34,7 @@ import { BASEURL } from "@env";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import ProfileDetails from "../components/ProfileDetails";
 import { useNavigation } from "@react-navigation/native";
+import KidsProfileScr2 from "./KidsProfileScn2";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
@@ -44,6 +45,7 @@ export default function Home({ close }) {
   const onClose = () => {
     setOpen(false);
     setProfileDetails(false);
+    setKiddetails(false);
   };
   const [data, setData] = useState([{ image: "" }]);
   const carouselRef = useRef(null);
@@ -53,6 +55,7 @@ export default function Home({ close }) {
   const [interests, setInterests] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newInterest, setNewInterest] = useState("");
+  const [kiddetails, setKiddetails] = useState("");
 
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
@@ -132,7 +135,7 @@ export default function Home({ close }) {
         </SkeletonContainer>
       )}
 
-      {!bannerLoading && (
+      {/* {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -146,7 +149,7 @@ export default function Home({ close }) {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )}
+      )} */}
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
           {/* <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>
@@ -329,7 +332,7 @@ export default function Home({ close }) {
             </View>
             <View style={[styles.innercard2, styles.flexrow]}>
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-start" }}>
+                onPress={() => setKiddetails(!kiddetails)} style={{ alignItems: "flex-start" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -820,6 +823,11 @@ export default function Home({ close }) {
         animationType="slide" transparent={true} visible={profileDetails}>
         <View style={styles.topDummy} />
         <ProfileDetails name={"Naveen"} close={() => setProfileDetails(!profileDetails)} />
+      </Modal>
+      <Modal
+        animationType="slide" transparent={true} visible={kiddetails}>
+        <View style={styles.topDummy} />
+        <KidsProfileScr2 name={"Naveen"} close={() => setKiddetails(!kiddetails)} />
       </Modal>
     </ScrollView >
   );

@@ -34,6 +34,7 @@ import tickIcon from "../assets/images/tick.png";
 import ListField from "../components/ListField";
 import axios from "axios";
 import { BASEURL } from "@env";
+import { Agenda, Calendar, LocaleConfig } from 'react-native-calendars';
 
 export default function ProfileSetup() {
   const navigation = useNavigation();
@@ -53,6 +54,71 @@ export default function ProfileSetup() {
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
     // You can perform any additional actions here, such as updating state in this component
+  };
+  const [items, setItems] = useState([]);
+  const [selecteddate, setSelecteddate] = useState('');
+  
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios(
+  //         './AgendaApi.json',
+  //     );
+
+  //     setData(result.data);
+  //   };
+
+  //   fetchData();
+  // }, []);
+  const timeToString = (time) => {
+    const date = new Date(time);
+    return date.toISOString().split('T')[0];
+  };
+
+  
+
+  const loadItems = (day) => {
+    setTimeout(() => {
+      const newItems = { ...items };
+  
+      for (let i = -15; i < 85; i++) {
+        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+        const strTime = timeToString(time);
+        
+        if (!newItems[strTime]) {
+          newItems[strTime] = [];
+          
+          const numItems = Math.floor(Math.random() * 3 + 1);
+          for (let j = 0; j < numItems; j++) {
+            newItems[strTime].push({
+              name: 'Item for ' + strTime + ' #' + j,
+              height: Math.max(50, Math.floor(Math.random() * 150))
+            });
+          }
+        }
+      }
+  
+      setItems(newItems);
+    }, 1000);
+  };
+  
+
+
+
+  const renderItem = (item) => {
+    return (
+
+      <TouchableOpacity 
+        onPress={() => setKidopen(!kidopen)}>
+
+        {/* <Text>
+          {item.name}
+        </Text> */}
+
+      </TouchableOpacity>
+
+
+
+    );
   };
 
   // Function to add interest
@@ -130,6 +196,7 @@ export default function ProfileSetup() {
               label="Profile Setup"
               nextBtnStyle={styles.customNextButton}
               nextBtnTextStyle={styles.customNextButtonText}
+              nextBtnTextStyles={styles.Buttoncardwidth}
               nextBtnText="Proceed"
               renderNextButton={() => (
                 <View
@@ -157,7 +224,7 @@ export default function ProfileSetup() {
                     ]}
                   >
                     <TextMedium style={[styles.btnPrimaryTextsize]}>
-                      Add Profile
+                      Proceed
                     </TextMedium>
                     <AntDesign
                       style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
@@ -326,11 +393,11 @@ export default function ProfileSetup() {
                     </TextMedium>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  // onPress={() => {
-                  //     setModalopen(!modalopen)
-                  //     navigation.navigate('AddingKidsAndPets');
-                  // }}
+                {/* <TouchableOpacity
+                  onPress={() => {
+                      setModalopen(!modalopen)
+                      navigation.navigate('AddingKidsAndPets');
+                  }}
                   onPress={() => submitRequestdata()}
                   style={[
                     styles.flexrow,
@@ -347,11 +414,11 @@ export default function ProfileSetup() {
                     size={16}
                     color={color.fontcolor}
                   />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </ProgressStep>
             <ProgressStep label="Tags Setup">
-              <View>
+              {/* <View>
                 <TextBold style={[styles.Headingtext]}>Choose from...</TextBold>
 
                 <TouchableOpacity
@@ -367,7 +434,12 @@ export default function ProfileSetup() {
                     </TextMedium>
                   </View>
                 </TouchableOpacity>
-              </View>
+              </View> */}
+              <Agenda
+        items={items}
+        loadItemsForMonth={loadItems}
+        renderItem={renderItem}
+      />
             </ProgressStep>
           </ProgressSteps>
         </View>
@@ -713,8 +785,8 @@ const styles = StyleSheet.create({
     borderColor: color.primary,
     justifyContent: "center",
     backgroundColor: color.primary,
-    paddingVertical: 16,
-    marginVertical: 16,
+    paddingVertical: 20,
+    marginVertical: 65,
   },
   textAreaadd: {
     marginVertical: 5,
@@ -941,7 +1013,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   Buttoncardwidth: {
-    width: "50%",
+    width: "40%",
   },
   Buttoncard: {
     borderRadius: 8,

@@ -421,7 +421,7 @@ export default function ProfileSetupAfterAdminApproval() {
           Let’s Complete your Profile{" "}
         </TextBold>
 
-        <TextBold>WELCOME! to Kids Connect</TextBold>
+        <TextBold>WELCOME! to Kids Connectt</TextBold>
         <View style={[styles.Card]}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -453,7 +453,7 @@ export default function ProfileSetupAfterAdminApproval() {
               {/* {secondaryPersonData.length == 0 && ( */}
               <>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("Profile")}
+                  onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})}
                   style={[styles.imageplus]}
                 >
                   <AntDesign

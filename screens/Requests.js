@@ -21,18 +21,7 @@ export default function Requests() {
         <ScrollView>
             <View style={[styles.container]}>
                 <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-                    <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                        <View
-                            style={[styles.flexrow]}>
-                            <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
-                        <View
-                            style={[styles.flexrow]}>
-                            <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
-                        </View>
-                    </TouchableOpacity>
+
                 </View>
                 <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
                     <View>
