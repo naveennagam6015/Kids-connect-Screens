@@ -17,7 +17,7 @@ import {
   TextMedium,
   TextRegular,
 } from "../assets/fonts/CustomText";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { color } from "../assets/colors/theme";
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome, Fontisto } from "@expo/vector-icons";
@@ -613,7 +613,7 @@ export default function ProfileVerification({ navigation, route }) {
           }}
         />
 
-        <TextBold style={[styles.Headingtextinput]}>Zipcode</TextBold>
+        <TextBold style={[styles.Headingtextinput]}>Code</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}

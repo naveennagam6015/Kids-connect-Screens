@@ -228,7 +228,7 @@ function BottomNavigation({ navigation }) {
           component={Requests}
           options={{ headerRight: headerRight }}
         />
-        <BottomTab.Screen name="My Profile" component={Profile} />
+        <BottomTab.Screen name="Profile" component={Profile} />
       </BottomTab.Navigator>
       <AppointmentModal isVisible={isModalVisible} onClose={toggleModal} />
     </>
@@ -236,7 +236,7 @@ function BottomNavigation({ navigation }) {
 }
 const Stack = createStackNavigator();
 
-function StackNavigation({navigation}) {
+function StackNavigation({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="VerificationScreen">
       <Stack.Screen
@@ -302,21 +302,21 @@ function StackNavigation({navigation}) {
       <Stack.Screen
         name="GroupInner"
         component={GroupInner}
-        // options={{
-        //   headerTitle: () => (
-        //     <TouchableOpacity onPress={() =>alert("hii")}>
-        //       <Text style={{ color: 'white', fontSize: 16 }}>Birthday Party</Text>
-        //     </TouchableOpacity>
-        //   ),
-        //   headerStyle: { backgroundColor: color.primary },
-        // }}
+      // options={{
+      //   headerTitle: () => (
+      //     <TouchableOpacity onPress={() =>alert("hii")}>
+      //       <Text style={{ color: 'white', fontSize: 16 }}>Birthday Party</Text>
+      //     </TouchableOpacity>
+      //   ),
+      //   headerStyle: { backgroundColor: color.primary },
+      // }}
       />
       <Stack.Screen
         name="ChatInner"
         component={ChatInner}
         options={{
           headerTitle: () => (
-            <TouchableOpacity onPress={() =>navigation.navigate("GroupInner")}>
+            <TouchableOpacity onPress={() => navigation.navigate("GroupInner")}>
               <Text style={{ color: 'white', fontSize: 16 }}>Birthday Party</Text>
             </TouchableOpacity>
           ),

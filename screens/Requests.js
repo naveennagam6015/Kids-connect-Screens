@@ -77,14 +77,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -131,14 +131,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -184,14 +184,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -237,14 +237,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -290,14 +290,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -343,14 +343,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -396,14 +396,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -449,14 +449,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -502,14 +502,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -555,14 +555,14 @@ export default function Requests() {
                         <MaterialIcons name="message" size={20} color="black" />
                         <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
                         <View>
                             <Ionicons name="call" size={20} color="black" />
                         </View>
                         <View>
                             <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
                         <View
                             style={[styles.flexrow]}>
@@ -673,14 +673,14 @@ export default function Requests() {
                                                     <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Chat</TextRegular>
                                                 </View>
                                             </TouchableOpacity>
-                                            <View style={{ padding: 5, marginHorizontal: 10 }}>
+                                            {/* <View style={{ padding: 5, marginHorizontal: 10 }}>
                                                 <View>
                                                     <Ionicons name="call" size={20} color={color.neutral[500]} />
                                                 </View>
                                                 <View>
                                                     <TextRegular style={[styles.textnetural, { fontSize: 12, }]}>Call</TextRegular>
                                                 </View>
-                                            </View>
+                                            </View> */}
                                         </View>
                                     </View>
                                 </View>
