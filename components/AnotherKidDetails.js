@@ -93,80 +93,63 @@ export default function AnotherKidDetails({ close, name }) {
                             <Image style={[styles.profilepicactive]} source={require('../assets/images/2women.jpg')} />
                         </View>
 
-                    
-                        <View style={{ flexDirection: "row"}}>
+
+                        <View style={{ flexDirection: "row" }}>
                             <TextRegular style={[styles.childrenname]}>Tulika</TextRegular><Feather name="arrow-up-right" size={15} color="black" />
                         </View>
-                        <TextRegular style={{fontSize:12}}>Mather</TextRegular>
+                        <TextRegular style={{ fontSize: 12 }}>Mother</TextRegular>
                     </View>
                     <View style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
                         <View>
                             <Image style={[styles.profilepicactive]} source={require('../assets/images/2men3.jpg')} />
                         </View>
-                        <View style={{ flexDirection: "row"}}>
+                        <View style={{ flexDirection: "row" }}>
                             <TextRegular style={[styles.childrenname]}>Rakesh</TextRegular><Feather name="arrow-up-right" size={15} color="black" />
                         </View>
-                        <TextRegular style={{fontSize:12}}>Father</TextRegular>
+                        <TextRegular style={{ fontSize: 12 }}>Father</TextRegular>
                     </View>
-                    
-                </View>
-               <View>
-               <TextBold style={{fontSize:18,marginTop:10}}>Meeting Location</TextBold>
-                <Text>
-                    199 Oakway Lane,Woodland Hills,CA
-                </Text>
-                <Text> 91303</Text>
-               </View>
 
-               <View style={{marginTop:15}}>
-               <Text>We Selected based on </Text>
-               </View>
-               {/* <View style={[styles.bgfull,]}>
-                <View style={{ marginHorizontal: 15 }}>
-                    <TextRegular style={{ fontSize: 16 }}>Kids Available only on Weekends</TextRegular>
                 </View>
-            </View> */}
-             <View style={[styles.border1]}>
-                       
-                        <View style={[styles.flexrow, { flexWrap: "wrap" }]}>
-                            <View style={[styles.Tags3]}>
-                                <TextRegular>Movies </TextRegular>
-                            </View>
-                            <View style={[styles.Tags3]}>
-                                <TextRegular>10+ Connection</TextRegular>
-                            </View>
-                            <View style={[styles.Tags3]}>
-                                <TextRegular>Age 11-17</TextRegular>
-                            </View>
-                            <View style={[styles.Tags3]}>
-                                <TextRegular>3-5hrs</TextRegular>
-                            </View>
-                           
+                <View>
+                    <TextBold style={{ fontSize: 18, marginTop: 10 }}>Meeting Location</TextBold>
+                    <Text>
+                        199 Oakway Lane,Woodland Hills,CA
+                    </Text>
+                    <Text> 91303</Text>
+                </View>
+
+                <View style={{ marginTop: 15 }}>
+                    <Text>We Selected based on </Text>
+                </View>
+                <View style={[styles.border1]}>
+                    <View style={[styles.flexrow, { flexWrap: "wrap" }]}>
+                        <View style={[styles.Tags3]}>
+                            <TextRegular>Movies </TextRegular>
+                        </View>
+                        <View style={[styles.Tags3]}>
+                            <TextRegular>10+ Connection</TextRegular>
+                        </View>
+                        <View style={[styles.Tags3]}>
+                            <TextRegular>Age 11-17</TextRegular>
+                        </View>
+                        <View style={[styles.Tags3]}>
+                            <TextRegular>3-5hrs</TextRegular>
                         </View>
 
                     </View>
-               <View>
-                <Text style={{fontSize:15,marginTop:10}}>Modify Requests</Text>
-                
-            </View>
-            </View>
 
-           
-
-           
-            <View style={[styles.bgfull2, { paddingVertical: 5 }]}>
-                <View style={[styles.container]}>
                 </View>
-            </View>
-            <View style={[styles.bgfull2,]}>
-                <View style={[styles.container]}>
-                    <View style={[styles.flexrow, { paddingVertical: 5 }]}>
-                        <Entypo name="block" style={{ marginRight: 10, }} size={20} color={color.secondaryOrange} />
-                        <TextRegular style={{ fontSize: 18, color: color.secondaryOrange }}>Block Abay</TextRegular>
-                    </View>
-                    <View style={[styles.flexrow, { paddingVertical: 5 }]}>
-                        <AntDesign style={{ marginRight: 10 }} name="dislike1" size={20} color={color.secondaryOrange} />
-                        <TextRegular style={{ fontSize: 18, color: color.secondaryOrange }}>Report Abay</TextRegular>
+                <View>
+                    <Text style={{ fontSize: 15, marginTop: 10 }}>Modify Requests</Text>
+
+                    <View style={[styles.border3]}>
+
+                        <View style={[styles.flexrow, { flexWrap: "wrap" }]}>
+                            <View>
+                                <Text>Not ok at 10am, 11am is ok</Text>
+                            </View>
+                        </View>
+
                     </View>
                 </View>
             </View>
@@ -251,6 +234,7 @@ const styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 15,
+        paddingTop:50,
         backgroundColor: color.white,
     },
     edithobbies: {
@@ -260,7 +244,7 @@ const styles = StyleSheet.create({
         // justifyContent: "center",
 
     },
-    
+
     flexrow: {
         flexDirection: "row",
     },
@@ -275,7 +259,7 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         margin: 4,
     },
-    
+
     Tags1: {
         backgroundColor: color.primary,
         flexDirection: "row",
@@ -294,9 +278,9 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         borderWidth: 1,
         borderColor: color.primary,
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        margin: 4,
+        paddingHorizontal: 7,
+        paddingVertical: 5,
+        margin: 5,
     },
     border: {
         borderWidth: 1,
@@ -309,11 +293,20 @@ const styles = StyleSheet.create({
 
     border1: {
         borderWidth: 1,
-        borderRadius:1,
-        borderColor: color.primary,
+        borderRadius: 1,
+        borderColor: color.white,
         backgroundColor: color.neutral[300],
         // padding: 16,
         marginVertical: 20,
     },
+    border3: {
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: color.neutral[300],
+        backgroundColor: color.white,
+        padding: 20,
+        height: "30%"
+    },
+
 
 })

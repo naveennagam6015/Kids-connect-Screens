@@ -50,7 +50,7 @@ export default function Chat() {
               <View style={[styles.Buttoncard2]}>
                 <Pressable style={[styles.flexrow]}>
                   <TextBold style={[styles.btnPrimaryTextsize]}>
-                    10 Groups
+                    3 Groups
                   </TextBold>
                 </Pressable>
               </View>
@@ -88,20 +88,20 @@ export default function Chat() {
                 <View style={styles.jcfs}>
                   <View style={[styles.flexrow, styles.groupname]}>
                     <TextMedium style={[styles.childrenname]}>
-                      College Group
+                      Birthday Party
                     </TextMedium>
                   </View>
                   <TextRegular style={[styles.textnetural]}>
-                    Hi, I hope your good and we{" "}
+                    Hi, Guys{" "}
                   </TextRegular>
                 </View>
               </View>
               <View>
-                <TextBold style={[styles.date]}>14/03/24</TextBold>
+                <TextBold style={[styles.date]}>04/03/24</TextBold>
                 <View style={[styles.flexrow, styles.datebtm]}>
                   <View style={[styles.messiagetop1]}>
                     <View style={styles.messiagetop2}>
-                      <TextBold style={styles.messiagecount}>10</TextBold>
+                      <TextBold style={styles.messiagecount}>5</TextBold>
                     </View>
                   </View>
                   <TextRegular style={[styles.time]}>16:15</TextRegular>
@@ -111,265 +111,79 @@ export default function Chat() {
           </TouchableOpacity>
 
           {/* dummy Start */}
+          <TouchableOpacity onPress={() => navigation.navigate("ChatInner1")}>
+            <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
+              <View style={[styles.flexrow, styles.justalinecenter]}>
+                <View>
+                  <Image
+                    style={[styles.profilepic]}
+                    source={require("../assets/images/g1.jpg")}
+                  />
+                </View>
+                <View style={styles.jcfs}>
+                  <View style={[styles.flexrow, styles.groupname]}>
+                    <TextMedium style={[styles.childrenname]}>
+                      Combined Study
+                    </TextMedium>
+                  </View>
+                  <TextRegular style={[styles.textnetural]}>
+                    Yes, I will be there def{" "}
+                  </TextRegular>
+                </View>
+              </View>
+              <View>
+                <TextBold style={[styles.date]}>04/03/24</TextBold>
+                <View style={[styles.flexrow, styles.datebtm]}>
+                  <View style={[styles.messiagetop1]}>
+                    <View style={styles.messiagetop2}>
+                      <TextBold style={styles.messiagecount}>10</TextBold>
+                    </View>
+                  </View>
+                  <TextRegular style={[styles.time]}>16:00</TextRegular>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
 
-          <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-            <View style={[styles.flexrow, styles.justalinecenter]}>
-              <View>
-                <Image
-                  style={[styles.profilepic]}
-                  source={require("../assets/images/g1.jpg")}
-                />
-              </View>
-              <View style={styles.jcfs}>
-                <View style={[styles.flexrow, styles.groupname]}>
-                  <TextMedium style={[styles.childrenname]}>
-                    College Group
-                  </TextMedium>
+          <TouchableOpacity onPress={() => navigation.navigate("ChatInner2")}>
+            <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
+              <View style={[styles.flexrow, styles.justalinecenter]}>
+                <View>
+                  <Image
+                    style={[styles.profilepic]}
+                    source={require("../assets/images/g2.jpg")}
+                  />
                 </View>
-                <TextRegular style={[styles.textnetural]}>
-                  Hi, I hope your good and we{" "}
-                </TextRegular>
-              </View>
-            </View>
-            <View>
-              <TextBold style={[styles.date]}>14/03/24</TextBold>
-              <View style={[styles.flexrow, styles.datebtm]}>
-                <View style={[styles.messiagetop1]}>
-                  <View style={styles.messiagetop2}>
-                    <TextBold style={styles.messiagecount}>10</TextBold>
+                <View style={styles.jcfs}>
+                  <View style={[styles.flexrow, styles.groupname]}>
+                    <TextMedium style={[styles.childrenname]}>
+                      Get To Gether
+                    </TextMedium>
                   </View>
+                  <TextRegular style={[styles.textnetural]}>
+                    Lets doit{" "}
+                  </TextRegular>
                 </View>
-                <TextRegular style={[styles.time]}>16:15</TextRegular>
               </View>
-            </View>
-          </View>
-          <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-            <View style={[styles.flexrow, styles.justalinecenter]}>
               <View>
-                <Image
-                  style={[styles.profilepic]}
-                  source={require("../assets/images/g2.jpg")}
-                />
-              </View>
-              <View style={styles.jcfs}>
-                <View style={[styles.flexrow, styles.groupname]}>
-                  <TextMedium style={[styles.childrenname]}>
-                    College Group
-                  </TextMedium>
-                </View>
-                <TextRegular style={[styles.textnetural]}>
-                  Hi, I hope your good and we{" "}
-                </TextRegular>
-              </View>
-            </View>
-            <View>
-              <TextBold style={[styles.date]}>14/03/24</TextBold>
-              <View style={[styles.flexrow, styles.datebtm]}>
-                <View style={[styles.messiagetop1]}>
-                  <View style={styles.messiagetop2}>
-                    <TextBold style={styles.messiagecount}>10</TextBold>
+                <TextBold style={[styles.date]}>03/03/24</TextBold>
+                <View style={[styles.flexrow, styles.datebtm]}>
+                  <View style={[styles.messiagetop1]}>
+                    <View style={styles.messiagetop2}>
+                      <TextBold style={styles.messiagecount}>10</TextBold>
+                    </View>
                   </View>
+                  <TextRegular style={[styles.time]}>12:15</TextRegular>
                 </View>
-                <TextRegular style={[styles.time]}>16:15</TextRegular>
               </View>
             </View>
-          </View>
-          {/* <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]}>
-                        <View style={[styles.flexrow, styles.justalinecenter]}>
-                            <View>
-                                <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
-                            </View>
-                            <View style={styles.jcfs}>
-                                <View style={[styles.flexrow, styles.groupname]}>
-                                    <TextMedium style={[styles.childrenname]}>College Group</TextMedium>
-                                </View>
-                                <TextRegular style={[styles.textnetural,]}>Hi, I hope your good and we </TextRegular>
-                            </View>
-                        </View>
-                        <View>
-                            <TextBold style={[styles.date]}>14/03/24</TextBold>
-                            <View style={[styles.flexrow, styles.datebtm]}>
-                                <View style={[styles.messiagetop1]}>
-                                    <View style={styles.messiagetop2}>
-                                        <TextBold style={styles.messiagecount}>10</TextBold>
-                                    </View>
-                                </View>
-                                <TextRegular style={[styles.time]}>16:15</TextRegular>
-                            </View>
-                        </View>
-                    </View> */}
+          </TouchableOpacity>
+
+          
           {/* dummy end */}
         </View>
       </ScrollView>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => navigation.navigate("GlobalSearch")}
         style={{
           position: "absolute",
@@ -382,7 +196,7 @@ export default function Chat() {
         <View style={{ alignItems: "center" }}>
           <AntDesign name="pluscircle" size={60} color={color.accent} />
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
@@ -403,15 +217,21 @@ const styles = StyleSheet.create({
   },
   messiagetop1: {
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
+    backgroundColor: color.primary,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
   },
   messiagetop2: {
-    borderRadius: 100,
-    padding: 2,
-    backgroundColor: color.primary,
+    // borderRadius: "100%",
+    // width:'50%',
+    // height:'20%',
+    // padding: 3,
   },
   messiagecount: {
-    fontSize: 14,
+    fontSize: 10,
+    // padding:3,
     color: color.white,
   },
   time: {
@@ -421,7 +241,7 @@ const styles = StyleSheet.create({
   },
   date: {
     color: color.success,
-    fontSize: 12,
+    fontSize: 15,
   },
   Buttoncard: {
     borderRadius: 8,
@@ -455,7 +275,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   childrenname: {
-    fontSize: 18,
+    fontSize: 20,
   },
   profilepic: {
     marginRight: 12,
