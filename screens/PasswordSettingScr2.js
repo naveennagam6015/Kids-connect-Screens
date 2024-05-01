@@ -51,9 +51,6 @@ export default function PasswordSettingScr2({ navigation, route }) {
                 </TouchableOpacity>
 
             </View>
-
-
-
             <View style={[styles.comment]}>
                 <TextRegular style={[styles.cmtfont, { fontWeight: "bold" }]}>Strong Password Tip: </TextRegular>
                 <TextRegular style={[styles.cmtfont]}>Use combination of alphabets and numbers.</TextRegular>

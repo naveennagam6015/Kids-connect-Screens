@@ -17,7 +17,7 @@ import {
   TextMedium,
   TextRegular,
 } from "../assets/fonts/CustomText";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { color } from "../assets/colors/theme";
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome, Fontisto } from "@expo/vector-icons";
@@ -457,12 +457,12 @@ export default function ProfileVerification({ navigation, route }) {
             </>
           )}
         </View>
-        <TextBold style={[styles.Headingtextinput]}>About</TextBold>
+        {/* <TextBold style={[styles.Headingtextinput]}>About</TextBold> */}
         <TextInput
           style={styles.textArea}
           multiline={true}
           numberOfLines={5}
-          placeholder="Write about yourself"
+          placeholder="Description"
           onChangeText={(e) => {
             setAbout(e);
             validateAbout(e, setAboutErr);
@@ -613,7 +613,7 @@ export default function ProfileVerification({ navigation, route }) {
           }}
         />
 
-        <TextBold style={[styles.Headingtextinput]}>Zipcode</TextBold>
+        <TextBold style={[styles.Headingtextinput]}>Code</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
@@ -629,12 +629,9 @@ export default function ProfileVerification({ navigation, route }) {
 
 
 
-        <TouchableOpacity
-          style={[styles.submitButton, { marginBottom: 15, marginTop: 20 }]}
-          onPress={alertregister}
-        // onPress={SubmitData}
-        >
-          <TextMedium style={styles.submitButtonText}>Register</TextMedium>
+        <TouchableOpacity style={[styles.submitButton, { marginBottom: 15, marginTop: 20, flexDirection: "row", alignItems: "center" }]} onPress={alertregister}        >
+          <TextMedium style={styles.submitButtonText}>Save</TextMedium>
+          <MaterialIcons style={{ marginTop: 2 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
         </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={cameramodal}>

@@ -424,7 +424,7 @@ export default function ProfileSetupAfterAdminApproval() {
         <TextBold>WELCOME! to Kids Connectt</TextBold>
         <View style={[styles.Card]}>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}
           >
             <View style={{ alignItems: "center" }}>
               <View>
@@ -449,11 +449,12 @@ export default function ProfileSetupAfterAdminApproval() {
                 />
               </View>
             </View>
+            <View style={{ borderBottomWidth: 2, borderColor: color.neutral[500], width: "30%" }}></View>
             <View style={{ alignItems: "center" }}>
               {/* {secondaryPersonData.length == 0 && ( */}
               <>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})}
+                  onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })}
                   style={[styles.imageplus]}
                 >
                   <AntDesign
@@ -464,7 +465,7 @@ export default function ProfileSetupAfterAdminApproval() {
                 </TouchableOpacity>
                 <TouchableOpacity >
                   <TextRegular style={{ fontSize: 14 }}>
-                    Add Secondary Persons
+                    Invite Secondary Person
                   </TextRegular>
                 </TouchableOpacity>
               </>
