@@ -25,10 +25,7 @@ export default function PasswordSettingScr2() {
     }
     return (
         <ScrollView style={[styles.container]}>
-            <View style={[styles.header]}>
-                <AntDesign name="arrowleft" size={22} color="black" />
-                <Text style={[styles.headertxt]}>Step 2 of 3</Text>
-            </View>
+
 
 
             <View >
@@ -62,7 +59,7 @@ export default function PasswordSettingScr2() {
 
             <TouchableOpacity onPress={() => navigation.navigate('Login')}
                 style={styles.btnPrimary}>
-                <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center' }}>Go to Sign up</Text>
+                <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18 }}>Go to Sign up</Text>
             </TouchableOpacity>
         </ScrollView>
     )

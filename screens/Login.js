@@ -129,8 +129,9 @@ export default function Login() {
 
             <View style={styles.container}>
                 <StatusBar />
-                {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
-                <TextBold style={styles.heading}>Kid Connect</TextBold>
+                {/* <Image source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
+                <Ionicons style={{ justifyContent: "center", alignItems: "center", alignSelf: "center" }} name="image-outline" size={180} color={color.neutral[500]} />
+                <TextBold style={[styles.heading, { color: color.neutral[500] }]}>Kid Connect</TextBold>
                 <TextBold style={styles.subheading}>Welcome</TextBold>
                 <View>
                     <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(email) => {
@@ -167,16 +168,16 @@ export default function Login() {
                         // onPress={() => navigation.navigate('ProfileSetupAfterAdminApproval')}
                         onPress={() => navigation.navigate('ProfileVerification')}
                     >
-                        <TextMedium style={styles.btnText}>Login</TextMedium>
+                        <TextMedium style={styles.btnText}>Sign in</TextMedium>
                     </TouchableOpacity>
                     <View style={styles.mainView}>
                         <View style={styles.horizontalLine}></View>
-                        <TextRegular style={styles.textR}>or Login with</TextRegular>
+                        <TextRegular style={styles.textR}>or Sign in with</TextRegular>
                         <View style={styles.horizontalLine}></View>
                     </View>
                     <TouchableOpacity style={styles.googleImage}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
-                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with Google</TextMedium>
+                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Sign in with google</TextMedium>
                     </TouchableOpacity>
 
                     {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
