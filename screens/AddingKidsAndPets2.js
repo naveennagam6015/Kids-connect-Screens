@@ -584,7 +584,7 @@ export default function AddingKidsAndPets2() {
 
                         <>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})}
+                                onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })}
                                 style={[styles.imageplus]}
                             >
                                 <AntDesign
