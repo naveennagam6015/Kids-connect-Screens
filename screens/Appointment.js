@@ -8,11 +8,13 @@ import { ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ProfileDetails from '../components/ProfileDetails'
 import AnotherKidDetails from '../components/AnotherKidDetails'
+import AnotherParentDetails from '../components/AnotherParentDetails'
 
 export default function Appointment({ close }) {
     const navigation = useNavigation();
     const [profileDetails, setProfileDetails] = useState(false);
     const [anotherkiddetails, setAnotherkiddetails] = useState(false);
+    const [anotherparentdetails, setAnotherparentdetails] = useState("");
 
     const onClose = () => {
         setProfileDetails(false);
@@ -51,7 +53,88 @@ export default function Appointment({ close }) {
                 <View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => setAnotherparentdetails(!anotherparentdetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
+                            <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
+                            <TextLight>(Mother)</TextLight>
+                        </TouchableOpacity>
+                        <View style={[styles.flexrow, styles.alineitemscenter]}>
+                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
+                        </View>
+                    </View>
+                    <View style={[styles.Card]}>
+                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
+                            <TouchableOpacity
+                                style={{ width: "35%" }}
+                                onPress={() => setAnotherkiddetails(!anotherkiddetails)}>
+                                <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
+                            </TouchableOpacity>
+                            <View style={[styles.justiffsb, { width: "65%" }]}>
+                                <TouchableOpacity
+                                    onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    <TextBold style={[styles.childrenname]}>Anita </TextBold>
+                                    <View>
+                                        <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
+                                    </View>
+                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
+                                </TouchableOpacity>
+                                <View style={[styles.flexrow,]}>
+                                    <View style={[styles.ratingstarborder]}>
+                                        <View style={[styles.flexrow]}>
+                                            <TextBold>4.0</TextBold>
+                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
+                                            <TextRegular>(65)</TextRegular>
+                                        </View>
+                                        <TouchableOpacity style={[styles.flexrow]}>
+                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
+                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ marginLeft: 10 }}>
+                                        <View style={[styles.flexrow, { alignItems: "center" }]}>
+                                            <TextBold style={{ fontSize: 14, marginRight: 5 }}>100+</TextBold >
+                                            <FontAwesome name="group" size={14} color={color.accent} />
+                                        </View>
+                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Science</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Time</TextRegular>
+                                    </View>
+                                </View>
+                                <View style={[styles.flexrow, styles.mt8]}>
+
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>Feb 17th</TextRegular>
+                                    </View>
+                                    <View style={[styles.Tags]}>
+                                        <TextRegular>In-House</TextRegular>
+                                    </View>
+                                </View>
+                            </View>
+
+                        </View>
+                        <TextRegular style={[styles.carddec]}>
+                            Maecenas dignissim justo eget nulla rutrum
+                            molestie. Maecenas lobortis sem dui, vel rutrum
+                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
+                        </TextRegular>
+                        <View style={[styles.flexrow, styles.dot]}>
+
+                            <TextLight>21 hours ago</TextLight>
+                        </View>
+                    </View>
+                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
+                        <TouchableOpacity onPress={() => setAnotherparentdetails(!anotherparentdetails)}
+
+                            style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -131,87 +214,7 @@ export default function Appointment({ close }) {
                     </View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
-                            <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
-                            <TextLight>(Mother)</TextLight>
-                        </TouchableOpacity>
-                        <View style={[styles.flexrow, styles.alineitemscenter]}>
-                            <Entypo name="dots-three-vertical" size={18} color={color.neutral[300]} />
-                        </View>
-                    </View>
-                    <View style={[styles.Card]}>
-                        <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
-                            <TouchableOpacity
-                                style={{ width: "35%" }}
-                                onPress={() => setAnotherkiddetails(!anotherkiddetails)}>
-                                <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
-                            </TouchableOpacity>
-                            <View style={[styles.justiffsb, { width: "65%" }]}>
-                                <TouchableOpacity
-                                    onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
-                                    <TextBold style={[styles.childrenname]}>Anita </TextBold>
-                                    <View>
-                                        <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
-                                    </View>
-                                    {/* <FontAwesome name="bookmark-o" size={18} color={color.accent} /> */}
-                                </TouchableOpacity>
-                                <View style={[styles.flexrow,]}>
-                                    <View style={[styles.ratingstarborder]}>
-                                        <View style={[styles.flexrow]}>
-                                            <TextBold>4.0</TextBold>
-                                            <FontAwesome style={[styles.mh5]} name="star" size={14} color={color.primary} />
-                                            <TextRegular>(65)</TextRegular>
-                                        </View>
-                                        <TouchableOpacity style={[styles.flexrow]}>
-                                            <TextRegular style={{ fontSize: 14 }}>25 Reviews</TextRegular>
-                                            <Feather style={[styles.arrow]} name="arrow-up-right" size={14} color={color.primary} />
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{ marginLeft: 10 }}>
-                                        <View style={[styles.flexrow, { alignItems: "center" }]}>
-                                            <TextBold style={{ fontSize: 14, marginRight: 5 }}>100+</TextBold >
-                                            <FontAwesome name="group" size={14} color={color.accent} />
-                                        </View>
-                                        <TextRegular style={{ fontSize: 14 }}>(since Feb’24)</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Science</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Time</TextRegular>
-                                    </View>
-                                </View>
-                                <View style={[styles.flexrow, styles.mt8]}>
-
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>Feb 17th</TextRegular>
-                                    </View>
-                                    <View style={[styles.Tags]}>
-                                        <TextRegular>In-House</TextRegular>
-                                    </View>
-                                </View>
-                            </View>
-
-                        </View>
-                        <TextRegular style={[styles.carddec]}>
-                            Maecenas dignissim justo eget nulla rutrum
-                            molestie. Maecenas lobortis sem dui, vel rutrum
-                            risus...<TextRegular style={[styles.knowmore]}>know more</TextRegular>
-                        </TextRegular>
-                        <View style={[styles.flexrow, styles.dot]}>
-
-                            <TextLight>21 hours ago</TextLight>
-                        </View>
-                    </View>
-                    <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => setAnotherparentdetails(!anotherparentdetails)} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -305,6 +308,12 @@ export default function Appointment({ close }) {
                 animationType="slide" transparent={true} visible={anotherkiddetails}>
                 <View style={styles.topDummy} />
                 <AnotherKidDetails name={"Naveen"} close={() => setAnotherkiddetails(!anotherkiddetails)} />
+            </Modal>
+
+            <Modal
+                animationType="slide" transparent={true} visible={anotherparentdetails}>
+                <View style={styles.topDummy} />
+                <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
             </Modal>
         </ScrollView>
     )

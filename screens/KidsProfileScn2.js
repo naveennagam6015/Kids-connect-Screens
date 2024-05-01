@@ -25,7 +25,7 @@ export default function KidsProfileScr2({ close, name }) {
                 <View style={[styles.padding]}>
                     <View style={{ flexDirection: "row" }} >
                         <View style={[{ width: "30%" }, styles.profileName]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
                         </View>
                         <View style={[{ width: "70%", }, styles.profileName]}>
                             <TextBold style={{ fontSize: 12 }}>Anita, 14 loves outdoor adventures, sports, art, and tech exploration. Each activity fuels his curiosity and passion for discovering the world's wonders.

@@ -49,6 +49,7 @@ export default function Home({ close }) {
     setOpen(false);
     setProfileDetails(false);
     setKiddetails(false);
+    setAnotherparentdetails(false);
   };
   const [data, setData] = useState([{ image: "" }]);
   const carouselRef = useRef(null);

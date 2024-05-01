@@ -19,7 +19,7 @@ export default function ProfileDetails({ close, name }) {
                 </TouchableOpacity>
                 <View style={[styles.flexrow,]} >
                     <View style={{ marginVertical: 10, marginRight: 5, justifyContent: "center", alignItems: "center" }}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
+                        {/* <Image style={[styles.profilepic]} source={require('../assets/images/2women')} /> */}
                         <TextRegular style={[styles.childrenname]}>Tulika (M) </TextRegular>
                         <TextRegular style={[styles.mobilrnumber, { color: color.neutral[500] }]}>+91 8328424553 </TextRegular>
                     </View>
