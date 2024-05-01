@@ -313,7 +313,7 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/men3.png")}
+                    source={require("../assets/images/man3.jpg")}
                   />
                 </View>
                 <View>
