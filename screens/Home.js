@@ -305,7 +305,7 @@ export default function Home({ close }) {
           <View style={[styles.Card]}>
             <View style={[styles.innercard1, styles.flexrow]}>
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)}
+                onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})}
                 style={{ alignItems: "center" }}>
                 <View>
                   <Image
