@@ -453,7 +453,7 @@ export default function ProfileSetupAfterAdminApproval() {
               {/* {secondaryPersonData.length == 0 && ( */}
               <>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("Profile")}
+                  onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})}
                   style={[styles.imageplus]}
                 >
                   <AntDesign

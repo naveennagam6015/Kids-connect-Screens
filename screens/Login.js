@@ -175,6 +175,7 @@ export default function Login({ navigation, route }) {
                         <TextRegular style={styles.textR}>or Sign in with</TextRegular>
                         <View style={styles.horizontalLine}></View>
                     </View>
+                    {/* <Button title="Profile" onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})} /> */}
                     <TouchableOpacity style={styles.googleImage}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Sign in with google</TextMedium>

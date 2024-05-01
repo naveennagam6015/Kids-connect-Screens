@@ -1,45 +1,6 @@
-import React, { useState } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useState } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { Modal, View, Text, Button, Platform, TouchableOpacity } from 'react-native';
-import Home from './screens/Home';
-import Appointment from './screens/Appointment';
-import Profile from './screens/Profile';
-import Requests from './screens/Requests';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Entypo, Ionicons } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
-import Login from './screens/Login';
-import Registration from './screens/Registration';
-import ProfileSetupAfterAdminApproval from './screens/ProfileSetupAfterAdminApproval';
-import ProfileVerification from './screens/ProfileVerification';
-import AddingKidsAndPets from './screens/AddingKidsAndPets';
-import Chat from './screens/Chat';
-import ChatAddingGroup from './screens/ChatAddingGroup';
-import GroupSettings from './screens/GroupSettings';
-import ProfileEdit from './screens/ProfileEdit';
-import MyAccount from './screens/MyAccount';
-import DevicePermissions from './screens/DevicePermissions';
-import AccountDeletion from './screens/AccountDeletion';
-import { color } from './assets/colors/theme';
-import { StyleSheet } from 'react-native';
-import Thankyou from './screens/Thankyou';
-import Test from './Test';
-import ProfileSetup from './screens/ProfileSetup';
-import Confirmation from './screens/Confirmation ';
-import { TextBold } from './assets/fonts/CustomText';
-import GlobalSearch from './screens/GlobalSearch';
-import ChatInner from './screens/ChatInner';
-import About from './screens/About';
-import AboutUs from './screens/AboutUs';
-import ContactUs from './screens/ContactUs';
-import PrivacyPolicy from './screens/PrivacyPolicy';
-import TermsAndConditions from './screens/TermsAndConditions';
-import FAQs from './screens/FAQs';
-import ProfileDetails from './components/ProfileDetails';
-import PasswordSettingScr2 from './screens/PasswordSettingScr2';
-import AddingKidsAndPets2 from './screens/AddingKidsAndPets2';
-import VerificationScreen from './screens/VerificationCode';
 import {
 
     MaterialIcons,
@@ -50,101 +11,110 @@ import KidsProfileScr2 from './screens/KidsProfileScn2';
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
-    return (
-        <Modal visible={isVisible} transparent={true} animationType="slide">
-            <View style={{ flex: 1, opacity: 0 }} />
-            <View style={{
-                height: '10%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingHorizontal: 15,
-                backgroundColor: color.white,
-                borderTopLeftRadius: 30,
-                borderTopRightRadius: 30,
-                justifyContent: 'center',
-                ...Platform.select({
-                    ios: {
-                        shadowColor: 'black',
-                        shadowOffset: { width: 0, height: 4 },
-                        shadowOpacity: 0.2,
-                        shadowRadius: 4,
-                    },
-                    android: {
-                        elevation: 30,
-                    },
-                }),
-            }}>
-                <View style={{ paddingHorizontal: 20 }}>
-                    <View style={{ justifyContent: 'space-between', flexDirection: "row" }}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigation.navigate('Appointment');
-                                onClose();
-                            }}
-                            style={{
-                                borderRadius: 8,
-                                alignSelf: 'center',
-                                flexDirection: 'row',
-                                textAlign: 'center',
-                                justifyContent: 'center',
-                                borderWidth: 1.5,
-                                borderColor: color.accent,
-                                paddingVertical: 16,
-                                width: '48%'
-                            }}>
-                            <View style={{ flexDirection: "row" }}>
-                                <TextBold style={{ fontSize: 16 }}>Discover</TextBold>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigation.navigate('ProfileSetup');
-                                onClose();
-                            }}
-                            style={{
-                                borderRadius: 8,
-                                alignSelf: 'center',
-                                flexDirection: 'row',
-                                textAlign: 'center',
-                                borderWidth: 1.5,
-                                borderColor: color.primary,
-                                justifyContent: 'center',
-                                backgroundColor: color.primary,
-                                paddingVertical: 16,
-                                width: '48%'
-                            }}>
-                            <View style={{ flexDirection: "row" }}>
-                                <TextBold style={{ fontSize: 16, color: '#fff' }}>Connect Now</TextBold>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-        </Modal>
-
-    );
+  return (
+    <Modal visible={isVisible} transparent={true} animationType="slide">
+      <View style={{ flex: 1, opacity: 0 }} />
+      <View
+        style={{
+          height: "10%",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingHorizontal: 15,
+          backgroundColor: color.white,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          justifyContent: "center",
+          ...Platform.select({
+            ios: {
+              shadowColor: "black",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.2,
+              shadowRadius: 4,
+            },
+            android: {
+              elevation: 30,
+            },
+          }),
+        }}
+      >
+        <View style={{ paddingHorizontal: 20 }}>
+          <View
+            style={{ justifyContent: "space-between", flexDirection: "row" }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Appointment");
+                onClose();
+              }}
+              style={{
+                borderRadius: 8,
+                alignSelf: "center",
+                flexDirection: "row",
+                textAlign: "center",
+                justifyContent: "center",
+                borderWidth: 1.5,
+                borderColor: color.accent,
+                paddingVertical: 16,
+                width: "48%",
+              }}
+            >
+              <View style={{ flexDirection: "row" }}>
+                <TextBold style={{ fontSize: 16 }}>Discover</TextBold>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ProfileSetup");
+                onClose();
+              }}
+              style={{
+                borderRadius: 8,
+                alignSelf: "center",
+                flexDirection: "row",
+                textAlign: "center",
+                borderWidth: 1.5,
+                borderColor: color.primary,
+                justifyContent: "center",
+                backgroundColor: color.primary,
+                paddingVertical: 16,
+                width: "48%",
+              }}
+            >
+              <View style={{ flexDirection: "row" }}>
+                <TextBold style={{ fontSize: 16, color: "#fff" }}>
+                  Connect Now
+                </TextBold>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
 }
 
 function BottomNavigation({ navigation }) {
     // const navigation = useNavigation();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const toggleModal = () => {
-        setIsModalVisible(!isModalVisible);
-    };
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
 
-    const headerRight = ({ item }) => {
-        return (
-            <TouchableOpacity style={{ marginRight: 20 }} onPress={() => navigation.navigate('Chat')}>
-                <View>
-                    <MaterialIcons name="message" size={23} color="black" />
-                </View>
-
-            </TouchableOpacity>
-        )
-    }
+  const headerRight = ({ item }) => {
+    return (
+      <TouchableOpacity
+        style={{ marginRight: 20 }}
+        onPress={() => navigation.navigate("Chat")}
+      >
+        <View>
+          <MaterialIcons name="message" size={23} color="black" />
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
     return (
         <>
@@ -249,9 +219,9 @@ function StackNavigation() {
 }
 
 export default function Navigation() {
-    return (
-        <NavigationContainer>
-            <StackNavigation />
-        </NavigationContainer>
-    );
+  return (
+    <NavigationContainer>
+      <StackNavigation />
+    </NavigationContainer>
+  );
 }
