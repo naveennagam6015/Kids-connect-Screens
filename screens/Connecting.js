@@ -86,7 +86,7 @@ export default function Connecting() {
             </View>
             <TouchableOpacity style={{ alignSelf: "center", }} onPress={() => navigation.navigate("BottomNavigation")}>
 
-                <TextRegular style={{ fontSize: 20 }}>Skip to home screen</TextRegular>
+                <TextRegular style={{ fontSize: 20,textDecorationLine: 'underline', }}>Skip to home screen</TextRegular>
             </TouchableOpacity>
         </ScrollView>
     )
