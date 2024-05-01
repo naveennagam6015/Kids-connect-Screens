@@ -7,14 +7,17 @@ import {
   View,
   Text,
   Animated,
+  Modal,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import OpenCameraModal from "../components/OpenCameraModal";
 
 export default function ChatInner() {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const [containerVisible, setContainerVisible] = useState(false);
   const slideUpValue = new Animated.Value(0);
+  const [cameramodal, setCameraModal] = useState(false);
 
   const sendMessage = () => {
     if (messageInput.trim() !== "") {
@@ -71,7 +74,7 @@ export default function ChatInner() {
         ))}
       </ScrollView>
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.cameraButton} onPress={slideUp}>
+        <TouchableOpacity style={styles.cameraButton} onPress={() => setCameraModal(!cameramodal)}>
           <FontAwesome name="camera" size={24} color="white" />
         </TouchableOpacity>
         <TextInput
@@ -112,6 +115,16 @@ export default function ChatInner() {
           </TouchableOpacity>
         </Animated.View>
       )}
+
+<Modal animationType="slide" transparent={true} visible={cameramodal}>
+        <View style={styles.topCamera}>
+          <OpenCameraModal
+            // OpenCamera={() => OpenCamera()}
+            // pickImage={() => pickImage()}
+            close={() => setCameraModal(!cameramodal)}
+          />
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -120,6 +133,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ededed",
+  },
+  topCamera: {
+    flex: 1,
+    justifyContent: "flex-end",
+    // alignItems: 'center',
+    // backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   chatContainer: {
     flexGrow: 1,

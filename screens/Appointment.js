@@ -47,7 +47,7 @@ export default function Appointment({ close }) {
                 <View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -127,7 +127,7 @@ export default function Appointment({ close }) {
                     </View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -207,7 +207,7 @@ export default function Appointment({ close }) {
                     </View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
