@@ -120,8 +120,8 @@ function AppointmentModal({ isVisible, onClose }) {
     );
 }
 
-function BottomNavigation() {
-    const navigation = useNavigation();
+function BottomNavigation({navigation}) {
+    // const navigation = useNavigation();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const toggleModal = () => {
@@ -191,9 +191,7 @@ function BottomNavigation() {
                     component={Appointment}
                 />
                 <BottomTab.Screen name="Requests" component={Requests} options={{ headerRight: headerRight }} />
-                <BottomTab.Screen name="Profile"
-
-                    component={Profile} />
+                <BottomTab.Screen name="Profile" component={Profile} />
             </BottomTab.Navigator>
             <AppointmentModal isVisible={isModalVisible} onClose={toggleModal} />
         </>
@@ -232,7 +230,9 @@ function StackNavigation() {
             <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
-            {/* <Stack.Screen name='Profile' component={Profile} /> */}
+            {/* <Stack.Screen name='BottomNavigation' options={{headerShown:false}}>
+                {({ navigation }) => <BottomNavigation navigation={navigation}  />}
+            </Stack.Screen> */}
             {/* <Stack.Screen name='Chatinner' component={ } options={{ headerShown: false }} /> */}
         </Stack.Navigator>
     );

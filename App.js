@@ -9,6 +9,7 @@ import Home from "./screens/Home.js";
 import GroupSettings from "./screens/GroupSettings.js";
 import About from "./screens/About.js";
 import AccountDeletion from "./screens/AccountDeletion.js";
+import * as Device from 'expo-device';
 
 export default function App() {
 
@@ -20,10 +21,15 @@ export default function App() {
     RobotoBlack: require('./assets/fonts/Roboto-Black.ttf'),
   })
 
+  // console.log(Device.deviceName);
+  // console.log(Device.productName);
+
+
+
   if (!loaded) {
     return null;
   }
-
+  
 
   return (
     <Navigtion />
