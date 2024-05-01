@@ -27,6 +27,7 @@ export default function AnotherKidDetails({ close, name }) {
                     <View style={{ flexDirection: "row" }} >
                         <View style={[{ width: "30%" }, styles.profileName]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            <TextBold>    Anita (F)</TextBold>
                         </View>
                         <View style={[{ width: "70%", }, styles.profileName]}>
                             <TextBold style={{ fontSize: 12 }}>Fanwood HighSchool Aryan Profile Shreyas, 14 loves outdoor adventures, sports, art, and tech exploration. Each activity fuels his curiosity and passion for discovering the world's wonders.
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 15,
-        paddingTop:50,
+        paddingTop: 50,
         backgroundColor: color.white,
     },
     edithobbies: {

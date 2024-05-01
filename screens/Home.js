@@ -406,7 +406,7 @@ export default function Home({ close }) {
               </View>
             </TouchableOpacity> */}
             <TouchableOpacity
-              onPress={() => setOpen(!open)}
+              onPress={() => setAnotherkiddetails(!anotherkiddetails)}
               style={[styles.Buttoncardmoredetails, styles.Buttoncardwidth3]}
             >
               <View style={[styles.flexrow]}>
@@ -507,7 +507,7 @@ export default function Home({ close }) {
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity
+            <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)}
               style={[styles.Buttoncard2, styles.Buttoncardwidth2]}
             >
               <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
@@ -843,7 +843,7 @@ export default function Home({ close }) {
       <Modal
         animationType="slide" transparent={true} visible={anotherparentdetails}>
         <View style={styles.topDummy}>
-        <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+          <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
         </View>
       </Modal>
     </ScrollView >
@@ -964,7 +964,7 @@ const styles = StyleSheet.create({
   topDummy: {
     flex: 1,
     // opacity: 0,
-    justifyContent:'flex-end'
+    justifyContent: 'flex-end'
   },
   btnPrimaryTextsize: {
     fontSize: 16,
