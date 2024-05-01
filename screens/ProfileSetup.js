@@ -110,9 +110,9 @@ export default function ProfileSetup() {
       <TouchableOpacity 
         onPress={() => setKidopen(!kidopen)}>
 
-        {/* <Text>
+         <Text>
           {item.name}
-        </Text> */}
+        </Text>
 
       </TouchableOpacity>
 
