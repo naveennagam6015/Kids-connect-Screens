@@ -313,11 +313,11 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/women.png")}
+                    source={require("../assets/images/men3.png")}
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Radha</TextBold>
+                  <TextBold style={[styles.childrenname]}>Krishna</TextBold>
                 </View>
               </TouchableOpacity>
 
