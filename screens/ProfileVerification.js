@@ -569,7 +569,7 @@ export default function ProfileVerification({ navigation, route }) {
           )}
         />
 
-        <TextBold style={[styles.Headingtextinput]}>Enter D.O.B</TextBold>
+        <TextBold style={[styles.Headingtextinput]}>Enter Birth Year</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
