@@ -7,14 +7,18 @@ import {
   View,
   Text,
   Animated,
+  Modal,
 } from "react-native";
+import { color } from "../assets/colors/theme";
 import { FontAwesome } from "@expo/vector-icons";
+import OpenCameraModal from "../components/OpenCameraModal";
 
 export default function ChatInner() {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const [containerVisible, setContainerVisible] = useState(false);
   const slideUpValue = new Animated.Value(0);
+  const [cameramodal, setCameraModal] = useState(false);
 
   const sendMessage = () => {
     if (messageInput.trim() !== "") {
@@ -51,6 +55,60 @@ export default function ChatInner() {
           this.scrollView.scrollToEnd({ animated: true })
         }
       >
+        <View
+          style={{ maxWidth: "80%", alignSelf: "flex-end", marginBottom: 5 }}
+        >
+          <View style={styles.senderView}>
+            <Text style={styles.senderName}>~ Vishal</Text>
+          </View>
+          <View style={[styles.messageContainer]}>
+            <Text style={styles.message}>Hi</Text>
+          </View>
+          <View style={styles.senderView}>
+            <Text style={styles.senderTime}>10:12 PM</Text>
+          </View>
+        </View>
+        <View
+          style={{ maxWidth: "80%", alignSelf: "flex-end", marginBottom: 5 }}
+        >
+          <View style={styles.senderView}>
+            <Text style={styles.senderName}>~ Vishal</Text>
+          </View>
+          <View style={[styles.messageContainer]}>
+            <Text style={styles.message}>Wish you happy birthday sasi</Text>
+          </View>
+          <View style={styles.senderView}>
+            <Text style={styles.senderTime}>10:12 PM</Text>
+          </View>
+        </View>
+        <View
+          style={{ maxWidth: "80%", alignSelf: "flex-start", marginBottom: 5 }}
+        >
+          <View style={styles.reciverView}>
+            <Text style={styles.reciverName}>~ Sasi Vardhan Vennupusa</Text>
+          </View>
+          <View style={[styles.reciverMessageContainer]}>
+            <Text style={styles.message}>Thank you vishal</Text>
+          </View>
+          <View style={styles.reciverView}>
+            <Text style={styles.senderTime}>10:13 PM</Text>
+          </View>
+        </View>
+        <View
+          style={{ maxWidth: "80%", alignSelf: "flex-start", marginBottom: 5 }}
+        >
+          <View style={styles.reciverView}>
+            <Text style={styles.reciverName}>~ Soumya Ranjan</Text>
+          </View>
+          <View style={[styles.reciverMessageContainer]}>
+            <Text style={styles.message}>
+              Hey, Sasi Happy bday what the fuck sasi
+            </Text>
+          </View>
+          <View style={styles.reciverView}>
+            <Text style={styles.senderTime}>10:23 PM</Text>
+          </View>
+        </View>
         {messages.map((message, index) => (
           <View
             key={index}
@@ -71,7 +129,10 @@ export default function ChatInner() {
         ))}
       </ScrollView>
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.cameraButton} onPress={slideUp}>
+        <TouchableOpacity
+          style={styles.cameraButton}
+          onPress={() => setCameraModal(!cameramodal)}
+        >
           <FontAwesome name="camera" size={24} color="white" />
         </TouchableOpacity>
         <TextInput
@@ -112,6 +173,16 @@ export default function ChatInner() {
           </TouchableOpacity>
         </Animated.View>
       )}
+
+      <Modal animationType="slide" transparent={true} visible={cameramodal}>
+        <View style={styles.topCamera}>
+          <OpenCameraModal
+            // OpenCamera={() => OpenCamera()}
+            // pickImage={() => pickImage()}
+            close={() => setCameraModal(!cameramodal)}
+          />
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -120,6 +191,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ededed",
+  },
+  topCamera: {
+    flex: 1,
+    justifyContent: "flex-end",
+    // alignItems: 'center',
+    // backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   chatContainer: {
     flexGrow: 1,
@@ -174,14 +251,44 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     maxWidth: "auto",
   },
+  reciverMessageContainer: {
+    backgroundColor: "#d6dbdb",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 5,
+    maxWidth: "auto",
+  },
   senderView: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+  },
+  reciverView: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
   senderName: {
     margin: 0,
     fontSize: 10,
+    color: "#5e95ff",
+    fontWeight: "bold",
+    // justifyContent: "center",
+    // alignItems: "flex-end"
+  },
+  reciverName: {
+    margin: 0,
+    fontSize: 10,
+    color: "#8186",
+    fontWeight: "bold",
+    // justifyContent: "center",
+    // alignItems: "flex-end"
+  },
+  senderTime: {
+    margin: 0,
+    fontSize: 10,
+    color: "#000",
+    // fontWeight:"bold",
     // justifyContent: "center",
     // alignItems: "flex-end"
   },
