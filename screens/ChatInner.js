@@ -115,7 +115,7 @@ export default function ChatInner() {
           </View>
           <View style={[styles.reciverMessageContainer]}>
             <Text style={styles.message}>
-              Hey, Sasi Happy bday what the fuck sasi
+              Hey, Sasi Happy bday...
             </Text>
           </View>
           <View style={styles.reciverView}>
