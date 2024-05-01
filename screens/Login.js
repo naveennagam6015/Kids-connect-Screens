@@ -181,7 +181,7 @@ export default function Login({ navigation, route }) {
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Sign in with google</TextMedium>
                     </TouchableOpacity>
 
-                    {/* <Button title="Logout" onPress={() => AsyncStorage.removeItem('@user')} /> */}
+                    <Button title="Home" onPress={() => navigation.navigate('BottomNavigation')} />
                 </View>
 
                 {/* dummy */}

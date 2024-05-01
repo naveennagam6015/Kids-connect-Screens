@@ -12,7 +12,7 @@ import {
   Modal,
 } from "react-native";
 import { color } from "../assets/colors/theme";
-import Carousel from "react-native-snap-carousel";
+// import Carousel from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { Calendar } from "react-native-calendars";
 import {
@@ -140,7 +140,7 @@ export default function Home({ close }) {
         </SkeletonContainer>
       )}
 
-      {!bannerLoading && (
+      {/* {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -154,7 +154,7 @@ export default function Home({ close }) {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )}
+      )} */}
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
           {/* <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>
@@ -304,12 +304,140 @@ export default function Home({ close }) {
               </View>
             </View>
           </View>
+          <View
+            style={{
+              backgroundColor: "#fff",
+              padding: 20,
+              borderRadius: 20,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity>
+                  <Image
+                    source={require("../assets/images/man3.jpg")}
+                    style={{
+                      position: "absolute",
+                      width: 40,
+                      height: 40,
+                      top: -15,
+                      right: -10,
+                      borderRadius: 20,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("BottomNavigation", {
+                      screen: "Profile",
+                    })
+                  }
+                >
+                  <Image
+                    source={require("../assets/images/bgwhite.png")}
+                    style={{
+                      width: 70,
+                      height: 70,
+                      borderRadius: 35,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TextBold style={{ alignSelf: "center", fontSize: 15 }}>
+                  Soumya
+                </TextBold>
+                <TextRegular style={{ alignSelf: "center", fontSize: 12 }}>
+                  Krishna (Father)
+                </TextRegular>
+              </View>
+              <View style={{ justifyContent: "center", alignSelf: "center" }}>
+                <AntDesign name="arrowright" size={50} color="black" />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity
+                  onPress={() => setAnotherparentdetails(!anotherparentdetails)}
+                >
+                  <Image
+                    source={require("../assets/images/2women.jpg")}
+                    style={{
+                      position: "absolute",
+                      width: 40,
+                      height: 40,
+                      top: -15,
+                      right: -10,
+                      borderRadius: 20,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setKiddetails(!kiddetails)}>
+                  <Image
+                    source={require("../assets/images/KID.jpg")}
+                    style={{
+                      width: 70,
+                      height: 70,
+                      borderRadius: 35,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TextBold style={{ alignSelf: "center", fontSize: 15 }}>
+                  Anita
+                </TextBold>
+                <TextRegular style={{ alignSelf: "center", fontSize: 12 }}>
+                  Tulika (Mother)
+                </TextRegular>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 15,
+              }}
+            >
+              <View>
+                <TextRegular>17 Feb (Monday)</TextRegular>
+                <View style={{ flexDirection: "row" }}>
+                  <Ionicons name="timer" size={24} color="black" />
+                  <TextRegular style={{ justifyContent: "center" }}>
+                    3 Hrs
+                  </TextRegular>
+                </View>
+              </View>
+              <View
+                style={{
+                  backgroundColor: color.primary,
+                  padding: 10,
+                  borderRadius: 10,
+                  justifyContent: "center",
+                }}
+              >
+                <TouchableOpacity>
+                  <TextBold>More Details &gt;&gt;</TextBold>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
 
-          <View style={[styles.Card]}>
+          {/* <View style={[styles.Card]}>
             <View style={[styles.innercard1, styles.flexrow]}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })}
-                style={{ alignItems: "center" }}>
+                onPress={() =>
+                  navigation.navigate("BottomNavigation", { screen: "Profile" })
+                }
+                style={{ alignItems: "center" }}
+              >
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -323,7 +451,8 @@ export default function Home({ close }) {
 
               <TouchableOpacity
                 onPress={() => setAnotherparentdetails(!anotherparentdetails)}
-                style={{ alignItems: "center" }}>
+                style={{ alignItems: "center" }}
+              >
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -337,7 +466,9 @@ export default function Home({ close }) {
             </View>
             <View style={[styles.innercard2, styles.flexrow]}>
               <TouchableOpacity
-                onPress={() => setKiddetails(!kiddetails)} style={{ alignItems: "flex-start" }}>
+                onPress={() => setKiddetails(!kiddetails)}
+                style={{ alignItems: "flex-start" }}
+              >
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -363,7 +494,9 @@ export default function Home({ close }) {
                 <TextRegular>Feb 17th | Monday</TextRegular>
               </View>
               <TouchableOpacity
-                onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={{ alignItems: "flex-end" }}>
+                onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                style={{ alignItems: "flex-end" }}
+              >
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -380,16 +513,18 @@ export default function Home({ close }) {
                 </View>
               </TouchableOpacity>
             </View>
-          </View>
-          <View
+          </View> */}
+          {/* <View
             style={[
               styles.Card,
               styles.flexrow,
               { justifyContent: "space-between", alignItems: "center" },
             ]}
           >
-            <TouchableOpacity onPress={() => navigation.navigate('Chat')}
-              style={{ padding: 5, marginHorizontal: 10 }}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Chat")}
+              style={{ padding: 5, marginHorizontal: 10 }}
+            >
               <View>
                 <MaterialIcons name="message" size={20} color="black" />
               </View>
@@ -397,14 +532,14 @@ export default function Home({ close }) {
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
             </TouchableOpacity>
-            {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+            <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
               <View>
                 <Ionicons name="call" size={20} color="black" />
               </View>
               <View>
                 <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
               </View>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setAnotherkiddetails(!anotherkiddetails)}
               style={[styles.Buttoncardmoredetails, styles.Buttoncardwidth3]}
@@ -419,7 +554,7 @@ export default function Home({ close }) {
                 />
               </View>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
         <View>
           <View style={{ alignItems: "center" }}>
@@ -449,7 +584,9 @@ export default function Home({ close }) {
         <View style={[styles.Card]}>
           <View style={[styles.innercard2, styles.flexrow]}>
             <TouchableOpacity
-              onPress={() => setKiddetails(!kiddetails)} style={{ alignItems: "flex-start" }}>
+              onPress={() => setKiddetails(!kiddetails)}
+              style={{ alignItems: "flex-start" }}
+            >
               <View>
                 <Image
                   style={[styles.profilepic, styles.activeprofilr]}
@@ -471,7 +608,8 @@ export default function Home({ close }) {
             </View>
             <TouchableOpacity
               onPress={() => setAnotherkiddetails(!anotherkiddetails)}
-              style={{ alignItems: "flex-end" }}>
+              style={{ alignItems: "flex-end" }}
+            >
               <View>
                 <Image
                   style={[styles.profilepic]}
@@ -479,9 +617,7 @@ export default function Home({ close }) {
                 />
               </View>
               <View>
-                <TextBold style={[styles.childrenname]}>
-                  Anita(F)
-                </TextBold>
+                <TextBold style={[styles.childrenname]}>Anita(F)</TextBold>
               </View>
             </TouchableOpacity>
           </View>
@@ -499,7 +635,10 @@ export default function Home({ close }) {
                 </TextRegular>
               </View>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Chat")}
+              style={{ padding: 5, marginHorizontal: 10 }}
+            >
               <View>
                 <MaterialIcons name="message" size={20} color="black" />
               </View>
@@ -507,7 +646,8 @@ export default function Home({ close }) {
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+            <TouchableOpacity
+              onPress={() => setAnotherkiddetails(!anotherkiddetails)}
               style={[styles.Buttoncard2, styles.Buttoncardwidth2]}
             >
               <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
@@ -677,8 +817,10 @@ export default function Home({ close }) {
                         },
                       ]}
                     >
-                      <TouchableOpacity onPress={() => navigation.navigate('Chat')}
-                        style={{ padding: 5, marginHorizontal: 10 }}>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate("Chat")}
+                        style={{ padding: 5, marginHorizontal: 10 }}
+                      >
                         <View>
                           <MaterialIcons
                             name="message"
@@ -792,8 +934,8 @@ export default function Home({ close }) {
         <View style={[styles.containerbg2]}>
           <View style={[styles.modalcontainer]}>
             <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-              <TouchableOpacity onPress={onClose}
-
+              <TouchableOpacity
+                onPress={onClose}
                 style={[styles.Buttoncardinner, styles.Buttoncardwidth]}
               >
                 <View style={[styles.flexrow]}>
@@ -802,8 +944,8 @@ export default function Home({ close }) {
                   </TextBold>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={onClose}
-
+              <TouchableOpacity
+                onPress={onClose}
                 style={[styles.Buttoncardinner2, styles.Buttoncardwidth]}
               >
                 <View style={[styles.flexrow]}>
@@ -825,28 +967,44 @@ export default function Home({ close }) {
           </TextLight>
         </View>
       </Modal>
-      <Modal
-        animationType="slide" transparent={true} visible={profileDetails}>
+      <Modal animationType="slide" transparent={true} visible={profileDetails}>
         <View style={styles.topDummy} />
-        <ProfileDetails name={"Naveen"} close={() => setProfileDetails(!profileDetails)} />
+        <ProfileDetails
+          name={"Naveen"}
+          close={() => setProfileDetails(!profileDetails)}
+        />
+      </Modal>
+      <Modal animationType="slide" transparent={true} visible={kiddetails}>
+        <View style={styles.topDummy} />
+        <KidsProfileScr2
+          name={"Naveen"}
+          close={() => setKiddetails(!kiddetails)}
+        />
       </Modal>
       <Modal
-        animationType="slide" transparent={true} visible={kiddetails}>
+        animationType="slide"
+        transparent={true}
+        visible={anotherkiddetails}
+      >
         <View style={styles.topDummy} />
-        <KidsProfileScr2 name={"Naveen"} close={() => setKiddetails(!kiddetails)} />
+        <AnotherKidDetails
+          name={"Naveen"}
+          close={() => setAnotherkiddetails(!anotherkiddetails)}
+        />
       </Modal>
       <Modal
-        animationType="slide" transparent={true} visible={anotherkiddetails}>
-        <View style={styles.topDummy} />
-        <AnotherKidDetails name={"Naveen"} close={() => setAnotherkiddetails(!anotherkiddetails)} />
-      </Modal>
-      <Modal
-        animationType="slide" transparent={true} visible={anotherparentdetails}>
+        animationType="slide"
+        transparent={true}
+        visible={anotherparentdetails}
+      >
         <View style={styles.topDummy}>
-          <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+          <AnotherParentDetails
+            name={"Naveen"}
+            close={() => setAnotherparentdetails(!anotherparentdetails)}
+          />
         </View>
       </Modal>
-    </ScrollView >
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
@@ -964,7 +1122,7 @@ const styles = StyleSheet.create({
   topDummy: {
     flex: 1,
     // opacity: 0,
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end",
   },
   btnPrimaryTextsize: {
     fontSize: 16,
@@ -1076,9 +1234,18 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 50,
+    borderWidth: 2,
+    borderColor: color.primary,
   },
   innercardnodata: {
     backgroundColor: color.neutral[100],
+    justifyContent: "space-between",
+    padding: 14,
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
+  },
+  newinnercard1: {
+    // backgroundColor: color.accent,
     justifyContent: "space-between",
     padding: 14,
     borderTopRightRadius: 8,
@@ -1130,6 +1297,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 10,
     borderWidth: 1,
+    padding: 10,
     borderColor: color.accent,
     backgroundColor: color.white,
   },
