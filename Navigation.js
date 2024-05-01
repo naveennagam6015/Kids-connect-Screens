@@ -46,6 +46,7 @@ import {
 } from "@expo/vector-icons";
 import Connecting from './screens/Connecting';
 import VerificationScreenSecondary from './screens/VerificationScreenSecondary';
+import KidsProfileScr2 from './screens/KidsProfileScn2';
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
@@ -126,7 +127,7 @@ function AppointmentModal({ isVisible, onClose }) {
     );
 }
 
-function BottomNavigation({navigation}) {
+function BottomNavigation({ navigation }) {
     // const navigation = useNavigation();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -238,12 +239,11 @@ function StackNavigation() {
             <Stack.Screen name='ContactUs' component={ContactUs} options={{ headerTitle: "Contact Us" }} />
             <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy} options={{ headerTitle: "Privacy Policy" }} />
             <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
+            <Stack.Screen name='KidsProfileScr2' component={KidsProfileScr2} options={{ headerTitle: "KidsProfile" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
             <Stack.Screen name='Connecting' component={Connecting} />
             <Stack.Screen name='VerificationScreenSecondary' component={VerificationScreenSecondary} />
-            {/* <Stack.Screen name='Profile' component={Profile} /> */}
-            {/* <Stack.Screen name='Chatinner' component={ } options={{ headerShown: false }} /> */}
         </Stack.Navigator>
     );
 }

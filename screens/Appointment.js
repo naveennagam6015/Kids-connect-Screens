@@ -14,25 +14,13 @@ export default function Appointment({ close }) {
     const onClose = () => {
         setProfileDetails(false);
     };
-    function CircleRequests() {
 
-    }
     return (
         <ScrollView>
             <View style={[styles.container]}>
                 <Search />
-                {/* <TextRegular style={[styles.subtext]}>Use <TextBold>Tags</TextBold> to find the Precise Connections Tags</TextRegular> */}
                 <View style={[styles.flexrow, styles.justiffsb]}>
-                    {/* <TouchableOpacity onPress={() => navigation.navigate('ProfileSetup')} style={[styles.Buttoncard, styles.Buttoncardwidth,]}>
-                        <View style={[styles.flexrow]}>
-                            <TextBold style={[styles.btnPrimaryTextsize]}>Circle Requests</TextBold>
-                        </View>
-                    </TouchableOpacity> */}
-                    {/* <TouchableOpacity onPress={CircleRequests} style={[styles.Buttoncard2, styles.Buttoncardwidth,]}>
-                        <View style={[styles.flexrow]}>
-                            <TextBold style={[styles.btnPrimaryTextsize]}>All Requests</TextBold>
-                        </View>
-                    </TouchableOpacity> */}
+
                 </View>
                 <View style={[styles.flexrow]}>
                     <TextBold style={[styles.Headingtext]}>MOST SEARCHED TAGS
