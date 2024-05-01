@@ -12,7 +12,7 @@ import {
   Modal,
 } from "react-native";
 import { color } from "../assets/colors/theme";
-// import Carousel from "react-native-snap-carousel";
+import Carousel from "react-native-snap-carousel";
 import { LinearGradient } from "expo-linear-gradient";
 import { Calendar } from "react-native-calendars";
 import {
@@ -140,7 +140,7 @@ export default function Home({ close }) {
         </SkeletonContainer>
       )}
 
-      {/* {!bannerLoading && (
+      {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -154,7 +154,7 @@ export default function Home({ close }) {
           autoplayInterval={3000}
           onSnapToItem={(index) => setActiveIndex(index)}
         />
-      )} */}
+      )}
       <View style={[styles.container]}>
         <View style={[styles.flexrow, styles.justiffsb]}>
           {/* <TouchableOpacity style={[styles.Buttoncard, styles.Buttoncardwidth]}>

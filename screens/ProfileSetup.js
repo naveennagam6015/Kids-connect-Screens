@@ -342,7 +342,7 @@ export default function ProfileSetup() {
                   70 words
                 </TextRegular>
                 <TextBold style={[styles.Headingtext]}>
-                  Jay’s Interest, Hobbies here
+                  Soumya Interest, Hobbies here
                 </TextBold>
 
                 <ListField
@@ -512,7 +512,7 @@ export default function ProfileSetup() {
               >
                 <View>
                   <TextBold style={{ marginLeft: 20, fontSize: 16 }}>
-                  Open Request{" "}
+                    Open Request{" "}
                   </TextBold>
                 </View>
                 <Switch

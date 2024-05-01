@@ -160,7 +160,7 @@ export default function AddKid({ closed }) {
                         <Text style={{ color: 'red' }}>{descriptionError}</Text>
                     )}
                 </View>
-                <TextBold>Interests</TextBold>
+                {/* <TextBold>Interests</TextBold> */}
                 {/* <ListField
                     onChangeInterest={handleChangeInterest}
                     newInterest={newInterest}
