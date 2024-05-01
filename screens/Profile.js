@@ -126,7 +126,7 @@ export default function Profile() {
                 <View style={[styles.ProfileCard]}>
 
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.Card, styles.flexrow, styles.justsb]}>
+                <TouchableOpacity onPress={() => navigation.navigate('VerificationScreenSecondary')} style={[styles.Card, styles.flexrow, styles.justsb]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Bookings</TextBold>
                     <MaterialIcons style={{ marginTop: 8, marginRight: 8 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
                 </TouchableOpacity>

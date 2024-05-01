@@ -44,6 +44,8 @@ import {
 
     MaterialIcons,
 } from "@expo/vector-icons";
+import Connecting from './screens/Connecting';
+import VerificationScreenSecondary from './screens/VerificationScreenSecondary';
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
@@ -240,6 +242,8 @@ function StackNavigation() {
             <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
+            <Stack.Screen name='Connecting' component={Connecting} />
+            <Stack.Screen name='VerificationScreenSecondary' component={VerificationScreenSecondary} />
             {/* <Stack.Screen name='Profile' component={Profile} /> */}
             {/* <Stack.Screen name='Chatinner' component={ } options={{ headerShown: false }} /> */}
         </Stack.Navigator>

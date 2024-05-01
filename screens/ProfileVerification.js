@@ -38,11 +38,11 @@ const ensureDirExists = async () => {
   }
 };
 
-export default function ProfileVerification({ route, navigation }) {
+export default function ProfileVerification({ navigation, route }) {
   // const navigation = useNavigation();
 
   const [img, setImg] = useState(null);
-
+  const { data } = route.params;
   const [image, setImage] = useState('');
   const [imageName, setImageName] = useState("");
   const [gender, setGender] = useState([
@@ -392,7 +392,7 @@ export default function ProfileVerification({ route, navigation }) {
       "Successfully Registered",
       "You have successfully registered!",
       [
-        { text: 'OK', onPress: () => navigation.navigate("ProfileSetupAfterAdminApproval") },
+        { text: 'OK', onPress: () => data == 'Secondary' ? navigation.navigate('Connecting') : navigation.navigate("ProfileSetupAfterAdminApproval") },
       ]
     );
   }

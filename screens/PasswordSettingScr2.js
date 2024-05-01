@@ -5,8 +5,10 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { color } from "../assets/colors/theme";
 import { TextRegular } from "../assets/fonts/CustomText";
 import { useNavigation } from "@react-navigation/native";
-export default function PasswordSettingScr2() {
-    const navigation = useNavigation();
+export default function PasswordSettingScr2({ navigation, route }) {
+    // const navigation = useNavigation();
+
+    const { data } = route.params;
 
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
@@ -57,7 +59,7 @@ export default function PasswordSettingScr2() {
                 <TextRegular style={[styles.cmtfont]}>Use combination of alphabets and numbers.</TextRegular>
             </View>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}
+            <TouchableOpacity onPress={() => navigation.navigate('Login', { data: data })}
                 style={styles.btnPrimary}>
                 <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18 }}>Go to Sign up</Text>
             </TouchableOpacity>
