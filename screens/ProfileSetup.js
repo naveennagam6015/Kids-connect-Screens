@@ -57,7 +57,7 @@ export default function ProfileSetup() {
   };
   const [items, setItems] = useState([]);
   const [selecteddate, setSelecteddate] = useState('');
-  
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const result = await axios(
@@ -74,19 +74,19 @@ export default function ProfileSetup() {
     return date.toISOString().split('T')[0];
   };
 
-  
+
 
   const loadItems = (day) => {
     setTimeout(() => {
       const newItems = { ...items };
-  
+
       for (let i = -15; i < 85; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = timeToString(time);
-        
+
         if (!newItems[strTime]) {
           newItems[strTime] = [];
-          
+
           const numItems = Math.floor(Math.random() * 3 + 1);
           for (let j = 0; j < numItems; j++) {
             newItems[strTime].push({
@@ -96,23 +96,23 @@ export default function ProfileSetup() {
           }
         }
       }
-  
+
       setItems(newItems);
     }, 1000);
   };
-  
+
 
 
 
   const renderItem = (item) => {
     return (
 
-      <TouchableOpacity 
+      <TouchableOpacity
         onPress={() => setKidopen(!kidopen)}>
 
-        {/* <Text>
+        <Text>
           {item.name}
-        </Text> */}
+        </Text>
 
       </TouchableOpacity>
 
@@ -436,10 +436,10 @@ export default function ProfileSetup() {
                 </TouchableOpacity>
               </View> */}
               <Agenda
-        items={items}
-        loadItemsForMonth={loadItems}
-        renderItem={renderItem}
-      />
+                items={items}
+                loadItemsForMonth={loadItems}
+                renderItem={renderItem}
+              />
             </ProgressStep>
           </ProgressSteps>
         </View>

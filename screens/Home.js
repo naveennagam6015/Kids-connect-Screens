@@ -35,6 +35,7 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import ProfileDetails from "../components/ProfileDetails";
 import { useNavigation } from "@react-navigation/native";
 import KidsProfileScr2 from "./KidsProfileScn2";
+import AnotherParentDetails from "../components/AnotherParentDetails";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
@@ -56,6 +57,7 @@ export default function Home({ close }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newInterest, setNewInterest] = useState("");
   const [kiddetails, setKiddetails] = useState("");
+  const [anotherparentdetails, setAnotherparentdetails] = useState("");
 
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
@@ -317,7 +319,7 @@ export default function Home({ close }) {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)}
+                onPress={() => setAnotherparentdetails(!anotherparentdetails)}
                 style={{ alignItems: "center" }}>
                 <View>
                   <Image
@@ -828,6 +830,11 @@ export default function Home({ close }) {
         animationType="slide" transparent={true} visible={kiddetails}>
         <View style={styles.topDummy} />
         <KidsProfileScr2 name={"Naveen"} close={() => setKiddetails(!kiddetails)} />
+      </Modal>
+      <Modal
+        animationType="slide" transparent={true} visible={anotherparentdetails}>
+        <View style={styles.topDummy} />
+        <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
       </Modal>
     </ScrollView >
   );
