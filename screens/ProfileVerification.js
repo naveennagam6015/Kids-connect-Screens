@@ -409,7 +409,7 @@ export default function ProfileVerification({ navigation, route }) {
           name="arrowleft"
           size={24}
         /> */}
-        <TextBold style={[styles.back, { marginLeft: 20 }]}>Step 3 of 3</TextBold>
+        {/* <TextBold style={[styles.back, { marginLeft: 20 }]}>Step 3 of 3</TextBold> */}
       </View>
 
       <View style={[styles.container]}>
