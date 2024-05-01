@@ -8,6 +8,7 @@ import {
   Button,
   Platform,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import Home from "./screens/Home";
 import Appointment from "./screens/Appointment";
@@ -54,6 +55,7 @@ import Connecting from "./screens/Connecting";
 import VerificationScreenSecondary from "./screens/VerificationScreenSecondary";
 import KidsProfileScr2 from "./screens/KidsProfileScn2";
 import { MaterialIcons } from "@expo/vector-icons";
+import GroupInner from "./screens/GroupInner";
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
@@ -234,7 +236,7 @@ function BottomNavigation({ navigation }) {
 }
 const Stack = createStackNavigator();
 
-function StackNavigation() {
+function StackNavigation({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="VerificationScreen">
       <Stack.Screen
@@ -298,10 +300,26 @@ function StackNavigation() {
         options={{ headerTitle: "Chat" }}
       />
       <Stack.Screen
+        name="GroupInner"
+        component={GroupInner}
+      // options={{
+      //   headerTitle: () => (
+      //     <TouchableOpacity onPress={() =>alert("hii")}>
+      //       <Text style={{ color: 'white', fontSize: 16 }}>Birthday Party</Text>
+      //     </TouchableOpacity>
+      //   ),
+      //   headerStyle: { backgroundColor: color.primary },
+      // }}
+      />
+      <Stack.Screen
         name="ChatInner"
         component={ChatInner}
         options={{
-          headerTitle: "Birthday Party",
+          headerTitle: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("GroupInner")}>
+              <Text style={{ color: 'white', fontSize: 16 }}>Birthday Party</Text>
+            </TouchableOpacity>
+          ),
           headerStyle: { backgroundColor: color.primary },
         }}
       />

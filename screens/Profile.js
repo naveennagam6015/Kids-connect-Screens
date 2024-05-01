@@ -9,6 +9,7 @@ import {
   Switch,
   Modal,
   TextInput,
+  Text,
 } from "react-native";
 import { TextBold, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
@@ -93,8 +94,12 @@ export default function Profile() {
               />
             </TouchableOpacity>
           </View>
-        </View>
 
+        </View>
+        <View>
+          <TextBold>About</TextBold>
+          <Text>Hey there! I'm Krishna, a passionate Motion Designer currently based in the busting city of the New York.In my career, I'm also a proud of mother...<TextBold>more</TextBold></Text>
+        </View>
         <View>
           {/* <TextBold style={[{ justifyContent: 'center' }, styles.Headingtext]}>About</TextBold> */}
         </View>
@@ -104,7 +109,7 @@ export default function Profile() {
 
         <View style={[styles.fullcard, styles.flexrow]}>
           {/* First column: Image and Content */}
-          <View style={[styles.flexrow]}>
+          <View style={[styles.flexrow, { alignItems: "center" }]}>
             <View style={{ alignItems: "center" }}>
               <View>
                 <Image
@@ -117,13 +122,14 @@ export default function Profile() {
                 <TextBold style={[styles.childrenname]}>Radha </TextBold>
               </View>
             </View>
+            <View style={{ borderRightWidth: 2, borderColor: color.neutral[500], marginRight: 10 }}></View>
             <View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <View style={{ marginRight: 10 }}>
                   <Image
                     style={[
                       styles.profilepic,
-                      { width: 50, height: 50, marginBottom: 10 },
+                      { width: 60, height: 60, marginBottom: 10 },
                     ]}
                     source={require("../assets/images/bgwhite.png")}
                   />
@@ -150,25 +156,9 @@ export default function Profile() {
                   </View>
                 </TouchableOpacity>
               </View>
-              {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <View>
-                                    <Image style={[styles.profilepic, { width: 50, height: 50 },]} source={require('../assets/images/women.png')} />
-                                </View>
-                                <TouchableOpacity style={{ flexDirection: 'row' }}>
-                                    <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>Add</TextRegular>
 
-                                    <View style={{ alignItems: 'center' }}>
-                                        <View style={[styles.imageplusadd]}>
-                                            <AntDesign name="plus" size={10} color={color.neutral[500]} />
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            </View> */}
             </View>
-            {/* <View style={{ marginLeft: 10, flex: 1 }}>
-                            <TextRegular style={[styles.textnetural]}>Additional content goes here...</TextRegular>
-                        </View> */}
-            {/* </View> */}
+
           </View>
         </View>
         <View style={[styles.ProfileCard]}>
@@ -248,7 +238,7 @@ export default function Profile() {
           style={[styles.Card, styles.flexrow, styles.justsb]}
         >
           <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>
-            My Account
+            My Account Status
           </TextBold>
           <MaterialIcons
             style={{ marginTop: 8, marginRight: 8 }}
@@ -257,7 +247,7 @@ export default function Profile() {
             color={color.fontcolor}
           />
         </TouchableOpacity>
-        <TextBold style={[styles.Headingtext]}>Requested by</TextBold>
+        {/* <TextBold style={[styles.Headingtext]}>Requested by</TextBold> */}
         <View style={[styles.yellowcard, { marginTop: 4 }]}>
           <View style={{ paddingHorizontal: 10 }}>
             <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>
@@ -627,7 +617,7 @@ export default function Profile() {
         </View>
 
         <Modal animationType="slide" transparent={true} visible={open}>
-          <View style={{justifyContent:'flex-end', flex:1}}>
+          <View style={{ justifyContent: 'flex-end', flex: 1 }}>
             <AddKid closed={() => setOpen(!open)} />
           </View>
         </Modal>

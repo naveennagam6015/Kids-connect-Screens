@@ -13,15 +13,15 @@ export default function Confirmation() {
                     <View style={styles.contentContainer}>
                         <Image style={styles.profilepic} source={require('../assets/images/bgwhite.png')} />
                         <TextRegular style={styles.childrenname} numberOfLines={2}>
-                            Yay..! Soumya’s Profile is successfully Uploaded on your circle!
+                            Yay..! Soumya’s Profile is Successfully sent to Edsher.
                         </TextRegular>
                     </View>
                 </View>
             </View>
             <View style={[styles.flexrow, { marginTop: 10, justifyContent: "space-between" }]}>
-                <TouchableOpacity onPress={() => navigation.navigate("BottomNavigation")} style={[styles.innerbtn]}>
+                {/* <TouchableOpacity onPress={() => navigation.navigate("BottomNavigation")} style={[styles.innerbtn]}>
                     <TextBold>Back to Home</TextBold>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation', { screen: 'Requests' })} style={[styles.innerbtn1]}>
                     <TextBold>Take me there</TextBold>
                 </TouchableOpacity>

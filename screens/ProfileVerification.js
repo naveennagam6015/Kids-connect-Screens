@@ -629,9 +629,12 @@ export default function ProfileVerification({ navigation, route }) {
 
 
 
-        <TouchableOpacity style={[styles.submitButton, { marginBottom: 15, marginTop: 20, flexDirection: "row", alignItems: "center" }]} onPress={alertregister}        >
+        <TouchableOpacity
+          style={[styles.submitButton, { marginBottom: 15, marginTop: 20 }]}
+          onPress={alertregister}
+        // onPress={SubmitData}
+        >
           <TextMedium style={styles.submitButtonText}>Save</TextMedium>
-          <MaterialIcons style={{ marginTop: 2 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
         </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={cameramodal}>

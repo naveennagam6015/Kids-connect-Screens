@@ -1,7 +1,7 @@
-import { Image, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native"
+import { Image, Modal, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native"
 import { TextBold, TextMedium, TextRegular } from "../assets/fonts/CustomText"
 import { color } from "../assets/colors/theme"
-import { FontAwesome, MaterialIcons, Ionicons, Entypo, AntDesign } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons, Ionicons, Entypo, AntDesign } from '@expo/vector-icons';
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native";
@@ -9,10 +9,15 @@ import {
     Feather, FontAwesome6, FontAwesome5
 } from "@expo/vector-icons";
 import { TextInput } from "react-native";
+import AnotherParentDetails from "./AnotherParentDetails";
+import { useState } from "react";
 
 export default function AnotherKidDetails({ close, name }) {
     const navigation = useNavigation();
-
+    const [anotherparentdetails, setAnotherparentdetails] = useState("");
+    const onClose = () => {
+        setAnotherparentdetails(false);
+    };
     return (
 
         <ScrollView>
@@ -32,9 +37,12 @@ export default function AnotherKidDetails({ close, name }) {
                         <View style={[{ width: "70%", }, styles.profileName]}>
                             <TextBold style={{ fontSize: 12 }}>Fanwood HighSchool Aryan Profile Shreyas, 14 loves outdoor adventures, sports, art, and tech exploration. Each activity fuels his curiosity and passion for discovering the world's wonders.
                             </TextBold>
-                            <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                <Text style={{ marginTop: 10 }}>30+ Connections </Text>
-                                <Feather name="arrow-up-right" size={20} color="black" />
+                            <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
+                                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+                                    <Text style={{ marginTop: 10 }}>30+ Connections </Text>
+                                    <Feather name="arrow-up-right" size={20} color="black" />
+                                </View>
+                                <MaterialCommunityIcons name="bookmark" size={24} color={color.secondaryOrange} />
                             </View>
                         </View>
                     </View>
@@ -89,7 +97,7 @@ export default function AnotherKidDetails({ close, name }) {
                 </View>
                 <TextBold style={{ fontSize: 20, }}>Family Profile</TextBold>
                 <View style={[styles.flexrow, { marginTop: 5 }]}>
-                    <View style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
+                    <TouchableOpacity onPress={() => setAnotherparentdetails(!anotherparentdetails)} style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
                         <View>
                             <Image style={[styles.profilepicactive]} source={require('../assets/images/2women.jpg')} />
                         </View>
@@ -99,7 +107,7 @@ export default function AnotherKidDetails({ close, name }) {
                             <TextRegular style={[styles.childrenname]}>Tulika</TextRegular><Feather name="arrow-up-right" size={15} color="black" />
                         </View>
                         <TextRegular style={{ fontSize: 12 }}>Mother</TextRegular>
-                    </View>
+                    </TouchableOpacity>
                     <View style={{ marginRight: 10, justifyContent: "center", alignItems: "center" }}>
                         <View>
                             <Image style={[styles.profilepicactive]} source={require('../assets/images/2men3.jpg')} />
@@ -112,7 +120,7 @@ export default function AnotherKidDetails({ close, name }) {
 
                 </View>
                 <View>
-                    <TextBold style={{ fontSize: 18, marginTop: 10 }}>Meeting Location</TextBold>
+                    <TextBold style={{ fontSize: 18, marginTop: 10 }}>Address Location</TextBold>
                     <Text>
                         199 Oakway Lane,Woodland Hills,CA
                     </Text>
@@ -120,7 +128,7 @@ export default function AnotherKidDetails({ close, name }) {
                 </View>
 
                 <View style={{ marginTop: 15 }}>
-                    <Text>We Selected based on </Text>
+                    <Text>We Discover based on </Text>
                 </View>
                 <View style={[styles.border1]}>
                     <View style={[styles.flexrow, { flexWrap: "wrap" }]}>
@@ -140,13 +148,30 @@ export default function AnotherKidDetails({ close, name }) {
                     </View>
 
                 </View>
+                <TouchableOpacity onPress={() => navigation.navigate("ProfileSetup")} style={styles.btnPrimary} >
+                    <TextMedium style={styles.btnText}>Connect Now</TextMedium>
+                </TouchableOpacity>
 
             </View>
-
+            <Modal
+                animationType="slide" transparent={true} visible={anotherparentdetails}>
+                <View style={styles.topDummy} />
+                <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+            </Modal>
         </ScrollView>
     )
 }
 const styles = StyleSheet.create({
+    btnPrimary: {
+        padding: 15,
+        margin: 12,
+        backgroundColor: color.primary,
+        borderRadius: 8
+    },
+    btnText: {
+        alignSelf: 'center',
+        fontSize: 18
+    },
     mv10: {
         marginVertical: 10,
     },
@@ -282,11 +307,12 @@ const styles = StyleSheet.create({
 
     border1: {
         borderWidth: 1,
-        borderRadius: 1,
+
+        borderRadius: 20,
         borderColor: color.white,
         backgroundColor: color.neutral[300],
         // padding: 16,
-        marginVertical: 20,
+        marginVertical: 10,
     },
     border3: {
         borderWidth: 1,

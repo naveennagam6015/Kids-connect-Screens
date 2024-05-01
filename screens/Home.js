@@ -190,8 +190,38 @@ export default function Home({ close }) {
         <View>
           <TextBold style={[styles.Headingtext]}>Calendar Overview</TextBold>
           <Calendar />
-          <TextBold style={[styles.Headingtext]}>Ongoing Appointments</TextBold>
-
+          <View>
+            <TouchableOpacity style={[styles.btnPrimary, { flexDirection: "row", justifyContent: "space-between" }]}>
+              <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18 }}>Previous Events</Text>
+              <View
+                style={[styles.flexrow, { alignItems: "center" }]}
+              >
+                <TextBold style={[styles.btnPrimaryTextsize]}>
+                  View All
+                </TextBold>
+                <MaterialIcons
+                  name="keyboard-arrow-right"
+                  size={24}
+                  color={color.primary}
+                />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.btnPrimary, { flexDirection: "row", justifyContent: "space-between" }]}>
+              <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18 }}>Faviourite Events</Text>
+              <View
+                style={[styles.flexrow, { alignItems: "center" }]}
+              >
+                <TextBold style={[styles.btnPrimaryTextsize]}>
+                  View All
+                </TextBold>
+                <MaterialIcons
+                  name="keyboard-arrow-right"
+                  size={24}
+                  color={color.primary}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
           <View style={[styles.Cardnodata]}>
             <View style={[styles.innercardnodata, styles.flexrow]}>
               <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -304,6 +334,7 @@ export default function Home({ close }) {
               </View>
             </View>
           </View>
+          <TextBold style={[styles.Headingtext]}>Active</TextBold>
 
           <View style={[styles.Card]}>
             <View style={[styles.innercard1, styles.flexrow]}>
@@ -862,6 +893,16 @@ const styles = StyleSheet.create({
   textnetural: {
     color: color.neutral[500],
     marginVertical: 2,
+  },
+  btnPrimary: {
+    padding: 15,
+    margin: 2,
+    borderWidth: 2,
+    borderColor: color.primary,
+    // backgroundColor: color.primary,
+    borderRadius: 8,
+    marginVertical: 10,
+
   },
   Tags2: {
     backgroundColor: color.white,

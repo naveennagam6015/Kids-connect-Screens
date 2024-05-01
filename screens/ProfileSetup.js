@@ -174,14 +174,20 @@ export default function ProfileSetup() {
       console.log(err);
     })
   }
+  function Creategroup() {
+    alert("Event request sent waiting for apporval")
+    navigation.navigate("Chat");
+  }
   return (
     <ScrollView>
       <View style={[styles.container]}>
         <TextRegular style={[styles.subtext]}>
+          Select Your Kid To Connect
+        </TextRegular>
+        <TextRegular style={[styles.subtext]}>
           <TextBold style={[styles.Headingtext]}>Madisson, </TextBold>
           Let’s set up perfect connection for you lovable ones
         </TextRegular>
-
         <View>
           <ProgressSteps
             activeStepIconBorderColor={color.secondaryOrange}
@@ -389,7 +395,7 @@ export default function ProfileSetup() {
                 >
                   <View style={[styles.flexrow]}>
                     <TextMedium style={[styles.btnPrimaryTextsize]}>
-                      Back
+                      Save
                     </TextMedium>
                   </View>
                 </TouchableOpacity>
@@ -579,9 +585,14 @@ export default function ProfileSetup() {
             </View>
 
             {/* contacts */}
-            <TextRegular style={{ fontSize: 18, marginBottom: 10 }}>
-              Select People to send bulk requets{" "}
-            </TextRegular>
+            <View style={{ marginBottom: 5, justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
+              <TextRegular style={{ fontSize: 18, marginBottom: 10 }}>
+                Select People to send bulk requets{" "}
+              </TextRegular>
+              <TouchableOpacity onPress={Creategroup} style={{ backgroundColor: color.primary, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 }}>
+                <TextBold>Send  </TextBold>
+              </TouchableOpacity>
+            </View>
             <View style={styles.line} />
             {/* main start */}
             <TouchableWithoutFeedback onLongPress={handleLongPress}>
@@ -745,7 +756,7 @@ export default function ProfileSetup() {
               style={[styles.Buttoncardinner2, styles.Buttoncardwidthhalf]}
             >
               <TextMedium style={[styles.btnPrimaryTextsize]}>
-                Upload Request
+                Send
               </TextMedium>
             </TouchableOpacity>
           </View>
