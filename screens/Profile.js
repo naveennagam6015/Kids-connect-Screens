@@ -220,7 +220,7 @@ export default function Profile() {
                                     borderRadius: 10,
                                 }}
                             >
-                                <TouchableOpacity style={{ alignSelf: "center", padding: 2 }}>
+                                <TouchableOpacity style={{ alignSelf: "center", padding: 2 }} onPress={() => navigation.navigate("VerificationScreenSecondary")}>
                                     <TextBold style={styles.Headingtext}>Invite</TextBold>
                                 </TouchableOpacity>
                             </View>
@@ -228,7 +228,7 @@ export default function Profile() {
                     </View>
                 </View>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate("VerificationScreenSecondary")}
+                    
                     style={[styles.Card, styles.flexrow, styles.justsb]}
                 >
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>
