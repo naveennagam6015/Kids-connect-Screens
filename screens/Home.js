@@ -449,7 +449,7 @@ export default function Home({ close }) {
         <View style={[styles.Card]}>
           <View style={[styles.innercard2, styles.flexrow]}>
             <TouchableOpacity
-              onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-start" }}>
+              onPress={() => setKiddetails(!kiddetails)} style={{ alignItems: "flex-start" }}>
               <View>
                 <Image
                   style={[styles.profilepic, styles.activeprofilr]}
@@ -470,7 +470,8 @@ export default function Home({ close }) {
               <TextRegular>Feb 17th | Monday</TextRegular>
             </View>
             <TouchableOpacity
-              onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-end" }}>
+              onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+              style={{ alignItems: "flex-end" }}>
               <View>
                 <Image
                   style={[styles.profilepic]}
