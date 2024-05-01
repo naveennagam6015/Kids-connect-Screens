@@ -36,6 +36,7 @@ import ProfileDetails from "../components/ProfileDetails";
 import { useNavigation } from "@react-navigation/native";
 import KidsProfileScr2 from "./KidsProfileScn2";
 import AnotherKidDetails from "../components/AnotherKidDetails";
+import AnotherParentDetails from "../components/AnotherParentDetails";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
@@ -836,6 +837,11 @@ export default function Home({ close }) {
         animationType="slide" transparent={true} visible={anotherkiddetails}>
         <View style={styles.topDummy} />
         <AnotherKidDetails name={"Naveen"} close={() => setAnotherkiddetails(!anotherkiddetails)} />
+      </Modal>
+      <Modal
+        animationType="slide" transparent={true} visible={anotherparentdetails}>
+        <View style={styles.topDummy} />
+        <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
       </Modal>
     </ScrollView >
   );
