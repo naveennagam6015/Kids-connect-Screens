@@ -64,14 +64,14 @@ export default function Profile() {
                     <View style={[{ width: "35%" }, styles.profileName]}>
                         <Image
                             style={[styles.profilepic]}
-                            source={require("../assets/images/man3.jpg")}
+                            source={require("../assets/images/women.png")}
                         />
                     </View>
                     <View style={[{ width: "45%" }, styles.profileName]}>
                         <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>
-                            Krishna (M)
+                            Radha (F)
                         </TextBold>
-                        <TextBold style={{ fontSize: 12 }}>krishna2024@gmail.com</TextBold>
+                        <TextBold style={{ fontSize: 12 }}>Radha2024@gmail.com</TextBold>
                         <TextBold style={{ color: color.neutral[300], fontSize: 12 }}>
                             4387 Farland Avenue, San Antonio, TX 78212
                         </TextBold>
@@ -109,12 +109,12 @@ export default function Profile() {
                             <View>
                                 <Image
                                     style={[styles.profilepic]}
-                                    source={require("../assets/images/women.png")}
+                                    source={require("../assets/images/man3.jpg")}
                                 />
                             </View>
 
                             <View style={{ alignItems: "flex-start" }}>
-                                <TextBold style={[styles.childrenname]}>Radha </TextBold>
+                                <TextBold style={[styles.childrenname]}>Krishna </TextBold>
                             </View>
                         </View>
                         <View>
@@ -228,7 +228,7 @@ export default function Profile() {
                     </View>
                 </View>
                 <TouchableOpacity
-                    
+
                     style={[styles.Card, styles.flexrow, styles.justsb]}
                 >
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>
