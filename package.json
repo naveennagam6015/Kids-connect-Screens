@@ -55,6 +55,8 @@
     "react-native-web": "^0.19.10",
     "save": "^2.9.0",
     "expo-device": "~5.9.4"
+  }
+    "expo-device": "~5.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.24.3"
