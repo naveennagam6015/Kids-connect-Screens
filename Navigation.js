@@ -39,7 +39,10 @@ import ProfileDetails from './components/ProfileDetails';
 import PasswordSettingScr2 from './screens/PasswordSettingScr2';
 import AddingKidsAndPets2 from './screens/AddingKidsAndPets2';
 import VerificationScreen from './screens/VerificationCode';
+import {
 
+    MaterialIcons,
+} from "@expo/vector-icons";
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
@@ -130,8 +133,11 @@ function BottomNavigation() {
 
     const headerRight = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
-                <Text>Chat</Text>
+            <TouchableOpacity style={{ marginRight: 20 }} onPress={() => navigation.navigate('Chat')}>
+                <View>
+                    <MaterialIcons name="message" size={23} color="black" />
+                </View>
+
             </TouchableOpacity>
         )
     }
@@ -205,12 +211,12 @@ function StackNavigation() {
     return (
         <Stack.Navigator initialRouteName='VerificationScreen'>
             <Stack.Screen name='VerificationScreen' component={VerificationScreen} options={{ headerShown: false }} />
-            <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerShown: false }} />
+            <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerTitle: "Step 2 of 3" }} />
             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='Test' component={Test} options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name='BottomNavigation' component={BottomNavigation} options={{ headerShown: false }} />
             <Stack.Screen name='Register' component={Registration} options={{ headerTitle: "Step 1 of 2" }} />
-            <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Step 1 of 2" }} />
+            <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Profile Verification" }} />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{ headerShown: false }} />
             <Stack.Screen name='ProfileSetup' component={ProfileSetup} options={{ headerTitle: "Profile Setup" }} />
             <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids" }} />

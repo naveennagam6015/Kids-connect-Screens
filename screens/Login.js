@@ -129,8 +129,9 @@ export default function Login() {
 
             <View style={styles.container}>
                 <StatusBar />
-                {/* <ImageBackground source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
-                <TextBold style={styles.heading}>Kid Connect</TextBold>
+                {/* <Image source={require('../assets/images/LoginBackground.png')} style={styles.backgroundImage} resizeMode="cover"> */}
+                <Ionicons style={{ justifyContent: "center", alignItems: "center", alignSelf: "center" }} name="image-outline" size={180} color={color.neutral[500]} />
+                <TextBold style={[styles.heading, { color: color.neutral[500] }]}>Kid Connect</TextBold>
                 <TextBold style={styles.subheading}>Welcome</TextBold>
                 <View>
                     <TextInput style={styles.inputBox} placeholder="Enter your mail" onChangeText={(email) => {
