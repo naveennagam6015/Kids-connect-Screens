@@ -121,10 +121,8 @@ export default function AddKid({ closed }) {
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
                             <Pressable
-                                onPress={() => {
-                                    setKidopen(!kidopen);
-                                    setOpen(!open);
-                                }}
+                                onPress={closed}
+
                                 style={[styles.flexrow]}>
                                 <TextMedium style={[styles.btnPrimaryTextsize]}>Add to Profile</TextMedium>
                                 <AntDesign style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }} name="right" size={16} color={color.fontcolor} />

@@ -77,11 +77,11 @@ export default function AnotherParentDetails({ close, name }) {
                 <View style={[styles.container]}>
                     <View style={[styles.flexrow, { paddingVertical: 5 }]}>
                         <Entypo name="block" style={{ marginRight: 10, }} size={20} color={color.secondaryOrange} />
-                        <TextRegular style={{ fontSize: 18, color: color.secondaryOrange }}>Block Abay</TextRegular>
+                        <TextRegular style={{ fontSize: 18, color: color.secondaryOrange }}>Block </TextRegular>
                     </View>
                     <View style={[styles.flexrow, { paddingVertical: 5 }]}>
                         <AntDesign style={{ marginRight: 10 }} name="dislike1" size={20} color={color.secondaryOrange} />
-                        <TextRegular style={{ fontSize: 18, color: color.secondaryOrange }}>Report Abay</TextRegular>
+                        <TextRegular style={{ fontSize: 18, color: color.secondaryOrange }}>Report </TextRegular>
                     </View>
                 </View>
             </View>

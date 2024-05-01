@@ -331,7 +331,7 @@ export default function Home({ close }) {
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Tulika (M)</TextBold>
+                  <TextBold style={[styles.childrenname]}>Tulika (F)</TextBold>
                 </View>
               </TouchableOpacity>
             </View>
@@ -406,7 +406,7 @@ export default function Home({ close }) {
               </View>
             </TouchableOpacity> */}
             <TouchableOpacity
-              onPress={() => setOpen(!open)}
+              onPress={() => setAnotherkiddetails(!anotherkiddetails)}
               style={[styles.Buttoncardmoredetails, styles.Buttoncardwidth3]}
             >
               <View style={[styles.flexrow]}>
@@ -449,7 +449,7 @@ export default function Home({ close }) {
         <View style={[styles.Card]}>
           <View style={[styles.innercard2, styles.flexrow]}>
             <TouchableOpacity
-              onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-start" }}>
+              onPress={() => setKiddetails(!kiddetails)} style={{ alignItems: "flex-start" }}>
               <View>
                 <Image
                   style={[styles.profilepic, styles.activeprofilr]}
@@ -470,7 +470,8 @@ export default function Home({ close }) {
               <TextRegular>Feb 17th | Monday</TextRegular>
             </View>
             <TouchableOpacity
-              onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-end" }}>
+              onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+              style={{ alignItems: "flex-end" }}>
               <View>
                 <Image
                   style={[styles.profilepic]}
@@ -506,7 +507,7 @@ export default function Home({ close }) {
                 <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity
+            <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)}
               style={[styles.Buttoncard2, styles.Buttoncardwidth2]}
             >
               <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
@@ -841,8 +842,9 @@ export default function Home({ close }) {
       </Modal>
       <Modal
         animationType="slide" transparent={true} visible={anotherparentdetails}>
-        <View style={styles.topDummy} />
-        <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+        <View style={styles.topDummy}>
+          <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+        </View>
       </Modal>
     </ScrollView >
   );
@@ -961,7 +963,8 @@ const styles = StyleSheet.create({
   },
   topDummy: {
     flex: 1,
-    opacity: 0,
+    // opacity: 0,
+    justifyContent: 'flex-end'
   },
   btnPrimaryTextsize: {
     fontSize: 16,
