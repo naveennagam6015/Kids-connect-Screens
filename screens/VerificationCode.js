@@ -13,6 +13,7 @@ export default function VerificationScreen() {
             <ImageBackground source={require('../assets/images/login.jpg')} style={{ width: '100%', height: '100%' }}>
                 <View style={styles.centeredContainer}>
                     <View style={styles.container}>
+                    <Text style={{ fontWeight: 'bold', color: color.primary,marginBottom:15 }}>Step 1 of 3</Text>
                         <Text>Enter the OTP sent to your email</Text>
                         <View style={[styles.flexrow, styles.justiffsb]}>
                             <View style={styles.inputfiled}></View>
@@ -46,6 +47,8 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: color.neutral[100],
         borderRadius: 10,
+        margin:3
+       
     },
     flexrow: {
         flexDirection: "row",
@@ -56,18 +59,18 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: color.primary,
         borderRadius: 8,
-        marginVertical: 50,
+        marginVertical: 20,
     },
     inputfiled: {
         borderColor: color.primary,
         borderWidth: 1,
-        marginBottom: 10,
         width: "20%",
         padding: 5,
         margin: 5,
         backgroundColor: color.neutral[200],
         borderRadius: 8,
         height: 50,
+        
     },
     infoTextContainer: {
         marginTop: 20,
@@ -78,5 +81,6 @@ const styles = StyleSheet.create({
     },
     infoText: {
         color: color.fontcolor, // Change this to the grey color you want
+        fontSize:12
     },
 });
