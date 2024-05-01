@@ -45,7 +45,7 @@ export default function Profile() {
             <SafeAreaView style={styles.container}>
                 <View style={{ flexDirection: "row" }} >
                     <View style={[{ width: "35%" }, styles.profileName]}>
-                        <Image style={[styles.profilepic]} source={require('../assets/images/man3.jpg')} />
+                        <Image style={[styles.profilepic]} source={require('../assets/images/women.png')} />
                     </View>
                     <View style={[{ width: "45%", }, styles.profileName]}>
                         <TextBold style={{ color: color.secondaryOrange, fontSize: 16 }}>Krishna (M)</TextBold>

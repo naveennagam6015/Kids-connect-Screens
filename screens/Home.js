@@ -303,7 +303,7 @@ export default function Home({ close }) {
           <View style={[styles.Card]}>
             <View style={[styles.innercard1, styles.flexrow]}>
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)}
+                // onPress={() => setProfileDetails(!profileDetails)}
                 style={{ alignItems: "center" }}>
                 <View>
                   <Image
@@ -322,11 +322,11 @@ export default function Home({ close }) {
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/2men3.jpg")}
+                    source={require("../assets/images/2women.jpg")}
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Rakesh</TextBold>
+                  <TextBold style={[styles.childrenname]}>Tulika (M)</TextBold>
                 </View>
               </TouchableOpacity>
             </View>

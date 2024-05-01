@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { Image, SafeAreaView, ScrollView, Platform, StyleSheet, TouchableOpacity, Text, View, TextInput } from "react-native";
+import React, { useState } from "react";
+import { Image, SafeAreaView, ScrollView, Platform, StyleSheet, TouchableOpacity, Text, View, TextInput, Switch } from "react-native";
 import { TextBold, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
 import {
@@ -11,6 +11,8 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default function KidsProfileScr2({ close, name }) {
     const navigation = useNavigation();
+    const [darkmode, setDarkmode] = useState(false);
+
     return (
         <ScrollView>
             <View style={[styles.container, styles.containermain]}>
@@ -23,10 +25,10 @@ export default function KidsProfileScr2({ close, name }) {
                 <View style={[styles.padding]}>
                     <View style={{ flexDirection: "row" }} >
                         <View style={[{ width: "30%" }, styles.profileName]}>
-                            <Image style={[styles.profilepic]} source={require('../assets/images/man3.jpg')} />
+                            <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
                         </View>
                         <View style={[{ width: "70%", }, styles.profileName]}>
-                            <TextBold style={{ fontSize: 12 }}>Fanwood HighSchool Aryan Profile Shreyas, 14 loves outdoor adventures, sports, art, and tech exploration. Each activity fuels his curiosity and passion for discovering the world's wonders.
+                            <TextBold style={{ fontSize: 12 }}>Anita, 14 loves outdoor adventures, sports, art, and tech exploration. Each activity fuels his curiosity and passion for discovering the world's wonders.
                             </TextBold>
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
                                 <Text style={{ marginTop: 10 }}>30+ Connections </Text>
@@ -75,15 +77,19 @@ export default function KidsProfileScr2({ close, name }) {
                         <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18 }}>Booking History</Text>
                     </TouchableOpacity>
 
-                    <View style={styles.btnSecondary}>
+                    <View style={[styles.btnSecondary, { justifyContent: "space-between", alignItems: "center" }]}>
                         <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18 }}>Permissions</Text>
-                        <TouchableOpacity >
-                            <FontAwesome6 name="toggle-off" size={24} color="black" />
-                        </TouchableOpacity>
+                        <Switch
+                            trackColor={{ false: color.secondaryOrange, true: color.success }}
+                            thumbColor={darkmode ? color.white : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={() => setDarkmode(previousState => !previousState)}
+                            value={darkmode}
+                        />
                     </View>
 
                     <View style={[styles.edithobbies]}>
-                        <TextBold>Hobbies</TextBold>
+                        <TextBold style={{ fontSize: 18 }}>Hobbies</TextBold>
                         <View style={[styles.designedit]}>
                             <TouchableOpacity>
                                 <FontAwesome5 name="edit" size={13} color="#FFC107" />
@@ -137,43 +143,6 @@ export default function KidsProfileScr2({ close, name }) {
 
 const styles = StyleSheet.create({
 
-    // Button: {
-
-    //     flexDirection: 'row',
-    //     justifyContent: 'center',  
-    //     backgroundColor: color.primary,
-
-    //     borderRadius: 8,
-    //     borderWidth: 1,
-    //     borderColor: color.neutral[100],
-    //     // borderStyle: 'dotted',
-    //     padding: 8,
-    // },
-    // text: {
-    //     width:"100%",
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between',
-    //     backgroundColor: color.white,
-    //     borderRadius: 8,
-    //     borderWidth: 3,
-    //     borderColor: color.neutral[100],
-
-    // },
-
-    // txtbtn: {
-    //     fontWeight: "bold",
-    //     fontSize: 20,
-    //     color: color.fontcolor,
-    //     textAlign: "center",
-    // },
-
-
-    // inputtxt: {
-    //     fontWeight: "bold",
-    //     fontSize: 20,
-    //     color: color.fontcolor,
-    //     textAlign: "center",
-    // },
 
     margin: {
         marginVertical: 10,
@@ -224,13 +193,10 @@ const styles = StyleSheet.create({
         margin: 4,
     },
 
-    padding: {
-        padding: 16,
-    },
     profilepic: {
         marginRight: 8,
-        width: 80,
-        height: 80,
+        width: 100,
+        height: 100,
         borderRadius: 50,
     },
 
@@ -246,12 +212,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flexDirection: "row",
         alignItems: "center",
-        // justifyContent: "center",
-
+        marginBottom: 10
     },
 
     designedit: {
-        padding: 8,
+        padding: 5,
+        marginLeft: 5,
         borderRadius: 50,
         marginLeft: "1%",
         alignItems: "center",
@@ -265,7 +231,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.34,
         shadowRadius: 6.27,
 
-        elevation: 10,
+        elevation: 3,
     },
 
 
@@ -279,7 +245,8 @@ const styles = StyleSheet.create({
     },
 
     btnSecondary: {
-        padding: 15,
+        paddingVertical: 4,
+        paddingHorizontal: 16,
         margin: 1,
         backgroundColor: color.primary,
         borderRadius: 8,
