@@ -53,11 +53,8 @@
     "react-native-tab-view": "^3.5.2",
     "react-native-vector-icons": "^10.0.3",
     "react-native-web": "^0.19.10",
-<<<<<<< HEAD
+    "save": "^2.9.0",
     "expo-device": "~5.9.4"
-=======
-    "save": "^2.9.0"
->>>>>>> c3ce144d5a3d1091d0664fdbdcfb672c52ae0264
   },
   "devDependencies": {
     "@babel/core": "^7.24.3"
