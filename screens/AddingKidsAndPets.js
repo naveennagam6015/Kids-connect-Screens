@@ -635,29 +635,13 @@ export default function AddingKidsAndPets() {
       <View style={[styles.Cardadd]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            {petsData.map((pet, index) => (
-              <View style={{ marginRight: 10 }} key={index}>
-                <View>
-                  {/* Assuming pet.profilePic holds the source of the pet's profile picture */}
-                  {/* <Image style={[styles.profilepicactive2, { borderWidth: 2, borderColor: color.accent }]} source={{ uri: pet.profilePic }} /> */}
-                  <Image
-                    style={[styles.profilepic]}
-                    source={require("../assets/images/man3.jpg")}
 
-                  />
-                </View>
-                <View>
-                  {/* Assuming pet.name holds the name of the pet */}
-                  <TextRegular style={[styles.childrenname]}>{pet.Name}</TextRegular>
-                </View>
-              </View>
-            ))}
           </View>
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
             <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
               <AntDesign name="plus" size={30} color={color.neutral[500]} />
             </TouchableOpacity>
-            <TextBold>Add</TextBold>
+            <TextBold>Add   </TextBold>
           </View>
         </ScrollView>
       </View>

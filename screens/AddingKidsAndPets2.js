@@ -636,26 +636,26 @@ export default function AddingKidsAndPets2() {
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
-                        <View style={{ marginRight: 10 }}>
+                        <View style={{ marginHorizontal: 10 }}>
                             <View>
                                 {/* Assuming pet.profilePic holds the source of the pet's profile picture */}
                                 {/* <Image style={[styles.profilepicactive2, { borderWidth: 2, borderColor: color.accent }]} source={{ uri: pet.profilePic }} /> */}
                                 <Image
-                                    style={[styles.profilepic]}
-                                    source={require("../assets/images/man3.jpg")}
+                                    style={[styles.profilepicaddkid]}
+                                    source={require("../assets/images/bgwhite.png")}
                                 />
                             </View>
                             <View>
                                 {/* Assuming pet.name holds the name of the pet */}
-                                <TextRegular style={[styles.childrenname]}>Soumya</TextRegular>
+                                <TextRegular style={[styles.childrenname]}>Soumya  </TextRegular>
                             </View>
                         </View>
                     </View>
-                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', alignSelf: "center", }}>
                         <TouchableOpacity onPress={() => setOpen(!open)} style={[styles.imageplusadd]}>
                             <AntDesign name="plus" size={30} color={color.neutral[500]} />
                         </TouchableOpacity>
-                        <TextBold>Add</TextBold>
+                        <TextBold>Add   </TextBold>
                     </View>
                 </ScrollView>
             </View>
@@ -1234,6 +1234,12 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         marginRight: 10,
         backgroundColor: color.accent,
+    },
+    profilepicaddkid: {
+        marginRight: 8,
+        width: 75,
+        height: 75,
+        borderRadius: 50,
     },
     profilepic: {
         marginRight: 8,

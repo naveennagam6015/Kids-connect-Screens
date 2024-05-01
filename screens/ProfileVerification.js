@@ -404,17 +404,14 @@ export default function ProfileVerification({ route, navigation }) {
     >
 
       <View style={[styles.flexrow, styles.mb10]}>
-        <AntDesign
+        {/* <AntDesign
           style={[styles.mr10, styles.arrowback]}
           name="arrowleft"
           size={24}
-        />
-        <TextBold style={[styles.back]}>Profile Verification</TextBold>
+        /> */}
+        <TextBold style={[styles.back, { marginLeft: 20 }]}>Step 3 of 3</TextBold>
       </View>
-      <View style={[styles.ml50]}>
-        <TextRegular>Admin will verify your profile, and approves</TextRegular>
-        <TextLight>Generally it takes around a 1-2 day</TextLight>
-      </View>
+
       <View style={[styles.container]}>
         <View style={{ alignItems: "center", marginVertical: 10 }}>
           {!image && (
@@ -637,7 +634,7 @@ export default function ProfileVerification({ route, navigation }) {
           onPress={alertregister}
         // onPress={SubmitData}
         >
-          <TextMedium style={styles.submitButtonText}>Registers</TextMedium>
+          <TextMedium style={styles.submitButtonText}>Register</TextMedium>
         </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={cameramodal}>
@@ -678,7 +675,7 @@ const styles = StyleSheet.create({
   },
   back: {
     fontSize: 18,
-    color: color.primary,
+    // color: color.primary,
   },
   ml50: {
     marginLeft: 50,
@@ -687,7 +684,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   arrowback: {
-    color: color.primary,
+    // color: color.primary,
     marginLeft: 15,
   },
 
