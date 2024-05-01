@@ -47,6 +47,7 @@ import {
 import Connecting from './screens/Connecting';
 import VerificationScreenSecondary from './screens/VerificationScreenSecondary';
 import KidsProfileScr2 from './screens/KidsProfileScn2';
+import AnotherKidDetails from './components/AnotherKidDetails';
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
@@ -244,6 +245,7 @@ function StackNavigation() {
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
             <Stack.Screen name='Connecting' component={Connecting} />
             <Stack.Screen name='VerificationScreenSecondary' component={VerificationScreenSecondary} />
+            <Stack.Screen name='AnotherKidDetails' component={AnotherKidDetails} />
         </Stack.Navigator>
     );
 }
