@@ -180,6 +180,10 @@ export default function Login({ navigation, route }) {
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Sign in with google</TextMedium>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.googleImage}>
+                        <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/apple.png')} />
+                        <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with apple</TextMedium>
+                    </TouchableOpacity>
 
                     {/* <Button title="Home" onPress={() => navigation.navigate('BottomNavigation')} /> */}
                 </View>

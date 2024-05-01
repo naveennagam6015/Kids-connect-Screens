@@ -140,7 +140,7 @@ export default function Home({ close }) {
         </SkeletonContainer>
       )}
 
-      {!bannerLoading && (
+       {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
