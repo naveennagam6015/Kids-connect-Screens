@@ -101,7 +101,9 @@ export default function ChatInner() {
             <Text style={styles.reciverName}>~ Soumya Ranjan</Text>
           </View>
           <View style={[styles.reciverMessageContainer]}>
-            <Text style={styles.message}>Hey, Sasi Happy bday what the fuck sasi</Text>
+            <Text style={styles.message}>
+              Hey, Sasi Happy bday what the fuck sasi
+            </Text>
           </View>
           <View style={styles.reciverView}>
             <Text style={styles.senderTime}>10:23 PM</Text>
@@ -127,7 +129,10 @@ export default function ChatInner() {
         ))}
       </ScrollView>
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.cameraButton} onPress={() => setCameraModal(!cameramodal)}>
+        <TouchableOpacity
+          style={styles.cameraButton}
+          onPress={() => setCameraModal(!cameramodal)}
+        >
           <FontAwesome name="camera" size={24} color="white" />
         </TouchableOpacity>
         <TextInput
@@ -169,7 +174,7 @@ export default function ChatInner() {
         </Animated.View>
       )}
 
-<Modal animationType="slide" transparent={true} visible={cameramodal}>
+      <Modal animationType="slide" transparent={true} visible={cameramodal}>
         <View style={styles.topCamera}>
           <OpenCameraModal
             // OpenCamera={() => OpenCamera()}
