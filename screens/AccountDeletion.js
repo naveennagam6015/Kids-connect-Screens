@@ -39,7 +39,7 @@ export default function AccountDeletion() {
             <SafeAreaView style={[styles.container, { marginTop: 30 }]}>
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                     <View style={[{ width: "40%" }, styles.profileName]}>
-                        <Image style={styles.profilepic} source={require('../assets/images/women.png')} />
+                        <Image style={styles.profilepic} source={require('../assets/images/man3.jpg')} />
                     </View>
                     <View style={[{ width: "60%", alignItems: 'center', justifyContent: 'center' }, styles.profileName]}>
                         <TextRegular>We’re sad that your leaving the platform, can you give us a last chance..please! </TextRegular>

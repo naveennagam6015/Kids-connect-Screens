@@ -6,6 +6,7 @@ import { AntDesign, Fontisto } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import ListField from "./ListField";
 
 export default function AddKid({ closed }) {
     const navigation = useNavigation();
@@ -16,11 +17,37 @@ export default function AddKid({ closed }) {
     const [genderError, setGenderError] = useState("");
     const [relationshipError, setRelationshipError] = useState("");
     const [descriptionError, setDescriptionError] = useState('');
+    const [interests, setInterests] = useState([]);
+    const [newInterest, setNewInterest] = useState("");
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     const onClose = () => {
         setOpenpets(false);
         setPetopen(false);
     };
 
+    const handleChangeInterest = (interest) => {
+        setNewInterest(interest);
+        // You can perform any additional actions here, such as updating state in this component
+    };
+
+    // Function to add interest
+    const handleAddInterest = () => {
+        if (newInterest === "") {
+            Alert.alert("Please Enter an interest");
+        } else {
+            setInterests([...interests, newInterest]);
+            setIsModalVisible(false);
+            setNewInterest("");
+        }
+    };
+
+    // Function to remove interest
+    const handleRemoveInterest = (index) => {
+        const updatedInterests = [...interests];
+        updatedInterests.splice(index, 1);
+        setInterests(updatedInterests);
+    };
     const [petgender, setGender] = useState([
         { label: 'Male', value: '1' },
         { label: 'Female', value: '2' },
@@ -56,7 +83,7 @@ export default function AddKid({ closed }) {
                             <Fontisto name="camera" size={15} color="black" />
                         </TouchableOpacity>
                     </View>
-                    <TextBold>Name</TextBold>
+                    <TextBold>First Name</TextBold>
                     <TextInput style={styles.inputBox}
                         placeholder="Enter your first name"
                         onChangeText={(e) => {
@@ -69,6 +96,22 @@ export default function AddKid({ closed }) {
                             {firstNameError}
                         </TextBold>
                     )}
+                    <TextBold>Last Name</TextBold>
+                    <TextInput style={styles.inputBox}
+                        placeholder="Enter your Last name"
+                        onChangeText={(e) => {
+                            setFirstName(e);
+                            validateFirstName(e, setFirstNameError);
+                        }}
+                    />
+                    <TextBold>Date of Birth</TextBold>
+                    <TextInput style={styles.inputBox}
+                        placeholder="dd/mm/yyyy"
+                        onChangeText={(e) => {
+                            setFirstName(e);
+                            validateFirstName(e, setFirstNameError);
+                        }}
+                    />
                     <TextBold>Gender</TextBold>
                     <Dropdown
                         style={styles.dropdownStyle}
@@ -90,7 +133,7 @@ export default function AddKid({ closed }) {
                         </TextBold>
                     )}
 
-                    <TextBold>Breed</TextBold>
+                    <TextBold>Relationship</TextBold>
                     <Dropdown
                         style={styles.dropdownStyle}
                         data={breed}
@@ -98,7 +141,7 @@ export default function AddKid({ closed }) {
                         maxHeight={300}
                         labelField="label"
                         valueField="value"
-                        placeholder="Breed"
+                        placeholder="Relationship"
                         searchPlaceholder="Search..."
                         onChange={(item) => {
                             setBreed(item.value)
@@ -117,6 +160,15 @@ export default function AddKid({ closed }) {
                         <Text style={{ color: 'red' }}>{descriptionError}</Text>
                     )}
                 </View>
+                {/* <TextBold>Interests</TextBold> */}
+                {/* <ListField
+                    onChangeInterest={handleChangeInterest}
+                    newInterest={newInterest}
+                    isModalVisible={isModalVisible}
+                    interests={interests}
+                    removeInterest={handleRemoveInterest}
+                    AddInterest={handleAddInterest}
+                /> */}
                 <View style={[styles.modalcontainer]}>
                     <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                         <View style={[styles.Buttoncardinner2, styles.Buttoncardfullwidth,]}>
