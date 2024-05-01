@@ -11,9 +11,9 @@ export default function Confirmation() {
             <View style={styles.Card}>
                 <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
                     <View style={styles.contentContainer}>
-                        <Image style={styles.profilepic} source={require('../assets/images/women.png')} />
+                        <Image style={styles.profilepic} source={require('../assets/images/bgwhite.png')} />
                         <TextRegular style={styles.childrenname} numberOfLines={2}>
-                            Yay..! Jay.jr’s Profile is successfully Uploaded on your circle!
+                            Yay..! Soumya’s Profile is successfully Uploaded on your circle!
                         </TextRegular>
                     </View>
                 </View>

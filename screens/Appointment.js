@@ -7,12 +7,16 @@ import { MaterialIcons, Entypo, FontAwesome, Feather } from '@expo/vector-icons'
 import { ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ProfileDetails from '../components/ProfileDetails'
+import AnotherKidDetails from '../components/AnotherKidDetails'
 
 export default function Appointment({ close }) {
     const navigation = useNavigation();
     const [profileDetails, setProfileDetails] = useState(false);
+    const [anotherkiddetails, setAnotherkiddetails] = useState(false);
+
     const onClose = () => {
         setProfileDetails(false);
+        setAnotherkiddetails(false);
     };
 
     return (
@@ -47,7 +51,7 @@ export default function Appointment({ close }) {
                 <View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -60,12 +64,12 @@ export default function Appointment({ close }) {
                         <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
                             <TouchableOpacity
                                 style={{ width: "35%" }}
-                                onPress={() => setProfileDetails(!profileDetails)}>
+                                onPress={() => setAnotherkiddetails(!anotherkiddetails)}>
                                 <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
                             </TouchableOpacity>
                             <View style={[styles.justiffsb, { width: "65%" }]}>
                                 <TouchableOpacity
-                                    onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
                                     <TextBold style={[styles.childrenname]}>Anita </TextBold>
                                     <View>
                                         <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
@@ -127,7 +131,7 @@ export default function Appointment({ close }) {
                     </View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -140,12 +144,12 @@ export default function Appointment({ close }) {
                         <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
                             <TouchableOpacity
                                 style={{ width: "35%" }}
-                                onPress={() => setProfileDetails(!profileDetails)}>
+                                onPress={() => setAnotherkiddetails(!anotherkiddetails)}>
                                 <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
                             </TouchableOpacity>
                             <View style={[styles.justiffsb, { width: "65%" }]}>
                                 <TouchableOpacity
-                                    onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
                                     <TextBold style={[styles.childrenname]}>Anita </TextBold>
                                     <View>
                                         <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
@@ -207,7 +211,7 @@ export default function Appointment({ close }) {
                     </View>
                     <View style={[styles.flexrow, styles.mt8, styles.mh5, styles.justiffsb]}>
                         <TouchableOpacity
-                            onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.alineitemscenter]}>
+                            onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={[styles.flexrow, styles.alineitemscenter]}>
                             <Image style={[styles.profilepic]} source={require('../assets/images/2women.jpg')} />
                             <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
                             <TextLight>(Mother)</TextLight>
@@ -220,12 +224,12 @@ export default function Appointment({ close }) {
                         <View style={[styles.flexrow, styles.justiffsb, styles.mb8]}>
                             <TouchableOpacity
                                 style={{ width: "35%" }}
-                                onPress={() => setProfileDetails(!profileDetails)}>
+                                onPress={() => setAnotherkiddetails(!anotherkiddetails)}>
                                 <Image style={[styles.cardimg]} source={require('../assets/images/KID.jpg')} />
                             </TouchableOpacity>
                             <View style={[styles.justiffsb, { width: "65%" }]}>
                                 <TouchableOpacity
-                                    onPress={() => setProfileDetails(!profileDetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
+                                    onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.flexrow, styles.justiffsb, styles.mb4]}>
                                     <TextBold style={[styles.childrenname]}>Anita </TextBold>
                                     <View>
                                         <FontAwesome style={{ marginRight: 1 }} name="bookmark" size={18} color={color.accent} />
@@ -296,6 +300,11 @@ export default function Appointment({ close }) {
                 animationType="slide" transparent={true} visible={profileDetails}>
                 <View style={styles.topDummy} />
                 <ProfileDetails name={"Naveen"} close={() => setProfileDetails(!profileDetails)} />
+            </Modal>
+            <Modal
+                animationType="slide" transparent={true} visible={anotherkiddetails}>
+                <View style={styles.topDummy} />
+                <AnotherKidDetails name={"Naveen"} close={() => setAnotherkiddetails(!anotherkiddetails)} />
             </Modal>
         </ScrollView>
     )

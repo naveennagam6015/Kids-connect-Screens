@@ -35,6 +35,8 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import ProfileDetails from "../components/ProfileDetails";
 import { useNavigation } from "@react-navigation/native";
 import KidsProfileScr2 from "./KidsProfileScn2";
+import AnotherKidDetails from "../components/AnotherKidDetails";
+import AnotherParentDetails from "../components/AnotherParentDetails";
 const { width: screenWidth } = Dimensions.get("window");
 
 const Gradient = (props) => <LinearGradient {...props} />;
@@ -42,6 +44,7 @@ export default function Home({ close }) {
   const navigation = useNavigation();
   const [open, setOpen] = useState(false);
   const [profileDetails, setProfileDetails] = useState(false);
+  const [anotherkiddetails, setAnotherkiddetails] = useState(false);
   const onClose = () => {
     setOpen(false);
     setProfileDetails(false);
@@ -56,6 +59,7 @@ export default function Home({ close }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newInterest, setNewInterest] = useState("");
   const [kiddetails, setKiddetails] = useState("");
+  const [anotherparentdetails, setAnotherparentdetails] = useState("");
 
   const handleChangeInterest = (interest) => {
     setNewInterest(interest);
@@ -303,7 +307,7 @@ export default function Home({ close }) {
           <View style={[styles.Card]}>
             <View style={[styles.innercard1, styles.flexrow]}>
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)}
+                onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })}
                 style={{ alignItems: "center" }}>
                 <View>
                   <Image
@@ -317,16 +321,16 @@ export default function Home({ close }) {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)}
+                onPress={() => setAnotherparentdetails(!anotherparentdetails)}
                 style={{ alignItems: "center" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
-                    source={require("../assets/images/2men3.jpg")}
+                    source={require("../assets/images/2women.jpg")}
                   />
                 </View>
                 <View>
-                  <TextBold style={[styles.childrenname]}>Rakesh</TextBold>
+                  <TextBold style={[styles.childrenname]}>Tulika (M)</TextBold>
                 </View>
               </TouchableOpacity>
             </View>
@@ -358,7 +362,7 @@ export default function Home({ close }) {
                 <TextRegular>Feb 17th | Monday</TextRegular>
               </View>
               <TouchableOpacity
-                onPress={() => setProfileDetails(!profileDetails)} style={{ alignItems: "flex-end" }}>
+                onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={{ alignItems: "flex-end" }}>
                 <View>
                   <Image
                     style={[styles.profilepic]}
@@ -369,7 +373,7 @@ export default function Home({ close }) {
                   <TextBold style={[styles.childrenname]}>
                     Anita{" "}
                     <TextBold style={{ color: color.neutral[300] }}>
-                      (M)
+                      (F)
                     </TextBold>
                   </TextBold>
                 </View>
@@ -828,6 +832,16 @@ export default function Home({ close }) {
         animationType="slide" transparent={true} visible={kiddetails}>
         <View style={styles.topDummy} />
         <KidsProfileScr2 name={"Naveen"} close={() => setKiddetails(!kiddetails)} />
+      </Modal>
+      <Modal
+        animationType="slide" transparent={true} visible={anotherkiddetails}>
+        <View style={styles.topDummy} />
+        <AnotherKidDetails name={"Naveen"} close={() => setAnotherkiddetails(!anotherkiddetails)} />
+      </Modal>
+      <Modal
+        animationType="slide" transparent={true} visible={anotherparentdetails}>
+        <View style={styles.topDummy} />
+        <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
       </Modal>
     </ScrollView >
   );
