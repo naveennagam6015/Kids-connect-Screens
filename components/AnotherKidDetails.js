@@ -140,19 +140,7 @@ export default function AnotherKidDetails({ close, name }) {
                     </View>
 
                 </View>
-                <View>
-                    <Text style={{ fontSize: 15, marginTop: 10 }}>Modify Requests</Text>
 
-                    <View style={[styles.border3]}>
-
-                        <View style={[styles.flexrow, { flexWrap: "wrap" }]}>
-                            <View>
-                                <Text>Not ok at 10am, 11am is ok</Text>
-                            </View>
-                        </View>
-
-                    </View>
-                </View>
             </View>
 
         </ScrollView>
