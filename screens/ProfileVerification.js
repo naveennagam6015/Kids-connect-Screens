@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Platform,Alert
+  Platform, Alert
 } from "react-native";
 import {
   TextBold,
@@ -38,11 +38,11 @@ const ensureDirExists = async () => {
   }
 };
 
-export default function ProfileVerification({ route, navigation }) {
+export default function ProfileVerification({ navigation, route }) {
   // const navigation = useNavigation();
 
   const [img, setImg] = useState(null);
-
+  const { data } = route.params;
   const [image, setImage] = useState('');
   const [imageName, setImageName] = useState("");
   const [gender, setGender] = useState([
@@ -392,7 +392,7 @@ export default function ProfileVerification({ route, navigation }) {
       "Successfully Registered",
       "You have successfully registered!",
       [
-        { text: 'OK', onPress: () => navigation.navigate("ProfileSetupAfterAdminApproval") },
+        { text: 'OK', onPress: () => data == 'Secondary' ? navigation.navigate('Connecting') : navigation.navigate("ProfileSetupAfterAdminApproval") },
       ]
     );
   }
@@ -404,62 +404,59 @@ export default function ProfileVerification({ route, navigation }) {
     >
 
       <View style={[styles.flexrow, styles.mb10]}>
-        <AntDesign
+        {/* <AntDesign
           style={[styles.mr10, styles.arrowback]}
           name="arrowleft"
           size={24}
-        />
-        <TextBold style={[styles.back]}>Profile Verification</TextBold>
+        /> */}
+        <TextBold style={[styles.back, { marginLeft: 20 }]}>Step 3 of 3</TextBold>
       </View>
-      <View style={[styles.ml50]}>
-        <TextRegular>Admin will verify your profile, and approves</TextRegular>
-        <TextLight>Generally it takes around a 1-2 day</TextLight>
-      </View>
+
       <View style={[styles.container]}>
-      <View style={{ alignItems: "center", marginVertical: 10 }}>
-                {!image && (
-                  <>
-                    <Image
-                      style={[styles.profilepic]}
-                      source={require("../assets/images/user_placeholder.png")}
-                    />
-                    <TouchableOpacity
-                      style={{
-                        position: "absolute",
-                        bottom: "2%",
-                        right: "38%",
-                        backgroundColor: "lightgray",
-                        borderRadius: 50,
-                        padding: 8,
-                      }}
-                      onPress={() => setCameraModal(!cameramodal)}
-                    >
-                      <Fontisto name="camera" size={15} color="black" />
-                    </TouchableOpacity>
-                  </>
-                )}
-                {image && (
-                  <>
-                    <Image
-                      source={{ uri: image }}
-                      style={[styles.profilepic]}
-                    />
-                    <TouchableOpacity
-                      style={{
-                        position: "absolute",
-                        bottom: "2%",
-                        right: "38%",
-                        backgroundColor: "lightgray",
-                        borderRadius: 50,
-                        padding: 10,
-                      }}
-                      onPress={() => setCameraModal(!cameramodal)}
-                    >
-                      <Fontisto name="camera" size={20} color="black" />
-                    </TouchableOpacity>
-                  </>
-                )}
-              </View>
+        <View style={{ alignItems: "center", marginVertical: 10 }}>
+          {!image && (
+            <>
+              <Image
+                style={[styles.profilepic]}
+                source={require("../assets/images/user_placeholder.png")}
+              />
+              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  bottom: "2%",
+                  right: "38%",
+                  backgroundColor: "lightgray",
+                  borderRadius: 50,
+                  padding: 8,
+                }}
+                onPress={() => setCameraModal(!cameramodal)}
+              >
+                <Fontisto name="camera" size={15} color="black" />
+              </TouchableOpacity>
+            </>
+          )}
+          {image && (
+            <>
+              <Image
+                source={{ uri: image }}
+                style={[styles.profilepic]}
+              />
+              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  bottom: "2%",
+                  right: "38%",
+                  backgroundColor: "lightgray",
+                  borderRadius: 50,
+                  padding: 10,
+                }}
+                onPress={() => setCameraModal(!cameramodal)}
+              >
+                <Fontisto name="camera" size={20} color="black" />
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
         <TextBold style={[styles.Headingtextinput]}>About</TextBold>
         <TextInput
           style={styles.textArea}
@@ -508,20 +505,20 @@ export default function ProfileVerification({ route, navigation }) {
           placeholderTextColor={styles.textinputcolor}
           placeholder="Enter your mail"
         />
-       
+
 
         <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
           placeholder="Enter your phone number"
-          // onChangeText={(e) => {
-          //   setPhone(e);
-          //   validateMobileNumber(e, setMobileError);
-          // }}
+        // onChangeText={(e) => {
+        //   setPhone(e);
+        //   validateMobileNumber(e, setMobileError);
+        // }}
         />
-       
-{/* <TextBold style={{ marginBottom: 16, color: "red" }}>{dobErr}</TextBold> */}
+
+        {/* <TextBold style={{ marginBottom: 16, color: "red" }}>{dobErr}</TextBold> */}
         <TextBold style={[styles.Headingtextinput]}>Gender</TextBold>
         <Dropdown
           style={styles.dropdownStyle}
@@ -532,21 +529,21 @@ export default function ProfileVerification({ route, navigation }) {
           valueField="value"
           placeholder="Select Gender"
           searchPlaceholder="Search..."
-          // onChange={(item) => {
-          //   setSelectedGender(item.value);
-          //   validateGender(item.value, setGenderErr);
-          // }}
-          // renderLeftIcon={() => (
-          //   <AntDesign
-          //     style={styles.icon}
-          //     color="#3D833F"
-          //     name="Safety"
-          //     size={20}
-          //   />
-          // )}
+        // onChange={(item) => {
+        //   setSelectedGender(item.value);
+        //   validateGender(item.value, setGenderErr);
+        // }}
+        // renderLeftIcon={() => (
+        //   <AntDesign
+        //     style={styles.icon}
+        //     color="#3D833F"
+        //     name="Safety"
+        //     size={20}
+        //   />
+        // )}
         />
-      
-        
+
+
         {/* <TextBold style={{ marginBottom: 16, color: 'red' }}>{lastNameErr}</TextBold> */}
         <TextBold style={[styles.Headingtextinput]}>Select Relationship</TextBold>
         <Dropdown
@@ -571,7 +568,7 @@ export default function ProfileVerification({ route, navigation }) {
             />
           )}
         />
-        
+
         <TextBold style={[styles.Headingtextinput]}>Enter D.O.B</TextBold>
         <TextInput
           style={styles.inputBox}
@@ -582,7 +579,7 @@ export default function ProfileVerification({ route, navigation }) {
             validateDob(e, setDobErr);
           }}
         />
-        
+
         <TextBold style={[styles.Headingtextinput]}>Street Address</TextBold>
         <TextInput
           style={styles.inputBox}
@@ -630,10 +627,10 @@ export default function ProfileVerification({ route, navigation }) {
 
 
 
-        
-       
+
+
         <TouchableOpacity
-          style={styles.submitButton}
+          style={[styles.submitButton, { marginBottom: 15, marginTop: 20 }]}
           onPress={alertregister}
         // onPress={SubmitData}
         >
@@ -659,7 +656,7 @@ const styles = StyleSheet.create({
   },
   Headingtextinput:
   {
-    
+
     marginTop: 10,
   },
   inputBox: {
@@ -678,7 +675,7 @@ const styles = StyleSheet.create({
   },
   back: {
     fontSize: 18,
-    color: color.primary,
+    // color: color.primary,
   },
   ml50: {
     marginLeft: 50,
@@ -687,7 +684,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   arrowback: {
-    color: color.primary,
+    // color: color.primary,
     marginLeft: 15,
   },
 
@@ -771,5 +768,6 @@ const styles = StyleSheet.create({
   submitButtonText: {
     justifyContent: "center",
     alignSelf: "center",
+    fontSize: 20
   },
 });

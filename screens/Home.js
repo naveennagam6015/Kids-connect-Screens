@@ -424,7 +424,7 @@ export default function Home({ close }) {
               />
             </TouchableOpacity>
           </View>
-          <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold>
+          {/* <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold> */}
         </View>
         <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
           <TextBold style={[styles.Headingtext]}>Previous Connection</TextBold>

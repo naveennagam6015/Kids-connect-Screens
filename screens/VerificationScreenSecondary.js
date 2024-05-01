@@ -5,7 +5,7 @@ import { color } from "../assets/colors/theme";
 import { ImageBackground } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function VerificationScreen() {
+export default function VerificationScreenSecondary() {
     const navigation = useNavigation();
 
     return (
@@ -22,7 +22,7 @@ export default function VerificationScreen() {
                             <View style={styles.inputfiled}></View>
                         </View>
 
-                        <TouchableOpacity onPress={() => navigation.navigate('Passwordsetup', { data: 'Primaryperson' })} style={styles.btnPrimary}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Passwordsetup', { data: 'Secondary' })} style={styles.btnPrimary}>
                             <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center' }}>Verify <AntDesign name="arrowright" size={18} color="black" /></Text>
                         </TouchableOpacity>
 

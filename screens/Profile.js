@@ -124,9 +124,9 @@ export default function Profile() {
                     </View>
                 </View>
                 <View style={[styles.ProfileCard]}>
-                    
+
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.Card, styles.flexrow, styles.justsb]}>
+                <TouchableOpacity onPress={() => navigation.navigate('VerificationScreenSecondary')} style={[styles.Card, styles.flexrow, styles.justsb]}>
                     <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Bookings</TextBold>
                     <MaterialIcons style={{ marginTop: 8, marginRight: 8 }} name="arrow-forward-ios" size={16} color={color.fontcolor} />
                 </TouchableOpacity>
@@ -265,22 +265,15 @@ export default function Profile() {
                             </View>
                             <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
                         </View>
-                        <TouchableOpacity style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center" }]}>
-                            <View style={[styles.flexrow, { alignItems: "center", marginVertical: 8 }]}>
-                                <MaterialIcons name="dark-mode" size={24} color={color.white} />
-                                <TextBold style={{ marginLeft: 20, fontSize: 16 }}>Logout</TextBold>
-                            </View>
-                            <MaterialIcons name="arrow-forward-ios" size={16} color={color.fontcolor} />
-                        </TouchableOpacity>
+
                     </View>
                 </View>
 
-                <View style={[styles.flexrow, { justifyContent: "space-between", alignItems: "center", marginTop: 10 }]}>
-                    <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>My Referal Code</TextBold>
-                    <View style={[styles.Carddotted, styles.flexrow, { alignItems: "center" }]}>
-                        <TextBold style={{ marginBottom: 5, fontSize: 24 }}>12345</TextBold>
-                        <Ionicons style={{ marginLeft: 10 }} name="eye-off" size={16} color={color.neutral[500]} />
-                    </View>
+                <View style={{ alignSelf: "center", marginVertical: 20 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Login')} style={[styles.flexrow, styles.Card2, { justifyContent: "space-between", alignItems: "center", marginTop: 10 }]}>
+                        <AntDesign name="logout" size={24} color="black" />
+                    </TouchableOpacity>
+                    <TextBold style={{ fontSize: 16 }}> Logout</TextBold>
                 </View>
 
                 <Modal visible={open}>
@@ -291,7 +284,7 @@ export default function Profile() {
     )
 }
 const styles = StyleSheet.create({
-    ProfileCard:{
+    ProfileCard: {
         backgroundColor: "#fff",
         margin: 10,
         padding: 8,
@@ -335,6 +328,26 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderColor: '#000',
         borderWidth: 0.5
+    },
+    Card2: {
+        borderRadius: 10,
+        marginVertical: 10,
+        padding: 14,
+        width: "16%",
+        alignSelf: "center",
+        alignItems: "center",
+        backgroundColor: color.white,
+        ...Platform.select({
+            ios: {
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
     },
     Card1: {
         borderRadius: 10,

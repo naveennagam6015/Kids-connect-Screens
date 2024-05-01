@@ -29,6 +29,7 @@ import ProfileSetup from './screens/ProfileSetup';
 import Confirmation from './screens/Confirmation ';
 import { TextBold } from './assets/fonts/CustomText';
 import GlobalSearch from './screens/GlobalSearch';
+import ChatInner from './screens/ChatInner';
 import About from './screens/About';
 import AboutUs from './screens/AboutUs';
 import ContactUs from './screens/ContactUs';
@@ -39,7 +40,12 @@ import ProfileDetails from './components/ProfileDetails';
 import PasswordSettingScr2 from './screens/PasswordSettingScr2';
 import AddingKidsAndPets2 from './screens/AddingKidsAndPets2';
 import VerificationScreen from './screens/VerificationCode';
+import {
 
+    MaterialIcons,
+} from "@expo/vector-icons";
+import Connecting from './screens/Connecting';
+import VerificationScreenSecondary from './screens/VerificationScreenSecondary';
 const BottomTab = createBottomTabNavigator();
 
 function AppointmentModal({ isVisible, onClose }) {
@@ -130,8 +136,11 @@ function BottomNavigation({navigation}) {
 
     const headerRight = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
-                <Text>Chat</Text>
+            <TouchableOpacity style={{ marginRight: 20 }} onPress={() => navigation.navigate('Chat')}>
+                <View>
+                    <MaterialIcons name="message" size={23} color="black" />
+                </View>
+
             </TouchableOpacity>
         )
     }
@@ -203,12 +212,12 @@ function StackNavigation() {
     return (
         <Stack.Navigator initialRouteName='VerificationScreen'>
             <Stack.Screen name='VerificationScreen' component={VerificationScreen} options={{ headerShown: false }} />
-            <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerShown: false }} />
+            <Stack.Screen name='Passwordsetup' component={PasswordSettingScr2} options={{ headerTitle: "Step 2 of 3" }} />
             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
             <Stack.Screen name='Test' component={Test} options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name='BottomNavigation' component={BottomNavigation} options={{ headerShown: false }} />
             <Stack.Screen name='Register' component={Registration} options={{ headerTitle: "Step 1 of 2" }} />
-            <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Step 1 of 2" }} />
+            <Stack.Screen name='ProfileVerification' component={ProfileVerification} options={{ headerTitle: "Profile Verification" }} />
             <Stack.Screen name='ProfileSetupAfterAdminApproval' component={ProfileSetupAfterAdminApproval} options={{ headerShown: false }} />
             <Stack.Screen name='ProfileSetup' component={ProfileSetup} options={{ headerTitle: "Profile Setup" }} />
             <Stack.Screen name='AddingKidsAndPets' component={AddingKidsAndPets} options={{ headerTitle: "Adding Kids" }} />
@@ -223,6 +232,7 @@ function StackNavigation() {
             <Stack.Screen name='Thankyou' component={Thankyou} options={{ headerShown: false }} />
             <Stack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: "Confirmation" }} />
             <Stack.Screen name='GlobalSearch' component={GlobalSearch} options={{ headerShown: false }} />
+            <Stack.Screen name='ChatInner' component={ChatInner} options={{ headerTitle: "Group Chat" }} />
             <Stack.Screen name='About' component={About} options={{ headerShown: false }} />
             <Stack.Screen name='Aboutus' component={AboutUs} options={{ headerTitle: "About us" }} />
             <Stack.Screen name='ContactUs' component={ContactUs} options={{ headerTitle: "Contact Us" }} />
@@ -230,9 +240,9 @@ function StackNavigation() {
             <Stack.Screen name='TermsAndConditions' component={TermsAndConditions} options={{ headerTitle: "Terms And Conditions" }} />
             <Stack.Screen name='FAQs' component={FAQs} />
             <Stack.Screen name='ProfileDetails' component={ProfileDetails} />
-            {/* <Stack.Screen name='BottomNavigation' options={{headerShown:false}}>
-                {({ navigation }) => <BottomNavigation navigation={navigation}  />}
-            </Stack.Screen> */}
+            <Stack.Screen name='Connecting' component={Connecting} />
+            <Stack.Screen name='VerificationScreenSecondary' component={VerificationScreenSecondary} />
+            {/* <Stack.Screen name='Profile' component={Profile} /> */}
             {/* <Stack.Screen name='Chatinner' component={ } options={{ headerShown: false }} /> */}
         </Stack.Navigator>
     );
