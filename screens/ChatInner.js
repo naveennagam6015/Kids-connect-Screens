@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import moment from "moment";
 import {
   ScrollView,
   StyleSheet,
@@ -16,13 +17,24 @@ export default function ChatInner() {
   const [messageInput, setMessageInput] = useState("");
   const [containerVisible, setContainerVisible] = useState(false);
   const slideUpValue = new Animated.Value(0);
-
+  const [currentTime, setCurrentTime] = useState(moment().format("h:mm A"));
   const sendMessage = () => {
     if (messageInput.trim() !== "") {
       setMessages([...messages, messageInput.trim()]);
       setMessageInput("");
     }
   };
+
+  useEffect(()=>{
+
+    const interval = setInterval(()=>{
+      setCurrentTime(moment().format("h:mm A"));
+
+    },1000);
+    return ()=>clearImmediate(interval);
+
+  });
+  
 
   const slideUp = () => {
     setContainerVisible(true);
@@ -98,7 +110,9 @@ export default function ChatInner() {
             <Text style={styles.reciverName}>~ Soumya Ranjan</Text>
           </View>
           <View style={[styles.reciverMessageContainer]}>
-            <Text style={styles.message}>Hey, Sasi Happy bday what the fuck sasi</Text>
+            <Text style={styles.message}>
+              Hey, Sasi Happy bday what the fuck sasi
+            </Text>
           </View>
           <View style={styles.reciverView}>
             <Text style={styles.senderTime}>10:23 PM</Text>
@@ -109,6 +123,9 @@ export default function ChatInner() {
             key={index}
             style={{ maxWidth: "80%", alignSelf: "flex-end", marginBottom: 5 }}
           >
+            <View style={styles.senderView}>
+              <Text style={styles.senderName}>~ Vishal</Text>
+            </View>
             <View
               style={[
                 styles.messageContainer,
@@ -118,7 +135,7 @@ export default function ChatInner() {
               <Text style={styles.message}>{message}</Text>
             </View>
             <View style={styles.senderView}>
-              <Text style={styles.senderName}>Vishal</Text>
+              <Text style={styles.senderTime}>{currentTime}</Text>
             </View>
           </View>
         ))}
