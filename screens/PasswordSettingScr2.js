@@ -32,7 +32,7 @@ export default function PasswordSettingScr2({ navigation, route }) {
 
             <View >
                 <Text style={[styles.font]}>Enter your email Id</Text>
-                <TextInput style={[styles.inputBox]} placeholder="Madission@gmail.com" />
+                <TextInput style={[styles.inputBox]} placeholder="Enter Your Mail" />
             </View>
 
             <View >
@@ -51,9 +51,6 @@ export default function PasswordSettingScr2({ navigation, route }) {
                 </TouchableOpacity>
 
             </View>
-
-
-
             <View style={[styles.comment]}>
                 <TextRegular style={[styles.cmtfont, { fontWeight: "bold" }]}>Strong Password Tip: </TextRegular>
                 <TextRegular style={[styles.cmtfont]}>Use combination of alphabets and numbers.</TextRegular>
@@ -90,6 +87,7 @@ const styles = StyleSheet.create(
             fontWeight: "600",
 
         },
+        
 
         font1: {
             fontWeight: "600",

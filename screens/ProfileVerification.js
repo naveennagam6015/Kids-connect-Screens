@@ -457,12 +457,12 @@ export default function ProfileVerification({ navigation, route }) {
             </>
           )}
         </View>
-        <TextBold style={[styles.Headingtextinput]}>About</TextBold>
+        {/* <TextBold style={[styles.Headingtextinput]}>About</TextBold> */}
         <TextInput
           style={styles.textArea}
           multiline={true}
           numberOfLines={5}
-          placeholder="Write about yourself"
+          placeholder="Description"
           onChangeText={(e) => {
             setAbout(e);
             validateAbout(e, setAboutErr);
@@ -634,7 +634,7 @@ export default function ProfileVerification({ navigation, route }) {
           onPress={alertregister}
         // onPress={SubmitData}
         >
-          <TextMedium style={styles.submitButtonText}>Register</TextMedium>
+          <TextMedium style={styles.submitButtonText}>Save</TextMedium>
         </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={cameramodal}>

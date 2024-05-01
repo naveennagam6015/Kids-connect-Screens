@@ -595,7 +595,7 @@ export default function AddingKidsAndPets() {
               </TouchableOpacity>
               <TouchableOpacity >
                 <TextRegular style={{ fontSize: 14 }}>
-                  Add Secondary Persons
+                  Invite Secondary Person
                 </TextRegular>
               </TouchableOpacity>
             </>

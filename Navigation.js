@@ -226,7 +226,7 @@ function BottomNavigation({ navigation }) {
           component={Requests}
           options={{ headerRight: headerRight }}
         />
-        <BottomTab.Screen name="Profile" component={Profile} />
+        <BottomTab.Screen name="My Profile" component={Profile} />
       </BottomTab.Navigator>
       <AppointmentModal isVisible={isModalVisible} onClose={toggleModal} />
     </>

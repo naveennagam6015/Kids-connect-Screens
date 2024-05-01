@@ -9,6 +9,7 @@ import {
   Switch,
   Modal,
   TextInput,
+  Text,
 } from "react-native";
 import { TextBold, TextRegular } from "../assets/fonts/CustomText";
 import { color } from "../assets/colors/theme";
@@ -93,8 +94,12 @@ export default function Profile() {
               />
             </TouchableOpacity>
           </View>
+          
         </View>
-
+        <View>
+            <TextBold>About</TextBold>
+            <Text>Hey there! I'm Krishna, a passionate Motion Designer currently based in the busting city of the New York.In my career, I'm also a proud of mother...<TextBold>more</TextBold></Text>
+          </View>
         <View>
           {/* <TextBold style={[{ justifyContent: 'center' }, styles.Headingtext]}>About</TextBold> */}
         </View>
