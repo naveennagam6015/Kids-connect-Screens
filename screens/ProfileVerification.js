@@ -499,53 +499,82 @@ export default function ProfileVerification({ navigation, route }) {
           }}
         />
 
-        <TextBold style={[styles.Headingtextinput]}>Email Address</TextBold>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={{ width: "50%" }}>
+            <TextBold style={[styles.Headingtextinput]}>Relationship</TextBold>
+            <Dropdown
+              style={styles.dropdownStyle}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="Relation ?"
+              searchPlaceholder="Search..."
+            />
+          </View>
+
+          <View style={{ width: "40%" }}>
+            <TextBold style={[styles.Headingtextinput]}>Birth Year</TextBold>
+            <Dropdown
+              style={styles.dropdownStyle}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder=""
+              searchPlaceholder="Search..."
+            />
+          </View>
+        </View>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={{ width: "30%" }}>
+            <TextBold style={[styles.Headingtextinput, {}]}>Code</TextBold>
+            <Dropdown
+              style={styles.dropdownStyle}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="+1"
+              searchPlaceholder="Search..."
+            />
+          </View>
+          <View style={{ width: "60%" }}>
+            <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
+            <Dropdown
+              style={styles.dropdownStyle}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder=""
+              searchPlaceholder="Search..."
+            />
+          </View>
+        </View>
+
+
+        <TextBold style={[styles.Headingtextinput]}>Email</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your mail"
+          placeholder="madission@gmail.com"
         />
 
 
-        <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
-        <TextInput
-          style={styles.inputBox}
-          placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your phone number"
-        // onChangeText={(e) => {
-        //   setPhone(e);
-        //   validateMobileNumber(e, setMobileError);
-        // }}
-        />
 
-        {/* <TextBold style={{ marginBottom: 16, color: "red" }}>{dobErr}</TextBold> */}
-        <TextBold style={[styles.Headingtextinput]}>Gender</TextBold>
-        <Dropdown
-          style={styles.dropdownStyle}
-          data={gender}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder="Select Gender"
-          searchPlaceholder="Search..."
-        // onChange={(item) => {
-        //   setSelectedGender(item.value);
-        //   validateGender(item.value, setGenderErr);
-        // }}
-        // renderLeftIcon={() => (
-        //   <AntDesign
-        //     style={styles.icon}
-        //     color="#3D833F"
-        //     name="Safety"
-        //     size={20}
-        //   />
-        // )}
-        />
+
+
 
 
         {/* <TextBold style={{ marginBottom: 16, color: 'red' }}>{lastNameErr}</TextBold> */}
-        <TextBold style={[styles.Headingtextinput]}>Select Relationship</TextBold>
+        {/* <TextBold style={[styles.Headingtextinput]}>Select Relationship</TextBold>
         <Dropdown
           style={styles.dropdownStyle}
           data={roles}
@@ -569,6 +598,8 @@ export default function ProfileVerification({ navigation, route }) {
           )}
         />
 
+        
+
         <TextBold style={[styles.Headingtextinput]}>Enter Birth Year</TextBold>
         <TextInput
           style={styles.inputBox}
@@ -578,13 +609,13 @@ export default function ProfileVerification({ navigation, route }) {
             setDob(e);
             validateDob(e, setDobErr);
           }}
-        />
+        /> */}
 
         <TextBold style={[styles.Headingtextinput]}>Street Address</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your phone number"
+          placeholder="Enter your Adress"
           onChangeText={(e) => {
             setPhone(e);
             validateMobileNumber(e, setMobileError);
@@ -595,7 +626,7 @@ export default function ProfileVerification({ navigation, route }) {
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your phone number"
+          placeholder="Enter your City"
           onChangeText={(e) => {
             setPhone(e);
             validateMobileNumber(e, setMobileError);
@@ -606,28 +637,23 @@ export default function ProfileVerification({ navigation, route }) {
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your phone number"
+          placeholder="Enter your State"
           onChangeText={(e) => {
             setPhone(e);
             validateMobileNumber(e, setMobileError);
           }}
         />
 
-        <TextBold style={[styles.Headingtextinput]}>Code</TextBold>
+        <TextBold style={[styles.Headingtextinput]}>Zipcode</TextBold>
         <TextInput
           style={styles.inputBox}
           placeholderTextColor={styles.textinputcolor}
-          placeholder="Enter your phone number"
+          placeholder="Enter your Zipcode"
           onChangeText={(e) => {
             setPhone(e);
             validateMobileNumber(e, setMobileError);
           }}
         />
-
-
-
-
-
 
         <TouchableOpacity
           style={[styles.submitButton, { marginBottom: 15, marginTop: 20 }]}
@@ -650,6 +676,13 @@ export default function ProfileVerification({ navigation, route }) {
   );
 }
 const styles = StyleSheet.create({
+
+  flex: {
+    flexDirection: "row",
+
+    justifyContent: "space-between",
+  },
+
   container: {
     padding: 15,
     justifyContent: "center",
@@ -757,6 +790,8 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 16,
   },
+
+
   submitButton: {
     backgroundColor: color.primary,
     padding: 15,
