@@ -35,6 +35,7 @@ import Thankyou from "./screens/Thankyou";
 import Test from "./Test";
 import ProfileSetup from "./screens/ProfileSetup";
 import Confirmation from "./screens/Confirmation ";
+import EventConfirmation from "./screens/EventConfirmation";
 import { TextBold } from "./assets/fonts/CustomText";
 import GlobalSearch from "./screens/GlobalSearch";
 import ChatInner from "./screens/ChatInner";
