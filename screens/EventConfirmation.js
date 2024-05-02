@@ -18,9 +18,9 @@ export default function EventConfirmation() {
                             </TextBold>
 
                         </View>
-                        <TextRegular style={styles.childrenname2} numberOfLines={2}>
+                        {/* <TextRegular style={styles.childrenname2} numberOfLines={2}>
                             Waiting for apporval
-                        </TextRegular>
+                        </TextRegular> */}
                         <View style={[styles.flexrow, { marginTop: 10, justifyContent: "space-between" }]}>
 
                             <TouchableOpacity onPress={() => navigation.navigate("GroupInner")} style={[styles.innerbtn1]}>
