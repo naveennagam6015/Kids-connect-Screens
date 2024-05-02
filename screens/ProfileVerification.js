@@ -399,9 +399,7 @@ export default function ProfileVerification({ navigation, route }) {
   }
 
   return (
-    <ScrollView
-      style={styles.containertop}
-      showsVerticalScrollIndicator={false}
+    <ScrollView      style={styles.containertop}     showsVerticalScrollIndicator={false}
     >
 
       <View style={[styles.flexrow, styles.mb10]}>
