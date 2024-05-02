@@ -176,11 +176,11 @@ export default function Login({ navigation, route }) {
                         <View style={styles.horizontalLine}></View>
                     </View>
                     {/* <Button title="Profile" onPress={() => navigation.navigate('BottomNavigation', {screen:'Profile'})} /> */}
-                    <TouchableOpacity style={styles.googleImage}>
+                    <TouchableOpacity style={styles.googleImage} onPress={() => navigation.navigate('ProfileVerification', { data: data })}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/GoogleIcon.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Sign in with google</TextMedium>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.googleImage}>
+                    <TouchableOpacity style={styles.googleImage} onPress={() => navigation.navigate('ProfileVerification', { data: data })}>
                         <Image style={{ width: 30, height: 30, resizeMode: 'contain' }} source={require('../assets/images/apple.png')} />
                         <TextMedium style={{ justifyContent: 'center', alignSelf: 'center', marginStart: 10 }}>Continue with apple</TextMedium>
                     </TouchableOpacity>
