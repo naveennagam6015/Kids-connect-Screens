@@ -93,23 +93,113 @@ export default function GroupInner() {
           <View style={{ width: "100%" }}>
             <Search />
           </View>
-          {/* <TouchableOpacity onPress={() => navigation.navigate("ChatInner")} style={styles.btnPrimary}>
-            <Text style={{ color: color.fontcolor, textAlign: 'center', fontSize: 18 }}>Create Now</Text>
-          </TouchableOpacity> */}
+          <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]} >
+            <View style={[styles.flexrow, styles.justalinecenter]}>
+              <View>
+                <Image
+                  style={[styles.profilepicselect,]}
+                  source={require("../assets/images/women.png")}
+                />
+              </View>
+              <View style={styles.jcfs}>
+                <View style={[styles.flexrow]}>
+                  <TextMedium style={[styles.childrenname]}>
+                    Naveen
+                  </TextMedium>
+                </View>
+                <TextRegular style={[styles.textnetural]}>
+                  Kids available on 22/03/2024
+                </TextRegular>
+              </View>
+            </View>
+
+          </View>
+
+          {/* dummy code start */}
+          <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]} >
+            <View style={[styles.flexrow, styles.justalinecenter]}>
+              <View>
+                <Image
+                  style={[styles.profilepicselect,]}
+                  source={require("../assets/images/women.png")}
+                />
+              </View>
+              <View style={styles.jcfs}>
+                <View style={[styles.flexrow]}>
+                  <TextMedium style={[styles.childrenname]}>
+                    Dennis
+                  </TextMedium>
+                </View>
+                <TextRegular style={[styles.textnetural]}>
+                  Kids available on 22/03/2024
+                </TextRegular>
+              </View>
+            </View>
+
+          </View>
+          <View style={[styles.flexrow, styles.justalinecenter, styles.mv10]} >
+            <View style={[styles.flexrow, styles.justalinecenter]}>
+              <View>
+                <Image
+                  style={[styles.profilepicselect,]}
+                  source={require("../assets/images/women.png")}
+                />
+              </View>
+              <View style={styles.jcfs}>
+                <View style={[styles.flexrow]}>
+                  <TextMedium style={[styles.childrenname]}>
+                    Abay
+                  </TextMedium>
+                </View>
+                <TextRegular style={[styles.textnetural]}>
+                  Kids available on 22/03/2024
+                </TextRegular>
+              </View>
+            </View>
+
+          </View>
+          {/* dummy code end */}
+
           <TouchableOpacity onPress={() => navigation.navigate("Chat")} style={styles.btnPrimary}>
             <Text style={{ color: color.fontcolor, textAlign: 'center', fontSize: 18 }}>Delete this group</Text>
           </TouchableOpacity>
         </View>
-
-
       </ScrollView>
-
-
     </View>
   );
 }
-
 const styles = StyleSheet.create({
+  mv10: {
+    marginVertical: 10,
+  },
+  justalinecenter: {
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  profilepicselect: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  childrenname: {
+    fontSize: 18,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  textnetural: {
+    color: color.neutral[500],
+    marginVertical: 4,
+    fontSize: 16,
+  },
+  jcfs: {
+    justifyContent: "flex-start",
+  },
+  flexrow: {
+    flexDirection: "row",
+  },
   btnPrimary: {
     padding: 15,
     // marginBottom: 20,

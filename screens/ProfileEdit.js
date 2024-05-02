@@ -23,7 +23,12 @@ export default function ProfileEdit() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [address, setAddress] = useState("");
-   
+    const [gender, setGender] = useState([
+        { label: "Father", value: "1" },
+        { label: "Mother", value: "2" },
+        { label: "Teacher", value: "3" },
+        { label: "Guardian", value: "0" },
+      ]);
     const [aboutError, setaboutError] = useState('');
     const [firstNameError, setFirstNameError] = useState("");
     const [lastNameError, setLastNameError] = useState("");
@@ -314,6 +319,64 @@ export default function ProfileEdit() {
 
                 /> */}
 
+<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={{ width: "50%" }}>
+            <TextBold style={[styles.Headingtextinput]}>Relationship</TextBold>
+            <Dropdown
+              style={styles.dropdownStyle}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="Relation ?"
+              searchPlaceholder="Search..."
+            />
+          </View>
+
+          <View style={{ width: "40%" }}>
+            <TextBold style={[styles.Headingtextinput]}>Birth Year</TextBold>
+            <TextInput
+              style={[styles.dropdownStyle,{padding: 13.5 }]}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="YYYY"
+              searchPlaceholder="Search..."
+            />
+          </View>
+        </View>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "-3%", marginBottom: "-3%" }}>
+          <View style={{ width: "30%" }}>
+            <TextBold style={[styles.Headingtextinput, {}]}>Code</TextBold>
+            <Dropdown
+              style={[styles.dropdownStyle]}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="+1"
+              searchPlaceholder="Search..."
+            />
+          </View>
+          <View style={{ width: "60%" }}>
+            <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
+            <TextInput
+              style={[styles.inputBox, { padding: 13.5 }]}
+            />
+          </View>
+        </View>
+
+        <TextBold style={[styles.Headingtextinput]}>Email</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="madission@gmail.com"
+        />
+
                 
 <TextBold style={[styles.Headingtextinput]}>Street Address</TextBold>
         <TextInput
@@ -325,12 +388,45 @@ export default function ProfileEdit() {
             validateMobileNumber(e, setMobileError);
           }}
         />
+
+<TextBold style={[styles.Headingtextinput]}>City</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your City"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
+
+        <TextBold style={[styles.Headingtextinput]}>State</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your State"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
+
+        <TextBold style={[styles.Headingtextinput]}>Zipcode</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your Zipcode"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
                 <View style={[styles.modalcontainer]}>
                     <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: "center" }]}>
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Discard</TextMedium>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                        <TouchableOpacity style={[styles.Buttoncardinner1, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Save</TextMedium>
                         </TouchableOpacity>
                     </View>
@@ -511,17 +607,31 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginVertical: 16,
     },
-    Buttoncardinner2: {
+
+    Buttoncardinner1:{
         borderRadius: 8,
         alignSelf: "center",
         flexDirection: "row",
         textAlign: "center",
-        borderWidth: 1.5,
-        borderColor: color.primary,
         justifyContent: "center",
-        backgroundColor: color.primary,
+        borderWidth: 1.5,
+        borderColor: color.accent,
         paddingVertical: 16,
+        marginVertical: 16,
+        backgroundColor: color.primary,
     },
+    // Buttoncardinner2: {
+    //     borderRadius: 8,
+    //     alignSelf: "center",
+    //     flexDirection: "row",
+    //     textAlign: "center",
+    //     borderWidth: 1.5,
+    //     borderColor: color.primary,
+    //     justifyContent: "center",
+    //     backgroundColor: color.primary,
+    //     paddingVertical: 16,
+    //     marginVertical: 16,
+    // },
     Buttoncardfullwidth: {
         width: "100%",
     },

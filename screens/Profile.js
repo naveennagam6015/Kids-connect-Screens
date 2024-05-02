@@ -138,19 +138,19 @@ export default function Profile() {
                                     <Image style={[styles.profilepic, { width: 50, height: 50, marginBottom: 10 }]} source={require('../assets/images/women.png')} />
                                 </View> */}
                 <TouchableOpacity
-                  style={{ flexDirection: "row" }}
+                  style={{ flexDirection: "row", alignItems: "center" }}
                   onPress={() => setOpen(!open)}
                 >
-                  <TextRegular style={{ fontSize: 11, paddingRight: 5 }}>
+                  <TextBold style={{ fontSize: 16, paddingRight: 5 }}>
                     Add
-                  </TextRegular>
+                  </TextBold>
 
                   <View style={{ alignItems: "center" }}>
                     <View style={[styles.imageplusadd]}>
                       <AntDesign
                         name="plus"
-                        size={10}
-                        color={color.neutral[500]}
+                        size={15}
+                        color={color.fontcolor}
                       />
                     </View>
                   </View>
@@ -641,7 +641,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
-    elevation: 3,
+    elevation: 2,
   },
   ReferView: {
     flexDirection: "row",
@@ -664,7 +664,7 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     width: "100%",
     borderStyle: "dotted",
-     fontSize: 16,
+    fontSize: 16,
     color: "blue",
     alignSelf: "center",
   },
@@ -793,6 +793,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     borderRadius: 100,
     marginRight: 10,
-    backgroundColor: color.accent,
+    backgroundColor: color.white
   },
 });
