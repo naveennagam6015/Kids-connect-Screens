@@ -330,7 +330,7 @@ export default function Profile() {
                 color={color.fontcolor}
               />
             </View>
-            <View style={[styles.line]}></View>
+            {/* <View style={[styles.line]}></View>
             <View
               style={[
                 styles.flexrow,
@@ -353,7 +353,7 @@ export default function Profile() {
                 size={16}
                 color={color.fontcolor}
               />
-            </View>
+            </View> */}
           </View>
         </View>
         <View style={[styles.yellowcard]}>
@@ -641,7 +641,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
-    elevation: 11,
+    elevation: 3,
   },
   ReferView: {
     flexDirection: "row",
