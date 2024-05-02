@@ -31,20 +31,24 @@ import Search from "../components/Search";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function GroupInner() {
+  const navigation = useNavigation();
+
   const [text, setText] = useState("");
   const Hr = () => {
     return <View style={styles.hr}></View>;
   };
 
   return (
-    <ScrollView>
-      <View style={styles.mainContainer}>
+    <View style={{ flex: 1 }}>
+      <ScrollView  >
         <LinearGradient
           colors={["#FFE78C", "#ededed"]}
           start={[0, 0]}
           end={[0, 1]}
           style={styles.GroupProfilecontainer}
         >
+          {/* <View style={styles.GroupProfilecontainer}> */}
+
           <View style={{ flexDirection: "row" }}>
             <Image
               style={[styles.profilepic]}
@@ -59,6 +63,7 @@ export default function GroupInner() {
               </TouchableOpacity>
             </Text>
           </View>
+          {/* </View> */}
         </LinearGradient>
         <View style={styles.infoContainer}>
           <View>
@@ -88,52 +93,40 @@ export default function GroupInner() {
           <View style={{ width: "100%" }}>
             <Search />
           </View>
+          <TouchableOpacity onPress={() => navigation.navigate("ChatInner")} style={styles.btnPrimary}>
+            <Text style={{ color: color.fontcolor, textAlign: 'center', fontSize: 18 }}>Create Now</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("ChatInner")} style={styles.btnPrimary}>
+            <Text style={{ color: color.fontcolor, textAlign: 'center', fontSize: 18 }}>Delete this group</Text>
+          </TouchableOpacity>
         </View>
 
-        <View style={styles.HrView}>
-          <Hr />
-        </View>
-      </View>
-      <View style={styles.memberContainer}>
-        <View style={styles.memberProfileImage}>
 
-        </View>
-        <View style={styles.MembersDetails}>
+      </ScrollView>
 
-        </View>
-        {/* <TouchableOpacity
-          onPress={() => setAnotherparentdetails(!anotherparentdetails)}
-          style={[styles.flexrow, styles.alineitemscenter]}
-        >
-          <Image
-            style={[styles.profilepic]}
-            source={require("../assets/images/2women.jpg")}
-          />
-          <TextBold style={{ color: color.secondaryOrange }}>Tulika</TextBold>
-          <TextLight>(Mother)</TextLight>
-        </TouchableOpacity>
-        <View style={[styles.flexrow, styles.alineitemscenter]}>
-          <Entypo
-            name="dots-three-vertical"
-            size={18}
-            color={color.neutral[300]}
-          />
-        </View> */}
-      </View>
-    </ScrollView>
+
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  btnPrimary: {
+    padding: 15,
+    // marginBottom: 20,
+    marginTop: 10,
+    backgroundColor: color.primary,
+    borderRadius: 8
+  },
   memberContainer: {
     display: "flex",
-    flexDirection:"row",
+    flexDirection: "row",
     // justifyContent: "strech",
     width: "100%",
     height: "20%",
     backgroundColor: "#ededed",
     padding: 10,
   },
+
   HrView: {
     display: "flex",
     justifyContent: "center",
@@ -159,10 +152,7 @@ const styles = StyleSheet.create({
     width: "80%",
     marginBottom: 12,
   },
-  scrollView: {
-    // flex: 1, // Make the ScrollView fill the entire screen
-    // backgroundColor: "#ededed", // Set the background color of the ScrollView
-  },
+
 
   lables: {
     marginBottom: 10,
@@ -173,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
-    height: "40%",
+    // height: "40%",
     display: "flex",
     flexDirection: "column",
     // backgroundColor: "#dedede",

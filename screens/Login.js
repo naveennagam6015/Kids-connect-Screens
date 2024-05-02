@@ -265,7 +265,8 @@ const styles = StyleSheet.create({
         color: color.neutral[500]
     },
     inputBox: {
-        padding: 15,
+        paddingHorizontal: 16,
+        paddingVertical:8,
         borderColor: color.neutral[500],
         borderWidth: 1,
         margin: 12,

@@ -35,6 +35,7 @@ import Thankyou from "./screens/Thankyou";
 import Test from "./Test";
 import ProfileSetup from "./screens/ProfileSetup";
 import Confirmation from "./screens/Confirmation ";
+import EventConfirmation from "./screens/EventConfirmation";
 import { TextBold } from "./assets/fonts/CustomText";
 import GlobalSearch from "./screens/GlobalSearch";
 import ChatInner from "./screens/ChatInner";
@@ -237,7 +238,7 @@ function BottomNavigation({ navigation }) {
 const Stack = createStackNavigator();
 
 function StackNavigation() {
-  const navigation =  useNavigation();
+  const navigation = useNavigation();
   return (
     <Stack.Navigator initialRouteName="VerificationScreen">
       <Stack.Screen
@@ -422,6 +423,7 @@ function StackNavigation() {
         name="VerificationScreenSecondary"
         component={VerificationScreenSecondary}
       />
+
     </Stack.Navigator>
   );
 }
