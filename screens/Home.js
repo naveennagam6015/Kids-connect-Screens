@@ -187,6 +187,7 @@ export default function Home({ close }) {
                         </Pressable>
                     </View>
                 </View> */}
+
         <View>
           <TextBold style={[styles.Headingtext]}>Calendar Overview</TextBold>
           <Calendar />
@@ -222,6 +223,7 @@ export default function Home({ close }) {
               </View>
             </TouchableOpacity>
           </View>
+          <TextBold style={[styles.Headingtext]}>Active events</TextBold>
           <View style={[styles.Cardnodata]}>
             <View style={[styles.innercardnodata, styles.flexrow]}>
               <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -291,9 +293,9 @@ export default function Home({ close }) {
               <View
                 style={{ alignItems: "center", justifyContent: "flex-start" }}
               >
-                <TouchableOpacity style={[styles.Buttoncardnodata]}>
+                <TouchableOpacity onPress={() => navigation.navigate("ProfileSetup")} style={[styles.Buttoncardnodata]}>
                   <View
-                    onPress={() => navigation.navigate("BottomNavigation")}
+
                     style={[styles.flexrow, { alignItems: "center" }]}
                   >
                     <TextBold style={[styles.btnPrimaryTextsize]}>
@@ -334,6 +336,8 @@ export default function Home({ close }) {
               </View>
             </View>
           </View>
+          <TextBold style={[styles.Headingtext]}>Previous events</TextBold>
+
           <View
             style={{
               backgroundColor: "#fff",
@@ -447,6 +451,10 @@ export default function Home({ close }) {
                   </TextRegular>
                 </View>
               </View>
+              <TouchableOpacity onPress={() => navigation.navigate('ChatInner')} style={{ padding: 5, marginHorizontal: 10 }}>
+                <MaterialIcons name="message" size={20} color="black" />
+                <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)}
                 style={{
                   backgroundColor: color.primary,
@@ -459,6 +467,140 @@ export default function Home({ close }) {
               </TouchableOpacity>
             </View>
           </View>
+
+          {/* dummy code start */}
+          <View
+            style={{
+              backgroundColor: "#fff",
+              padding: 20,
+              marginVertical: 10,
+
+              borderRadius: 20,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("BottomNavigation", {
+                      screen: "Profile",
+                    })
+                  }>
+                  <Image
+                    source={require("../assets/images/man3.jpg")}
+                    style={{
+                      position: "absolute",
+                      width: 40,
+                      height: 40,
+                      top: -15,
+                      right: -10,
+                      borderRadius: 20,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+
+                  onPress={() => setKiddetails(!kiddetails)}
+                >
+                  <Image
+                    source={require("../assets/images/bgwhite.png")}
+                    style={{
+                      width: 70,
+                      height: 70,
+                      borderRadius: 35,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TextBold style={{ alignSelf: "center", fontSize: 15 }}>
+                  Soumya
+                </TextBold>
+                <TextRegular style={{ alignSelf: "center", fontSize: 12 }}>
+                  Krishna (Father)
+                </TextRegular>
+              </View>
+              <View style={{ justifyContent: "center", alignSelf: "center" }}>
+                <AntDesign name="arrowright" size={50} color="black" />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity
+                  onPress={() => setAnotherparentdetails(!anotherparentdetails)}
+                >
+                  <Image
+                    source={require("../assets/images/2women.jpg")}
+                    style={{
+                      position: "absolute",
+                      width: 40,
+                      height: 40,
+                      top: -15,
+                      right: -10,
+                      borderRadius: 20,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} >
+                  <Image
+                    source={require("../assets/images/KID.jpg")}
+                    style={{
+                      width: 70,
+                      height: 70,
+                      borderRadius: 35,
+                      borderColor: color.primary,
+                      borderWidth: 3,
+                    }}
+                  />
+                </TouchableOpacity>
+                <TextBold style={{ alignSelf: "center", fontSize: 15 }}>
+                  Anita
+                </TextBold>
+                <TextRegular style={{ alignSelf: "center", fontSize: 12 }}>
+                  Tulika (Mother)
+                </TextRegular>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 15,
+              }}
+            >
+              <View>
+                <TextRegular>17 Feb (Monday)</TextRegular>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Ionicons name="timer" size={24} color="black" />
+                  <TextRegular style={{ justifyContent: "center" }}>
+                    3 Hrs
+                  </TextRegular>
+                </View>
+              </View>
+              <TouchableOpacity onPress={() => navigation.navigate('ChatInner')} style={{ padding: 5, marginHorizontal: 10 }}>
+                <MaterialIcons name="message" size={20} color="black" />
+                <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                style={{
+                  backgroundColor: color.primary,
+                  padding: 10,
+                  borderRadius: 10,
+                  justifyContent: "center",
+                }}
+              >
+                <TextBold>More Details &gt;&gt;</TextBold>
+              </TouchableOpacity>
+            </View>
+          </View>
+          {/* dummy code end */}
 
           {/* <View style={[styles.Card]}>
           <TextBold style={[styles.Headingtext]}>Active</TextBold>
@@ -600,21 +742,10 @@ export default function Home({ close }) {
               />
             </TouchableOpacity>
           </View>
-          {/* <TextBold style={[styles.Headingtext]}>Calender Overview</TextBold> */}
-        </View>
-        <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-          <TextBold style={[styles.Headingtext]}>Previous Connection</TextBold>
-          <TouchableOpacity style={[styles.flexrow]}>
-            <TextRegular style={[styles.childrenname]}>View all</TextRegular>
-            <MaterialIcons
-              name="keyboard-arrow-down"
-              size={24}
-              color={color.primary}
-            />
-          </TouchableOpacity>
         </View>
 
-        <View style={[styles.Card]}>
+
+        {/* <View style={[styles.Card]}>
           <View style={[styles.innercard2, styles.flexrow]}>
             <TouchableOpacity
               onPress={() => setKiddetails(!kiddetails)}
@@ -686,7 +817,7 @@ export default function Home({ close }) {
               <TextBold style={{ fontSize: 14 }}>More Details</TextBold>
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </View>
 
       <Modal animationType="slide" transparent={true} visible={open}>

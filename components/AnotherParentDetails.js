@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     mv10: {
         marginVertical: 10,
     },
+   
     justalinecenter: {
         alignItems: "center",
         justifyContent: "space-between"
@@ -146,8 +147,8 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     containermain: {
-        padding: 25,
-        marginTop: 20,
+        padding: 40,
+        marginTop: 300,
         backgroundColor: color.white,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,

@@ -13,7 +13,7 @@ export default function Confirmation() {
                     <View style={styles.contentContainer}>
                         <Image style={styles.profilepic} source={require('../assets/images/bgwhite.png')} />
                         <TextRegular style={styles.childrenname} numberOfLines={2}>
-                            Yay..! Soumya’s Profile is Successfully sent to Edsher.
+                            Yay..! Soumya’s Profile is Successfully sent to Anita.
                         </TextRegular>
                     </View>
                 </View>

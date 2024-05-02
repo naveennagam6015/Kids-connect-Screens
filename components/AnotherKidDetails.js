@@ -154,9 +154,16 @@ export default function AnotherKidDetails({ close, name }) {
 
             </View>
             <Modal
-                animationType="slide" transparent={true} visible={anotherparentdetails}>
-                <View style={styles.topDummy} />
-                <AnotherParentDetails name={"Naveen"} close={() => setAnotherparentdetails(!anotherparentdetails)} />
+                animationType="slide"
+                transparent={true}
+                visible={anotherparentdetails}
+                >
+                <View style={styles.modalContainer}>
+                    <AnotherParentDetails
+                    name={"Naveen"}
+                    close={() => setAnotherparentdetails(!anotherparentdetails)}
+                    />
+                </View>
             </Modal>
         </ScrollView>
     )
@@ -168,6 +175,11 @@ const styles = StyleSheet.create({
         backgroundColor: color.primary,
         borderRadius: 8
     },
+    modalContainer: {
+        flex: 1,
+        justifyContent: "Flex-end",
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+      },
     btnText: {
         alignSelf: 'center',
         fontSize: 18
