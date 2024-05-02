@@ -179,7 +179,6 @@ export default function Chat() {
             </View>
           </TouchableOpacity>
 
-          
           {/* dummy end */}
         </View>
       </ScrollView>
