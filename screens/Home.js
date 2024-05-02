@@ -140,7 +140,7 @@ export default function Home({ close }) {
         </SkeletonContainer>
       )}
 
-       {!bannerLoading && (
+      {!bannerLoading && (
         <Carousel
           ref={carouselRef}
           layout="default"
@@ -348,7 +348,12 @@ export default function Home({ close }) {
               }}
             >
               <View style={{ marginTop: 10 }}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("BottomNavigation", {
+                      screen: "Profile",
+                    })
+                  }>
                   <Image
                     source={require("../assets/images/man3.jpg")}
                     style={{
@@ -364,11 +369,8 @@ export default function Home({ close }) {
                   />
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("BottomNavigation", {
-                      screen: "Profile",
-                    })
-                  }
+
+                  onPress={() => setKiddetails(!kiddetails)}
                 >
                   <Image
                     source={require("../assets/images/bgwhite.png")}
@@ -409,7 +411,7 @@ export default function Home({ close }) {
                     }}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setKiddetails(!kiddetails)}>
+                <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} >
                   <Image
                     source={require("../assets/images/KID.jpg")}
                     style={{
@@ -438,14 +440,14 @@ export default function Home({ close }) {
             >
               <View>
                 <TextRegular>17 Feb (Monday)</TextRegular>
-                <View style={{ flexDirection: "row" }}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Ionicons name="timer" size={24} color="black" />
                   <TextRegular style={{ justifyContent: "center" }}>
                     3 Hrs
                   </TextRegular>
                 </View>
               </View>
-              <View
+              <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)}
                 style={{
                   backgroundColor: color.primary,
                   padding: 10,
@@ -453,10 +455,8 @@ export default function Home({ close }) {
                   justifyContent: "center",
                 }}
               >
-                <TouchableOpacity>
-                  <TextBold>More Details &gt;&gt;</TextBold>
-                </TouchableOpacity>
-              </View>
+                <TextBold>More Details &gt;&gt;</TextBold>
+              </TouchableOpacity>
             </View>
           </View>
 
