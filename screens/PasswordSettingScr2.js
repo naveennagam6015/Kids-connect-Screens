@@ -5,6 +5,7 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { color } from "../assets/colors/theme";
 import { TextRegular } from "../assets/fonts/CustomText";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "../assets/styles/style";
 export default function PasswordSettingScr2({ navigation, route }) {
     // const navigation = useNavigation();
 
@@ -14,9 +15,11 @@ export default function PasswordSettingScr2({ navigation, route }) {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
     const [passwordErr, setPasswordErr] = useState('');
     const [password, setPassword] = useState('');
-    const validatePassword = (pwd, setPasswordErr) => {
+
+    const validatePassword = (pwd) => {
         if (pwd.trim() === '') {
             setPasswordErr('Password is required');
             return false;
@@ -25,34 +28,38 @@ export default function PasswordSettingScr2({ navigation, route }) {
             return true;
         }
     }
+
     return (
-        <ScrollView style={[styles.container]}>
-
-
-
-            <View >
-                <Text style={[styles.font]}>Enter your email Id</Text>
-                <TextInput style={[styles.inputBox]} placeholder="Enter Your Mail" />
+        <ScrollView style={styles.container}>
+            <View>
+                <Text style={styles.font}>Enter your email Id</Text>
+                <View style={styles.inputContainer}>
+                <TextInput style={[styles.inputBox,styles.fullwidth]} placeholder="Enter Your Mail" />
+                </View>
             </View>
 
-            <View >
-                <Text style={[styles.font1]}>Enter your Password</Text>
-                <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
-                <TouchableOpacity onPress={togglePasswordVisibility}>
-                    <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
-                </TouchableOpacity>
-            </View>
+            <View>
+                <Text style={styles.font}>Enter your Password</Text>
+                <View style={styles.inputContainer}>
+                        <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
+                        <TouchableOpacity onPress={togglePasswordVisibility}>
+                            <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
+                        </TouchableOpacity>
+                    </View>
+        </View>
 
-            <View  >
-                <Text style={[styles.font]}>Confirm your Password</Text>
-                <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
-                <TouchableOpacity onPress={togglePasswordVisibility}>
-                    <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
-                </TouchableOpacity>
+        <View>
+            <Text style={styles.font}>Confirm your Password</Text>
+            <View style={styles.inputContainer}>
+                        <TextInput style={[styles.inputBox, styles.fullwidth]} placeholder="Enter your password" onChangeText={(pwd) => { setPassword(pwd); validatePassword(pwd, setPasswordErr); }} secureTextEntry={!showPassword} />
+                        <TouchableOpacity onPress={togglePasswordVisibility}>
+                            <Ionicons style={styles.eyeIcon} name={showPassword ? 'eye-off' : 'eye'} size={24} color={color.neutral[500]} />
+                        </TouchableOpacity>
+                    </View>
+        </View>
 
-            </View>
             <View style={[styles.comment]}>
-                <TextRegular style={[styles.cmtfont, { fontWeight: "bold" }]}>Strong Password Tip: </TextRegular>
+                <TextRegular style={[styles.fontWeight,styles.cmtfont,styles.font]}>Strong Password Tip: </TextRegular>
                 <TextRegular style={[styles.cmtfont]}>Use combination of alphabets and numbers.</TextRegular>
             </View>
 
@@ -64,67 +71,69 @@ export default function PasswordSettingScr2({ navigation, route }) {
     )
 }
 
-const styles = StyleSheet.create(
-    {
-        container: {
-            padding: 16,
-        },
-        header: {
-            flexDirection: "row",
+// const styles = StyleSheet.create(
+//     {
+//         container: {
+//             padding: 16,
+//         },
+//         header: {
+//             flexDirection: "row",
 
-            marginVertical: 30,
-        },
-        headertxt: {
-            fontWeight: "bold",
-        },
-        inputBox: {
-            padding: 15,
-            borderWidth: 1,
-            borderRadius: 8,
-            borderColor: color.neutral[500]
-        },
-        font: {
-            fontWeight: "600",
+//             marginVertical: 30,
+//         },
+//         headertxt: {
+//             fontWeight: "bold",
+//         },
+//         inputBox: {
+//             flexDirection: 'row',
+//             alignItems: 'center',
+//             padding: 7,
+//             borderWidth: 1,
+//             borderRadius: 8,
+//             borderColor: color.neutral[500],
+//             marginTop:5,
+//         },
+//         font: {
+//             fontWeight: "600",
 
-        },
+//         },
         
 
-        font1: {
-            fontWeight: "600",
-            marginTop: 20,
-        },
+//         font1: {
+//             fontWeight: "600",
+//             marginTop: 20,
+//         },
+//         input: {
+//             flex: 1,
+//             padding: 5,
+//         },
+//         eyeIcon: {
+//             marginLeft: -30,
+//         },
 
-        eyeIcon: {
-            marginLeft: -50,
+//         btnPrimary: {
+//             padding: 15,
+//             margin: 1,
+//             backgroundColor: color.primary,
+//             borderRadius: 8,
+//             marginVertical: 50,
+//         },
 
-        },
+//         comment: {
+//             flexDirection: "row",
 
-        btnPrimary: {
-            padding: 15,
-            margin: 1,
-            backgroundColor: color.primary,
-            borderRadius: 8,
-            marginVertical: 50,
-        },
+//         },
 
-        comment: {
-            flexDirection: "row",
+//         cmtfont: {
+//             color: color.neutral[300],
+//             fontSize: 12,
 
-        },
+//         },
 
-        cmtfont: {
-            color: color.neutral[300],
-            fontSize: 12,
 
-        },
+//         fullwidth: {
+//             width: "94%"
+//         },
 
-        // form:{
-        //     marginVertical: 7,
-        // },
-
-        fullwidth: {
-            width: "94%"
-        },
-
-    }
-)
+//     }
+// )

@@ -57,18 +57,6 @@ export default function ProfileSetup() {
   };
   const [items, setItems] = useState([]);
   const [selecteddate, setSelecteddate] = useState('');
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios(
-  //         './AgendaApi.json',
-  //     );
-
-  //     setData(result.data);
-  //   };
-
-  //   fetchData();
-  // }, []);
   const timeToString = (time) => {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
@@ -282,48 +270,7 @@ export default function ProfileSetup() {
                       </View>
                     </View>
                   </View>
-                  {/* <View>
-                    <TextBold style={[styles.Headingtext]}>
-                      Choose Pets Profiles
-                    </TextBold>
-                    <View
-                      style={[
-                        styles.flexrow,
-                        { justifyContent: "space-around" },
-                      ]}
-                    >
-                      <View style={{ alignItems: "center" }}>
-                        <TouchableOpacity onPress={handlepressdog}>
-                          <Image
-                            style={[styles.profilepic]}
-                            source={require("../assets/images/women.png")}
-                          />
-                          {dogSelect && (
-                            <Image style={styles.tickIcon2} source={tickIcon} />
-                          )}
-                        </TouchableOpacity>
-                        <View>
-                          <TextRegular style={[styles.childrenname]}>
-                            Trippy
-                          </TextRegular>
-                        </View>
-                      </View>
-                      <View style={{ alignItems: "center" }}>
-                        <TouchableOpacity>
-                          <AntDesign
-                            name="pluscircle"
-                            size={75}
-                            color={color.accent}
-                          />
-                        </TouchableOpacity>
-                        <View>
-                          <TextRegular style={[styles.childrenname]}>
-                            Add
-                          </TextRegular>
-                        </View>
-                      </View>
-                    </View>
-                  </View> */}
+                
                 </View>
               </View>
               <View>
@@ -399,48 +346,11 @@ export default function ProfileSetup() {
                     </TextMedium>
                   </View>
                 </TouchableOpacity>
-                {/* <TouchableOpacity
-                  onPress={() => {
-                      setModalopen(!modalopen)
-                      navigation.navigate('AddingKidsAndPets');
-                  }}
-                  onPress={() => submitRequestdata()}
-                  style={[
-                    styles.flexrow,
-                    styles.Buttoncardinner2,
-                    styles.Buttoncardwidth,
-                  ]}
-                >
-                  <TextMedium style={[styles.btnPrimaryTextsize]}>
-                    Add Profile
-                  </TextMedium>
-                  <AntDesign
-                    style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
-                    name="right"
-                    size={16}
-                    color={color.fontcolor}
-                  />
-                </TouchableOpacity> */}
+               
               </View>
             </ProgressStep>
             <ProgressStep label="Tags Setup">
-              {/* <View>
-                <TextBold style={[styles.Headingtext]}>Choose from...</TextBold>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    setOpen(!open);
-                    setKidopen(!kidopen);
-                  }}
-                  style={[styles.Buttoncardinner, styles.Buttoncardfullwidth]}
-                >
-                  <View style={[styles.flexrow]}>
-                    <TextMedium style={[styles.btnPrimaryTextsize]}>
-                      Open Modal
-                    </TextMedium>
-                  </View>
-                </TouchableOpacity>
-              </View> */}
+              
               <Agenda
                 items={items}
                 loadItemsForMonth={loadItems}
@@ -540,23 +450,6 @@ export default function ProfileSetup() {
                   { justifyContent: "space-between", alignItems: "center" },
                 ]}
               >
-                {/* <View>
-                  <TextBold style={{ marginLeft: 20, fontSize: 16 }}>
-                    Open Request{" "}
-                  </TextBold>
-                </View>
-                <Switch
-                  trackColor={{
-                    false: color.secondaryOrange,
-                    true: color.success,
-                  }}
-                  thumbColor={openRequest ? color.white : "#f4f3f4"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={() =>
-                    setOpenRequest((previousState) => !previousState)
-                  }
-                  value={openRequest}
-                /> */}
               </View>
             </View>
             <View
