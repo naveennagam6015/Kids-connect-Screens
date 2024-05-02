@@ -9,7 +9,8 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Platform, Alert
+  Platform, Alert,
+  Text
 } from "react-native";
 import {
   TextBold,
@@ -413,6 +414,9 @@ export default function ProfileVerification({ navigation, route }) {
       </View>
 
       <View style={[styles.container]}>
+        <View>
+          <TextBold>Step 3 of 3</TextBold>
+        </View>
         <View style={{ alignItems: "center", marginVertical: 10 }}>
           {!image && (
             <>
@@ -530,11 +534,11 @@ export default function ProfileVerification({ navigation, route }) {
           </View>
         </View>
 
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between",marginTop:"-3%", marginBottom:"-3%" }}>
           <View style={{ width: "30%" }}>
             <TextBold style={[styles.Headingtextinput, {}]}>Code</TextBold>
             <Dropdown
-              style={styles.dropdownStyle}
+              style={[styles.dropdownStyle]}
               data={gender}
               search
               maxHeight={300}
@@ -546,16 +550,9 @@ export default function ProfileVerification({ navigation, route }) {
           </View>
           <View style={{ width: "60%" }}>
             <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
-            <Dropdown
-              style={styles.dropdownStyle}
-              data={gender}
-              search
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              placeholder=""
-              searchPlaceholder="Search..."
-            />
+            <TextInput
+          style={[styles.inputBox,{padding:13.5}]}                
+        />
           </View>
         </View>
 
@@ -656,11 +653,12 @@ export default function ProfileVerification({ navigation, route }) {
         />
 
         <TouchableOpacity
-          style={[styles.submitButton, { marginBottom: 15, marginTop: 20 }]}
+          style={[styles.submitButton, {flexDirection:"row", alignItems:"center"},{ marginBottom: 15, marginTop: 20 }]}
           onPress={alertregister}
         // onPress={SubmitData}
         >
           <TextMedium style={styles.submitButtonText}>Save</TextMedium>
+          <AntDesign name="right" size={20} color="black" />
         </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={cameramodal}>
@@ -790,6 +788,8 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 16,
   },
+
+ 
 
 
   submitButton: {
