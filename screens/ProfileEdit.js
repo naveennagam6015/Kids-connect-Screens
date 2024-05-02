@@ -23,12 +23,12 @@ export default function ProfileEdit() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [address, setAddress] = useState("");
-
+   
     const [aboutError, setaboutError] = useState('');
     const [firstNameError, setFirstNameError] = useState("");
     const [lastNameError, setLastNameError] = useState("");
     const [addressError, setAddressError] = useState("");
-
+    const [aboutErr, setAboutErr] = useState("");
 
 
     useEffect(() => {
@@ -57,15 +57,17 @@ export default function ProfileEdit() {
     // validation of form
     // done by anita
 
-    const validateAbout = (description) => {
-        if (about.trim() === '') {
-            setaboutError('About is required');
-            return false;
+   
+
+    const validateAbout = (about, setAboutErr) => {
+        if (about.trim() === "") {
+          setAboutErr("About section is required");
+          return false;
         } else {
-            setaboutError('');
-            return true;
+          setAboutErr("");
+          return true;
         }
-    };
+      };
 
     const validateFirstName = (firstName, setFirstNameError) => {
         const regex = /^[a-zA-Z ]+$/;
@@ -158,6 +160,14 @@ export default function ProfileEdit() {
 
     /*=============================================Camera Permission========================================*/
 
+    let susbsriberdata = {};
+
+    susbsriberdata = {
+      
+      About: about,
+     
+    };
+
     useEffect(() => {
         (async () => {
             const galleryStatus =
@@ -242,43 +252,47 @@ export default function ProfileEdit() {
                         <OpenCameraModal OpenCamera={() => OpenCamera()} pickImage={() => pickImage()} close={() => setCameraModal(!cameramodal)} />
                     </View>
                 </Modal>
-                <TextBold>About</TextBold>
-                <TextInput multiline={true} numberOfLines={5} placeholder="About your self"
-                    style={styles.textArea}
-                    value={about}
-                    onChangeText={(e) => {
-                        setabout(e);
-                        validateAbout(e);
-                    }}
-                />
-                {aboutError !== '' && (
-                    <Text style={{ color: 'red' }}>{aboutError}</Text>
-                )}
+                <TextInput
+          style={styles.textArea}
+          multiline={true}
+          numberOfLines={5}
+          placeholder="Description"
+          onChangeText={(e) => {
+            setAbout(e);
+            validateAbout(e, setAboutErr);
+          }}
+        />
+        {aboutErr !== "" && (
+          <TextBold style={{ marginBottom: 16, color: "red" }}>
+            {aboutErr}
+          </TextBold>
+        )}
 
-                {/* <TextInput style={styles.textArea} multiline={true} numberOfLines={5} placeholder="Hey there! I'm Madisson Arora, a passionate Motion Designer currently based in the bustling city of New York. In addition to my career, I'm also a proud mother of... more" /> */}
-                <TextBold>First Name</TextBold>
-                <TextInput placeholder="Enter your last name"
-                    style={styles.inputBox}
-                    value={firstName}
-                    onChangeText={(e) => {
-                        setFirstName(e);
-                        validateFirstName(e, setFirstNameError);
-                    }}
-                />
-                {firstNameError !== "" && (
-                    <TextBold style={{ marginBottom: 16, color: "red" }}>
-                        {firstNameError}
-                    </TextBold>
-                )}
-                <TextBold>Last Name</TextBold>
-                <TextInput placeholder="Enter your last name"
-                    style={styles.inputBox}
-                    value={lastName}
-                    onChangeText={(e) => {
-                        setLastName(e);
-                        validateLastName(e, setLastNameError);
-                    }}
-                />
+<TextBold style={[styles.Headingtextinput]}>First Name</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your First name"
+          onChangeText={(e) => {
+            setFirstName(e);
+            validateFirstName(e, setFirstNameError);
+          }}
+        />
+        {firstNameError !== "" && (
+          <TextBold style={{ marginBottom: 16, color: "red" }}>
+            {firstNameError}
+          </TextBold>
+        )}
+               <TextBold style={[styles.Headingtextinput]}>Last Name</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your Last name"
+          onChangeText={(e) => {
+            setLastName(e);
+            validateLastName(e, setLastNameErr);
+          }}
+        />
                 {lastNameError !== "" && (
                     <TextBold style={{ marginBottom: 16, color: "red" }}>
                         {lastNameError}
@@ -299,21 +313,18 @@ export default function ProfileEdit() {
                     }}
 
                 /> */}
-                <TextBold>Address</TextBold>
-                {/* <TextInput style={styles.inputBox}  /> */}
-                <TextInput placeholder="Enter your address"
-                    style={styles.inputBox}
-                    value={address}
-                    onChangeText={(e) => {
-                        setAddress(e);
-                        validateAddress(e, setAddressError);
-                    }}
-                />
-                {addressError !== "" && (
-                    <TextBold style={{ marginBottom: 16, color: "red" }}>
-                        {addressError}
-                    </TextBold>
-                )}
+
+                
+<TextBold style={[styles.Headingtextinput]}>Street Address</TextBold>
+        <TextInput
+          style={styles.inputBox}
+          placeholderTextColor={styles.textinputcolor}
+          placeholder="Enter your Adress"
+          onChangeText={(e) => {
+            setPhone(e);
+            validateMobileNumber(e, setMobileError);
+          }}
+        />
                 <View style={[styles.modalcontainer]}>
                     <View style={[styles.flexrow, { justifyContent: 'space-between', alignItems: "center" }]}>
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>

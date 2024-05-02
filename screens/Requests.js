@@ -54,7 +54,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -95,7 +95,482 @@ export default function Requests() {
                 </View>
 
                 {/* demo code start */}
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={[styles.Card]}>
+                    <View style={[styles.innercard2, styles.flexrow,]}>
+                        <TouchableOpacity
+                            onPress={() => setKiddetails(!kiddetails)}
+                            style={{ alignItems: 'flex-start' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/bgwhite.png')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Soumya <TextBold style={{ color: color.neutral[300] }}>(M)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
+                            <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
+                            <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
+
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => setAnotherkiddetails(!anotherkiddetails)}
+                            style={{ alignItems: 'flex-end' }}>
+                            <View>
+                                <Image style={[styles.profilepic]} source={require('../assets/images/KID.jpg')} />
+                            </View>
+                            <View>
+                                <TextBold style={[styles.childrenname]}>Anita  <TextBold style={{ color: color.neutral[300] }}>(F)</TextBold></TextBold>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={[styles.Card, styles.flexrow, { justifyContent: 'space-between', alignItems: 'center' }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ padding: 5, marginHorizontal: 10 }}>
+                        <MaterialIcons name="message" size={20} color="black" />
+                        <TextRegular style={{ fontSize: 12 }}>Chat</TextRegular>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={{ padding: 5, marginHorizontal: 10 }}>
+                        <View>
+                            <Ionicons name="call" size={20} color="black" />
+                        </View>
+                        <View>
+                            <TextRegular style={{ fontSize: 12 }}>Call</TextRegular>
+                        </View>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => setAnotherkiddetails(!anotherkiddetails)} style={[styles.Buttoncard, styles.Buttoncardwidth, { width: "60%" }]}>
+                        <View
+                            style={[styles.flexrow]}>
+                            <TextBold style={[styles.childrenname]}>More Details</TextBold>
+                            <AntDesign style={[styles.arrow]} name="doubleright" size={16} color={color.fontcolor} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 {/* demo code end */}
 
             </View>
@@ -151,7 +626,7 @@ export default function Requests() {
                                 <TextRegular>In-House </TextRegular>
                             </View>
                             <View style={[styles.Tags]}>
-                                <TextRegular>3-5hrs</TextRegular>
+                                <TextRegular>4hrs</TextRegular>
                             </View>
                             <View style={[styles.Tags]}>
                                 <TextRegular>Science Project</TextRegular>
@@ -233,7 +708,7 @@ export default function Requests() {
                         <TextRegular>In-House </TextRegular>
                     </View>
                     <View style={[styles.Tags2]}>
-                        <TextRegular>3-5hrs</TextRegular>
+                        <TextRegular>4hrs</TextRegular>
                     </View>
                     <View style={[styles.Tags2]}>
                         <TextRegular>Science Project</TextRegular>

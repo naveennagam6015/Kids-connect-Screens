@@ -37,7 +37,7 @@ export default function Connecting() {
             </View>
 
             <View style={[styles.dirextion]}>
-                <TouchableOpacity style={styles.btnPrimary}>
+                <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation', { screen: 'Profile' })} style={styles.btnPrimary}>
                     <Text style={{ color: color.fontcolor, fontWeight: "bold", textAlign: 'center', fontSize: 18, width: "60%" }}>Manage</Text>
                     <AntDesign name="arrowright" size={24} color="black" />
                 </TouchableOpacity>
@@ -86,7 +86,7 @@ export default function Connecting() {
             </View>
             <TouchableOpacity style={{ alignSelf: "center", }} onPress={() => navigation.navigate("BottomNavigation")}>
 
-                <TextRegular style={{ fontSize: 20,textDecorationLine: 'underline', }}>Skip to home screen</TextRegular>
+                <TextRegular style={{ fontSize: 20, textDecorationLine: 'underline', }}>Skip to home screen</TextRegular>
             </TouchableOpacity>
         </ScrollView>
     )

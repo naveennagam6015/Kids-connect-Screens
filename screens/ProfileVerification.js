@@ -47,9 +47,10 @@ export default function ProfileVerification({ navigation, route }) {
   const [image, setImage] = useState('');
   const [imageName, setImageName] = useState("");
   const [gender, setGender] = useState([
-    { label: "Male", value: "1" },
-    { label: "Female", value: "2" },
-    { label: "Others", value: "0" },
+    { label: "Father", value: "1" },
+    { label: "Mother", value: "2" },
+    { label: "Teacher", value: "3" },
+    { label: "Guardian", value: "0" },
   ]);
   const [roles, setRoles] = useState([{ label: "", value: "" }]);
   // const [email, setEmail] = useState('');
@@ -399,9 +400,7 @@ export default function ProfileVerification({ navigation, route }) {
   }
 
   return (
-    <ScrollView
-      style={styles.containertop}
-      showsVerticalScrollIndicator={false}
+    <ScrollView      style={styles.containertop}     showsVerticalScrollIndicator={false}
     >
 
       <View style={[styles.flexrow, styles.mb10]}>
@@ -521,14 +520,14 @@ export default function ProfileVerification({ navigation, route }) {
 
           <View style={{ width: "40%" }}>
             <TextBold style={[styles.Headingtextinput]}>Birth Year</TextBold>
-            <Dropdown
-              style={styles.dropdownStyle}
+            <TextInput
+              style={[styles.dropdownStyle,{padding: 13.5 }]}
               data={gender}
               search
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder=""
+              placeholder="YYYY"
               searchPlaceholder="Search..."
             />
           </View>
