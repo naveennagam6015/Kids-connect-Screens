@@ -238,7 +238,7 @@ function BottomNavigation({ navigation }) {
 const Stack = createStackNavigator();
 
 function StackNavigation() {
-  const navigation =  useNavigation();
+  const navigation = useNavigation();
   return (
     <Stack.Navigator initialRouteName="VerificationScreen">
       <Stack.Screen
@@ -423,6 +423,7 @@ function StackNavigation() {
         name="VerificationScreenSecondary"
         component={VerificationScreenSecondary}
       />
+
     </Stack.Navigator>
   );
 }
