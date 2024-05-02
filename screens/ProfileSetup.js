@@ -594,7 +594,7 @@ export default function ProfileSetup() {
                 <TextRegular style={{ fontSize: 18, marginBottom: 10 }}>
                   Select People to send bulk requets{" "}
                 </TextRegular>
-                <TouchableOpacity onPress={Creategroup} style={{ backgroundColor: color.primary, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 }}>
+                <TouchableOpacity onPress={() => navigation.navigate("EventConfirmation")} style={{ backgroundColor: color.primary, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 }}>
                   <TextBold>Send  </TextBold>
                 </TouchableOpacity>
               </View>
@@ -766,26 +766,26 @@ export default function ProfileSetup() {
 
           </ScrollView>
           {!requests && (
-  <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-    <TouchableOpacity
-      style={[styles.Buttoncardinner, styles.Buttoncardwidthhalf]}
-    >
-      <View style={[styles.flexrow]}>
-        <TextMedium style={[styles.btnPrimaryTextsize]}>
-          Save
-        </TextMedium>
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity
-      onPress={() => navigation.navigate("Confirmation")}
-      style={[styles.Buttoncardinner2, styles.Buttoncardwidthhalf]}
-    >
-      <TextMedium style={[styles.btnPrimaryTextsize]}>
-        Send
-      </TextMedium>
-    </TouchableOpacity>
-  </View>
-)}
+            <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
+              <TouchableOpacity
+                style={[styles.Buttoncardinner, styles.Buttoncardwidthhalf]}
+              >
+                <View style={[styles.flexrow]}>
+                  <TextMedium style={[styles.btnPrimaryTextsize]}>
+                    Save
+                  </TextMedium>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Confirmation")}
+                style={[styles.Buttoncardinner2, styles.Buttoncardwidthhalf]}
+              >
+                <TextMedium style={[styles.btnPrimaryTextsize]}>
+                  Send
+                </TextMedium>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </Modal>
     </ScrollView>

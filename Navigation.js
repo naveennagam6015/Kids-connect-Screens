@@ -412,6 +412,11 @@ function StackNavigation() {
         options={{ headerTitle: "Terms And Conditions" }}
       />
       <Stack.Screen
+        name="EventConfirmation"
+        component={EventConfirmation}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
         name="KidsProfileScr2"
         component={KidsProfileScr2}
         options={{ headerTitle: "KidsProfile" }}

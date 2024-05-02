@@ -96,7 +96,7 @@ export default function GroupInner() {
           <TouchableOpacity onPress={() => navigation.navigate("ChatInner")} style={styles.btnPrimary}>
             <Text style={{ color: color.fontcolor, textAlign: 'center', fontSize: 18 }}>Create Now</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("ChatInner")} style={styles.btnPrimary}>
+          <TouchableOpacity onPress={() => navigation.navigate("Chat")} style={styles.btnPrimary}>
             <Text style={{ color: color.fontcolor, textAlign: 'center', fontSize: 18 }}>Delete this group</Text>
           </TouchableOpacity>
         </View>
