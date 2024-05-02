@@ -224,7 +224,7 @@ export default function Profile() {
         </View>
         <TouchableOpacity style={[styles.Card, styles.flexrow, styles.justsb]}>
           <TextBold style={[styles.Headingtext, { marginBottom: 5 }]}>
-            My Bookings
+            My Connections
           </TextBold>
           <MaterialIcons
             style={{ marginTop: 8, marginRight: 8 }}
