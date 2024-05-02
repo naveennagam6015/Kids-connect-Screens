@@ -822,7 +822,8 @@ const styles = StyleSheet.create({
     borderColor: color.primary,
     justifyContent: "center",
     backgroundColor: color.primary,
-    paddingVertical: 20,
+    paddingVertical: 16,
+    paddingHorizontal:16,
     marginVertical: 65,
   },
   textAreaadd: {
