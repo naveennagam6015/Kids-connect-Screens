@@ -426,7 +426,7 @@ export default function ProfileEdit() {
                         <TouchableOpacity style={[styles.Buttoncardinner, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Discard</TextMedium>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.Buttoncardinner2, styles.Buttoncardwidth,]}>
+                        <TouchableOpacity style={[styles.Buttoncardinner1, styles.Buttoncardwidth,]}>
                             <TextMedium style={[styles.btnPrimaryTextsize]}>Save</TextMedium>
                         </TouchableOpacity>
                     </View>
@@ -607,17 +607,31 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         marginVertical: 16,
     },
-    Buttoncardinner2: {
+
+    Buttoncardinner1:{
         borderRadius: 8,
         alignSelf: "center",
         flexDirection: "row",
         textAlign: "center",
-        borderWidth: 1.5,
-        borderColor: color.primary,
         justifyContent: "center",
-        backgroundColor: color.primary,
+        borderWidth: 1.5,
+        borderColor: color.accent,
         paddingVertical: 16,
+        marginVertical: 16,
+        backgroundColor: color.primary,
     },
+    // Buttoncardinner2: {
+    //     borderRadius: 8,
+    //     alignSelf: "center",
+    //     flexDirection: "row",
+    //     textAlign: "center",
+    //     borderWidth: 1.5,
+    //     borderColor: color.primary,
+    //     justifyContent: "center",
+    //     backgroundColor: color.primary,
+    //     paddingVertical: 16,
+    //     marginVertical: 16,
+    // },
     Buttoncardfullwidth: {
         width: "100%",
     },
