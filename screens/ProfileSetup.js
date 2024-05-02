@@ -57,6 +57,18 @@ export default function ProfileSetup() {
   };
   const [items, setItems] = useState([]);
   const [selecteddate, setSelecteddate] = useState('');
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios(
+  //         './AgendaApi.json',
+  //     );
+
+  //     setData(result.data);
+  //   };
+
+  //   fetchData();
+  // }, []);
   const timeToString = (time) => {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
@@ -270,7 +282,48 @@ export default function ProfileSetup() {
                       </View>
                     </View>
                   </View>
-                
+                  {/* <View>
+                    <TextBold style={[styles.Headingtext]}>
+                      Choose Pets Profiles
+                    </TextBold>
+                    <View
+                      style={[
+                        styles.flexrow,
+                        { justifyContent: "space-around" },
+                      ]}
+                    >
+                      <View style={{ alignItems: "center" }}>
+                        <TouchableOpacity onPress={handlepressdog}>
+                          <Image
+                            style={[styles.profilepic]}
+                            source={require("../assets/images/women.png")}
+                          />
+                          {dogSelect && (
+                            <Image style={styles.tickIcon2} source={tickIcon} />
+                          )}
+                        </TouchableOpacity>
+                        <View>
+                          <TextRegular style={[styles.childrenname]}>
+                            Trippy
+                          </TextRegular>
+                        </View>
+                      </View>
+                      <View style={{ alignItems: "center" }}>
+                        <TouchableOpacity>
+                          <AntDesign
+                            name="pluscircle"
+                            size={75}
+                            color={color.accent}
+                          />
+                        </TouchableOpacity>
+                        <View>
+                          <TextRegular style={[styles.childrenname]}>
+                            Add
+                          </TextRegular>
+                        </View>
+                      </View>
+                    </View>
+                  </View> */}
                 </View>
               </View>
               <View>
@@ -346,11 +399,48 @@ export default function ProfileSetup() {
                     </TextMedium>
                   </View>
                 </TouchableOpacity>
-               
+                {/* <TouchableOpacity
+                  onPress={() => {
+                      setModalopen(!modalopen)
+                      navigation.navigate('AddingKidsAndPets');
+                  }}
+                  onPress={() => submitRequestdata()}
+                  style={[
+                    styles.flexrow,
+                    styles.Buttoncardinner2,
+                    styles.Buttoncardwidth,
+                  ]}
+                >
+                  <TextMedium style={[styles.btnPrimaryTextsize]}>
+                    Add Profile
+                  </TextMedium>
+                  <AntDesign
+                    style={{ marginTop: 5, marginLeft: 5, fontWeight: 500 }}
+                    name="right"
+                    size={16}
+                    color={color.fontcolor}
+                  />
+                </TouchableOpacity> */}
               </View>
             </ProgressStep>
             <ProgressStep label="Tags Setup">
-              
+              {/* <View>
+                <TextBold style={[styles.Headingtext]}>Choose from...</TextBold>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    setOpen(!open);
+                    setKidopen(!kidopen);
+                  }}
+                  style={[styles.Buttoncardinner, styles.Buttoncardfullwidth]}
+                >
+                  <View style={[styles.flexrow]}>
+                    <TextMedium style={[styles.btnPrimaryTextsize]}>
+                      Open Modal
+                    </TextMedium>
+                  </View>
+                </TouchableOpacity>
+              </View> */}
               <Agenda
                 items={items}
                 loadItemsForMonth={loadItems}
@@ -450,6 +540,23 @@ export default function ProfileSetup() {
                   { justifyContent: "space-between", alignItems: "center" },
                 ]}
               >
+                {/* <View>
+                  <TextBold style={{ marginLeft: 20, fontSize: 16 }}>
+                    Open Request{" "}
+                  </TextBold>
+                </View>
+                <Switch
+                  trackColor={{
+                    false: color.secondaryOrange,
+                    true: color.success,
+                  }}
+                  thumbColor={openRequest ? color.white : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={() =>
+                    setOpenRequest((previousState) => !previousState)
+                  }
+                  value={openRequest}
+                /> */}
               </View>
             </View>
             <View
@@ -460,7 +567,7 @@ export default function ProfileSetup() {
             >
               <View>
                 <TextBold style={{ marginLeft: 20, fontSize: 16 }}>
-                  Individual Bulk Requests
+                  Individual Group Requests
                 </TextBold>
               </View>
               <Switch
@@ -475,184 +582,210 @@ export default function ProfileSetup() {
                 }
                 value={requests}
               />
+
             </View>
 
             {/* contacts */}
-            <View style={{ marginBottom: 5, justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
-              <TextRegular style={{ fontSize: 18, marginBottom: 10 }}>
-                Select People to send bulk requets{" "}
-              </TextRegular>
-              <TouchableOpacity onPress={Creategroup} style={{ backgroundColor: color.primary, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 }}>
-                <TextBold>Send  </TextBold>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.line} />
+
             {/* main start */}
-            <TouchableWithoutFeedback onLongPress={handleLongPress}>
-              <View
-                style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
-              >
-                <View style={[styles.flexrow, styles.justalinecenter]}>
-                  <View>
-                    <Image
-                      style={[
-                        styles.profilepicselect,
-                        selected && styles.selected,
-                      ]}
-                      source={require("../assets/images/women.png")}
-                    />
-                    {selected && (
-                      <MaterialIcons
-                        name="check-circle"
-                        size={24}
-                        color="green"
-                        style={styles.tickIcon}
-                      />
-                    )}
-                  </View>
-                  <View style={styles.jcfs}>
-                    <View style={[styles.flexrow]}>
-                      <TextMedium style={[styles.childrenname]}>
-                        College Naveen
-                      </TextMedium>
-                    </View>
-                    <TextRegular style={[styles.textnetural]}>
-                      Hi, I hope you're good and well.
-                    </TextRegular>
-                  </View>
-                </View>
-              </View>
-            </TouchableWithoutFeedback>
-            {/* main end */}
+            {requests && (
 
-            {/* dummy start */}
+              <View style={{ marginBottom: 5, justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
+                <TextRegular style={{ fontSize: 18, marginBottom: 10 }}>
+                  Select People to send bulk requets{" "}
+                </TextRegular>
+                <TouchableOpacity onPress={Creategroup} style={{ backgroundColor: color.primary, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 }}>
+                  <TextBold>Send  </TextBold>
+                </TouchableOpacity>
+              </View>
+              // <View style={styles.line} />
+            )}
+            {requests && (
+              <View style={styles.line} />
 
-            <TouchableWithoutFeedback onLongPress={handleLongPress}>
-              <View
-                style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
-              >
-                <View style={[styles.flexrow, styles.justalinecenter]}>
-                  <View>
-                    <Image
-                      style={[
-                        styles.profilepicselect,
-                        selected && styles.selected,
-                      ]}
-                      source={require("../assets/images/women.png")}
-                    />
-                    {selected && (
-                      <MaterialIcons
-                        name="check-circle"
-                        size={24}
-                        color="green"
-                        style={styles.tickIcon}
+            )}
+
+
+            {requests && (
+
+              <TouchableWithoutFeedback onLongPress={handleLongPress}>
+                {/* Your TouchableWithoutFeedback components */}
+                <View
+                  style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
+                >
+                  <View style={[styles.flexrow, styles.justalinecenter]}>
+                    <View>
+                      <Image
+                        style={[
+                          styles.profilepicselect,
+                          selected && styles.selected,
+                        ]}
+                        source={require("../assets/images/women.png")}
                       />
-                    )}
-                  </View>
-                  <View style={styles.jcfs}>
-                    <View style={[styles.flexrow]}>
-                      <TextMedium style={[styles.childrenname]}>
-                        College Naveen
-                      </TextMedium>
+                      {selected && (
+                        <MaterialIcons
+                          name="check-circle"
+                          size={24}
+                          color="green"
+                          style={styles.tickIcon}
+                        />
+                      )}
                     </View>
-                    <TextRegular style={[styles.textnetural]}>
-                      Hi, I hope you're good and well.
-                    </TextRegular>
+                    <View style={styles.jcfs}>
+                      <View style={[styles.flexrow]}>
+                        <TextMedium style={[styles.childrenname]}>
+                          College Naveen
+                        </TextMedium>
+                      </View>
+                      <TextRegular style={[styles.textnetural]}>
+                        Hi, I hope you're good and well.
+                      </TextRegular>
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onLongPress={handleLongPress}>
-              <View
-                style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
-              >
-                <View style={[styles.flexrow, styles.justalinecenter]}>
-                  <View>
-                    <Image
-                      style={[
-                        styles.profilepicselect,
-                        selected && styles.selected,
-                      ]}
-                      source={require("../assets/images/women.png")}
-                    />
-                    {selected && (
-                      <MaterialIcons
-                        name="check-circle"
-                        size={24}
-                        color="green"
-                        style={styles.tickIcon}
+              </TouchableWithoutFeedback>
+
+            )}
+            {requests && (
+              <TouchableWithoutFeedback onLongPress={handleLongPress}>
+                {/* Your TouchableWithoutFeedback components */}
+                <View
+                  style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
+                >
+                  <View style={[styles.flexrow, styles.justalinecenter]}>
+                    <View>
+                      <Image
+                        style={[
+                          styles.profilepicselect,
+                          selected && styles.selected,
+                        ]}
+                        source={require("../assets/images/women.png")}
                       />
-                    )}
-                  </View>
-                  <View style={styles.jcfs}>
-                    <View style={[styles.flexrow]}>
-                      <TextMedium style={[styles.childrenname]}>
-                        College Naveen
-                      </TextMedium>
+                      {selected && (
+                        <MaterialIcons
+                          name="check-circle"
+                          size={24}
+                          color="green"
+                          style={styles.tickIcon}
+                        />
+                      )}
                     </View>
-                    <TextRegular style={[styles.textnetural]}>
-                      Hi, I hope you're good and well.
-                    </TextRegular>
+                    <View style={styles.jcfs}>
+                      <View style={[styles.flexrow]}>
+                        <TextMedium style={[styles.childrenname]}>
+                          College Naveen
+                        </TextMedium>
+                      </View>
+                      <TextRegular style={[styles.textnetural]}>
+                        Hi, I hope you're good and well.
+                      </TextRegular>
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onLongPress={handleLongPress}>
-              <View
-                style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
-              >
-                <View style={[styles.flexrow, styles.justalinecenter]}>
-                  <View>
-                    <Image
-                      style={[
-                        styles.profilepicselect,
-                        selected && styles.selected,
-                      ]}
-                      source={require("../assets/images/women.png")}
-                    />
-                    {selected && (
-                      <MaterialIcons
-                        name="check-circle"
-                        size={24}
-                        color="green"
-                        style={styles.tickIcon}
+              </TouchableWithoutFeedback>
+
+            )}
+            {requests && (
+              <TouchableWithoutFeedback onLongPress={handleLongPress}>
+                {/* Your TouchableWithoutFeedback components */}
+                <View
+                  style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
+                >
+                  <View style={[styles.flexrow, styles.justalinecenter]}>
+                    <View>
+                      <Image
+                        style={[
+                          styles.profilepicselect,
+                          selected && styles.selected,
+                        ]}
+                        source={require("../assets/images/women.png")}
                       />
-                    )}
-                  </View>
-                  <View style={styles.jcfs}>
-                    <View style={[styles.flexrow]}>
-                      <TextMedium style={[styles.childrenname]}>
-                        College Naveen
-                      </TextMedium>
+                      {selected && (
+                        <MaterialIcons
+                          name="check-circle"
+                          size={24}
+                          color="green"
+                          style={styles.tickIcon}
+                        />
+                      )}
                     </View>
-                    <TextRegular style={[styles.textnetural]}>
-                      Hi, I hope you're good and well.
-                    </TextRegular>
+                    <View style={styles.jcfs}>
+                      <View style={[styles.flexrow]}>
+                        <TextMedium style={[styles.childrenname]}>
+                          College Naveen
+                        </TextMedium>
+                      </View>
+                      <TextRegular style={[styles.textnetural]}>
+                        Hi, I hope you're good and well.
+                      </TextRegular>
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableWithoutFeedback>
-            {/* dummy end */}
+              </TouchableWithoutFeedback>
+
+            )}
+            {requests && (
+              <TouchableWithoutFeedback onLongPress={handleLongPress}>
+                {/* Your TouchableWithoutFeedback components */}
+                <View
+                  style={[styles.flexrow, styles.justalinecenter, styles.mv10]}
+                >
+                  <View style={[styles.flexrow, styles.justalinecenter]}>
+                    <View>
+                      <Image
+                        style={[
+                          styles.profilepicselect,
+                          selected && styles.selected,
+                        ]}
+                        source={require("../assets/images/women.png")}
+                      />
+                      {selected && (
+                        <MaterialIcons
+                          name="check-circle"
+                          size={24}
+                          color="green"
+                          style={styles.tickIcon}
+                        />
+                      )}
+                    </View>
+                    <View style={styles.jcfs}>
+                      <View style={[styles.flexrow]}>
+                        <TextMedium style={[styles.childrenname]}>
+                          College Naveen
+                        </TextMedium>
+                      </View>
+                      <TextRegular style={[styles.textnetural]}>
+                        Hi, I hope you're good and well.
+                      </TextRegular>
+                    </View>
+                  </View>
+                </View>
+              </TouchableWithoutFeedback>
+
+            )}
+
           </ScrollView>
-          <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
-            <TouchableOpacity
-              style={[styles.Buttoncardinner, styles.Buttoncardwidthhalf]}
-            >
-              <View style={[styles.flexrow]}>
-                <TextMedium style={[styles.btnPrimaryTextsize]}>
-                  Save
-                </TextMedium>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Confirmation")}
-              style={[styles.Buttoncardinner2, styles.Buttoncardwidthhalf]}
-            >
-              <TextMedium style={[styles.btnPrimaryTextsize]}>
-                Send
-              </TextMedium>
-            </TouchableOpacity>
-          </View>
+          {!requests && (
+  <View style={[styles.flexrow, { justifyContent: "space-between" }]}>
+    <TouchableOpacity
+      style={[styles.Buttoncardinner, styles.Buttoncardwidthhalf]}
+    >
+      <View style={[styles.flexrow]}>
+        <TextMedium style={[styles.btnPrimaryTextsize]}>
+          Save
+        </TextMedium>
+      </View>
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Confirmation")}
+      style={[styles.Buttoncardinner2, styles.Buttoncardwidthhalf]}
+    >
+      <TextMedium style={[styles.btnPrimaryTextsize]}>
+        Send
+      </TextMedium>
+    </TouchableOpacity>
+  </View>
+)}
         </View>
       </Modal>
     </ScrollView>
