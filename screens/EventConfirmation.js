@@ -3,29 +3,34 @@ import { View, StyleSheet, Text, Image, Platform, Pressable, TouchableOpacity } 
 import { TextBold, TextRegular } from '../assets/fonts/CustomText'
 import { color } from '../assets/colors/theme';
 import { useNavigation } from '@react-navigation/native';
-
+import { AntDesign } from '@expo/vector-icons';
 export default function EventConfirmation() {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.Card}>
                 <View style={[styles.flexrow, { justifyContent: 'space-between' }]}>
-                    <View style={styles.contentContainer}>
-                        <Image style={styles.profilepic} source={require('../assets/images/bgwhite.png')} />
-                        <TextRegular style={styles.childrenname} numberOfLines={2}>
-                            Yay..! Soumya’s Profile is Successfully sent to Edsher.
+                    <View style={{ alignItems: 'center' }}>
+                        <AntDesign name="checkcircle" size={40} color={color.success} />
+                        <View style={styles.contentContainer}>
+                            <TextBold style={styles.childrenname} numberOfLines={2}>
+                                Event Request is sent
+                            </TextBold>
+
+                        </View>
+                        <TextRegular style={styles.childrenname2} numberOfLines={2}>
+                            Waiting for apporval
                         </TextRegular>
+                        <View style={[styles.flexrow, { marginTop: 10, justifyContent: "space-between" }]}>
+
+                            <TouchableOpacity onPress={() => navigation.navigate("GroupInner")} style={[styles.innerbtn1]}>
+                                <TextBold>Find the group &gt;&gt;</TextBold>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </View>
-            <View style={[styles.flexrow, { marginTop: 10, justifyContent: "space-between" }]}>
-                {/* <TouchableOpacity onPress={() => navigation.navigate("BottomNavigation")} style={[styles.innerbtn]}>
-                    <TextBold>Back to Home</TextBold>
-                </TouchableOpacity> */}
-                <TouchableOpacity onPress={() => navigation.navigate('BottomNavigation', { screen: 'Requests' })} style={[styles.innerbtn1]}>
-                    <TextBold>Take me there</TextBold>
-                </TouchableOpacity>
-            </View>
+
         </View>
     );
 }
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
     Card: {
         borderRadius: 10,
         marginVertical: 10,
-        padding: 14,
+        padding: 30,
         backgroundColor: color.white,
         ...Platform.select({
             ios: {
@@ -87,8 +92,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexShrink: 1,
     },
+    childrenname2: {
+        flexShrink: 1,
+        marginLeft: 8,
+        fontSize: 18,
+    },
     childrenname: {
         flexShrink: 1,
-        marginLeft: 8, // Adjust the margin as needed
+        marginLeft: 8,
+        fontSize: 25,
     }
 });

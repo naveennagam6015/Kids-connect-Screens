@@ -449,7 +449,7 @@ export default function ProfileSetupAfterAdminApproval() {
                 />
               </View>
             </View>
-            <View style={{ borderBottomWidth: 2, borderColor: color.neutral[500], width: "30%" }}></View>
+            <View style={{ borderBottomWidth: 2, borderColor: color.neutral[500], width: "20%" }}></View>
             <View style={{ alignItems: "center" }}>
               {/* {secondaryPersonData.length == 0 && ( */}
               <>
