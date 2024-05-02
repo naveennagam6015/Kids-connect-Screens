@@ -413,10 +413,10 @@ export default function ProfileVerification({ navigation, route }) {
         {/* <TextBold style={[styles.back, { marginLeft: 20 }]}>Step 3 of 3</TextBold> */}
       </View>
 
-      <View style={{ marginHorizontal: 20 }}>
-        <TextBold>Step 3 of 3</TextBold>
-      </View>
       <View style={[styles.container]}>
+        <View>
+          <TextBold>Step 3 of 3</TextBold>
+        </View>
         <View style={{ alignItems: "center", marginVertical: 10 }}>
           {!image && (
             <>
@@ -534,7 +534,7 @@ export default function ProfileVerification({ navigation, route }) {
           </View>
         </View>
 
-        <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: "-3%", marginBottom: "-3%" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between",marginTop:"-3%", marginBottom:"-3%" }}>
           <View style={{ width: "30%" }}>
             <TextBold style={[styles.Headingtextinput, {}]}>Code</TextBold>
             <Dropdown
@@ -551,8 +551,8 @@ export default function ProfileVerification({ navigation, route }) {
           <View style={{ width: "60%" }}>
             <TextBold style={[styles.Headingtextinput]}>Phone Number</TextBold>
             <TextInput
-              style={[styles.inputBox, { padding: 13.5 }]}
-            />
+          style={[styles.inputBox,{padding:13.5}]}                
+        />
           </View>
         </View>
 
@@ -653,12 +653,12 @@ export default function ProfileVerification({ navigation, route }) {
         />
 
         <TouchableOpacity
-          style={[styles.submitButton, { flexDirection: "row", alignItems: "center",  }, { marginBottom: 15, marginTop: 20 }]}
+          style={[styles.submitButton, {flexDirection:"row", alignItems:"center"},{ marginBottom: 15, marginTop: 20 }]}
           onPress={alertregister}
         // onPress={SubmitData}
         >
           <TextMedium style={styles.submitButtonText}>Save</TextMedium>
-          <AntDesign name="right" size={16} color="black" style={{marginTop:3}} />
+          <AntDesign name="right" size={20} color="black" />
         </TouchableOpacity>
       </View>
       <Modal animationType="slide" transparent={true} visible={cameramodal}>
@@ -789,7 +789,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-
+ 
 
 
   submitButton: {
