@@ -54,7 +54,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -108,7 +108,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -161,7 +161,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -214,7 +214,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -267,7 +267,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -320,7 +320,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -373,7 +373,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -426,7 +426,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -479,7 +479,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -532,7 +532,7 @@ export default function Requests() {
                             </View>
                         </TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <TextRegular style={{ fontSize: 12 }}>3-5hrs</TextRegular>
+                            <TextRegular style={{ fontSize: 12 }}>4hrs</TextRegular>
                             <AntDesign name="arrowright" size={18} color={color.neutral[300]} />
                             <TextRegular style={{ fontSize: 12 }}>Feb 17th | Monday</TextRegular>
 
@@ -626,7 +626,7 @@ export default function Requests() {
                                 <TextRegular>In-House </TextRegular>
                             </View>
                             <View style={[styles.Tags]}>
-                                <TextRegular>3-5hrs</TextRegular>
+                                <TextRegular>4hrs</TextRegular>
                             </View>
                             <View style={[styles.Tags]}>
                                 <TextRegular>Science Project</TextRegular>
@@ -708,7 +708,7 @@ export default function Requests() {
                         <TextRegular>In-House </TextRegular>
                     </View>
                     <View style={[styles.Tags2]}>
-                        <TextRegular>3-5hrs</TextRegular>
+                        <TextRegular>4hrs</TextRegular>
                     </View>
                     <View style={[styles.Tags2]}>
                         <TextRegular>Science Project</TextRegular>
