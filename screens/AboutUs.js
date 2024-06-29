@@ -14,9 +14,6 @@ export default function AboutUs() {
 
     useEffect(() => {
 
-
-
-
         const AboutUsData = async () => {
             const authData = JSON.parse(await AsyncStorage.getItem('authData'))
 
